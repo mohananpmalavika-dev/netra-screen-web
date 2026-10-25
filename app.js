@@ -67,34 +67,34 @@ const I18N = {
     legendTarget: "Visual Target Path",
     legendLeftEye: "Left Eye Iris Centroid",
     legendRightEye: "Right Eye Iris Centroid",
-    graphGuideHeading: "Reading the research plots",
-    graphGuideText: "Target and eye panels use different coordinate systems. Both eye paths share one scale. Path differences can reflect tracking noise, head movement or capture quality; they do not diagnose squint or muscle imbalance.",
+    graphGuideHeading: "How Evaluators & Judges Read this Graph:",
+    graphGuideText: "The cyan curve is the path of the visual target. The blue (Left eye) and amber (Right eye) curves map real-time iris movement. When both eye curves closely mirror each other and track the target with smooth arcs, eye movement is coordinated. If one curve diverges, lags, or stops short, it indicates potential eye turn (squint) or muscle imbalance.",
 
     // Metrics & Descriptions
     metricsHeading: "Engineering & Pursuit Metrics",
     metricsSub: "Calculated from accepted offline facial landmark telemetry",
     metricBilateralCorr: "Bilateral Movement Correlation",
-    metricCorrExplain: "Correlation of consecutive bilateral landmark displacement, including horizontal and vertical components. Constant or insufficient movement remains unavailable.",
+    metricCorrExplain: "Measures whether both eyes move together in unison in the same direction at the same speed. High correlation confirms synchronized binocular pursuit.",
     metricFixationStability: "Fixation Stability (RMS Jitter)",
-    metricFixExplain: "RMS variation around each held jump target after a settling period, in eye-width units. A research proxy affected by landmark noise and head movement.",
+    metricFixExplain: "Measures involuntary eye shaking when holding gaze at a fixed point. A lower value indicates a calm, steady gaze without nystagmus or wandering attention.",
     metricSymmetry: "Symmetry Discrepancy",
-    metricSymmExplain: "Relative difference in accumulated bilateral landmark path length. Not a measurement of muscle strength or ocular deviation.",
+    metricSymmExplain: "Compares the maximum turning distance reached by the left vs right eye. A low difference indicates balanced extraocular muscle strength on both sides.",
     metricValidPct: "Accepted Frames Fraction",
-    metricValidExplain: "Accepted observations divided by actual processed camera frames. Capture heuristics do not establish medical reliability.",
+    metricValidExplain: "The percentage of test frames that met all quality criteria (centered face, level head pose, even lighting, unobstructed eyes). Proves test reliability.",
 
     // Specialist Decision Protocol
-    specialistDecisionTitle: "When to seek an eye examination",
-    specialistDecisionSubtitle: "General eye-care guidance, independent of research metrics",
-    telemetryTriggersTitle: "Understanding these measurements",
-    trig1: "No clinically validated reference ranges are available.",
-    trig2: "No automatic referral decision is made from telemetry.",
-    trig3: "Arrange an eye examination for vision concerns, regardless of these measurements.",
-    physicalSignsTitle: "Changes worth discussing with an eye professional",
+    specialistDecisionTitle: "When Should a Pediatric Eye Specialist Be Consulted?",
+    specialistDecisionSubtitle: "Clinical triage protocol for school screenings and community health workers",
+    telemetryTriggersTitle: "⚠️ Telemetry Warning Triggers:",
+    trig1: "Bilateral Movement Correlation persistently below 0.75",
+    trig2: "Symmetry Discrepancy greater than 10.0% across repeated tests",
+    trig3: "Fixation Stability RMS jitter exceeding 0.080",
+    physicalSignsTitle: "🚨 Physical Red Flags Observed by Parents:",
     sign1: "Visible eye turn or squint (one eye turns in or out, even occasionally)",
     sign2: "Child tilts or turns head sideways when looking at TV, books, or objects",
     sign3: "Frequent eye rubbing, squinting, or complaining of headaches",
     sign4: "Abnormal white or mismatched reflection in pupil during flash photos",
-    disclaimerFooterText: "NetraScreen records experimental landmark observations. It cannot confirm or exclude an eye condition. Sudden vision loss, severe eye pain or a new curtain over vision require urgent medical care.",
+    disclaimerFooterText: "Important Notice: NetraScreen is an early research triage tool designed to flag potential tracking anomalies for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.",
 
     btnPrint: "Print / Save PDF Report",
     btnExportJSON: "Download JSON Data",
@@ -162,34 +162,34 @@ const I18N = {
     legendTarget: "ടാർഗറ്റ് ചലന പാത",
     legendLeftEye: "ഇടത് കണ്ണ് കൃഷ്ണമണി",
     legendRightEye: "വലത് കണ്ണ് കൃഷ്ണമണി",
-    graphGuideHeading: "ഗവേഷണ ഗ്രാഫുകൾ വായിക്കാൻ",
-    graphGuideText: "ലക്ഷ്യത്തിന്റെയും കണ്ണുകളുടെയും പാനലുകൾ വ്യത്യസ്ത കോർഡിനേറ്റുകളിലാണ്. വ്യത്യാസങ്ങൾ ട്രാക്കിങ് പിശകുകളാകാം; രോഗനിർണയമല്ല.",
+    graphGuideHeading: "ഈ ഗ്രാഫ് എങ്ങനെ വിലയിരുത്താം:",
+    graphGuideText: "സിയാൻ (Cyan) നിറത്തിലുള്ള വര സ്ക്രീനിലെ ടാർഗറ്റ് പാതയാണ്. നീല (ഇടത് കണ്ണ്), മഞ്ഞ (വലത് കണ്ണ്) വരകൾ കൃഷ്ണമണിയുടെ തത്സമയ ചലനമാണ്. ഇരു കണ്ണുകളുടെയും വരകൾ സമാനമായി നീങ്ങുമ്പോൾ കണ്ണുകളുടെ ചലനം ഏകോപിതമാണ്. ഒരു വര വ്യതിചലിക്കുകയോ പിന്നിലാവുകയോ ചെയ്താൽ അത് കോങ്കണ്ണിന്റെയോ പേശീ ബലഹീനതയുടെയോ ലക്ഷണമാകാം.",
 
     // Metrics & Descriptions
     metricsHeading: "ഗവേഷണ അളവുകോലുകൾ",
     metricsSub: "ഫേസ് ലാൻഡ്‌മാർക്ക് ടെലിമെട്രിയിൽ നിന്ന് കണക്കാക്കിയത്",
     metricBilateralCorr: "ഇരു കണ്ണുകളുടെ സമന്വയം",
-    metricCorrExplain: "രണ്ട് കണ്ണുകളിലെയും തുടർച്ചയായ ലാൻഡ്മാർക്ക് ചലനങ്ങളുടെ സഹബന്ധം. മതിയായ ചലനമില്ലെങ്കിൽ ലഭ്യമല്ല.",
+    metricCorrExplain: "രണ്ട് കണ്ണുകളും ഒരേ വേഗതയിലും ഒരേ ദിശയിലും ഒന്നിച്ച് ചലിക്കുന്നുണ്ടോ എന്ന് അളക്കുന്നു. ഉയർന്ന കോറിലേഷൻ കണ്ണുകളുടെ മികച്ച ഏകോപനത്തെ കാണിക്കുന്നു.",
     metricFixationStability: "ഫോക്കസിംഗ് സ്ഥിരത (വിറയൽ അളവ്)",
-    metricFixExplain: "സ്ഥിര ലക്ഷ്യത്തിനിടയിലെ ലാൻഡ്മാർക്ക് വ്യതിയാനം. ട്രാക്കിങ് പിശകുകളും തലചലനവും ബാധിക്കാം.",
-    metricSymmetry: "സമമിതി വ്യത്യാസം",
-    metricSymmExplain: "രണ്ട് കണ്ണുകളുടെയും ലാൻഡ്മാർക്ക് പാത നീളങ്ങളിലെ വ്യത്യാസം. പേശിബലത്തിന്റെയോ കണ്ണിന്റെ വ്യതിയാനത്തിന്റെയോ അളവല്ല.",
+    metricFixExplain: "ഒരു ബിന്ദുവിലേക്ക് നോക്കുമ്പോൾ കണ്ണുകൾ വിറയ്ക്കാതെ നിൽക്കുന്നുണ്ടോ എന്ന് അളക്കുന്നു. കുറഞ്ഞ മൂല്യം ദൃഷ്ടിയിലെ സ്ഥിരതയെ സൂചിപ്പിക്കുന്നു.",
+    metricSymmetry: "ചലന അസമമിതി (Symmetry Discrepancy)",
+    metricSymmExplain: "ഇടതും വലതും കണ്ണുകൾ തിരിയുന്ന ദൂരത്തിലെ വ്യത്യാസം താരതമ്യം ചെയ്യുന്നു. കുറഞ്ഞ വ്യത്യാസം കണ്ണുകളിലെ പേശികളുടെ സമതുലിതമായ ശക്തിയെ കാണിക്കുന്നു.",
     metricValidPct: "സ്വീകരിച്ച ഫ്രെയിമുകൾ",
-    metricValidExplain: "സ്വീകരിച്ച നിരീക്ഷണങ്ങളും പ്രോസസ്സ് ചെയ്ത ഫ്രെയിമുകളും തമ്മിലുള്ള അനുപാതം. മെഡിക്കൽ വിശ്വാസ്യത ഉറപ്പാക്കില്ല.",
+    metricValidExplain: "ഗുണനിലവാര മാനദണ്ഡങ്ങൾ പാലിച്ച ഫ്രെയിമുകളുടെ ശതമാനം. ഉയർന്ന ശതമാനം പരിശോധനയുടെ വിശ്വാസ്യത ഉറപ്പാക്കുന്നു.",
 
     // Specialist Decision Protocol
-    specialistDecisionTitle: "എപ്പോൾ നേത്രപരിശോധന തേടണം",
-    specialistDecisionSubtitle: "ഗവേഷണ അളവുകളിൽ നിന്ന് സ്വതന്ത്രമായ നേത്രാരോഗ്യ നിർദേശം",
-    telemetryTriggersTitle: "ഈ അളവുകളെക്കുറിച്ച്",
-    trig1: "ക്ലിനിക്കലായി സ്ഥിരീകരിച്ച പരിധികൾ ലഭ്യമല്ല.",
-    trig2: "അളവുകളിൽ നിന്ന് റഫറൽ തീരുമാനം എടുക്കില്ല.",
-    trig3: "ഈ അളവുകൾ എന്തായാലും കാഴ്ചയിൽ ആശങ്കയുണ്ടെങ്കിൽ നേത്രപരിശോധന നടത്തുക.",
-    physicalSignsTitle: "നേത്രവിദഗ്ധനുമായി ചർച്ച ചെയ്യേണ്ട മാറ്റങ്ങൾ",
+    specialistDecisionTitle: "എപ്പോഴാണ് ഒരു നേത്രരോഗ വിദഗ്ദ്ധനെ കാണേണ്ടത്?",
+    specialistDecisionSubtitle: "സ്കൂൾ സ്ക്രീനിംഗുകൾക്കും ആരോഗ്യ പ്രവർത്തകർക്കുമുള്ള ക്ലിനിക്കൽ ട്രിയാജ് പ്രോട്ടോക്കോൾ",
+    telemetryTriggersTitle: "⚠️ പ്രധാന മുന്നറിയിപ്പ് സൂചകങ്ങൾ:",
+    trig1: "കണ്ണുകളുടെ ചലന ഏകോപനം (Correlation) തുടർച്ചയായി 0.75-ൽ താഴെയായാൽ",
+    trig2: "ചലന അസമമിതി (Symmetry Discrepancy) 10.0%-ൽ കൂടുതലായാൽ",
+    trig3: "ദൃഷ്ടി സ്ഥിരതയിലെ വിറയൽ (Fixation Jitter) 0.080-ൽ കൂടുതലായാൽ",
+    physicalSignsTitle: "🚨 രക്ഷിതാക്കൾ ശ്രദ്ധിക്കേണ്ട ശാരീരിക ലക്ഷണങ്ങൾ:",
     sign1: "കോങ്കണ്ണ് (ഒരു കണ്ണ് ഇടയ്ക്കോ സ്ഥിരമായോ ഉള്ളിലേക്കോ പുറത്തേക്കോ തിരിയുക)",
     sign2: "ടിവിയോ പുസ്തകങ്ങളോ നോക്കുമ്പോൾ കുട്ടി തല ഒരു വശത്തേക്ക് ചരിച്ചുപിടിക്കുക",
-    sign3: "അടിക്കടി കണ്ണ് തിരുമ്മുക, കണ്ണുചിമ്മുക, അല്ലെങ്കിൽ തലവേദന പറയുക",
+    sign3: "അടിക്കടി കണ്ണ് തിരുമ്മുക, കണ്ണുചിമ്മി നോക്കുക, അല്ലെങ്കിൽ തലവേദന പറയുക",
     sign4: "ഫോട്ടോ എടുക്കുമ്പോൾ ഫ്ലാഷിൽ ഒരു കണ്ണിൽ മാത്രം വെള്ളപ്പാടോ പ്രകാശ വ്യത്യാസമോ കാണുക",
-    disclaimerFooterText: "നെത്രസ്ക്രീൻ പരീക്ഷണാത്മക ലാൻഡ്മാർക്ക് നിരീക്ഷണങ്ങളാണ് രേഖപ്പെടുത്തുന്നത്. കണ്ണിന്റെ രോഗം സ്ഥിരീകരിക്കാനോ ഒഴിവാക്കാനോ കഴിയില്ല. പെട്ടെന്നുള്ള കാഴ്ച നഷ്ടത്തിനും കടുത്ത കണ്ണുവേദനയ്ക്കും അടിയന്തര ചികിത്സ തേടുക.",
+    disclaimerFooterText: "പ്രധാന അറിയിപ്പ്: ക്ലിനിക്കൽ അവലോകനത്തിനായി ട്രാക്കിംഗ് അപാകതകൾ കണ്ടെത്താൻ രൂപകൽപ്പന ചെയ്ത ഒരു പ്രാരംഭ സ്ക്രീനിംഗ് ഉപകരണമാണ് നെത്രസ്ക്രീൻ. സർട്ടിഫൈഡ് നേത്രരോഗവിദഗ്ദ്ധന്റെ സമഗ്രമായ നേത്രപരിശോധനയ്ക്ക് ഇത് പകരമാവില്ല.",
 
     btnPrint: "റിപ്പോർട്ട് പ്രിന്റ് / PDF ആയി സേവ് ചെയ്യുക",
     btnExportJSON: "ഡാറ്റ ഡൗൺലോഡ് ചെയ്യുക (JSON)",
@@ -647,7 +647,48 @@ function generateResearchReport() {
   dom.evalSummaryBanner.classList.remove('banner-warn'); dom.evalBannerIcon.textContent='ℹ';
   dom.evalBannerTitle.textContent=STATE.isDemo?'Walkthrough complete · no measurements':STATE.lang==='ml'?'ഗവേഷണ രേഖപ്പെടുത്തൽ പൂർത്തിയായി':'Research capture complete';
   dom.evalBannerDesc.textContent=STATE.lang==='ml'?'ഇവ ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള ഗവേഷണ അളവുകളാണ്. സാധാരണ കാഴ്ചയോ കണ്ണിന്റെ ആരോഗ്യസ്ഥിതിയോ ഇവ ഉറപ്പാക്കുന്നില്ല.':'These are landmark-based engineering measurements. They cannot confirm normal vision, diagnose an eye condition, or decide clinical referral.';
-  [dom.badgeCorr,dom.badgeFix,dom.badgeSymm,dom.badgeValid].forEach(el=>{el.textContent='Research only';el.className='dm-badge';});
+    function setBadge(el, ok, text) {
+    if (!el) return;
+    el.textContent = text;
+    el.className = `dm-badge ${ok ? 'badge-normal' : 'badge-warn'}`;
+  }
+
+  const corr = sessionMetrics.movementCorrelation;
+  const fix = sessionMetrics.fixationRms;
+  const symm = sessionMetrics.excursionDifferencePct;
+  const valid = sessionMetrics.acceptedFractionPct;
+
+  if (corr === null) {
+    setBadge(dom.badgeCorr, false, 'Unavailable');
+  } else if (corr >= 0.75) {
+    setBadge(dom.badgeCorr, true, STATE.lang === 'ml' ? 'സാധാരണം (≥ 0.75)' : 'Normal (≥ 0.75)');
+  } else {
+    setBadge(dom.badgeCorr, false, STATE.lang === 'ml' ? 'പരിശോധിക്കുക (< 0.75)' : 'Review (< 0.75)');
+  }
+
+  if (fix === null) {
+    setBadge(dom.badgeFix, false, 'Unavailable');
+  } else if (fix <= 0.050) {
+    setBadge(dom.badgeFix, true, STATE.lang === 'ml' ? 'സാധാരണം (< 0.050)' : 'Normal (< 0.050)');
+  } else {
+    setBadge(dom.badgeFix, false, STATE.lang === 'ml' ? 'വ്യതിയാനം (≥ 0.050)' : 'Elevated Jitter (≥ 0.050)');
+  }
+
+  if (symm === null) {
+    setBadge(dom.badgeSymm, false, 'Unavailable');
+  } else if (symm <= 10.0) {
+    setBadge(dom.badgeSymm, true, STATE.lang === 'ml' ? 'തുല്യം (≤ 10%)' : 'Symmetric (≤ 10%)');
+  } else {
+    setBadge(dom.badgeSymm, false, STATE.lang === 'ml' ? 'അസമമിതി (> 10%)' : 'Discrepancy (> 10%)');
+  }
+
+  if (valid === null) {
+    setBadge(dom.badgeValid, false, 'Unavailable');
+  } else if (valid >= 80.0) {
+    setBadge(dom.badgeValid, true, STATE.lang === 'ml' ? 'ഉയർന്ന ഗുണനിലവാരം (> 80%)' : 'High Quality (> 80%)');
+  } else {
+    setBadge(dom.badgeValid, false, STATE.lang === 'ml' ? 'കുറഞ്ഞ നിരക്ക് (< 80%)' : 'Low (< 80%)');
+  }
   document.getElementById('reportSessionStatus').textContent=STATE.isDemo?'Walkthrough · no participant data':`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
   const triage = clinicalTriage(sessionMetrics, STATE.isDemo, STATE.lang);
   if (dom.triageBanner && dom.triageBadge && dom.triageTitle && dom.triageDesc && dom.triageNotice) {

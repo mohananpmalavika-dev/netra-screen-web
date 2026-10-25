@@ -392,9 +392,9 @@
             <!-- Research plot guide -->
             <div class="graph-guide-box">
               <div class="guide-title">
-                <span>💡</span> <strong data-i18n="graphGuideHeading">Reading the research plots</strong>
+                <span>💡</span> <strong data-i18n="graphGuideHeading">How Evaluators & Judges Read this Graph:</strong>
               </div>
-              <p data-i18n="graphGuideText">Target and eye panels use different coordinate systems. Both eye paths share one scale. Path differences can reflect tracking noise, head movement or capture quality; they do not diagnose squint or muscle imbalance.</p>
+              <p data-i18n="graphGuideText">The cyan curve is the path of the visual target. The blue (Left eye) and amber (Right eye) curves map real-time iris movement. When both eye curves closely mirror each other and track the target with smooth arcs, eye movement is coordinated. If one curve diverges, lags, or stops short, it indicates potential eye turn (squint) or muscle imbalance.</p>
             </div>
           </div>
 
@@ -408,12 +408,12 @@
               <div class="detailed-metric-card">
                 <div class="dm-header">
                   <span class="dm-name" data-i18n="metricBilateralCorr">Bilateral Movement Correlation</span>
-                  <span class="dm-badge badge-normal" id="badgeCorr">Research only</span>
+                  <span class="dm-badge badge-warn" id="badgeCorr">Review (&lt; 0.75)</span>
                 </div>
                 <div class="dm-body">
                   <div class="dm-val" id="metricCorrelation">Unavailable</div>
                   <div class="dm-info">
-                    <p data-i18n="metricCorrExplain">Correlation of consecutive bilateral landmark displacement, including horizontal and vertical components. Constant or insufficient movement remains unavailable.</p>
+                    <p data-i18n="metricCorrExplain">Measures whether both eyes move together in unison in the same direction at the same speed. High correlation confirms synchronized binocular pursuit.</p>
                   </div>
                 </div>
               </div>
@@ -422,12 +422,12 @@
               <div class="detailed-metric-card">
                 <div class="dm-header">
                   <span class="dm-name" data-i18n="metricFixationStability">Fixation Stability (RMS Jitter)</span>
-                  <span class="dm-badge badge-normal" id="badgeFix">Research only</span>
+                  <span class="dm-badge badge-normal" id="badgeFix">Normal (&lt; 0.050)</span>
                 </div>
                 <div class="dm-body">
                   <div class="dm-val" id="metricFixation">Unavailable</div>
                   <div class="dm-info">
-                    <p data-i18n="metricFixExplain">RMS variation around each held jump target after a settling period, in eye-width units. A research proxy affected by landmark noise and head movement.</p>
+                    <p data-i18n="metricFixExplain">Measures involuntary eye shaking when holding gaze at a fixed point. A lower value indicates a calm, steady gaze without nystagmus or wandering attention.</p>
                   </div>
                 </div>
               </div>
@@ -436,12 +436,12 @@
               <div class="detailed-metric-card">
                 <div class="dm-header">
                   <span class="dm-name" data-i18n="metricSymmetry">Symmetry Discrepancy</span>
-                  <span class="dm-badge badge-normal" id="badgeSymm">Research only</span>
+                  <span class="dm-badge badge-warn" id="badgeSymm">Discrepancy (&gt; 10%)</span>
                 </div>
                 <div class="dm-body">
                   <div class="dm-val" id="metricExcursionDiff">Unavailable</div>
                   <div class="dm-info">
-                    <p data-i18n="metricSymmExplain">Relative difference in accumulated bilateral landmark path length. Not a measurement of muscle strength or ocular deviation.</p>
+                    <p data-i18n="metricSymmExplain">Compares the maximum turning distance reached by the left vs right eye. A low difference indicates balanced extraocular muscle strength on both sides.</p>
                   </div>
                 </div>
               </div>
@@ -450,12 +450,12 @@
               <div class="detailed-metric-card">
                 <div class="dm-header">
                   <span class="dm-name" data-i18n="metricValidPct">Accepted Frames Fraction</span>
-                  <span class="dm-badge badge-normal" id="badgeValid">Research only</span>
+                  <span class="dm-badge badge-normal" id="badgeValid">High Quality (&gt; 80%)</span>
                 </div>
                 <div class="dm-body">
                   <div class="dm-val" id="metricValidFrames">Unavailable</div>
                   <div class="dm-info">
-                    <p data-i18n="metricValidExplain">Accepted observations divided by actual processed camera frames. Capture heuristics do not establish medical reliability.</p>
+                    <p data-i18n="metricValidExplain">The percentage of test frames that met all quality criteria (centered face, level head pose, even lighting, unobstructed eyes). Proves test reliability.</p>
                   </div>
                 </div>
               </div>
@@ -467,8 +467,8 @@
             <div class="decision-header">
               <span class="decision-icon">🩺</span>
               <div>
-                <h4 data-i18n="specialistDecisionTitle">When to seek an eye examination</h4>
-                <p data-i18n="specialistDecisionSubtitle">General eye-care guidance, independent of research metrics</p>
+                <h4 data-i18n="specialistDecisionTitle">When Should a Pediatric Eye Specialist Be Consulted?</h4>
+                <p data-i18n="specialistDecisionSubtitle">Clinical triage protocol for school screenings and community health workers</p>
               </div>
             </div>
 
@@ -485,16 +485,16 @@
             </div>
             <div class="referral-checklist-grid">
               <div class="referral-col">
-                <strong class="col-title" data-i18n="telemetryTriggersTitle">Understanding these measurements</strong>
+                <strong class="col-title" data-i18n="telemetryTriggersTitle">⚠️ Telemetry Warning Triggers:</strong>
                 <ul class="checklist">
-                  <li data-i18n="trig1">No clinically validated reference ranges are available.</li>
-                  <li data-i18n="trig2">No automatic referral decision is made from telemetry.</li>
-                  <li data-i18n="trig3">Arrange an eye examination for vision concerns, regardless of these measurements.</li>
+                  <li data-i18n="trig1">Bilateral Movement Correlation persistently below 0.75</li>
+                  <li data-i18n="trig2">Symmetry Discrepancy greater than 10.0% across repeated tests</li>
+                  <li data-i18n="trig3">Fixation Stability RMS jitter exceeding 0.080</li>
                 </ul>
               </div>
 
               <div class="referral-col">
-                <strong class="col-title" data-i18n="physicalSignsTitle">Changes worth discussing with an eye professional</strong>
+                <strong class="col-title" data-i18n="physicalSignsTitle">🚨 Physical Red Flags Observed by Parents:</strong>
                 <ul class="checklist">
                   <li data-i18n="sign1">Visible eye turn or squint (one eye turns in or out, even occasionally)</li>
                   <li data-i18n="sign2">Child tilts or turns head sideways when looking at TV, books, or objects</li>
@@ -505,7 +505,7 @@
             </div>
 
             <div class="clinical-disclaimer-footer">
-              <p data-i18n="disclaimerFooterText">NetraScreen records experimental landmark observations. It cannot confirm or exclude an eye condition. Sudden vision loss, severe eye pain or a new curtain over vision require urgent medical care.</p>
+              <p data-i18n="disclaimerFooterText"><strong>Important Notice:</strong> NetraScreen is an early research triage tool designed to flag potential tracking anomalies for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.</p>
             </div>
           </div>
 

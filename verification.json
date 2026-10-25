@@ -1,6 +1,6 @@
 {
   "version": "0.5.1",
-  "verifiedAt": "2026-10-25T17:04:08.820Z",
+  "verifiedAt": "2026-10-25T17:22:03.486Z",
   "buildReceipt": "dist/build-receipt.json",
   "browserTests": {
     "passed": 17,
@@ -22,8 +22,8 @@
   "artifacts": [
     {
       "path": "index.html",
-      "bytes": 34278,
-      "sha256": "9156b1adb46f162e281bf4f09894a88d5666890af65d4f097d5ef99def154623"
+      "bytes": 34565,
+      "sha256": "8318b8b0e6709f6582b1d3e504afb62689e0761d9d447b6f5493775e3685ffdf"
     },
     {
       "path": "eye-tests.html",
@@ -32,8 +32,8 @@
     },
     {
       "path": "tracking.html",
-      "bytes": 34278,
-      "sha256": "9156b1adb46f162e281bf4f09894a88d5666890af65d4f097d5ef99def154623"
+      "bytes": 34565,
+      "sha256": "8318b8b0e6709f6582b1d3e504afb62689e0761d9d447b6f5493775e3685ffdf"
     },
     {
       "path": "about.html",
@@ -62,8 +62,8 @@
     },
     {
       "path": "research.css",
-      "bytes": 23667,
-      "sha256": "1c013e42d6c1d5d896168dec8d8efcfd673817627c42f5bf61119385972c6ada"
+      "bytes": 24168,
+      "sha256": "6fabca84ef6120dc0a8fc5175a6bbe5ea16c27370abf7cc4e97c8a36e167d639"
     },
     {
       "path": "styles.css",
@@ -82,8 +82,8 @@
     },
     {
       "path": "app.js",
-      "bytes": 51979,
-      "sha256": "28886b918e4ba1a4215a0a2fc903a220d2433be5b93e0c94b646b7833e402a40"
+      "bytes": 54909,
+      "sha256": "0a99f6904d1120ec8ce97c43b22e4576022131c517b2f932f00940d90c6e2515"
     },
     {
       "path": "eye-tests.js",
@@ -197,8 +197,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 1619,
-      "sha256": "4efe10e46c08c2c007289f76f0a77d25da5b149e2f6a7e8f60123ba3c7bb6a6e"
+      "bytes": 1649,
+      "sha256": "659e29972c5ba419cb7e34fa346f9148069047abd3e8208766c6c45fa60271eb"
     }
   ]
 }

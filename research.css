@@ -158,3 +158,5 @@
   .research-app .report-container * { color: #182b39!important; text-shadow: none!important; box-shadow: none!important; }
   .research-app .eval-summary-banner,.research-app .detailed-metric-card,.research-app .trajectory-task-block,.research-app .plot-panel,.research-app .graph-guide-box,.research-app .referral-col { background: #fff!important; border-color: #ccc!important; }
 }
+
+.research-app .dm-badge.badge-normal { background: rgba(16, 185, 129, 0.2) !important; color: #6ee7b7 !important; border: 1px solid rgba(16, 185, 129, 0.5) !important; } .research-app .dm-badge.badge-warn { background: rgba(245, 158, 11, 0.2) !important; color: #fde047 !important; border: 1px solid rgba(245, 158, 11, 0.5) !important; }
