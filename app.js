@@ -979,7 +979,20 @@ function setupEventListeners() {
 
   // Export & Print
   dom.btnPrintReport.addEventListener("click", () => {
-    window.print();
+    window.scrollTo(0, 0);
+    const vp = document.querySelector(".content-viewport");
+    if (vp) vp.scrollTop = 0;
+    if (dom.viewReport) dom.viewReport.scrollTop = 0;
+    setTimeout(() => {
+      window.print();
+    }, 150);
+  });
+
+  window.addEventListener("beforeprint", () => {
+    window.scrollTo(0, 0);
+    const vp = document.querySelector(".content-viewport");
+    if (vp) vp.scrollTop = 0;
+    if (dom.viewReport) dom.viewReport.scrollTop = 0;
   });
 
   dom.btnExportJSON.addEventListener("click", () => {
