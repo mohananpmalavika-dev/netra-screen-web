@@ -8,5 +8,20 @@ globalThis.NETRA_ASSETS = [
   'wasm/vision_wasm_nosimd_internal.js','wasm/vision_wasm_nosimd_internal.wasm',
   'vendor-manifest.json','third-party-notices.txt','APACHE-2.0.txt'
 ];
-// The original presentation remains available without increasing the offline app download.
-globalThis.NETRA_EXTRA_ASSETS=['docs/NETRA_SCREEN_MindMesh.pdf'];
+// The original presentation and slide assets remain available without increasing the offline app download.
+globalThis.NETRA_EXTRA_ASSETS = [
+  'docs/NETRA_SCREEN_MindMesh.pdf',
+  'deck-slides/slide-1.png',
+  'deck-slides/slide-2.png',
+  'deck-slides/slide-3.png',
+  'deck-slides/slide-4.png',
+  'deck-slides/slide-5.png',
+  'deck-slides/slide-6.png',
+  'deck-slides/slide-7.png',
+  'deck-slides/slide-8.png',
+  'deck-slides/slide-9.png',
+  'deck-slides/slide-10.png',
+  'deck-slides/slide-11.png',
+  'deck-slides/slide-12.png',
+  'deck-slides/slide-13.png'
+];

@@ -29,6 +29,8 @@ const I18N = {
     consentText: "I agree to local camera processing for this session. No camera images are stored or uploaded. A parent or guardian must supervise children.",
     hideCameraText: "Tick to hide camera preview on screen (keeps child focused on target)",
     btnStartLive: "Start eye movement capture",
+    deckLink: "Download project deck",
+    navPresentation: "Presentation",
     btnStartDemo: "Preview target movement · camera free",
     iosInstallHint: "On iPhone, use Safari’s Share menu → Add to Home Screen for quick access.",
     chipFraming: "Face framing",
@@ -125,6 +127,8 @@ const I18N = {
     consentText: "ഈ സെഷനിലെ പ്രാദേശിക ക്യാമറ പ്രോസസ്സിംഗിന് സമ്മതിക്കുന്നു. ചിത്രങ്ങൾ സംഭരിക്കുകയോ അപ്‌ലോഡ് ചെയ്യുകയോ ഇല്ല. കുട്ടികൾക്ക് രക്ഷിതാവിന്റെ മേൽനോട്ടം വേണം.",
     hideCameraText: "ക്യാമറ സ്ക്രീനിൽ നിന്ന് മറയ്ക്കാൻ tick ചെയ്യുക (കുട്ടിയുടെ ശ്രദ്ധ ലക്ഷ്യത്തിൽ മാത്രം ഉറപ്പിക്കാൻ)",
     btnStartLive: "കണ്ണിന്റെ ചലനം രേഖപ്പെടുത്തുക",
+    deckLink: "പ്രോജക്ട് ഡെക്ക് ഡൗൺലോഡ്",
+    navPresentation: "പ്രസന്റേഷൻ",
     btnStartDemo: "ലക്ഷ്യചലനം മുൻകൂട്ടി കാണുക · ക്യാമറ വേണ്ട",
     iosInstallHint: "ഐഫോണിൽ വേഗം തുറക്കാൻ Safari-യിലെ Share → Add to Home Screen ഉപയോഗിക്കുക.",
     chipFraming: "മുഖത്തിന്റെ സ്ഥാനം",
@@ -618,13 +622,47 @@ function runTrackingLoop() {
     if (now - invalidSince > 1800 && now - lastFramingGuide > 10000) { guide.say('guideFrame'); lastFramingGuide = now; }
   }
   dom.qualityWarningOverlay.classList.toggle('hidden',qualityOk);
-  if (qualityOk && fresh && left && right) STATE.recordedSamples.push({task:currentTask.id,taskMs:localTaskMs,acquiredMs:now,target:targetPos,left,right,qualityOk:true});
+  if (STATE.isDemo && !STATE.isPaused) {
+    fresh = true;
+    processedFrames++;
+    frameCount++;
+    const tMs = localTaskMs;
+    const saccadeL = (Math.sin(tMs * 0.006) * 0.005) + (Math.sin(tMs * 0.031) * 0.002);
+    const saccadeR = (Math.sin(tMs * 0.006 + 0.02) * 0.005) + (Math.sin(tMs * 0.031 + 0.02) * 0.002);
+    left = {
+      x: 0.38 + (targetPos.x - 0.5) * 0.24 + saccadeL,
+      y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeL * 0.8
+    };
+    right = {
+      x: 0.62 + (targetPos.x - 0.5) * 0.24 + saccadeR,
+      y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeR * 0.8
+    };
+    STATE.recordedSamples.push({
+      task: currentTask.id,
+      taskMs: localTaskMs,
+      acquiredMs: now,
+      target: { x: targetPos.x, y: targetPos.y },
+      left,
+      right,
+      qualityOk: true
+    });
+  } else if (qualityOk && fresh && left && right) {
+    STATE.recordedSamples.push({
+      task: currentTask.id,
+      taskMs: localTaskMs,
+      acquiredMs: now,
+      target: targetPos,
+      left,
+      right,
+      qualityOk: true
+    });
+  }
   if(qualityOk)taskElapsedMs+=delta;
   dom.taskProgressBar.style.width=`${Math.min(100,taskElapsedMs/STATE.activeTaskDurationMs*100)}%`;
   dom.hudTimer.textContent=`${Math.max(0,Math.ceil((STATE.activeTaskDurationMs-taskElapsedMs)/1000))}s`;
   dom.hudTaskStep.textContent=`Task ${STATE.currentTaskIndex+1}/${TASKS.length}`;
-  if(now-lastFpsTime>=1000){dom.fpsCounter.textContent=STATE.isDemo?'Camera off':`FPS: ${Math.round(frameCount*1000/(now-lastFpsTime))}`;frameCount=0;lastFpsTime=now;}
-  dom.irisDisp.textContent=STATE.isDemo?'Walkthrough · no data':qualityOk?'Landmarks acquired':'Waiting for valid capture';
+  if(now-lastFpsTime>=1000){dom.fpsCounter.textContent=STATE.isDemo?'Demo 30 FPS':`FPS: ${Math.round(frameCount*1000/(now-lastFpsTime))}`;frameCount=0;lastFpsTime=now;}
+  dom.irisDisp.textContent=STATE.isDemo?'Walkthrough · benchmark tracking':qualityOk?'Landmarks acquired':'Waiting for valid capture';
   if(taskElapsedMs>=STATE.activeTaskDurationMs){
     STATE.currentTaskIndex++;taskElapsedMs=0;qualityAt=-Infinity;
     if(STATE.currentTaskIndex>=TASKS.length){finishSession();return;}
@@ -675,7 +713,37 @@ function finishSession() {
 }
 
 // ================= RESEARCH REPORT & TRAJECTORY RENDERER =================
+function ensureDemoSamples() {
+  if (!STATE.isDemo) return;
+  if (STATE.recordedSamples.length >= 80) return;
+  STATE.recordedSamples = [];
+  processedFrames = 480;
+  TASKS.forEach(task => {
+    for (let tMs = 0; tMs < 6000; tMs += 50) {
+      const targetPos = calculateTargetPosition(task.id, tMs);
+      const saccadeL = (Math.sin(tMs * 0.006) * 0.005) + (Math.sin(tMs * 0.031) * 0.002);
+      const saccadeR = (Math.sin(tMs * 0.006 + 0.02) * 0.005) + (Math.sin(tMs * 0.031 + 0.02) * 0.002);
+      STATE.recordedSamples.push({
+        task: task.id,
+        taskMs: tMs,
+        acquiredMs: tMs,
+        target: { x: targetPos.x, y: targetPos.y },
+        left: {
+          x: 0.38 + (targetPos.x - 0.5) * 0.24 + saccadeL,
+          y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeL * 0.8
+        },
+        right: {
+          x: 0.62 + (targetPos.x - 0.5) * 0.24 + saccadeR,
+          y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeR * 0.8
+        },
+        qualityOk: true
+      });
+    }
+  });
+}
+
 function generateResearchReport() {
+  if (STATE.isDemo) ensureDemoSamples();
   sessionMetrics=researchMetrics(STATE.recordedSamples,processedFrames);
   dom.reportTimestamp.textContent=new Date(sessionTimestamp).toLocaleString();
   dom.reportCompanionUsed.textContent=`Companion: ${COMPANIONS[STATE.companion].emoji}`;
@@ -684,10 +752,27 @@ function generateResearchReport() {
   dom.metricFixation.textContent=value(sessionMetrics.fixationRms,3);
   dom.metricExcursionDiff.textContent=sessionMetrics.excursionDifferencePct===null?'Unavailable':`${value(sessionMetrics.excursionDifferencePct,1)}%`;
   dom.metricValidFrames.textContent=sessionMetrics.acceptedFractionPct===null?'Unavailable':`${value(sessionMetrics.acceptedFractionPct,1)}%`;
-  dom.evalSummaryBanner.classList.remove('banner-warn'); dom.evalBannerIcon.textContent='ℹ';
-  dom.evalBannerTitle.textContent=STATE.isDemo?'Walkthrough complete · no measurements':STATE.lang==='ml'?'ഗവേഷണ രേഖപ്പെടുത്തൽ പൂർത്തിയായി':'Research capture complete';
-  dom.evalBannerDesc.textContent=STATE.lang==='ml'?'ഇവ ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള ഗവേഷണ അളവുകളാണ്. സാധാരണ കാഴ്ചയോ കണ്ണിന്റെ ആരോഗ്യസ്ഥിതിയോ ഇവ ഉറപ്പാക്കുന്നില്ല.':'These are landmark-based engineering measurements. They cannot confirm normal vision, diagnose an eye condition, or decide clinical referral.';
-    function setBadge(el, ok, text) {
+
+  if (STATE.isDemo) {
+    dom.evalSummaryBanner.classList.remove('banner-warn');
+    dom.evalBannerIcon.textContent = '✨';
+    dom.evalBannerTitle.textContent = STATE.lang === 'ml'
+      ? 'ഡെമോ വാക്ക്ത്രൂ റിപ്പോർട്ട് · മാതൃകാ ഫലം'
+      : 'Demo Walkthrough Report · Benchmark Sample Data';
+    dom.evalBannerDesc.textContent = STATE.lang === 'ml'
+      ? 'ക്യാമറയില്ലാതെ തയ്യാറാക്കിയ മാതൃകാ ഡാറ്റ. ഇരുകണ്ണുകളുടെയും സമാന്തര ചലനവും ഉയർന്ന ഏകോപനവും എങ്ങനെ രേഖപ്പെടുത്തുന്നു എന്ന് ഇത് വ്യക്തമാക്കുന്നു.'
+      : 'Simulated demonstration baseline showing how a normal pediatric screening session renders with synchronized pursuit and stable fixation.';
+    document.getElementById('reportSessionStatus').textContent = STATE.lang === 'ml'
+      ? `ഡെമോ വാക്ക്ത്രൂ · ${STATE.recordedSamples.length} മാതൃകാ നിരീക്ഷണങ്ങൾ`
+      : `Walkthrough Demo · ${STATE.recordedSamples.length} simulated benchmark frames`;
+  } else {
+    dom.evalSummaryBanner.classList.remove('banner-warn'); dom.evalBannerIcon.textContent='ℹ';
+    dom.evalBannerTitle.textContent=STATE.lang==='ml'?'ഗവേഷണ രേഖപ്പെടുത്തൽ പൂർത്തിയായി':'Research capture complete';
+    dom.evalBannerDesc.textContent=STATE.lang==='ml'?'ഇവ ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള ഗവേഷണ അളവുകളാണ്. സാധാരണ കാഴ്ചയോ കണ്ണിന്റെ ആരോഗ്യസ്ഥിതിയോ ഇവ ഉറപ്പാക്കുന്നില്ല.':'These are landmark-based engineering measurements. They cannot confirm normal vision, diagnose an eye condition, or decide clinical referral.';
+    document.getElementById('reportSessionStatus').textContent=`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
+  }
+
+  function setBadge(el, ok, text) {
     if (!el) return;
     el.textContent = text;
     el.className = `dm-badge ${ok ? 'badge-normal' : 'badge-warn'}`;
@@ -729,14 +814,24 @@ function generateResearchReport() {
   } else {
     setBadge(dom.badgeValid, false, STATE.lang === 'ml' ? 'കുറഞ്ഞ നിരക്ക് (< 80%)' : 'Low (< 80%)');
   }
-  document.getElementById('reportSessionStatus').textContent=STATE.isDemo?'Walkthrough · no participant data':`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
+
   const triage = clinicalTriage(sessionMetrics, STATE.isDemo, STATE.lang);
   if (dom.triageBanner && dom.triageBadge && dom.triageTitle && dom.triageDesc && dom.triageNotice) {
-    dom.triageBanner.className = `triage-banner ${triage.badgeClass}`;
-    dom.triageBadge.textContent = triage.badgeText;
-    dom.triageTitle.textContent = triage.title;
-    dom.triageDesc.textContent = triage.guidance;
-    dom.triageNotice.textContent = triage.disclaimer;
+    if (STATE.isDemo) {
+      dom.triageBanner.className = 'triage-banner triage-monitoring';
+      dom.triageBadge.textContent = STATE.lang === 'ml' ? 'ഡെമോ മാതൃകാ ഫലം (Demo)' : 'Demo Benchmark Normal';
+      dom.triageTitle.textContent = STATE.lang === 'ml' ? 'മാതൃകാ നേത്രചലന റിപ്പോർട്ട് തയ്യാറായി' : 'Demonstration Report: Normal Alignment Illustrated';
+      dom.triageDesc.textContent = STATE.lang === 'ml'
+        ? 'ക്യാമറയില്ലാതെ തയ്യാറാക്കിയ മാതൃകാ ഡാറ്റ. ഇരുകണ്ണുകളുടെയും സമാന്തര ചലനവും മികച്ച സ്ഥിരതയും വ്യക്തമാക്കുന്നു. റിയൽ ക്യാമറ ടെസ്റ്റിനായി Start research session തിരഞ്ഞെടുക്കുക.'
+        : 'Sample demonstration baseline showing how a normal pediatric screening report renders with synchronized pursuit and stable fixation. To record live eyes, start a research session.';
+      dom.triageNotice.textContent = triage.disclaimer;
+    } else {
+      dom.triageBanner.className = `triage-banner ${triage.badgeClass}`;
+      dom.triageBadge.textContent = triage.badgeText;
+      dom.triageTitle.textContent = triage.title;
+      dom.triageDesc.textContent = triage.guidance;
+      dom.triageNotice.textContent = triage.disclaimer;
+    }
   }
   setSourceNotice();renderAllTrajectoryPlots();
 }

@@ -454,12 +454,204 @@ input[type=number] { background: #13162d; border-color: #454b6e; color: var(--in
   border-left: 1px solid #363d66; padding-left: 14px; white-space: nowrap;
 }
 
+/* Authentic Visual Slide Image Container */
+.slide-visual-frame {
+  margin: 20px 0 28px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(120, 228, 208, 0.25);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  background: #0d1024;
+  position: relative;
+}
+.slide-visual-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.slide-visual-frame:hover img {
+  transform: scale(1.01);
+}
+
+/* Comparison Matrix (Slide 7) */
+.paradigm-table-wrap {
+  overflow-x: auto;
+  margin: 24px 0 28px;
+  border-radius: 18px;
+  border: 1px solid rgba(185, 163, 255, 0.25);
+  background: rgba(14, 17, 40, 0.9);
+}
+.paradigm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14.5px;
+}
+.paradigm-table th, .paradigm-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.paradigm-table th {
+  background: rgba(25, 30, 65, 0.85);
+  color: #c4c9e4;
+  font-weight: 750;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.paradigm-table th.col-netra, .paradigm-table td.col-netra {
+  background: rgba(120, 228, 208, 0.09);
+  color: #78e4d0;
+  font-weight: 700;
+  border-left: 2px solid #78e4d0;
+  border-right: 2px solid #78e4d0;
+}
+
+/* Innovators Grid (Slide 11) */
+.innovators-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 28px 0;
+}
+.innovator-card {
+  background: rgba(20, 25, 54, 0.85);
+  border: 1px solid rgba(185, 163, 255, 0.28);
+  border-radius: 20px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.innovator-card:hover {
+  transform: translateY(-5px);
+  border-color: #78e4d0;
+}
+.innovator-avatar-wrap {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #78e4d0, #b9a3ff);
+  padding: 3px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.innovator-avatar-wrap .innovator-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #141733;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #78e4d0;
+}
+.innovator-role {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #b9a3ff;
+  font-weight: 750;
+  margin-bottom: 6px;
+}
+.innovator-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.innovator-bio {
+  font-size: 13px;
+  color: #c4c9e4;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Gratitude Slide (Slide 12) */
+.gratitude-box {
+  background: linear-gradient(145deg, rgba(16, 20, 48, 0.95), rgba(9, 12, 30, 0.98));
+  border: 2px solid rgba(120, 228, 208, 0.4);
+  border-radius: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  text-align: center;
+  margin: 24px 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(120, 228, 208, 0.1) inset;
+}
+.gratitude-section {
+  margin-bottom: 28px;
+}
+.gratitude-label {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #b9a3ff;
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+.gratitude-name {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 850;
+  color: #ffcf78;
+  margin-bottom: 12px;
+}
+.gratitude-text {
+  font-size: 16px;
+  color: #e2e5fc;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Clinical Roadmap Timeline (Slide 10) */
+.roadmap-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+.roadmap-step-card {
+  background: rgba(18, 23, 50, 0.85);
+  border: 1px solid rgba(185, 163, 255, 0.25);
+  border-radius: 18px;
+  padding: 22px 18px;
+  position: relative;
+}
+.roadmap-step-card.active-phase {
+  border-color: #78e4d0;
+  background: rgba(22, 32, 60, 0.95);
+  box-shadow: 0 10px 30px rgba(120, 228, 208, 0.15);
+}
+.roadmap-phase-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #78e4d0;
+  margin-bottom: 8px;
+}
+.roadmap-step-title {
+  font-size: 16px;
+  font-weight: 750;
+  color: #fff;
+  margin: 0 0 10px;
+}
+.roadmap-step-desc {
+  font-size: 13px;
+  color: #c4c9e4;
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* Responsive adjustments */
 @media(max-width:1050px) {
   .stat-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
   .tech-grid-3 { grid-template-columns: 1fr; }
   .sim-stage { grid-template-columns: 1fr; }
+  .innovators-grid { grid-template-columns: 1fr; }
+  .roadmap-timeline-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media(max-width:768px) {
@@ -470,6 +662,7 @@ input[type=number] { background: #13162d; border-color: #454b6e; color: var(--in
   .slide-card { padding: 24px; min-height: auto; }
   .presentation-page { padding: 16px 12px 100px; }
   .hero-badges-row { flex-direction: column; }
+  .roadmap-timeline-grid { grid-template-columns: 1fr; }
 }
 
 @media print {
@@ -485,4 +678,3 @@ input[type=number] { background: #13162d; border-color: #454b6e; color: var(--in
   .slide-title, .stat-label, .pipeline-step h3, .problem-card h3, .solution-card h3 { color: #000!important; }
   .stat-number { -webkit-text-fill-color: #000!important; }
 }
-
