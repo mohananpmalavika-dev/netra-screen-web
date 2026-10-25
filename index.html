@@ -52,6 +52,12 @@
           <button type="button" class="comp-btn" data-companion="dot" id="btnCompDot" aria-label="Smiling Dot">🟢</button>
         </div>
 
+        <!-- MindMesh Presentation PDF Menu Download -->
+        <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" target="_blank" class="nav-doc-btn" id="btnNavDownloadDeck" title="Download MindMesh Presentation Deck (PDF)">
+          <span class="btn-icon">📊</span>
+          <span class="deck-btn-text" data-i18n="navPresentation">Pitch Deck</span>
+        </a>
+
         <!-- Language Selector -->
         <button type="button" id="langToggleBtn" class="lang-btn" aria-label="Toggle Language">
           <span class="lang-icon">🌐</span>
@@ -128,6 +134,20 @@
               <span class="btn-icon">▶️</span>
               <span data-i18n="btnStartDemo">Run Camera-Free Demo / Walkthrough</span>
             </button>
+          </div>
+
+          <!-- MindMesh Official Presentation Deck Download Banner -->
+          <div class="presentation-banner">
+            <div class="presentation-info">
+              <span class="pres-icon">📊</span>
+              <div>
+                <strong data-i18n="presTitle">MindMesh Official Presentation Deck</strong>
+                <small data-i18n="presSub">Complete YIP Pitch Deck, Algorithm Architecture & Clinical Findings (PDF)</small>
+              </div>
+            </div>
+            <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" target="_blank" class="btn-pres-download" id="btnHomeDownloadDeck">
+              <span>⬇️</span> <span data-i18n="presDownloadBtn">Download PDF</span>
+            </a>
           </div>
 
           <!-- iOS PWA Help Tip -->
@@ -397,6 +417,10 @@
               <span class="btn-icon">🖨️</span>
               <span data-i18n="btnPrint">Print / Save PDF Report</span>
             </button>
+            <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" target="_blank" class="btn-secondary btn-deck-report" id="btnReportDownloadDeck" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <span class="btn-icon">📊</span>
+              <span data-i18n="btnReportDeck">Download Pitch Deck</span>
+            </a>
             <button type="button" id="btnExportJSON" class="btn-secondary">
               <span class="btn-icon">💾</span>
               <span data-i18n="btnExportJSON">Download JSON Data</span>
