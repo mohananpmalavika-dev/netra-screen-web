@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>NETRA-SCREEN Web | Pediatric Ocular Research PWA</title>
+  <title>NETRA-SCREEN Web | Vision & Eye Health Screening PWA</title>
   
   <!-- iOS PWA Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,7 +24,7 @@
   <div id="app" class="app-container">
     <!-- Top Bar -->
     <header class="top-nav">
-      <div class="brand">
+      <div class="brand" id="brandLogoBtn" role="button" title="NetraScreen Home">
         <div class="brand-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="9" stroke="url(#eyeGrad)" stroke-width="2"/>
@@ -40,12 +40,18 @@
         </div>
         <div class="brand-text">
           <span class="brand-title">NETRA-SCREEN</span>
-          <span class="brand-badge">PWA v0.3.1</span>
+          <span class="brand-badge">PWA v0.4.0</span>
         </div>
       </div>
 
       <div class="top-actions">
-        <!-- Companion Quick Select -->
+        <!-- Navigation Home Button (visible when away from home) -->
+        <button type="button" id="btnNavHome" class="nav-doc-btn hidden" title="Back to Home / Switch Mode">
+          <span class="btn-icon">🏠</span>
+          <span data-i18n="navHome">Home</span>
+        </button>
+
+        <!-- Companion Quick Select (for pursuit mode) -->
         <div class="companion-selector" id="companionQuickSelect" title="Select Companion Target">
           <button type="button" class="comp-btn active" data-companion="butterfly" id="btnCompButterfly" aria-label="Butterfly">🦋</button>
           <button type="button" class="comp-btn" data-companion="fish" id="btnCompFish" aria-label="Fish">🐠</button>
@@ -74,13 +80,13 @@
     <!-- MAIN VIEW CONTAINER -->
     <main class="content-viewport">
 
-      <!-- ================= VIEW 1: HOME & INFORMED CONSENT ================= -->
+      <!-- ================= VIEW 1: HOME & MODE SELECTION ================= -->
       <section id="viewHome" class="view active-view">
         <div class="home-card glass-panel">
-          <div class="hero-badge" data-i18n="heroBadge">Ocular Pursuit & Fixation Research</div>
-          <h1 class="hero-title" data-i18n="heroTitle">Pediatric Visual Attention & Iris Motion Tracking</h1>
+          <div class="hero-badge" data-i18n="heroBadge">Ocular Health & Vision Screening Suite</div>
+          <h1 class="hero-title" data-i18n="heroTitle">Pediatric Attention, Eye Strain & Vision Screening</h1>
           <p class="hero-desc" data-i18n="heroDesc">
-            Bilateral iris excursion symmetry and fixation stability measurement using high-precision offline computer vision. Designed for pediatric and rural community screenings.
+            AI-powered camera tracking and interactive vision tests to evaluate ocular alignment, digital eye strain, blinking frequency, and refractive acuity. 100% offline and private.
           </p>
 
           <div class="clinical-alert-box">
@@ -88,28 +94,108 @@
             <div class="alert-body">
               <strong data-i18n="disclaimerHeader">Research Scope Notice</strong>
               <p data-i18n="disclaimerBody">
-                This web application tracks relative iris centroids and fixation stability for engineering research. It <strong>does not provide medical diagnosis</strong> or replace an examination by an ophthalmologist or optometrist.
+                This web application tracks relative iris centroids, blink patterns, and visual acuity for screening and research. It <strong>does not provide medical diagnosis</strong> or replace an examination by an ophthalmologist or optometrist.
               </p>
             </div>
           </div>
 
-          <!-- Companion Picker Cards -->
-          <div class="section-label" data-i18n="chooseCompanion">Choose Child Companion Target:</div>
-          <div class="companion-cards-grid">
-            <div class="companion-card active" data-comp="butterfly">
-              <span class="card-emoji">🦋</span>
-              <strong data-i18n="compButterflyTitle">Chithrashalabham</strong>
-              <small data-i18n="compButterflyDesc">Playful Fluttering Butterfly</small>
+          <!-- Screening Mode Selector Cards Grid -->
+          <div class="section-label" data-i18n="chooseMode">Select Screening / Assessment Mode:</div>
+          <div class="screening-mode-cards-grid">
+            <div class="mode-card active" id="modeCardPursuit" data-mode="pursuit">
+              <div class="mode-card-header">
+                <span class="mode-card-icon">🦋</span>
+                <span class="mode-badge" data-i18n="badgePediatric">Pediatric AI</span>
+              </div>
+              <strong data-i18n="modePursuitTitle">Ocular Pursuit & Alignment</strong>
+              <p data-i18n="modePursuitDesc">Tracks bilateral iris excursion symmetry, fixation jitter & squint/amblyopia risk.</p>
             </div>
-            <div class="companion-card" data-comp="fish">
-              <span class="card-emoji">🐠</span>
-              <strong data-i18n="compFishTitle">Malsyam</strong>
-              <small data-i18n="compFishDesc">Smooth Swimming Fish</small>
+
+            <div class="mode-card" id="modeCardStrain" data-mode="strain">
+              <div class="mode-card-header">
+                <span class="mode-card-icon">👁️</span>
+                <span class="mode-badge badge-emerald" data-i18n="badgeRealtime">Camera Monitor</span>
+              </div>
+              <strong data-i18n="modeStrainTitle">Eye Strain & Dry Eye Monitor</strong>
+              <p data-i18n="modeStrainDesc">Blink rate (EAR), screen distance gauge (<30cm alert), and 20-20-20 rest guide.</p>
             </div>
-            <div class="companion-card" data-comp="dot">
-              <span class="card-emoji">🟢</span>
-              <strong data-i18n="compDotTitle">Smiling Dot</strong>
-              <small data-i18n="compDotDesc">High Contrast Target</small>
+
+            <div class="mode-card" id="modeCardVision" data-mode="vision">
+              <div class="mode-card-header">
+                <span class="mode-card-icon">🎯</span>
+                <span class="mode-badge badge-amber" data-i18n="badgeInteractive">Interactive Tests</span>
+              </div>
+              <strong data-i18n="modeVisionTitle">Vision & Refraction Suite</strong>
+              <p data-i18n="modeVisionDesc">Tumbling E Acuity (6/6), Astigmatism Dial, Duochrome & OSDI Dry Eye test.</p>
+            </div>
+          </div>
+
+          <!-- Section A: Pursuit Companion Picker (visible in pursuit mode) -->
+          <div id="pursuitConfigSection" class="mode-config-section">
+            <div class="section-label" data-i18n="chooseCompanion">Choose Child Companion Target:</div>
+            <div class="companion-cards-grid">
+              <div class="companion-card active" data-comp="butterfly">
+                <span class="card-emoji">🦋</span>
+                <strong data-i18n="compButterflyTitle">Chithrashalabham</strong>
+                <small data-i18n="compButterflyDesc">Playful Fluttering Butterfly</small>
+              </div>
+              <div class="companion-card" data-comp="fish">
+                <span class="card-emoji">🐠</span>
+                <strong data-i18n="compFishTitle">Malsyam</strong>
+                <small data-i18n="compFishDesc">Smooth Swimming Fish</small>
+              </div>
+              <div class="companion-card" data-comp="dot">
+                <span class="card-emoji">🟢</span>
+                <strong data-i18n="compDotTitle">Smiling Dot</strong>
+                <small data-i18n="compDotDesc">High Contrast Target</small>
+              </div>
+            </div>
+
+            <div class="home-actions">
+              <button type="button" id="btnStartLive" class="btn-primary glow-btn">
+                <span class="btn-icon">📷</span>
+                <span data-i18n="btnStartLive">Start Camera Tracking Session</span>
+              </button>
+              <button type="button" id="btnStartDemo" class="btn-secondary">
+                <span class="btn-icon">▶️</span>
+                <span data-i18n="btnStartDemo">Run Camera-Free Demo / Walkthrough</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Section B: Strain Monitor Launch (visible in strain mode) -->
+          <div id="strainConfigSection" class="mode-config-section hidden">
+            <div class="info-callout-box">
+              <div class="info-callout-icon">💡</div>
+              <div class="info-callout-text">
+                <strong data-i18n="strainInfoTitle">How Eye Strain & Dry Eye Monitoring Works:</strong>
+                <p data-i18n="strainInfoDesc">The front camera monitors your Eye Aspect Ratio (EAR) to detect complete vs incomplete blinks and measures screen-to-eye distance. Alerts sound if held closer than 30 cm or if blinking drops below 10/min.</p>
+              </div>
+            </div>
+
+            <div class="home-actions">
+              <button type="button" id="btnStartStrainMonitor" class="btn-primary glow-btn">
+                <span class="btn-icon">👁️</span>
+                <span data-i18n="btnStartStrain">Start Live Eye Strain & Dry Eye Monitor</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Section C: Vision Suite Launch (visible in vision mode) -->
+          <div id="visionConfigSection" class="mode-config-section hidden">
+            <div class="info-callout-box">
+              <div class="info-callout-icon">🎯</div>
+              <div class="info-callout-text">
+                <strong data-i18n="visionInfoTitle">Interactive Vision Screening Suite:</strong>
+                <p data-i18n="visionInfoDesc">Self-administered tests including Tumbling E Visual Acuity (6/6 to 6/24), Astigmatism Clock Dial, Red-Green Duochrome refractive balance, and OSDI dry eye clinical scoring.</p>
+              </div>
+            </div>
+
+            <div class="home-actions">
+              <button type="button" id="btnStartVisionSuite" class="btn-primary glow-btn">
+                <span class="btn-icon">🚀</span>
+                <span data-i18n="btnStartVision">Launch Vision Screening Station</span>
+              </button>
             </div>
           </div>
 
@@ -122,18 +208,6 @@
                 I affirm guardian consent for this research session. Camera feed is processed strictly inside this browser and no face videos or identifying information are saved or uploaded.
               </span>
             </label>
-          </div>
-
-          <!-- Action Buttons -->
-          <div class="home-actions">
-            <button type="button" id="btnStartLive" class="btn-primary glow-btn">
-              <span class="btn-icon">📷</span>
-              <span data-i18n="btnStartLive">Start Camera Tracking Session</span>
-            </button>
-            <button type="button" id="btnStartDemo" class="btn-secondary">
-              <span class="btn-icon">▶️</span>
-              <span data-i18n="btnStartDemo">Run Camera-Free Demo / Walkthrough</span>
-            </button>
           </div>
 
           <!-- MindMesh Official Presentation Deck Download Banner -->
@@ -160,7 +234,7 @@
         </div>
       </section>
 
-      <!-- ================= VIEW 2: ACTIVE TRACKING SESSION ================= -->
+      <!-- ================= VIEW 2: ACTIVE PURSUIT TRACKING SESSION ================= -->
       <section id="viewTracking" class="view">
         <div class="tracking-screen">
           <!-- Top HUD: Task info & countdown -->
@@ -239,38 +313,532 @@
         </div>
       </section>
 
-      <!-- ================= VIEW 3: RESEARCH REPORT & TRAJECTORIES ================= -->
+      <!-- ================= VIEW 4: DIGITAL EYE STRAIN & DRY EYE MONITOR ================= -->
+      <section id="viewStrainMonitor" class="view">
+        <div class="strain-monitor-screen">
+          <!-- Top HUD -->
+          <div class="tracking-hud glass-panel">
+            <div class="hud-left">
+              <span class="task-badge badge-live">LIVE MONITORING</span>
+              <span class="task-step" id="strainSessionDuration">00:00</span>
+            </div>
+            <div class="hud-center">
+              <span class="strain-status-text" id="strainStatusBanner">AI Eye Ergonomics Active</span>
+            </div>
+            <div class="hud-right">
+              <button type="button" id="btnTrigger2020Break" class="btn-hud-small" title="Take a 20-20-20 Break">☕ Break</button>
+              <button type="button" id="btnExitStrain" class="btn-hud-small" title="Exit Monitor">✕</button>
+            </div>
+          </div>
+
+          <!-- Distance Warning Bar (appears when too close) -->
+          <div id="distanceAlertBanner" class="distance-alert-banner hidden">
+            <span class="alert-pulse-icon">⚠️</span>
+            <strong data-i18n="tooCloseAlert">TOO CLOSE TO SCREEN!</strong>
+            <span data-i18n="tooCloseSub">Move back to at least 35-40 cm to protect your eyes.</span>
+          </div>
+
+          <!-- Main Ergonomics Metrics Dashboard -->
+          <div class="strain-dashboard-grid">
+            <!-- Metric 1: Blink Rate (EAR) -->
+            <div class="strain-card glass-panel">
+              <div class="sc-header">
+                <span class="sc-icon">👁️</span>
+                <span class="sc-title" data-i18n="scBlinkRate">Blink Rate</span>
+                <span class="sc-badge badge-ok" id="badgeBlinkRate">Normal</span>
+              </div>
+              <div class="sc-value-row">
+                <span class="sc-big-val" id="valBlinkRate">18</span>
+                <span class="sc-unit" data-i18n="unitBpm">blinks / min</span>
+              </div>
+              <div class="sc-sub-stats">
+                <span>Total: <strong id="valTotalBlinks">0</strong></span>
+                <span>Incomplete: <strong id="valIncompleteBlinks">0</strong> (<span id="valIncompletePct">0%</span>)</span>
+              </div>
+              <div class="sc-guide" data-i18n="guideBlink">Healthy rate is 15-20 blinks/min. Low blinking causes tear film evaporation & dry eyes.</div>
+            </div>
+
+            <!-- Metric 2: Screen-to-Eye Distance -->
+            <div class="strain-card glass-panel">
+              <div class="sc-header">
+                <span class="sc-icon">📏</span>
+                <span class="sc-title" data-i18n="scDistance">Screen Distance</span>
+                <span class="sc-badge badge-ok" id="badgeDistance">Safe</span>
+              </div>
+              <div class="sc-value-row">
+                <span class="sc-big-val" id="valDistance">42</span>
+                <span class="sc-unit">cm (~16.5 in)</span>
+              </div>
+              <div class="distance-meter-bar">
+                <div class="distance-meter-fill" id="distanceMeterFill" style="width: 70%;"></div>
+              </div>
+              <div class="sc-guide" data-i18n="guideDistance">Keep at least 35–45 cm distance to reduce ciliary muscle accommodation strain.</div>
+            </div>
+
+            <!-- Metric 3: Gaze & Inter-Blink Interval -->
+            <div class="strain-card glass-panel">
+              <div class="sc-header">
+                <span class="sc-icon">⏱️</span>
+                <span class="sc-title" data-i18n="scStare">Stare Interval</span>
+                <span class="sc-badge badge-ok" id="badgeStare">Comfortable</span>
+              </div>
+              <div class="sc-value-row">
+                <span class="sc-big-val" id="valLastBlinkSec">2.4</span>
+                <span class="sc-unit">sec since blink</span>
+              </div>
+              <div class="sc-sub-stats">
+                <span>Max Unbroken Stare: <strong id="valMaxStare">4.2s</strong></span>
+                <span>Dry Risk: <strong id="valDryRisk">Low</strong></span>
+              </div>
+              <div class="sc-guide" data-i18n="guideStare">Prolonged stare intervals (>8s) dry the ocular surface causing burning and strain.</div>
+            </div>
+
+            <!-- Metric 4: 20-20-20 Rule Assistant -->
+            <div class="strain-card glass-panel">
+              <div class="sc-header">
+                <span class="sc-icon">⏳</span>
+                <span class="sc-title" data-i18n="scRule20">20-20-20 Rest Rule</span>
+                <span class="sc-badge badge-emerald" id="badgeRule20">On Track</span>
+              </div>
+              <div class="sc-value-row">
+                <span class="sc-big-val" id="valRule20Countdown">19:42</span>
+                <span class="sc-unit">to next rest</span>
+              </div>
+              <div class="sc-sub-stats">
+                <span>Completed Breaks: <strong id="valBreaksCount">0</strong></span>
+              </div>
+              <div class="sc-guide" data-i18n="guideRule20">Every 20 mins, look at an object 20 feet (6m) away for 20 seconds to relax muscles.</div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons & Video Stream -->
+          <div class="strain-bottom-bar">
+            <!-- Strain Video PIP -->
+            <div class="strain-cam-pip glass-panel">
+              <video id="strainVideo" playsinline muted autoplay></video>
+              <canvas id="strainCanvasOverlay"></canvas>
+              <div class="strain-cam-info">
+                <span>EAR: <strong id="valLiveEar">0.28</strong></span>
+                <span>Face: <strong id="valFaceStatus">Detected</strong></span>
+              </div>
+            </div>
+
+            <div class="strain-action-buttons">
+              <button type="button" id="btnFinishStrainReport" class="btn-primary glow-btn">
+                <span class="btn-icon">📋</span>
+                <span data-i18n="btnFinishStrainReport">Finish & Generate Eye Strain Report</span>
+              </button>
+              <button type="button" id="btnSwitchToVisionSuite" class="btn-secondary">
+                <span class="btn-icon">🎯</span>
+                <span data-i18n="btnTakeVisionCheck">Take Quick Vision & Power Check</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 20-20-20 Guided Relaxation Break Modal Overlay -->
+        <div id="breakModalOverlay" class="break-modal-overlay hidden">
+          <div class="break-card glass-panel">
+            <div class="break-icon-animated">🌿</div>
+            <h2 data-i18n="breakModalTitle">20-20-20 Eye Relaxation Rest</h2>
+            <p data-i18n="breakModalDesc">Look away from your screen at a distant window or object at least <strong>20 feet (6 meters)</strong> away.</p>
+            <div class="break-countdown-circle">
+              <span id="breakCountdownSec">20</span>
+              <small>sec</small>
+            </div>
+            <p class="break-tip" data-i18n="breakTip">Blink gently and allow your eye focusing muscles to completely relax.</p>
+            <button type="button" id="btnDismissBreak" class="btn-outline">Skip / Resume</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 5: INTERACTIVE VISION & REFRACTION SUITE ================= -->
+      <section id="viewVisionSuite" class="view">
+        <div class="vision-suite-container glass-panel">
+          <!-- Suite Header -->
+          <div class="suite-header">
+            <div class="suite-title-row">
+              <span class="suite-badge" data-i18n="suiteBadge">INTERACTIVE VISION STATION</span>
+              <button type="button" id="btnExitVisionSuite" class="btn-hud-small" title="Exit to Home">✕</button>
+            </div>
+            <h2 class="suite-main-title" data-i18n="suiteTitle">Visual Acuity, Astigmatism & Dry Eye Assessment</h2>
+            <p class="suite-sub" data-i18n="suiteSubtitle">Standardized optometric screening tests executable entirely within your mobile browser.</p>
+            
+            <!-- Vision Test Navigation Tabs -->
+            <div class="vision-tabs" id="visionNavTabs">
+              <button type="button" class="vtab-btn active" data-vtab="tabAcuity">
+                <span class="vtab-icon">👁️</span> <span data-i18n="tabAcuity">Visual Acuity (E)</span>
+              </button>
+              <button type="button" class="vtab-btn" data-vtab="tabAstigmatism">
+                <span class="vtab-icon">☀️</span> <span data-i18n="tabAstigmatism">Astigmatism Dial</span>
+              </button>
+              <button type="button" class="vtab-btn" data-vtab="tabDuochrome">
+                <span class="vtab-icon">🔴🟢</span> <span data-i18n="tabDuochrome">Duochrome Test</span>
+              </button>
+              <button type="button" class="vtab-btn" data-vtab="tabColor">
+                <span class="vtab-icon">🎨</span> <span data-i18n="tabColor">Color Vision</span>
+              </button>
+              <button type="button" class="vtab-btn" data-vtab="tabOsdi">
+                <span class="vtab-icon">📋</span> <span data-i18n="tabOsdi">Dry Eye Survey</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 1: VISUAL ACUITY (TUMBLING E) -->
+          <div id="tabAcuityContent" class="vtab-content active">
+            <div class="test-instruction-box">
+              <span class="inst-icon">📏</span>
+              <div>
+                <strong data-i18n="acuityInstTitle">Distance Setup (Tumbling E Test):</strong>
+                <p data-i18n="acuityInstDesc">Hold phone at arm's length (~40-50 cm). Indicate which direction the open prongs of the letter <strong>'E'</strong> are pointing.</p>
+              </div>
+            </div>
+
+            <div class="acuity-stage">
+              <div class="acuity-level-indicator">
+                <span data-i18n="lblTargetLevel">Snellen Acuity Level:</span>
+                <strong id="acuityCurrentLevel" class="level-highlight">6/18</strong>
+                <span class="level-step-indicator" id="acuityStep">Step 1 of 5</span>
+              </div>
+
+              <!-- Large High-Contrast Tumbling E Display -->
+              <div class="optotype-box" id="optotypeBox">
+                <div class="tumbling-e rot-0" id="tumblingE">E</div>
+              </div>
+
+              <!-- Direction Input Buttons -->
+              <div class="direction-controls">
+                <button type="button" class="dir-btn dir-up" data-dir="UP" aria-label="Pointing Up">⬆️</button>
+                <div class="dir-row">
+                  <button type="button" class="dir-btn dir-left" data-dir="LEFT" aria-label="Pointing Left">⬅️</button>
+                  <button type="button" class="dir-btn dir-right" data-dir="RIGHT" aria-label="Pointing Right">➡️</button>
+                </div>
+                <button type="button" class="dir-btn dir-down" data-dir="DOWN" aria-label="Pointing Down">⬇️</button>
+              </div>
+
+              <div class="acuity-status-bar">
+                <span>Current Score: <strong id="acuityScoreText">Testing...</strong></span>
+                <button type="button" id="btnRestartAcuity" class="btn-text-small">↺ Restart Test</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: ASTIGMATISM CLOCK DIAL -->
+          <div id="tabAstigmatismContent" class="vtab-content">
+            <div class="test-instruction-box">
+              <span class="inst-icon">☀️</span>
+              <div>
+                <strong data-i18n="astigInstTitle">Astigmatism Sunburst Dial Test:</strong>
+                <p data-i18n="astigInstDesc">Cover one eye with your hand. Look at the center dot of the dial. Do all radiating lines look equally dark and sharp, or do some lines appear significantly darker or thicker than others?</p>
+              </div>
+            </div>
+
+            <div class="astigmatism-stage">
+              <!-- Radial SVG Sunburst Dial -->
+              <div class="sunburst-dial-wrapper">
+                <svg viewBox="0 0 300 300" class="sunburst-svg" id="astigmatismSvg">
+                  <!-- Lines radiated every 15 degrees -->
+                  <g stroke="#ffffff" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="150" y1="20" x2="150" y2="280"/>
+                    <line x1="20" y1="150" x2="280" y2="150"/>
+                    <line x1="58" y1="58" x2="242" y2="242"/>
+                    <line x1="58" y1="242" x2="242" y2="58"/>
+                    <line x1="85" y1="37" x2="215" y2="263"/>
+                    <line x1="116" y1="24" x2="184" y2="276"/>
+                    <line x1="184" y1="24" x2="116" y2="276"/>
+                    <line x1="215" y1="37" x2="85" y2="263"/>
+                    <line x1="263" y1="85" x2="37" y2="215"/>
+                    <line x1="276" y1="116" x2="24" y2="184"/>
+                    <line x1="276" y1="184" x2="24" y2="116"/>
+                    <line x1="263" y1="215" x2="37" y2="85"/>
+                  </g>
+                  <circle cx="150" cy="150" r="12" fill="#0a0e17" stroke="#38bdf8" stroke-width="2"/>
+                  <circle cx="150" cy="150" r="4" fill="#38bdf8"/>
+                </svg>
+              </div>
+
+              <!-- Astigmatism Options -->
+              <div class="astig-choice-grid">
+                <button type="button" class="choice-btn" id="btnAstigNormal" data-val="normal">
+                  <span class="choice-icon">✓</span>
+                  <strong>All lines appear uniform & equal</strong>
+                  <small>No notable cylindrical astigmatism detected</small>
+                </button>
+                <button type="button" class="choice-btn" id="btnAstigSuspicion" data-val="suspicious">
+                  <span class="choice-icon">⚠️</span>
+                  <strong>Certain lines look darker / thicker</strong>
+                  <small>Possible astigmatism / corneal curvature variation</small>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: DUOCHROME (RED-GREEN) TEST -->
+          <div id="tabDuochromeContent" class="vtab-content">
+            <div class="test-instruction-box">
+              <span class="inst-icon">🔴🟢</span>
+              <div>
+                <strong data-i18n="duoInstTitle">Duochrome (Red-Green) Refractive Balance:</strong>
+                <p data-i18n="duoInstDesc">Look at the letters on both colors. In which colored background do the symbols look sharper, blacker, and more distinctly focused?</p>
+              </div>
+            </div>
+
+            <div class="duochrome-stage">
+              <div class="duochrome-split-panel">
+                <div class="duo-half duo-red">
+                  <div class="duo-letters">C O E</div>
+                  <div class="duo-subtext">RED</div>
+                </div>
+                <div class="duo-half duo-green">
+                  <div class="duo-letters">C O E</div>
+                  <div class="duo-subtext">GREEN</div>
+                </div>
+              </div>
+
+              <div class="duo-choice-grid">
+                <button type="button" class="choice-btn" id="btnDuoRed" data-val="myopia">
+                  <span class="duo-badge badge-red">RED</span>
+                  <strong>Letters in RED are sharper</strong>
+                  <small>Suggests Myopia (Near-sighted) tendency</small>
+                </button>
+                <button type="button" class="choice-btn" id="btnDuoEqual" data-val="balanced">
+                  <span class="duo-badge badge-equal">EQUAL</span>
+                  <strong>Both colors are equally sharp</strong>
+                  <small>Well-balanced optical focus</small>
+                </button>
+                <button type="button" class="choice-btn" id="btnDuoGreen" data-val="hyperopia">
+                  <span class="duo-badge badge-green">GREEN</span>
+                  <strong>Letters in GREEN are sharper</strong>
+                  <small>Suggests Hyperopia (Far-sighted) tendency</small>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: ISHIHARA COLOR VISION -->
+          <div id="tabColorContent" class="vtab-content">
+            <div class="test-instruction-box">
+              <span class="inst-icon">🎨</span>
+              <div>
+                <strong data-i18n="colorInstTitle">Ishihara Red-Green Color Screening:</strong>
+                <p data-i18n="colorInstDesc">Look at the pseudoisochromatic dot pattern below. Which number do you see clearly embedded inside the circle?</p>
+              </div>
+            </div>
+
+            <div class="color-vision-stage">
+              <div class="color-plate-card">
+                <div class="color-plate-circle" id="colorPlateDisplay">
+                  <svg viewBox="0 0 200 200" class="ishihara-svg" id="ishiharaSvg">
+                    <!-- Standardized pseudoisochromatic plate simulation -->
+                    <circle cx="100" cy="100" r="95" fill="#f8fafc"/>
+                    <g id="ishiharaDotsGroup"></g>
+                  </svg>
+                  <span class="plate-number-display" id="plateVisualNumber">12</span>
+                </div>
+                <div class="plate-step-info" id="colorPlateStepInfo">Plate 1 of 4 (Control Plate)</div>
+              </div>
+
+              <div class="color-options-grid" id="colorOptionsGrid">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: OSDI DRY EYE QUESTIONNAIRE -->
+          <div id="tabOsdiContent" class="vtab-content">
+            <div class="test-instruction-box">
+              <span class="inst-icon">📋</span>
+              <div>
+                <strong data-i18n="osdiInstTitle">OSDI (Ocular Surface Disease Index) 6-Question Screener:</strong>
+                <p data-i18n="osdiInstDesc">Rate how frequently you experienced these eye discomfort symptoms over the past week.</p>
+              </div>
+            </div>
+
+            <div class="osdi-survey-container" id="osdiQuestionsContainer">
+              <!-- Questions generated dynamically via JS -->
+            </div>
+
+            <div class="osdi-score-banner glass-panel">
+              <div class="osdi-score-col">
+                <span class="osdi-score-label">OSDI Score:</span>
+                <strong class="osdi-score-num" id="osdiScoreNum">0.0</strong>
+              </div>
+              <div class="osdi-score-status" id="osdiSeverityText">Normal (No Dry Eye Symptoms)</div>
+            </div>
+          </div>
+
+          <!-- Suite Footer Action Bar -->
+          <div class="suite-footer-actions">
+            <button type="button" id="btnCompileVisionReport" class="btn-primary glow-btn">
+              <span class="btn-icon">📋</span>
+              <span data-i18n="btnCompileVisionReport">Generate Comprehensive Eye Health Report</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 3: COMPREHENSIVE RESEARCH & SCREENING REPORT ================= -->
       <section id="viewReport" class="view">
         <div class="report-container glass-panel">
           <!-- Report Header -->
           <div class="report-header">
-            <div class="report-badge" data-i18n="reportTitle">RESEARCH OBSERVATION REPORT</div>
-            <h2 class="report-main-title" data-i18n="reportHeading">Ocular Pursuit & Bilateral Iris Excursion</h2>
+            <div class="report-badge" data-i18n="reportTitle">COMPREHENSIVE OCULAR SCREENING REPORT</div>
+            <h2 class="report-main-title" data-i18n="reportHeading">Ocular Alignment, Eye Strain & Vision Assessment</h2>
             <div class="report-meta">
               <span id="reportTimestamp">Date: 25-Oct-2026</span>
               <span class="sep">•</span>
-              <span id="reportCompanionUsed">Companion: 🦋 Butterfly</span>
+              <span id="reportModulesEvaluated">Modules: Alignment, Strain & Acuity</span>
               <span class="sep">•</span>
               <span id="reportSessionStatus" class="status-pill status-completed">Completed</span>
             </div>
           </div>
 
-          <!-- Self-Explanatory Evaluation Summary Banner -->
+          <!-- Evaluation Summary Banner -->
           <div class="eval-summary-banner" id="evalSummaryBanner">
             <div class="eval-banner-icon" id="evalBannerIcon">✓</div>
             <div class="eval-banner-text">
-              <h3 id="evalBannerTitle" data-i18n="evalBannerTitleNormal">Healthy Bilateral Eye Coordination Observed</h3>
+              <h3 id="evalBannerTitle" data-i18n="evalBannerTitleNormal">Healthy Overall Eye Screening Observed</h3>
               <p id="evalBannerDesc" data-i18n="evalBannerDescNormal">
-                Both eyes tracked the visual target symmetrically with steady fixation and synchronized conjugate pursuit within expected research reference limits.
+                Visual alignment, blink frequency, and acuity screening metrics are within normal healthy ranges. Regular eye checkups and ergonomic screen habits are recommended.
               </p>
             </div>
           </div>
 
-          <!-- Trajectory Visualizer Section with Judge Guide -->
-          <div class="report-card">
+          <!-- REPORT CARD 1: DIGITAL EYE STRAIN & ERGONOMICS -->
+          <div class="report-card" id="cardReportStrain">
             <div class="card-header">
               <div>
-                <h3 data-i18n="trajVisualizerHeading">Target & Iris Trajectories</h3>
+                <h3 data-i18n="strainReportHeading">Digital Eye Strain & Blinking Ergonomics</h3>
+                <small class="card-subtitle" data-i18n="strainReportSub">Front camera telemetry of eye aspect ratio (EAR) and viewing distance</small>
+              </div>
+              <span class="dm-badge badge-normal" id="badgeReportStrainStatus">Low Strain</span>
+            </div>
+
+            <div class="detailed-metrics-list">
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repBlinkRate">Average Blink Rate</span>
+                  <span class="dm-badge badge-normal" id="repBadgeBlinkRate">Normal</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValBlinkRate">18.2 / min</div>
+                  <div class="dm-info">
+                    <p data-i18n="repBlinkExplain">Blinking replenishes the tear film. Rates below 10/min cause rapid dry spots and asthenopic eye strain.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repIncomplete">Incomplete Blink Fraction</span>
+                  <span class="dm-badge badge-normal" id="repBadgeIncomplete">Healthy</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValIncomplete">12.5%</div>
+                  <div class="dm-info">
+                    <p data-i18n="repIncompleteExplain">Fraction of blinks where eyelids didn't fully seal. High incomplete blinking (>30%) dries the inferior cornea.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repDistance">Average Screen Distance</span>
+                  <span class="dm-badge badge-normal" id="repBadgeDistance">Safe (>35 cm)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValDistance">41.0 cm</div>
+                  <div class="dm-info">
+                    <p data-i18n="repDistanceExplain">Closer distances (<30 cm) cause intense ciliary accommodation fatigue and accelerate juvenile myopia progression.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repOsdiScore">OSDI Dry Eye Score</span>
+                  <span class="dm-badge badge-normal" id="repBadgeOsdi">Normal (0-12)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValOsdiScore">6.2 / 100</div>
+                  <div class="dm-info">
+                    <p data-i18n="repOsdiExplain">Standard clinical questionnaire grading eye dryness, foreign body sensation, and screen tolerance.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPORT CARD 2: VISION & REFRACTIVE SCREENING -->
+          <div class="report-card" id="cardReportVision">
+            <div class="card-header">
+              <div>
+                <h3 data-i18n="visionReportHeading">Visual Acuity & Refractive Error Screening</h3>
+                <small class="card-subtitle" data-i18n="visionReportSub">Interactive Tumbling E, Astigmatism dial, and Duochrome balance</small>
+              </div>
+              <span class="dm-badge badge-normal" id="badgeReportVisionStatus">Screening Completed</span>
+            </div>
+
+            <div class="detailed-metrics-list">
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repAcuityLevel">Visual Acuity (Tumbling E)</span>
+                  <span class="dm-badge badge-normal" id="repBadgeAcuity">Normal Acuity</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValAcuity">6/6 (20/20)</div>
+                  <div class="dm-info">
+                    <p data-i18n="repAcuityExplain">Resolves 5-arcminute optotypes at standard distance. Values of 6/12 or worse suggest refractive correction need.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repAstigmatism">Astigmatism Dial</span>
+                  <span class="dm-badge badge-normal" id="repBadgeAstigmatism">Uniform Lines</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValAstigmatism">No Notable Cylinder</div>
+                  <div class="dm-info">
+                    <p data-i18n="repAstigExplain">Radiating lines appeared uniform without meridional distortion, suggesting symmetric corneal curvature.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repDuochrome">Duochrome Refractive Focus</span>
+                  <span class="dm-badge badge-normal" id="repBadgeDuochrome">Balanced</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValDuochrome">Equal Sharpness</div>
+                  <div class="dm-info">
+                    <p data-i18n="repDuochromeExplain">Red and green backgrounds focus equally on the retina. Sharper red indicates myopia; sharper green indicates hyperopia.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="repColor">Color Vision (Ishihara)</span>
+                  <span class="dm-badge badge-normal" id="repBadgeColor">Normal (4/4)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="repValColor">Red-Green Intact</div>
+                  <div class="dm-info">
+                    <p data-i18n="repColorExplain">Correct identification of pseudoisochromatic numbers confirms normal trichromatic cone photoreceptor function.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPORT CARD 3: TARGET & IRIS TRAJECTORIES (Pursuit Mode) -->
+          <div class="report-card" id="cardReportPursuit">
+            <div class="card-header">
+              <div>
+                <h3 data-i18n="trajVisualizerHeading">Target & Iris Trajectories (Ocular Motility)</h3>
                 <small class="card-subtitle" data-i18n="trajVisualizerSub">Spatial alignment of visual pursuit across tasks</small>
               </div>
               <div class="task-tabs" id="trajTaskTabs">
@@ -298,7 +866,6 @@
               <span class="legend-item"><span class="legend-color color-right"></span> <span data-i18n="legendRightEye">Right Eye Iris Centroid</span></span>
             </div>
 
-            <!-- How Judges Can Read this Graph -->
             <div class="graph-guide-box">
               <div class="guide-title">
                 <span>💡</span> <strong data-i18n="graphGuideHeading">How Evaluators & Judges Read this Graph:</strong>
@@ -309,9 +876,9 @@
             </div>
           </div>
 
-          <!-- Detailed Self-Explanatory Metrics Grid -->
-          <div class="report-card">
-            <h3 data-i18n="metricsHeading">Engineering & Pursuit Metrics</h3>
+          <!-- Detailed Telemetry Metrics Grid (Pursuit Mode) -->
+          <div class="report-card" id="cardReportPursuitMetrics">
+            <h3 data-i18n="metricsHeading">Conjugate Motility & Telemetry Metrics</h3>
             <small class="card-subtitle" data-i18n="metricsSub">Calculated from accepted offline facial landmark telemetry</small>
             
             <div class="detailed-metrics-list">
@@ -378,8 +945,8 @@
             <div class="decision-header">
               <span class="decision-icon">🩺</span>
               <div>
-                <h4 data-i18n="specialistDecisionTitle">When Should a Pediatric Eye Specialist Be Consulted?</h4>
-                <p data-i18n="specialistDecisionSubtitle">Clinical triage protocol for school screenings and community health workers</p>
+                <h4 data-i18n="specialistDecisionTitle">When Should an Eye Care Specialist (Ophthalmologist / Optometrist) Be Consulted?</h4>
+                <p data-i18n="specialistDecisionSubtitle">Clinical triage protocol for schools, parents, and community health workers</p>
               </div>
             </div>
 
@@ -389,7 +956,8 @@
                 <ul class="checklist">
                   <li data-i18n="trig1">Bilateral Movement Correlation persistently below 0.75</li>
                   <li data-i18n="trig2">Symmetry Discrepancy greater than 10.0% across repeated tests</li>
-                  <li data-i18n="trig3">Fixation Stability RMS jitter exceeding 0.080</li>
+                  <li data-i18n="trig3">Visual Acuity worse than 6/12 in either eye</li>
+                  <li data-i18n="trig4">Persistent low blink rate (<10/min) or OSDI dry eye score > 22</li>
                 </ul>
               </div>
 
@@ -406,7 +974,7 @@
 
             <div class="clinical-disclaimer-footer">
               <p data-i18n="disclaimerFooterText">
-                <strong>Important Notice:</strong> NetraScreen is an early research triage tool designed to flag potential tracking anomalies for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.
+                <strong>Important Notice:</strong> NetraScreen is an early research triage and ergonomics tool designed to flag potential tracking anomalies and refractive concerns for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.
               </p>
             </div>
           </div>
