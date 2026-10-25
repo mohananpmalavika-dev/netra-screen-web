@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>NETRA-SCREEN Web | Pediatric Ocular Research PWA</title>
+  
+  <!-- iOS PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NetraScreen">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark">
+  <div id="app" class="app-container">
+    <!-- Top Bar -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="url(#eyeGrad)" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" fill="url(#eyeGrad)"/>
+            <circle cx="13.5" cy="10.5" r="1.5" fill="#fff"/>
+            <defs>
+              <linearGradient id="eyeGrad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38bdf8"/>
+                <stop offset="1" stop-color="#6366f1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">NETRA-SCREEN</span>
+          <span class="brand-badge">PWA v0.3.1</span>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <!-- Companion Quick Select -->
+        <div class="companion-selector" id="companionQuickSelect" title="Select Companion Target">
+          <button type="button" class="comp-btn active" data-companion="butterfly" id="btnCompButterfly" aria-label="Butterfly">🦋</button>
+          <button type="button" class="comp-btn" data-companion="fish" id="btnCompFish" aria-label="Fish">🐠</button>
+          <button type="button" class="comp-btn" data-companion="dot" id="btnCompDot" aria-label="Smiling Dot">🟢</button>
+        </div>
+
+        <!-- Language Selector -->
+        <button type="button" id="langToggleBtn" class="lang-btn" aria-label="Toggle Language">
+          <span class="lang-icon">🌐</span>
+          <span id="langLabel">മലയാളം</span>
+        </button>
+
+        <!-- Audio Mute Toggle -->
+        <button type="button" id="audioToggleBtn" class="icon-btn" aria-label="Toggle Sound" title="Sound Effects">
+          <span id="audioIcon">🔔</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main class="content-viewport">
+
+      <!-- ================= VIEW 1: HOME & INFORMED CONSENT ================= -->
+      <section id="viewHome" class="view active-view">
+        <div class="home-card glass-panel">
+          <div class="hero-badge" data-i18n="heroBadge">Ocular Pursuit & Fixation Research</div>
+          <h1 class="hero-title" data-i18n="heroTitle">Pediatric Visual Attention & Iris Motion Tracking</h1>
+          <p class="hero-desc" data-i18n="heroDesc">
+            Bilateral iris excursion symmetry and fixation stability measurement using high-precision offline computer vision. Designed for pediatric and rural community screenings.
+          </p>
+
+          <div class="clinical-alert-box">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-body">
+              <strong data-i18n="disclaimerHeader">Research Scope Notice</strong>
+              <p data-i18n="disclaimerBody">
+                This web application tracks relative iris centroids and fixation stability for engineering research. It <strong>does not provide medical diagnosis</strong> or replace an examination by an ophthalmologist or optometrist.
+              </p>
+            </div>
+          </div>
+
+          <!-- Companion Picker Cards -->
+          <div class="section-label" data-i18n="chooseCompanion">Choose Child Companion Target:</div>
+          <div class="companion-cards-grid">
+            <div class="companion-card active" data-comp="butterfly">
+              <span class="card-emoji">🦋</span>
+              <strong data-i18n="compButterflyTitle">Chithrashalabham</strong>
+              <small data-i18n="compButterflyDesc">Playful Fluttering Butterfly</small>
+            </div>
+            <div class="companion-card" data-comp="fish">
+              <span class="card-emoji">🐠</span>
+              <strong data-i18n="compFishTitle">Malsyam</strong>
+              <small data-i18n="compFishDesc">Smooth Swimming Fish</small>
+            </div>
+            <div class="companion-card" data-comp="dot">
+              <span class="card-emoji">🟢</span>
+              <strong data-i18n="compDotTitle">Smiling Dot</strong>
+              <small data-i18n="compDotDesc">High Contrast Target</small>
+            </div>
+          </div>
+
+          <!-- Guardian Consent Box -->
+          <div class="consent-box">
+            <label class="consent-checkbox-label">
+              <input type="checkbox" id="consentCheckbox" checked>
+              <span class="checkbox-custom"></span>
+              <span class="consent-text" data-i18n="consentText">
+                I affirm guardian consent for this research session. Camera feed is processed strictly inside this browser and no face videos or identifying information are saved or uploaded.
+              </span>
+            </label>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="home-actions">
+            <button type="button" id="btnStartLive" class="btn-primary glow-btn">
+              <span class="btn-icon">📷</span>
+              <span data-i18n="btnStartLive">Start Camera Tracking Session</span>
+            </button>
+            <button type="button" id="btnStartDemo" class="btn-secondary">
+              <span class="btn-icon">▶️</span>
+              <span data-i18n="btnStartDemo">Run Camera-Free Demo / Walkthrough</span>
+            </button>
+          </div>
+
+          <!-- iOS PWA Help Tip -->
+          <div class="ios-install-hint" id="iosHint">
+            <span class="hint-icon">📲</span>
+            <span data-i18n="iosInstallHint">
+              <strong>iPhone Tip:</strong> Tap Safari's <em>Share button</em> ➔ <em>"Add to Home Screen"</em> to use NetraScreen as a full-screen native app!
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 2: ACTIVE TRACKING SESSION ================= -->
+      <section id="viewTracking" class="view">
+        <div class="tracking-screen">
+          <!-- Top HUD: Task info & countdown -->
+          <div class="tracking-hud glass-panel">
+            <div class="hud-left">
+              <span class="task-badge" id="hudTaskBadge">HORIZONTAL PURSUIT</span>
+              <span class="task-step" id="hudTaskStep">Task 1/4</span>
+            </div>
+            <div class="hud-center">
+              <div class="task-progress-bar">
+                <div class="task-progress-fill" id="taskProgressBar"></div>
+              </div>
+            </div>
+            <div class="hud-right">
+              <span class="timer-display" id="hudTimer">08s</span>
+              <button type="button" id="btnPauseSession" class="btn-hud-small" title="Pause / Break">⏸️</button>
+              <button type="button" id="btnExitSession" class="btn-hud-small" title="Cancel">✕</button>
+            </div>
+          </div>
+
+          <!-- Quality Diagnostics HUD Bar -->
+          <div class="quality-hud">
+            <div class="quality-chip chip-ok" id="chipFaceDist">
+              <span class="chip-dot"></span>
+              <span id="chipFaceDistText" data-i18n="chipFraming">Framing: Good</span>
+            </div>
+            <div class="quality-chip chip-ok" id="chipLighting">
+              <span class="chip-dot"></span>
+              <span id="chipLightingText" data-i18n="chipLighting">Light: Balanced</span>
+            </div>
+            <div class="quality-chip chip-ok" id="chipPose">
+              <span class="chip-dot"></span>
+              <span id="chipPoseText" data-i18n="chipHead">Head: Level</span>
+            </div>
+            <div class="quality-chip chip-ok" id="chipEyes">
+              <span class="chip-dot"></span>
+              <span id="chipEyesText" data-i18n="chipEyes">Both Eyes: Visible</span>
+            </div>
+          </div>
+
+          <!-- Fullscreen Target Pursuit Stage -->
+          <div class="canvas-stage-wrapper" id="stageWrapper">
+            <canvas id="targetCanvas" class="target-canvas"></canvas>
+
+            <!-- Floating Companion Element for Smooth Animation -->
+            <div id="targetCompanion" class="animated-companion companion-butterfly">
+              <div class="companion-graphic" id="companionGraphic">🦋</div>
+              <div class="companion-pulse"></div>
+            </div>
+
+            <!-- Guidance Message Overlay (when quality pauses pursuit) -->
+            <div id="qualityWarningOverlay" class="quality-overlay hidden">
+              <div class="warning-card glass-panel">
+                <div class="warning-emoji" id="warnEmoji">👀</div>
+                <h3 id="warnTitle" data-i18n="warnPleaseFace">Please look directly at screen</h3>
+                <p id="warnDesc" data-i18n="warnLightingDesc">Keep face centered in good lighting with both eyes unobstructed.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini Picture-in-Picture Camera Preview -->
+          <div class="mini-cam-pip glass-panel" id="camPip">
+            <div class="pip-header">
+              <span class="pip-title" data-i18n="pipTitle">Live Landmark Analysis</span>
+              <button type="button" id="btnTogglePipOverlay" class="pip-toggle" title="Toggle Landmarks">👁️</button>
+            </div>
+            <div class="pip-view">
+              <video id="webcamVideo" playsinline muted autoplay></video>
+              <canvas id="landmarkOverlayCanvas"></canvas>
+            </div>
+            <div class="pip-stats">
+              <span id="fpsCounter">FPS: 30</span>
+              <span id="irisDisp">Iris: Acquired</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= VIEW 3: RESEARCH REPORT & TRAJECTORIES ================= -->
+      <section id="viewReport" class="view">
+        <div class="report-container glass-panel">
+          <!-- Report Header -->
+          <div class="report-header">
+            <div class="report-badge" data-i18n="reportTitle">RESEARCH OBSERVATION REPORT</div>
+            <h2 class="report-main-title" data-i18n="reportHeading">Ocular Pursuit & Bilateral Iris Excursion</h2>
+            <div class="report-meta">
+              <span id="reportTimestamp">Date: 25-Oct-2026</span>
+              <span class="sep">•</span>
+              <span id="reportCompanionUsed">Companion: 🦋 Butterfly</span>
+              <span class="sep">•</span>
+              <span id="reportSessionStatus" class="status-pill status-completed">Completed</span>
+            </div>
+          </div>
+
+          <!-- Self-Explanatory Evaluation Summary Banner -->
+          <div class="eval-summary-banner" id="evalSummaryBanner">
+            <div class="eval-banner-icon" id="evalBannerIcon">✓</div>
+            <div class="eval-banner-text">
+              <h3 id="evalBannerTitle" data-i18n="evalBannerTitleNormal">Healthy Bilateral Eye Coordination Observed</h3>
+              <p id="evalBannerDesc" data-i18n="evalBannerDescNormal">
+                Both eyes tracked the visual target symmetrically with steady fixation and synchronized conjugate pursuit within expected research reference limits.
+              </p>
+            </div>
+          </div>
+
+          <!-- Trajectory Visualizer Section with Judge Guide -->
+          <div class="report-card">
+            <div class="card-header">
+              <div>
+                <h3 data-i18n="trajVisualizerHeading">Target & Iris Trajectories</h3>
+                <small class="card-subtitle" data-i18n="trajVisualizerSub">Spatial alignment of visual pursuit across tasks</small>
+              </div>
+              <div class="task-tabs" id="trajTaskTabs">
+                <button type="button" class="tab-btn active" data-task="HORIZONTAL" data-i18n="tabHorizontal">Horizontal</button>
+                <button type="button" class="tab-btn" data-task="VERTICAL" data-i18n="tabVertical">Vertical</button>
+                <button type="button" class="tab-btn" data-task="DIAGONAL" data-i18n="tabDiagonal">Diagonal</button>
+                <button type="button" class="tab-btn" data-task="JUMPS" data-i18n="tabJumps">Jumps</button>
+              </div>
+            </div>
+            
+            <div class="trajectory-plots-grid">
+              <div class="plot-panel">
+                <div class="plot-title" data-i18n="plotTarget">Target Trajectory (Screen Normalized)</div>
+                <canvas id="targetTrajCanvas" width="320" height="240" class="plot-canvas"></canvas>
+              </div>
+              <div class="plot-panel">
+                <div class="plot-title" data-i18n="plotEyes">Bilateral Iris Centroids (Left: Blue, Right: Amber)</div>
+                <canvas id="eyesTrajCanvas" width="320" height="240" class="plot-canvas"></canvas>
+              </div>
+            </div>
+
+            <div class="plot-legend">
+              <span class="legend-item"><span class="legend-color color-target"></span> <span data-i18n="legendTarget">Visual Target Path</span></span>
+              <span class="legend-item"><span class="legend-color color-left"></span> <span data-i18n="legendLeftEye">Left Eye Iris Centroid</span></span>
+              <span class="legend-item"><span class="legend-color color-right"></span> <span data-i18n="legendRightEye">Right Eye Iris Centroid</span></span>
+            </div>
+
+            <!-- How Judges Can Read this Graph -->
+            <div class="graph-guide-box">
+              <div class="guide-title">
+                <span>💡</span> <strong data-i18n="graphGuideHeading">How Evaluators & Judges Read this Graph:</strong>
+              </div>
+              <p data-i18n="graphGuideText">
+                The cyan curve is the path of the visual target. The blue (Left eye) and amber (Right eye) curves map real-time iris movement. When both eye curves closely mirror each other and track the target with smooth arcs, eye movement is coordinated. If one curve diverges, lags, or stops short, it indicates potential eye turn (squint) or muscle imbalance.
+              </p>
+            </div>
+          </div>
+
+          <!-- Detailed Self-Explanatory Metrics Grid -->
+          <div class="report-card">
+            <h3 data-i18n="metricsHeading">Engineering & Pursuit Metrics</h3>
+            <small class="card-subtitle" data-i18n="metricsSub">Calculated from accepted offline facial landmark telemetry</small>
+            
+            <div class="detailed-metrics-list">
+              <!-- Metric 1: Correlation -->
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="metricBilateralCorr">Bilateral Movement Correlation</span>
+                  <span class="dm-badge badge-normal" id="badgeCorr">Normal (0.85 – 0.99)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="metricCorrelation">0.92</div>
+                  <div class="dm-info">
+                    <p data-i18n="metricCorrExplain">Measures whether both eyes move together in unison in the same direction at the same speed. High correlation confirms synchronized binocular pursuit.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metric 2: Fixation Stability -->
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="metricFixationStability">Fixation Stability (RMS Jitter)</span>
+                  <span class="dm-badge badge-normal" id="badgeFix">Normal (&lt; 0.050)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="metricFixation">0.038</div>
+                  <div class="dm-info">
+                    <p data-i18n="metricFixExplain">Measures involuntary eye shaking when holding gaze at a fixed point. A lower value indicates a calm, steady gaze without nystagmus or wandering attention.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metric 3: Symmetry Discrepancy -->
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="metricSymmetry">Symmetry Discrepancy</span>
+                  <span class="dm-badge badge-normal" id="badgeSymm">Normal (&lt; 5.0%)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="metricExcursionDiff">4.2%</div>
+                  <div class="dm-info">
+                    <p data-i18n="metricSymmExplain">Compares the maximum turning distance reached by the left vs right eye. A low difference indicates balanced extraocular muscle strength on both sides.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metric 4: Valid Frames -->
+              <div class="detailed-metric-card">
+                <div class="dm-header">
+                  <span class="dm-name" data-i18n="metricValidPct">Accepted Frames Fraction</span>
+                  <span class="dm-badge badge-normal" id="badgeValid">High Quality (&gt; 80%)</span>
+                </div>
+                <div class="dm-body">
+                  <div class="dm-val" id="metricValidFrames">94.8%</div>
+                  <div class="dm-info">
+                    <p data-i18n="metricValidExplain">The percentage of test frames that met all quality criteria (centered face, level head pose, even lighting, unobstructed eyes). Proves test reliability.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Scope & Specialist Referral Decision Card -->
+          <div class="report-card specialist-decision-card">
+            <div class="decision-header">
+              <span class="decision-icon">🩺</span>
+              <div>
+                <h4 data-i18n="specialistDecisionTitle">When Should a Pediatric Eye Specialist Be Consulted?</h4>
+                <p data-i18n="specialistDecisionSubtitle">Clinical triage protocol for school screenings and community health workers</p>
+              </div>
+            </div>
+
+            <div class="referral-checklist-grid">
+              <div class="referral-col">
+                <strong class="col-title" data-i18n="telemetryTriggersTitle">⚠️ Telemetry Warning Triggers:</strong>
+                <ul class="checklist">
+                  <li data-i18n="trig1">Bilateral Movement Correlation persistently below 0.75</li>
+                  <li data-i18n="trig2">Symmetry Discrepancy greater than 10.0% across repeated tests</li>
+                  <li data-i18n="trig3">Fixation Stability RMS jitter exceeding 0.080</li>
+                </ul>
+              </div>
+
+              <div class="referral-col">
+                <strong class="col-title" data-i18n="physicalSignsTitle">🚨 Physical Red Flags Observed by Parents:</strong>
+                <ul class="checklist">
+                  <li data-i18n="sign1">Visible eye turn or squint (one eye turns in or out, even occasionally)</li>
+                  <li data-i18n="sign2">Child tilts or turns head sideways when looking at TV, books, or objects</li>
+                  <li data-i18n="sign3">Frequent eye rubbing, squinting, or complaining of headaches</li>
+                  <li data-i18n="sign4">Abnormal white or mismatched reflection in pupil during flash photos</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="clinical-disclaimer-footer">
+              <p data-i18n="disclaimerFooterText">
+                <strong>Important Notice:</strong> NetraScreen is an early research triage tool designed to flag potential tracking anomalies for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.
+              </p>
+            </div>
+          </div>
+
+          <!-- Report Export & Actions -->
+          <div class="report-actions">
+            <button type="button" id="btnPrintReport" class="btn-primary">
+              <span class="btn-icon">🖨️</span>
+              <span data-i18n="btnPrint">Print / Save PDF Report</span>
+            </button>
+            <button type="button" id="btnExportJSON" class="btn-secondary">
+              <span class="btn-icon">💾</span>
+              <span data-i18n="btnExportJSON">Download JSON Data</span>
+            </button>
+            <button type="button" id="btnRestartSession" class="btn-outline">
+              <span class="btn-icon">🔄</span>
+              <span data-i18n="btnNewSession">Start New Session</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer Disclaimer -->
+    <footer class="app-footer">
+      <span>NETRA-SCREEN Research Prototype • Offline Browser-Based AI • YIP Submission</span>
+    </footer>
+  </div>
+
+  <!-- MediaPipe Tasks Vision & Application Logic -->
+  <script type="module" src="app.js"></script>
+
+  <!-- Service Worker Registration for 100% Offline PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('[NetraScreen] Offline Service Worker registered:', reg.scope))
+          .catch(err => console.warn('[NetraScreen] Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
