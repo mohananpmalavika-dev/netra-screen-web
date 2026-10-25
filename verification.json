@@ -1,16 +1,16 @@
 {
   "version": "0.5.1",
-  "verifiedAt": "2026-10-25T15:34:02.124Z",
+  "verifiedAt": "2026-10-25T17:04:08.820Z",
   "buildReceipt": "dist/build-receipt.json",
   "browserTests": {
-    "passed": 12,
+    "passed": 17,
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
     "engine": "Chromium",
-    "packagedFiles": true
+    "packagedFiles": false
   },
-  "buildChecks": "Syntax checks, 11 Node regression tests, pinned vendor integrity and explicit deployment allowlist passed in npm run build.",
+  "buildChecks": "Syntax checks, Node regression tests, pinned vendor integrity and explicit deployment allowlist passed in npm run build.",
   "hardwareDevicesTested": [],
   "clinicalValidation": false,
   "deployed": false,
@@ -22,28 +22,28 @@
   "artifacts": [
     {
       "path": "index.html",
-      "bytes": 31204,
-      "sha256": "cd887875154f5df23dc3a2a71731963e2e807dd58e102538b6fbb15bfec0160f"
+      "bytes": 34278,
+      "sha256": "9156b1adb46f162e281bf4f09894a88d5666890af65d4f097d5ef99def154623"
     },
     {
       "path": "eye-tests.html",
       "bytes": 1504,
-      "sha256": "c4445d8d69a1651b14140c53854be4972c7d6b404b7afaf16f39e9bbc301b3f2"
+      "sha256": "102d7c7f91261d06d784a70fd763d0ee37e234c34a2c089a525afbbd7e37f15f"
     },
     {
       "path": "tracking.html",
-      "bytes": 31204,
-      "sha256": "cd887875154f5df23dc3a2a71731963e2e807dd58e102538b6fbb15bfec0160f"
+      "bytes": 34278,
+      "sha256": "9156b1adb46f162e281bf4f09894a88d5666890af65d4f097d5ef99def154623"
     },
     {
       "path": "about.html",
       "bytes": 3824,
-      "sha256": "abdc1f21e2189f52e82df806eaa3e73ffef3874b5e2e8c4eeea804a725a30b73"
+      "sha256": "54c76477ab67c730c4eba2163938284c99560a082c39ba0520237007a069b558"
     },
     {
       "path": "presentation.html",
       "bytes": 3297,
-      "sha256": "dc4e20b87555d6a513042226de7b8aa6e62f9fc10461b234db14a620bd67af47"
+      "sha256": "59d2993ea39cf043938cb23cce54053d435c39ac3b6eb31609336682fa8d6938"
     },
     {
       "path": "presentation.js",
@@ -52,23 +52,23 @@
     },
     {
       "path": "project-copy.mjs",
-      "bytes": 11732,
-      "sha256": "5738ceb9089c95c24cf4265a41641fe2303360063046430da6004b19d7988539"
+      "bytes": 15048,
+      "sha256": "47a2c80f180f1031833e7cc240a487072736291cd1100a2ea28f97393c5cf908"
     },
     {
       "path": "project-theme.css",
-      "bytes": 3856,
-      "sha256": "62bd3bb395b4d95241d46fdca723254ea6acf42e439cd50c9e275df875de0bc1"
+      "bytes": 8629,
+      "sha256": "83a4abf830ac04e517f13d6cdecb13ffb7c5536dbcac381ccefd80216e7503cd"
     },
     {
       "path": "research.css",
-      "bytes": 14547,
-      "sha256": "b17942b71579e1e6d9407c8a7a9a48385a6e45bbcd17e63c70f06be84ad106ec"
+      "bytes": 23667,
+      "sha256": "1c013e42d6c1d5d896168dec8d8efcfd673817627c42f5bf61119385972c6ada"
     },
     {
       "path": "styles.css",
-      "bytes": 63020,
-      "sha256": "d427633373b2082f5116dd29c43d918dde33f81583076ff3a2f50ee91ad7126f"
+      "bytes": 66208,
+      "sha256": "d117b361190de3c17202835a533fc8df8d6a59bc32d7459965fe4731e1e3e58e"
     },
     {
       "path": "tracking.css",
@@ -82,13 +82,13 @@
     },
     {
       "path": "app.js",
-      "bytes": 47978,
-      "sha256": "63a0d40f0c06634e0d236715cde95da994337db515973ba111c3ce34085fea42"
+      "bytes": 51979,
+      "sha256": "28886b918e4ba1a4215a0a2fc903a220d2433be5b93e0c94b646b7833e402a40"
     },
     {
       "path": "eye-tests.js",
-      "bytes": 8646,
-      "sha256": "1ef7eb557d7c16ffd912c60d9d3c027f658dfb0d2e44cae2e0447ffdd03bbe9f"
+      "bytes": 10097,
+      "sha256": "2a2793baeaa52a8fdeff88d634d22fdc4a6b0f0d974e7524239782b5b441e59d"
     },
     {
       "path": "camera.mjs",
@@ -96,9 +96,14 @@
       "sha256": "4140281e1ba23f8ef0fa1ed5e6469476f6de42470615460bbf44528f92ff819b"
     },
     {
+      "path": "child-guide.mjs",
+      "bytes": 2019,
+      "sha256": "3816b3b8dd2138df8ad8463175e6ec9ac6c5fb164f1b1966a59a3e421f28c950"
+    },
+    {
       "path": "vision-core.mjs",
-      "bytes": 7576,
-      "sha256": "b112241f6a6387a691234ea1f32fe03ec1479717b07b397cedeb1a803a339713"
+      "bytes": 14798,
+      "sha256": "4811f6a069d7f1cc50de64399b5b90e69a0844ab1a8902c36b5bede3c179d212"
     },
     {
       "path": "offline-status.js",
@@ -108,17 +113,17 @@
     {
       "path": "manifest.json",
       "bytes": 616,
-      "sha256": "4384a2ad7501920f26b2ac4280e7fd9d3e513c1760018e7f770baae66015d001"
+      "sha256": "ba0a1fe65ba2ee5d4edc91c2db50525df29a9f087ea037b0d9250a73add80e36"
     },
     {
       "path": "static-assets.js",
-      "bytes": 1007,
-      "sha256": "dce5caac53743023ebb8ae1cd61956ad540fbbb5281b288e7d86a5c36763fca0"
+      "bytes": 1025,
+      "sha256": "00c4ad24f07106ef45330e020c54dc76020320d92e1aca9e73f10ec390ce6399"
     },
     {
       "path": "production-readiness.md",
-      "bytes": 6162,
-      "sha256": "85359a2cd17d380d0553c268e29ac87123769e6ff531ff9bc7f98154d6720f83"
+      "bytes": 7239,
+      "sha256": "0bcc9123e1dc04f3aea97a6b1d4372dfa24d2ed4c82ed9c272517112ef75ec44"
     },
     {
       "path": "icons/icon-192.png",
@@ -193,7 +198,7 @@
     {
       "path": "sw.js",
       "bytes": 1619,
-      "sha256": "1746109ebca25774391e919bd224ed89c93b7c50a0631a3675252c37f1e19600"
+      "sha256": "4efe10e46c08c2c007289f76f0a77d25da5b149e2f6a7e8f60123ba3c7bb6a6e"
     }
   ]
 }
