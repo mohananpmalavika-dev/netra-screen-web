@@ -1312,6 +1312,78 @@ body.lang-ml {
   margin-top: 2px;
 }
 
+
+.triage-banner {
+  margin: 14px 0 16px 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm, 10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 41, 59, 0.6);
+}
+.triage-banner.triage-urgent {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.triage-banner.triage-routine {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.triage-banner.triage-monitoring {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+.triage-banner.triage-inconclusive {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.3);
+}
+.triage-badge-row {
+  margin-bottom: 8px;
+}
+.triage-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.triage-urgent .triage-badge {
+  background: #f59e0b;
+  color: #1a1003;
+}
+.triage-routine .triage-badge {
+  background: #38bdf8;
+  color: #032030;
+}
+.triage-monitoring .triage-badge {
+  background: #818cf8;
+  color: #101230;
+}
+.triage-inconclusive .triage-badge {
+  background: #94a3b8;
+  color: #0f172a;
+}
+.triage-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+.triage-guidance {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-color, #e2e8f0);
+  margin: 0 0 10px 0;
+}
+.triage-disclaimer {
+  font-size: 0.76rem;
+  color: var(--text-muted, #94a3b8);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
 .referral-checklist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -3125,7 +3197,79 @@ body.lang-ml {
     color: #475569 !important;
   }
 
-  .referral-checklist-grid {
+  
+.triage-banner {
+  margin: 14px 0 16px 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm, 10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 41, 59, 0.6);
+}
+.triage-banner.triage-urgent {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.triage-banner.triage-routine {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+.triage-banner.triage-monitoring {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+.triage-banner.triage-inconclusive {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.3);
+}
+.triage-badge-row {
+  margin-bottom: 8px;
+}
+.triage-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.triage-urgent .triage-badge {
+  background: #f59e0b;
+  color: #1a1003;
+}
+.triage-routine .triage-badge {
+  background: #38bdf8;
+  color: #032030;
+}
+.triage-monitoring .triage-badge {
+  background: #818cf8;
+  color: #101230;
+}
+.triage-inconclusive .triage-badge {
+  background: #94a3b8;
+  color: #0f172a;
+}
+.triage-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+.triage-guidance {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-color, #e2e8f0);
+  margin: 0 0 10px 0;
+}
+.triage-disclaimer {
+  font-size: 0.76rem;
+  color: var(--text-muted, #94a3b8);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.referral-checklist-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;

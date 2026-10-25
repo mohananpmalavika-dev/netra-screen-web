@@ -5,9 +5,10 @@
  */
 
 import { loadLandmarker, CameraSession, cameraError } from './camera.mjs';
-import { VERSION, relativeIris, eyeAspectRatio, framing, researchMetrics } from './vision-core.mjs';
+import { VERSION, relativeIris, eyeAspectRatio, framing, researchMetrics, clinicalTriage } from './vision-core.mjs';
 import './offline-status.js';
 import { PROJECT_COPY } from './project-copy.mjs';
+import { ChildGuide } from './child-guide.mjs';
 
 // ================= BILINGUAL DICTIONARY (EN & ML) =================
 // ================= BILINGUAL DICTIONARY (EN & ML) =================
@@ -211,7 +212,7 @@ Object.assign(I18N.ml, PROJECT_COPY.ml);
 const STATE = {
   lang: "en",
   companion: "butterfly",
-  soundEnabled: false,
+  soundEnabled: true,
   isLive: false,
   isDemo: false,
   isPaused: false,
@@ -223,7 +224,7 @@ const STATE = {
   recordedSamples: [], // { task, taskMs, target, leftEye, rightEye, qualityOk }
   landmarker: null,
   webcamRunning: false,
-  showPipOverlay: true,
+  showPipOverlay: false,
   audioCtx: null
 };
 
@@ -298,10 +299,33 @@ const dom = {
   badgeCorr: document.getElementById("badgeCorr"),
   badgeFix: document.getElementById("badgeFix"),
   badgeSymm: document.getElementById("badgeSymm"),
-  badgeValid: document.getElementById("badgeValid")
+  badgeValid: document.getElementById("badgeValid"),
+  triageBanner: document.getElementById("triageBanner"),
+  triageBadge: document.getElementById("triageBadge"),
+  triageTitle: document.getElementById("triageTitle"),
+  triageDesc: document.getElementById("triageDesc"),
+  triageNotice: document.getElementById("triageNotice")
 };
 
 // ================= WEB AUDIO SOUND CHIMES =================
+let preparedDemo = false, lastGuideTask = -1, invalidSince = null, lastFramingGuide = -Infinity;
+const companionSuffix = () => STATE.companion === 'butterfly' ? 'Butterfly' : STATE.companion === 'fish' ? 'Fish' : 'Dot';
+const guide = new ChildGuide({
+  language: () => STATE.lang, enabled: () => STATE.soundEnabled,
+  onStatus: key => { const el = document.getElementById('readyVoiceStatus'); el.textContent = key ? I18N[STATE.lang][key] : ''; }
+});
+function updateReadyScreen() {
+  const copy = I18N[STATE.lang], title = copy['ready' + companionSuffix()];
+  document.getElementById('readyTitle').textContent = title;
+  document.getElementById('readyHint').textContent = copy.readyHint;
+  document.getElementById('readyCompanion').textContent = COMPANIONS[STATE.companion].emoji;
+  document.getElementById('btnFocusReady').setAttribute('aria-label', title);
+}
+function prepareSession(isDemo) {
+  stopSession(); preparedDemo = isDemo;
+  sessionNotice(''); showView('viewReady'); updateLanguage(STATE.lang);
+  guide.say('ready' + companionSuffix());
+}
 function playChime(freq = 520, duration = 0.25) {
   if (!STATE.soundEnabled) return;
   try {
@@ -346,6 +370,7 @@ function updateLanguage(lang) {
     const task = TASKS[STATE.currentTaskIndex];
     if(task) dom.hudTaskBadge.textContent = strings[task.nameKey];
   }
+  updateReadyScreen();
 }
 
 // ================= COMPANION SELECTOR =================
@@ -406,7 +431,7 @@ function calculateTargetPosition(taskKey, localMs) {
 
 // ================= VIEW SWITCHER =================
 function showView(viewId) {
-  [dom.viewHome, dom.viewTracking, dom.viewReport].forEach(v => {
+  [dom.viewHome, document.getElementById('viewReady'), dom.viewTracking, dom.viewReport].forEach(v => {
     if (v) v.classList.remove("active-view");
   });
   const target = document.getElementById(viewId);
@@ -453,7 +478,7 @@ async function startSession(isDemoMode = false) {
   dom.btnPauseSession.textContent = 'Pause';
   dom.fpsCounter.textContent = 'FPS: —'; dom.irisDisp.textContent = 'Waiting for camera';
   showView('viewTracking'); updateLanguage(STATE.lang); setSourceNotice();
-  document.getElementById('camPip').hidden=isDemoMode;
+  lastGuideTask = -1; invalidSince = null; lastFramingGuide = -Infinity;
   document.querySelector('.quality-hud').hidden=isDemoMode;
   dom.qualityWarningOverlay.classList.remove('hidden');
   updateQualityChips(false,false,false,false);
@@ -480,12 +505,14 @@ function attachCameraEnd(token) {
 }
 function stopSession() {
   sessionGeneration++; sessionActive = false; cancelAnimationFrame(animFrameId); animFrameId = null;
+  guide.cancel();
   mainCamera.stop(); STATE.webcamRunning = false; qualityAt = -Infinity;
 }
 function pauseTracking() {
   if (!sessionActive) return;
   sessionGeneration++; // Cancel camera/model starts that were awaiting permission or initialization.
   STATE.isPaused = true; mainCamera.stop(); STATE.webcamRunning = false; qualityAt = -Infinity;
+  guide.cancel(); if (!document.hidden) guide.say('guidePause');
   dom.btnPauseSession.textContent = 'Resume'; dom.qualityWarningOverlay.classList.remove('hidden');
   document.getElementById('warnTitle').textContent = STATE.lang === 'ml' ? 'നിർത്തി · തുടരാൻ Resume അമർത്തുക' : 'Paused · press Resume to continue';
 }
@@ -500,6 +527,7 @@ async function resumeTracking() {
     }
     if (token !== sessionGeneration) return;
     STATE.isPaused = false; qualityAt = -Infinity; lastVideoTime = -1; previousLoopTime = performance.now();
+    guide.say('guideResume'); lastGuideTask = STATE.currentTaskIndex;
     dom.btnPauseSession.textContent = 'Pause'; updateLanguage(STATE.lang); setSourceNotice();
     if (animFrameId === null) runTrackingLoop();
   } catch (error) { if (token === sessionGeneration) sessionNotice(cameraError(error)); }
@@ -542,6 +570,13 @@ function runTrackingLoop() {
     } catch(error) {pauseTracking();sessionNotice(cameraError(error));}
   }
   const qualityOk=!STATE.isPaused&&(STATE.isDemo||now-qualityAt<250);
+  if (qualityOk) {
+    invalidSince = null;
+    if (lastGuideTask !== STATE.currentTaskIndex) { lastGuideTask = STATE.currentTaskIndex; guide.say('follow' + companionSuffix()); }
+  } else if (!STATE.isPaused && STATE.isLive) {
+    if (invalidSince === null) invalidSince = now;
+    if (now - invalidSince > 1800 && now - lastFramingGuide > 10000) { guide.say('guideFrame'); lastFramingGuide = now; }
+  }
   dom.qualityWarningOverlay.classList.toggle('hidden',qualityOk);
   if (qualityOk && fresh && left && right) STATE.recordedSamples.push({task:currentTask.id,taskMs:localTaskMs,acquiredMs:now,target:targetPos,left,right,qualityOk:true});
   if(qualityOk)taskElapsedMs+=delta;
@@ -593,6 +628,7 @@ function drawLandmarkOverlay(landmarks, w, h) {
 
 function finishSession() {
   stopSession();
+  guide.say('guideFinish');
   playChime(880, 0.4);
   showView("viewReport");
   generateResearchReport();
@@ -613,6 +649,14 @@ function generateResearchReport() {
   dom.evalBannerDesc.textContent=STATE.lang==='ml'?'ഇവ ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള ഗവേഷണ അളവുകളാണ്. സാധാരണ കാഴ്ചയോ കണ്ണിന്റെ ആരോഗ്യസ്ഥിതിയോ ഇവ ഉറപ്പാക്കുന്നില്ല.':'These are landmark-based engineering measurements. They cannot confirm normal vision, diagnose an eye condition, or decide clinical referral.';
   [dom.badgeCorr,dom.badgeFix,dom.badgeSymm,dom.badgeValid].forEach(el=>{el.textContent='Research only';el.className='dm-badge';});
   document.getElementById('reportSessionStatus').textContent=STATE.isDemo?'Walkthrough · no participant data':`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
+  const triage = clinicalTriage(sessionMetrics, STATE.isDemo, STATE.lang);
+  if (dom.triageBanner && dom.triageBadge && dom.triageTitle && dom.triageDesc && dom.triageNotice) {
+    dom.triageBanner.className = `triage-banner ${triage.badgeClass}`;
+    dom.triageBadge.textContent = triage.badgeText;
+    dom.triageTitle.textContent = triage.title;
+    dom.triageDesc.textContent = triage.guidance;
+    dom.triageNotice.textContent = triage.disclaimer;
+  }
   setSourceNotice();renderAllTrajectoryPlots();
 }
 
@@ -635,11 +679,12 @@ function drawTrajectoryPlotForTask(taskKey, targetCanvas, eyesCanvas) {
   const w = targetCanvas.width;
   const h = targetCanvas.height;
 
-  // Draw both coordinate panels on the same neutral report background.
+  // Redraw for paper during printing and restore the dark app palette afterwards.
+  const printing = window.matchMedia('print').matches;
   [tCtx, eCtx].forEach(ctx => {
-    ctx.fillStyle = "#f5f8fa";
+    ctx.fillStyle = printing ? '#ffffff' : '#161b2f';
     ctx.fillRect(0, 0, w, h);
-    ctx.strokeStyle = "rgba(38, 79, 99, 0.08)";
+    ctx.strokeStyle = printing ? 'rgba(38,79,99,0.12)' : 'rgba(181,189,215,0.10)';
     ctx.lineWidth = 1;
     for (let x = 40; x < w; x += 40) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
@@ -653,7 +698,7 @@ function drawTrajectoryPlotForTask(taskKey, targetCanvas, eyesCanvas) {
   let taskSamples = STATE.recordedSamples.filter(s => s.task === taskKey);
 
   if (taskSamples.length < 2) {
-    [tCtx,eCtx].forEach(ctx=>{ctx.fillStyle='#617d8e';ctx.font='14px sans-serif';ctx.fillText('No captured observations',30,100);});
+    [tCtx,eCtx].forEach(ctx=>{ctx.fillStyle=printing?'#526575':'#b5bdd7';ctx.font='14px sans-serif';ctx.fillText('No captured observations',30,100);});
     return;
   }
 
@@ -783,13 +828,23 @@ function setupEventListeners() {
   dom.langToggleBtn.addEventListener("click", () => {
     updateLanguage(STATE.lang === "en" ? "ml" : "en");
     playChime(500, 0.1);
+    guide.cancel();
+    if (document.getElementById('viewReady').classList.contains('active-view')) guide.say('ready' + companionSuffix());
+    else if (sessionActive && !STATE.isPaused) guide.say('follow' + companionSuffix());
   });
 
   // Sound Toggle
   dom.audioToggleBtn.addEventListener("click", () => {
     STATE.soundEnabled = !STATE.soundEnabled;
-    dom.audioIcon.textContent = STATE.soundEnabled ? "🔔" : "🔕";
-    if (STATE.soundEnabled) playChime(700, 0.15);
+    dom.audioIcon.textContent = STATE.soundEnabled ? '🔊' : '🔇';
+    dom.audioToggleBtn.setAttribute('aria-pressed', String(STATE.soundEnabled));
+    dom.audioToggleBtn.setAttribute('aria-label', STATE.soundEnabled ? 'Mute voice guidance' : 'Turn on voice guidance');
+    guide.cancel();
+    if (STATE.soundEnabled) {
+      if (document.getElementById('viewReady').classList.contains('active-view')) guide.say('ready' + companionSuffix());
+      else if (sessionActive && !STATE.isPaused) guide.say('follow' + companionSuffix());
+      else playChime(700, .15);
+    }
   });
 
   // Companion selection buttons
@@ -812,12 +867,19 @@ function setupEventListeners() {
       playChime(360, 0.2);
       return;
     }
-    startSession(false);
+    prepareSession(false);
   });
 
   dom.btnStartDemo.addEventListener("click", () => {
-    startSession(true);
+    prepareSession(true);
   });
+  document.getElementById('btnFocusReady').addEventListener('click', () => {
+    if (!document.getElementById('viewReady').classList.contains('active-view')) return;
+    // Consent may have changed while the ready screen was open.
+    if (!preparedDemo && !dom.consentCheckbox.checked) { guide.cancel(); showView('viewHome'); return; }
+    startSession(preparedDemo);
+  });
+  document.getElementById('btnReadyBack').addEventListener('click', () => { guide.cancel(); showView('viewHome'); });
 
   // Pause / Resume
   dom.btnPauseSession.addEventListener('click',()=>{if(STATE.isPaused)resumeTracking();else pauseTracking();});
@@ -871,12 +933,14 @@ function setupEventListeners() {
     if (dom.viewReport) dom.viewReport.scrollTop = 0;
     renderAllTrajectoryPlots();
   });
+  window.addEventListener('afterprint', renderAllTrajectoryPlots);
 
   dom.btnExportJSON.addEventListener("click", () => {
     exportJSON();
   });
 
   dom.btnRestartSession.addEventListener("click", () => {
+    guide.cancel();
     showView("viewHome");
   });
 }
@@ -887,6 +951,6 @@ window.addEventListener("DOMContentLoaded", () => {
   updateLanguage("en");
 });
 
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&sessionActive)pauseTracking();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){guide.cancel();if(sessionActive)pauseTracking();}});
 window.addEventListener('orientationchange',()=>{if(sessionActive)pauseTracking();});
 window.addEventListener('pagehide',()=>{stopSession();STATE.landmarker?.close();STATE.landmarker=null;});

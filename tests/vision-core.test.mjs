@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AcuityRun, ActiveTimer, BlinkTracker, optotypePixels, researchMetrics, relativeIris, framing } from '../vision-core.mjs';
+import { AcuityRun, ActiveTimer, BlinkTracker, optotypePixels, researchMetrics, clinicalTriage, relativeIris, framing } from '../vision-core.mjs';
 
 test('acuity cannot assign a passing result before five trials, and fails closed',()=>{
   const run=new AcuityRun('OD');
@@ -59,3 +59,29 @@ test('fixation compares within each held target rather than between target jumps
   const samples=Array.from({length:80},(_,i)=>{const taskMs=i*50;const x=Math.floor(taskMs/1000)%2;return {task:'JUMPS',taskMs,left:{x,y:0},right:{x,y:0}};});
   assert.equal(researchMetrics(samples,80).fixationRms,0);
 });
+
+test('clinical triage stratifies risk correctly and preserves safety disclaimer', () => {
+  const normal = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 5, movementCorrelation: 0.9, fixationRms: 0.05 };
+  const resNormal = clinicalTriage(normal, false, 'en');
+  assert.equal(resNormal.priority, 'CONTINUE_MONITORING');
+  assert.equal(resNormal.badgeClass, 'triage-monitoring');
+  assert.ok(resNormal.disclaimer.includes('Automated screening aid'));
+
+  const incomplete = { acceptedFrames: 20, acceptedFractionPct: 30, excursionDifferencePct: null, movementCorrelation: null, fixationRms: null };
+  const resIncomplete = clinicalTriage(incomplete, false, 'en');
+  assert.equal(resIncomplete.priority, 'INCONCLUSIVE_TEST');
+
+  const critical = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 45, movementCorrelation: 0.9, fixationRms: 0.05 };
+  const resCritical = clinicalTriage(critical, false, 'en');
+  assert.equal(resCritical.priority, 'URGENT_EVALUATION');
+  assert.equal(resCritical.badgeClass, 'triage-urgent');
+
+  const routine = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 28, movementCorrelation: 0.8, fixationRms: 0.05 };
+  const resRoutine = clinicalTriage(routine, false, 'en');
+  assert.equal(resRoutine.priority, 'ROUTINE_CONSULTATION');
+  assert.equal(resRoutine.badgeClass, 'triage-routine');
+
+  const mlRes = clinicalTriage(critical, false, 'ml');
+  assert.ok(mlRes.guidance.includes('ശിശു നേത്രരോഗ'));
+});
+

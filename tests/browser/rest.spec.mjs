@@ -35,6 +35,6 @@ test('rest and YIP presentation remain available offline; mobile rest layout fit
     await page.goto('http://127.0.0.1:8080/eye-tests.html');await page.evaluate(()=>navigator.serviceWorker.ready);await page.reload();await expect.poll(()=>page.evaluate(()=>!!navigator.serviceWorker.controller)).toBe(true);
     await context.setOffline(true);await page.reload();await expect(page.locator('h1')).toHaveText('Take a short rest for your eyes');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:'test-results/rest-mobile.png',fullPage:true});
     await page.locator('[data-kind="rest"]').click();await expect(page.locator('#exerciseClock')).toBeVisible();await page.locator('a[href="./index.html"]').first().click();await expect(page.locator('#btnStartLive')).toBeVisible();await page.locator('#btnNavPresentation').click();await expect(page.locator('h1')).toContainText('Show the idea');
-    const keys=await page.evaluate(async()=>{const names=await caches.keys();return names.filter(n=>n.startsWith('netra-screen-offline-'));});expect(keys).toEqual(['netra-screen-offline-v21']);
+    const keys=await page.evaluate(async()=>{const names=await caches.keys();return names.filter(n=>n.startsWith('netra-screen-offline-'));});expect(keys).toEqual(['netra-screen-offline-v23']);
   }finally{await context.close();}
 });

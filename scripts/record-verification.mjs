@@ -9,7 +9,7 @@ for(const file of build.files){
 }
 const report={version:build.version,verifiedAt:new Date().toISOString(),buildReceipt:'dist/build-receipt.json',
   browserTests:{passed:results.stats.expected,failed:results.stats.unexpected,skipped:results.stats.skipped,flaky:results.stats.flaky,engine:'Chromium',packagedFiles:process.argv.includes('--packaged')},
-  buildChecks:'Syntax checks, 11 Node regression tests, pinned vendor integrity and explicit deployment allowlist passed in npm run build.',
+  buildChecks:'Syntax checks, Node regression tests, pinned vendor integrity and explicit deployment allowlist passed in npm run build.',
   hardwareDevicesTested:[],clinicalValidation:false,deployed:false,
   limitations:['Test camera/landmark fixtures are software verification only.','Real Android Chrome and iOS Safari phone rehearsal remains pending.','Malayalam native-speaker and eye-care professional review remain pending.'],
   artifacts:build.files};

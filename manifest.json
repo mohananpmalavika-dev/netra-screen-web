@@ -3,8 +3,8 @@
   "short_name": "NetraScreen",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f4f7f9",
-  "theme_color": "#f4f7f9",
+  "background_color": "#101225",
+  "theme_color": "#101225",
   "orientation": "portrait",
   "description": "YIP research on visual attention, iris movement and fixation, alongside camera-free rest exercises.",
   "icons": [

@@ -1,6 +1,6 @@
 /* One atomic, versioned offline package with a compatible navigation update. */
 importScripts('./static-assets.js');
-const CACHE_NAME='netra-screen-offline-v21';
+const CACHE_NAME='netra-screen-offline-v23';
 const ASSET_URLS=new Set(globalThis.NETRA_ASSETS.map(path=>new URL(path,self.registration.scope).href));
 const INDEX_URL=new URL('index.html',self.registration.scope).href;
 self.addEventListener('install',event=>{

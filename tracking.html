@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="NetraScreen">
-  <meta name="theme-color" content="#f4f7f9">
+  <meta name="theme-color" content="#101225">
   <meta name="description" content="NETRA-SCREEN YIP research project: on-device iris movement, visual attention and fixation observations.">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -65,8 +65,8 @@
         </button>
 
         <!-- Audio Mute Toggle -->
-        <button type="button" id="audioToggleBtn" class="icon-btn" aria-label="Toggle Sound" title="Sound Effects">
-          <span id="audioIcon">🔕</span>
+        <button type="button" id="audioToggleBtn" class="icon-btn" aria-label="Mute voice guidance" aria-pressed="true" title="Voice guidance">
+          <span id="audioIcon">🔊</span>
         </button>
       </div>
     </header>
@@ -82,20 +82,36 @@
             <div class="research-intro">
               <div class="hero-badge" data-i18n="heroBadge">YIP · RESEARCH PROJECT</div>
               <h1 class="hero-title" data-i18n="heroTitle">Understanding how eyes move.</h1>
-              <p class="hero-desc" data-i18n="heroDesc">A phone-based study of visual attention, paired iris movement and fixation. Designed around guided targets, on-device processing and transparent research measurements.</p>
+              <p class="hero-desc" data-i18n="heroDesc">Pick a butterfly, fish or dot. Follow it with your eyes while your phone records eye movement for our YIP research project. A grown-up can help you get started.</p>
               <div class="hero-links"><a href="#researchSetup" class="btn-primary" data-i18n="btnStartLive">Start research session</a><a href="./presentation.html" class="btn-secondary" data-i18n="navPresentation">Presentation</a></div>
               <p class="hero-footnote" data-i18n="privacyShort">Camera images stay on this device and are not stored.</p>
             </div>
             <div class="protocol-visual" role="img" aria-label="Illustration of four research target paths. No participant data.">
-              <div class="protocol-topline">NETRA-SCREEN / RESEARCH PROTOCOL</div>
-              <svg class="protocol-orbit" viewBox="0 0 400 145" fill="none" aria-hidden="true"><path d="M30 72.5H370M200 12V133" stroke="currentColor" stroke-opacity=".16" stroke-dasharray="4 6"/><ellipse cx="200" cy="72.5" rx="160" ry="49" stroke="currentColor" stroke-width="1.3"/><path d="M65 113C130 5 270 5 335 113" stroke="currentColor" stroke-opacity=".45"/><circle cx="200" cy="72.5" r="28" fill="#1c4c60" stroke="currentColor"/><circle cx="200" cy="72.5" r="12" stroke="currentColor" stroke-width="2"/><circle cx="204" cy="68" r="4" fill="currentColor"/><circle cx="40" cy="72.5" r="5" fill="#d5b76c"/><circle cx="320" cy="40" r="5" fill="currentColor"/><circle cx="200" cy="23.5" r="4" fill="currentColor"/></svg>
+              <div class="protocol-topline" data-i18n="protocolKicker">THE RESEARCH PROTOCOL</div>
+              <svg class="protocol-orbit" viewBox="0 0 420 245" fill="none" aria-hidden="true">
+                <ellipse cx="210" cy="129" rx="175" ry="77" stroke="#80709f" stroke-dasharray="5 8" transform="rotate(-12 210 129)"/>
+                <circle cx="210" cy="126" r="91" fill="#b9a3ff"/>
+                <path d="M136 77C159 43 214 25 254 48" stroke="#d6c4ff" stroke-width="9" stroke-linecap="round"/>
+                <ellipse cx="180" cy="118" rx="27" ry="35" fill="#fff7ff"/><ellipse cx="239" cy="118" rx="27" ry="35" fill="#fff7ff"/>
+                <ellipse cx="187" cy="122" rx="13" ry="19" fill="#282244"/><ellipse cx="246" cy="122" rx="13" ry="19" fill="#282244"/>
+                <circle cx="192" cy="115" r="5" fill="white"/><circle cx="251" cy="115" r="5" fill="white"/>
+                <ellipse cx="154" cy="152" rx="13" ry="7" fill="#f096bb"/><ellipse cx="266" cy="152" rx="13" ry="7" fill="#f096bb"/>
+                <path d="M194 164Q210 180 226 164" stroke="#483063" stroke-width="4" stroke-linecap="round"/>
+                <path d="M37 153C115 209 306 205 384 113" stroke="#78e4d0" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="62" cy="166" r="8" fill="#78e4d0"/><circle cx="352" cy="140" r="6" fill="#ffcf78"/>
+                <path d="M330 49C307 18 292 41 319 61C288 57 295 87 324 68C355 85 361 55 333 59C358 39 342 19 330 49Z" fill="#ffb9d3"/>
+                <path d="M327 47L326 70" stroke="#614566" stroke-width="3" stroke-linecap="round"/>
+                <path d="M79 55V73M70 64H88" stroke="#ffcf78" stroke-width="3" stroke-linecap="round"/>
+                <path d="M346 195V207M340 201H352" stroke="#b9a3ff" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="126" cy="216" r="3" fill="#ff9fb5"/><circle cx="282" cy="27" r="3" fill="#78e4d0"/>
+              </svg>
               <div class="protocol-tiles"><div class="protocol-tile"><b>↔</b><span data-i18n="protocolHorizontal">Horizontal pursuit</span></div><div class="protocol-tile"><b>↕</b><span data-i18n="protocolVertical">Vertical pursuit</span></div><div class="protocol-tile"><b>↗</b><span data-i18n="protocolDiagonal">Diagonal pursuit</span></div><div class="protocol-tile"><b>⊹</b><span data-i18n="protocolJumps">Jumps &amp; fixation</span></div></div>
               <div class="protocol-caption" data-i18n="protocolNote">Protocol illustration · no participant measurements</div>
             </div>
           </div>
           <div class="research-meta"><span>01 / On-device processing</span><span>02 / Four guided tasks</span><span>03 / English &amp; Malayalam</span><span>04 / Offline after setup</span></div>
           <div class="research-setup" id="researchSetup">
-            <div class="session-panel"><span class="section-kicker" data-i18n="setupKicker">START A SESSION</span><h2 class="section-title" data-i18n="setupTitle">Ready when you are.</h2><p class="section-copy" data-i18n="setupBody">Choose a target, review camera processing, and follow four guided movement paths.</p>
+            <div class="session-panel"><span class="section-kicker" data-i18n="setupKicker">LET’S GET STARTED</span><h2 class="section-title" data-i18n="setupTitle">Pick your little guide.</h2><p class="section-copy" data-i18n="setupBody">Choose who to follow. Then read the camera note with a parent or guardian and start when you are ready.</p>
           <!-- Companion Picker Cards -->
           <div class="section-label" data-i18n="chooseCompanion">Choose a target</div>
           <div class="companion-cards-grid">
@@ -144,6 +160,19 @@
           </div>
           <div class="research-resources"><section class="research-resource is-presentation"><span class="section-kicker" data-i18n="presentationKicker">FOR THE YIP PRESENTATION</span><h3 data-i18n="presentationTitle">Show the idea. Explain the evidence.</h3><p data-i18n="presentationBody">Walk through the project aim, the camera-to-report workflow and what the measurements can—and cannot—tell us.</p><div class="resource-links"><a href="./presentation.html" class="btn-primary" data-i18n="presentationLink">Open project presentation</a><a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" data-i18n="deckLink">Download project deck</a></div></section><section class="research-resource"><span class="section-kicker" data-i18n="additionalKicker">EYE REST EXERCISES</span><h3 data-i18n="otherTestsTitle">Take a short rest for your eyes</h3><p data-i18n="otherTestsSub">Look into the distance, blink gently, or close your eyes for a short rest. Follow a simple timer; no camera is needed.</p><a href="./eye-tests.html" class="btn-secondary" id="btnHomeOtherTests" data-i18n="btnOpenOtherTests">Open rest exercises</a></section></div>
           <div class="ios-install-hint" id="iosHint" data-i18n="iosInstallHint">On iPhone, use Safari’s Share menu → Add to Home Screen for quick access.</div>
+        </div>
+      </section>
+
+      <!-- A visual hand-off from the guardian to the child. No measurements yet. -->
+      <section id="viewReady" class="view">
+        <div class="focus-ready-card">
+          <span class="section-kicker" data-i18n="readyKicker">YOUR LITTLE GUIDE IS READY</span>
+          <div class="ready-eyes" aria-hidden="true">👀</div>
+          <div class="ready-target-wrap"><span class="ready-hand" aria-hidden="true">👇</span><button type="button" id="btnFocusReady" class="ready-target" aria-label="Tap the butterfly to start"><span id="readyCompanion" aria-hidden="true">🦋</span></button></div>
+          <h2 id="readyTitle">Tap the butterfly</h2>
+          <p id="readyHint">Then follow it with your eyes.</p>
+          <p id="readyVoiceStatus" class="ready-voice-status" role="status"></p>
+          <button type="button" id="btnReadyBack" class="btn-secondary" data-i18n="readyBack">Back to setup</button>
         </div>
       </section>
 
@@ -208,8 +237,8 @@
             </div>
           </div>
 
-          <!-- Mini Picture-in-Picture Camera Preview -->
-          <div class="mini-cam-pip glass-panel" id="camPip">
+          <!-- Non-visible camera source: the child sees the target, never their own face. -->
+          <div class="camera-source" id="camPip" aria-hidden="true" inert>
             <div class="pip-header">
               <span class="pip-title" data-i18n="pipTitle">Live Landmark Analysis</span>
               <button type="button" id="btnTogglePipOverlay" class="pip-toggle" title="Toggle Landmarks">👁️</button>
@@ -443,6 +472,17 @@
               </div>
             </div>
 
+            <!-- Automated Clinical Triage & Guidance Banner -->
+            <div id="triageBanner" class="triage-banner triage-monitoring">
+              <div class="triage-badge-row">
+                <span id="triageBadge" class="triage-badge">Routine Checks Recommended</span>
+              </div>
+              <h5 id="triageTitle" class="triage-headline">No Gross Asymmetry Flagged</h5>
+              <p id="triageDesc" class="triage-guidance">Tracking symmetry and fixation stability remained within research screening limits. This does not exclude refractive errors; maintain regular pediatric vision checkups.</p>
+              <div class="triage-disclaimer">
+                <small id="triageNotice">Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.</small>
+              </div>
+            </div>
             <div class="referral-checklist-grid">
               <div class="referral-col">
                 <strong class="col-title" data-i18n="telemetryTriggersTitle">Understanding these measurements</strong>

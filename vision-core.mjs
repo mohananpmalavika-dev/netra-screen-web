@@ -161,3 +161,94 @@ export class ActiveTimer {
     return this.elapsedMs >= this.durationMs;
   }
 }
+
+export function clinicalTriage(metrics, isDemo = false, lang = 'en') {
+  const isMl = lang === 'ml';
+  if (isDemo) {
+    return {
+      priority: 'INCONCLUSIVE_TEST',
+      badgeClass: 'triage-inconclusive',
+      badgeText: isMl ? 'ഡെമോ വാക്ക്ത്രൂ' : 'Walkthrough Only',
+      title: isMl ? 'ഡെമോ സെഷൻ' : 'Walkthrough Session',
+      guidance: isMl
+        ? 'ഇത് സാങ്കേതിക പ്രവർത്തന വിശദീകരണമാണ്; യാഥാർത്ഥ അളവുകളില്ല.'
+        : 'Illustrative walkthrough only. No participant eye measurements were recorded.',
+      disclaimer: isMl
+        ? 'ഓട്ടോമേറ്റഡ് സ്ക്രീനിംഗ് സഹായം മാത്രം. പൂർണ്ണമായ ക്ലിനിക്കൽ പരിശോധനയ്ക്ക് പകരമാവില്ല.'
+        : 'Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.'
+    };
+  }
+
+  const accepted = metrics?.acceptedFrames ?? 0;
+  const validPct = metrics?.acceptedFractionPct ?? 0;
+  if (accepted < 60 || validPct < 60) {
+    return {
+      priority: 'INCONCLUSIVE_TEST',
+      badgeClass: 'triage-inconclusive',
+      badgeText: isMl ? 'അപൂർണ്ണമായ പരിശോധന' : 'Inconclusive / Repeat',
+      title: isMl ? 'സ്ക്രീനിംഗ് അപൂർണ്ണമാണ്' : 'Screening Inconclusive',
+      guidance: isMl
+        ? 'കണ്ണുകളുടെ ചലനം പൂർണ്ണമായി വിലയിരുത്താൻ ആവശ്യമായ വിവരങ്ങൾ ലഭ്യമായില്ല. നല്ല വെളിച്ചത്തിൽ വീണ്ടും ടെസ്റ്റ് ചെയ്യുക, അല്ലെങ്കിൽ എന്തെങ്കിലും സംശയമുണ്ടെങ്കിൽ ഡോക്ടറെ നേരിൽ കാണുക.'
+        : 'Usable eye tracking data was insufficient for reliable analysis. Retest in steady lighting or consult an eye doctor directly if symptoms are noticed.',
+      disclaimer: isMl
+        ? 'ഓട്ടോമേറ്റഡ് സ്ക്രീനിംഗ് സഹായം മാത്രം. പൂർണ്ണമായ ക്ലിനിക്കൽ പരിശോധനയ്ക്ക് പകരമാവില്ല.'
+        : 'Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.'
+    };
+  }
+
+  const excDiff = metrics.excursionDifferencePct;
+  const corr = metrics.movementCorrelation;
+  const fixRms = metrics.fixationRms;
+
+  const isCriticalAsymmetry = excDiff !== null && excDiff >= 40;
+  const isSevereDisconjugacy = corr !== null && corr <= 0.20;
+  const isSevereFixationInstability = fixRms !== null && fixRms >= 0.25;
+
+  const isModerateAsymmetry = excDiff !== null && excDiff >= 25;
+  const isLowCorrelation = corr !== null && corr < 0.45;
+  const isModerateFixationInstability = fixRms !== null && fixRms >= 0.15;
+
+  if (isCriticalAsymmetry || isSevereDisconjugacy || isSevereFixationInstability) {
+    return {
+      priority: 'URGENT_EVALUATION',
+      badgeClass: 'triage-urgent',
+      badgeText: isMl ? 'അടിയന്തര പരിശോധന' : 'Prompt Specialist Exam Advised',
+      title: isMl ? 'നേത്രരോഗ വിദഗ്ദ്ധന്റെ അടിയന്തര പരിശോധന നിർദ്ദേശിക്കുന്നു' : 'Prompt Eye Specialist Examination Advised',
+      guidance: isMl
+        ? 'കണ്ണുകളുടെ ചലനത്തിലോ സ്ഥിരതയിലോ കാര്യമായ വ്യത്യാസങ്ങൾ രേഖപ്പെടുത്തിയിട്ടുണ്ട്. ഒരു ശിശു നേത്രരോഗ വിദഗ്ദ്ധനെക്കൊണ്ട് വിശദമായ പരിശോധന നടത്തുക.'
+        : 'Significant difference in eye movement symmetry or fixation stability was recorded. Please arrange a detailed examination with a pediatric ophthalmologist.',
+      disclaimer: isMl
+        ? 'ഓട്ടോമേറ്റഡ് സ്ക്രീനിംഗ് സഹായം മാത്രം. പൂർണ്ണമായ ക്ലിനിക്കൽ പരിശോധനയ്ക്ക് പകരമാവില്ല.'
+        : 'Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.'
+    };
+  }
+
+  if (isModerateAsymmetry || isLowCorrelation || isModerateFixationInstability) {
+    return {
+      priority: 'ROUTINE_CONSULTATION',
+      badgeClass: 'triage-routine',
+      badgeText: isMl ? 'പതിവ് പരിശോധന' : 'Routine Exam Advised',
+      title: isMl ? 'പതിവ് സമഗ്ര നേത്രപരിശോധന നിർദ്ദേശിക്കുന്നു' : 'Routine Comprehensive Eye Exam Recommended',
+      guidance: isMl
+        ? 'ചെറിയ തോതിലുള്ള ചലന വ്യതിയാനങ്ങൾ കണ്ടിട്ടുണ്ട്. കണ്ണുകളുടെ ഏകോപനവും കാഴ്ചയും ഉറപ്പുവരുത്താൻ ഒരു ഡോക്ടറെ കാണിച്ച് പരിശോധിക്കുക.'
+        : 'Mild or borderline movement variations were noted. A comprehensive eye exam is recommended to evaluate binocular coordination and alignment.',
+      disclaimer: isMl
+        ? 'ഓട്ടോമേറ്റഡ് സ്ക്രീനിംഗ് സഹായം മാത്രം. പൂർണ്ണമായ ക്ലിനിക്കൽ പരിശോധനയ്ക്ക് പകരമാവില്ല.'
+        : 'Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.'
+    };
+  }
+
+  return {
+    priority: 'CONTINUE_MONITORING',
+    badgeClass: 'triage-monitoring',
+    badgeText: isMl ? 'നിരീക്ഷണം തുടരുക' : 'Routine Checks Recommended',
+    title: isMl ? 'കാര്യമായ അസമമിതികൾ കണ്ടിട്ടില്ല' : 'No Gross Asymmetry Flagged',
+    guidance: isMl
+      ? 'ഈ പരിശോധനയിൽ കണ്ണുകളുടെ ചലനത്തിൽ പ്രകടമായ അസമമിതികൾ രേഖപ്പെടുത്തിയിട്ടില്ല. എങ്കിലും ഇത് കണ്ണടയുടെ ആവശ്യകതയോ കാഴ്ചക്കുറവോ ഇല്ല എന്ന് ഉറപ്പ് നൽകുന്നില്ല; പതിവ് പരിശോധനകൾ തുടരുക.'
+      : 'Tracking symmetry and fixation stability remained within research screening limits. This does not exclude refractive errors; maintain regular pediatric vision checkups.',
+    disclaimer: isMl
+      ? 'ഓട്ടോമേറ്റഡ് സ്ക്രീനിംഗ് സഹായം മാത്രം. പൂർണ്ണമായ ക്ലിനിക്കൽ പരിശോധനയ്ക്ക് പകരമാവില്ല.'
+      : 'Automated screening aid. Cannot replace clinical dilated examination or rule out pathology.'
+  };
+}
+

@@ -10,11 +10,16 @@ try{
     for(const [name,path] of [['research','/index.html'],['additional','/eye-tests.html']]){
       await page.goto(path);await page.locator('h1').waitFor();
       // Expand the app's internal scrolling region for a single reviewable full-page image.
-      if(name==='research')await page.addStyleTag({content:'html,body{height:auto!important;overflow:auto!important}.app-container{height:auto!important;min-height:100vh}.content-viewport{overflow:visible!important;flex:none!important}#viewHome{height:auto!important;overflow:visible!important}.app-footer{position:static!important}'});
+      const expansion=name==='research'?await page.addStyleTag({content:'html,body{height:auto!important;overflow:auto!important}.app-container{height:auto!important;min-height:100vh}.content-viewport{overflow:visible!important;flex:none!important}#viewHome{height:auto!important;overflow:visible!important}.app-footer{position:static!important}'}):null;
       await page.screenshot({path:`output/design/${name}-${width}.png`,fullPage:true});
-      if(name==='additional'){
-        await page.locator('#studioLang').click();
-        await page.screenshot({path:`output/design/additional-malayalam-${width}.png`,fullPage:true});
+      await page.locator(name==='research'?'#langToggleBtn':'#studioLang').click();
+      await page.screenshot({path:`output/design/${name}-malayalam-${width}.png`,fullPage:true});
+      if(name==='research'){
+        await expansion.evaluate(el=>el.remove());
+        await page.locator('#btnStartDemo').click();
+        await page.screenshot({path:`output/design/child-ready-${width}.png`,fullPage:true,animations:'disabled'});
+        await page.locator('#btnFocusReady').click();
+        await page.screenshot({path:`output/design/child-focus-${width}.png`,fullPage:true,animations:'disabled'});
       }
     }
   }
