@@ -677,7 +677,7 @@ function generateResearchReport() {
   if (symm === null) {
     setBadge(dom.badgeSymm, false, 'Unavailable');
   } else if (symm <= 10.0) {
-    setBadge(dom.badgeSymm, true, STATE.lang === 'ml' ? 'തുല്യം (≤ 10%)' : 'Symmetric (≤ 10%)');
+    setBadge(dom.badgeSymm, true, STATE.lang === 'ml' ? 'സാധാരണം (≤ 10%)' : 'Normal (≤ 10%)');
   } else {
     setBadge(dom.badgeSymm, false, STATE.lang === 'ml' ? 'അസമമിതി (> 10%)' : 'Discrepancy (> 10%)');
   }

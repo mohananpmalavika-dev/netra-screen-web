@@ -1,12 +1,148 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101225"><title>NETRA-SCREEN · YIP Project Presentation</title><link rel="stylesheet" href="wellness.css"><link rel="stylesheet" href="project-theme.css"></head><body>
 <header class="studio-nav"><a class="wordmark" href="./index.html">◉ NETRA<span>SCREEN</span><small>MINDMESH · YIP RESEARCH</small></a><nav aria-label="Project navigation"><a href="./index.html" data-project-copy="returnResearch">Back to research home</a><a href="./eye-tests.html" data-project-copy="navOtherTests">Eye rest</a><button type="button" id="presentationLang" aria-label="Switch presentation language">മലയാളം</button></nav></header>
-<main class="presentation-page"><div class="eyebrow" data-project-copy="presentationKicker">FOR THE YIP PRESENTATION</div><h1 data-project-copy="presentationTitle">Show the idea. Explain the evidence.</h1><p class="lead presentation-lead" data-project-copy="presentationBody">Walk through the project aim, the camera-to-report workflow and what the measurements can—and cannot—tell us.</p>
-<div class="presentation-grid">
-<section class="panel"><span class="step-label">01 / QUESTION</span><h2 data-project-copy="projectAimTitle">The research question</h2><p data-project-copy="projectAimBody"></p></section>
-<section class="panel"><span class="step-label">02 / METHOD</span><h2 data-project-copy="workflowTitle">From camera to observation</h2><p data-project-copy="workflowBody"></p></section>
-<section class="panel"><span class="step-label">03 / OBSERVATIONS</span><h2 data-project-copy="measuresTitle">What the project records</h2><p data-project-copy="measuresBody"></p></section>
-<section class="panel"><span class="step-label">04 / EVIDENCE</span><h2 data-project-copy="evidenceTitle">What the evidence supports</h2><p data-project-copy="evidenceBody"></p></section>
-</div><section class="panel"><span class="step-label">05 / NEXT STEP</span><h2 data-project-copy="nextStepsTitle">The next validation step</h2><p data-project-copy="nextStepsBody"></p></section>
-<div class="project-download"><div><h2>NETRA-SCREEN / MINDMESH</h2><p>Original YIP project presentation</p><small data-project-copy="deckNote">PDF · approximately 32 MB · online download</small></div><a class="primary" href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" data-project-copy="deckLink">Download project deck</a></div>
-<aside class="scope"><strong data-project-copy="researchScopeTitle">Research scope</strong><p data-project-copy="researchScopeBody"></p><p>The original presentation is a project archive. Current implementation behavior, research limitations and verification status on this page take precedence over claims in historical slides.</p></aside><div class="project-links"><a class="primary" href="./index.html" data-project-copy="openResearch">Open research tool</a><button class="secondary" type="button" id="printPresentation">Print project overview</button></div>
-</main><footer class="studio-footer">NETRA-SCREEN / MINDMESH · YIP research project · On-device processing</footer><script type="module" src="presentation.js"></script></body></html>
+
+<main class="presentation-page">
+  <div class="eyebrow" data-project-copy="presentationKicker">YIP 9.0 INNOVATION SHOWCASE · PEDIATRIC HEALTH TECH</div>
+  <h1 data-project-copy="presentationTitle">Show the idea. Explain the evidence: NETRA-SCREEN</h1>
+  <p class="lead presentation-lead" data-project-copy="presentationBody">An on-device AI system turning ordinary smartphones into child-friendly pre-screening tools for childhood eye misalignment (strabismus) and lazy eye (amblyopia)—enabling early detection before permanent vision loss.</p>
+
+  <div class="pres-badges">
+    <span class="pres-badge" data-project-copy="presBadge1">📱 Any Smartphone (No ₹2 Lakh equipment)</span>
+    <span class="pres-badge" data-project-copy="presBadge2">🦋 Child-Friendly Games (Butterfly & Fish)</span>
+    <span class="pres-badge" data-project-copy="presBadge3">🔒 100% On-Device & Private (Zero cloud uploads)</span>
+  </div>
+
+  <div class="problem-solution-grid">
+    <div class="problem-card">
+      <h3 data-project-copy="problemTitle">The Problem: Childhood Vision Loss</h3>
+      <p data-project-copy="problemText">Over 5–10 million children in India suffer from strabismus (misaligned eyes) or amblyopia (lazy eye). 90% of cases can be treated successfully if caught before age 7–8. But traditional clinical equipment costs ₹1–3 lakhs and is unavailable in rural schools and anganwadis, leaving millions of children unscreened.</p>
+    </div>
+    <div class="solution-card">
+      <h3 data-project-copy="solutionTitle">The Solution: NETRA-SCREEN</h3>
+      <p data-project-copy="solutionText">A smartphone-based, child-friendly pre-screening tool. Children simply follow an engaging animated butterfly or fish on screen, while the front camera and local AI analyze bilateral iris symmetry in 30 seconds—flagging children who need an ophthalmologist visit.</p>
+    </div>
+  </div>
+
+  <h2 class="pres-section-title" data-project-copy="pipelineTitle">How It Works: 4-Step Self-Explaining Workflow</h2>
+  <div class="pipeline-grid">
+    <div class="pipeline-step">
+      <div class="pipeline-icon">🦋</div>
+      <h3 data-project-copy="pipeStep1Title">1. Child Plays Target Game</h3>
+      <p data-project-copy="pipeStep1Desc">Child follows a playful butterfly or fish moving along 4 calibrated paths: horizontal, vertical, diagonal, and jump-holds.</p>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon">👁️</div>
+      <h3 data-project-copy="pipeStep2Title">2. Real-Time Iris Centroid AI</h3>
+      <p data-project-copy="pipeStep2Desc">Phone front camera tracks both iris centers at 30+ FPS, continuously verifying proper lighting, face angle, and steady posture.</p>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon">📐</div>
+      <h3 data-project-copy="pipeStep3Title">3. Binocular Symmetry Analysis</h3>
+      <p data-project-copy="pipeStep3Desc">On-device algorithms calculate bilateral movement correlation, relative path differences, and fixation stability without invasive flashes.</p>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon">📋</div>
+      <h3 data-project-copy="pipeStep4Title">4. Instant Actionable Triage</h3>
+      <p data-project-copy="pipeStep4Desc">Provides parents and health workers with a clear Green, Amber, or Red risk assessment advising when to see an eye doctor.</p>
+    </div>
+  </div>
+
+  <div class="sim-panel">
+    <h2 style="margin-top:0; color:#fff;" data-project-copy="simTitle">Interactive Eye-Tracking Simulation</h2>
+    <p style="color:#b5bad5; margin-bottom:12px;" data-project-copy="simDesc">Click any path below to see how NETRA-SCREEN tracks both eyes and verifies symmetry in real time:</p>
+    
+    <div class="sim-controls">
+      <button type="button" class="sim-btn active" id="btnSimHoriz" data-project-copy="simBtnHoriz">Horizontal Pursuit</button>
+      <button type="button" class="sim-btn" id="btnSimVert" data-project-copy="simBtnVert">Vertical Pursuit</button>
+      <button type="button" class="sim-btn" id="btnSimDiag" data-project-copy="simBtnDiag">Diagonal Pursuit</button>
+      <button type="button" class="sim-btn" id="btnSimFix" data-project-copy="simBtnFix">Fixation Hold</button>
+    </div>
+
+    <div class="sim-stage">
+      <div class="sim-eyes-box" id="simEyesBox">
+        <span class="sim-target-indicator" id="simTarget" style="top:50%; left:50%; transform:translate(-50%,-50%);">🦋</span>
+        <div class="sim-eye-socket">
+          <div class="sim-iris" id="simIrisLeft">
+            <div class="sim-pupil-glint"></div>
+          </div>
+        </div>
+        <div class="sim-eye-socket">
+          <div class="sim-iris" id="simIrisRight">
+            <div class="sim-pupil-glint"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-metrics-box">
+        <div class="sim-metric-card">
+          <div class="sim-metric-label" data-project-copy="simMetricSync">Iris Tracking Symmetry</div>
+          <div class="sim-metric-val" id="metricSyncVal">98.4% (Pearson r: 0.98)</div>
+        </div>
+        <div class="sim-metric-card">
+          <div class="sim-metric-label" data-project-copy="simMetricStability">Fixation Stability</div>
+          <div class="sim-metric-val" id="metricStabVal">High (Variation &lt; 1.2px)</div>
+        </div>
+        <div class="sim-metric-card">
+          <div class="sim-metric-label" data-project-copy="simMetricStatus">Tracking Status</div>
+          <div class="sim-metric-val sim-metric-status" id="metricStatusVal">✓ Normal Parallel Alignment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="pres-section-title" data-project-copy="boundariesTitle">What NETRA-SCREEN Does vs. What It Does Not Do</h2>
+  <div class="compare-grid">
+    <div class="compare-box does">
+      <h3 data-project-copy="doesTitle">What It DOES Do (Pre-Screening Tool)</h3>
+      <ul class="compare-list">
+        <li><span class="icon" style="color:#78e4d0;">✓</span> <span data-project-copy="doesItem1">Rapid, stress-free pre-screening on standard smartphones in schools and homes</span></li>
+        <li><span class="icon" style="color:#78e4d0;">✓</span> <span data-project-copy="doesItem2">Flags bilateral eye movement asymmetry and fixation instability for early doctor referral</span></li>
+        <li><span class="icon" style="color:#78e4d0;">✓</span> <span data-project-copy="doesItem3">100% offline and private—no camera frames or child videos are ever recorded or uploaded</span></li>
+        <li><span class="icon" style="color:#78e4d0;">✓</span> <span data-project-copy="doesItem4">Generates transparent, repeatable mathematical metrics for research and health triage</span></li>
+      </ul>
+    </div>
+    <div class="compare-box does-not">
+      <h3 data-project-copy="doesNotTitle">What It Does NOT Do (Clinical Boundaries)</h3>
+      <ul class="compare-list">
+        <li><span class="icon" style="color:#ff9fb5;">✕</span> <span data-project-copy="doesNotItem1">Does NOT provide a medical diagnosis of disease (it is a pre-screening triage guide)</span></li>
+        <li><span class="icon" style="color:#ff9fb5;">✕</span> <span data-project-copy="doesNotItem2">Does NOT replace a comprehensive clinical exam by a certified ophthalmologist</span></li>
+        <li><span class="icon" style="color:#ff9fb5;">✕</span> <span data-project-copy="doesNotItem3">Does NOT claim clinical accuracy until multi-center hospital clinical trials are complete</span></li>
+        <li><span class="icon" style="color:#ff9fb5;">✕</span> <span data-project-copy="doesNotItem4">Does NOT collect personal patient data or require continuous internet connectivity</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="pres-section-title">YIP Research Methodology & Evidence</h2>
+  <div class="presentation-grid">
+    <section class="panel"><span class="step-label">01 / QUESTION</span><h2 data-project-copy="projectAimTitle">The research question</h2><p data-project-copy="projectAimBody"></p></section>
+    <section class="panel"><span class="step-label">02 / METHOD</span><h2 data-project-copy="workflowTitle">From camera to observation</h2><p data-project-copy="workflowBody"></p></section>
+    <section class="panel"><span class="step-label">03 / OBSERVATIONS</span><h2 data-project-copy="measuresTitle">What the project records</h2><p data-project-copy="measuresBody"></p></section>
+    <section class="panel"><span class="step-label">04 / EVIDENCE</span><h2 data-project-copy="evidenceTitle">What the evidence supports</h2><p data-project-copy="evidenceBody"></p></section>
+  </div>
+  <section class="panel"><span class="step-label">05 / NEXT STEP</span><h2 data-project-copy="nextStepsTitle">The next validation step</h2><p data-project-copy="nextStepsBody"></p></section>
+
+  <div class="project-download">
+    <div>
+      <h2>NETRA-SCREEN / MINDMESH</h2>
+      <p>Original YIP project presentation deck</p>
+      <small data-project-copy="deckNote">PDF · approximately 32 MB · online download</small>
+    </div>
+    <a class="primary" href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" data-project-copy="deckLink">Download project deck</a>
+  </div>
+
+  <aside class="scope">
+    <strong data-project-copy="researchScopeTitle">Research scope</strong>
+    <p data-project-copy="researchScopeBody"></p>
+    <p>The original presentation is a project archive. Current implementation behavior, research limitations and verification status on this page take precedence over claims in historical slides.</p>
+  </aside>
+
+  <div class="project-links">
+    <a class="primary" href="./index.html" data-project-copy="openResearch">Open research tool</a>
+    <button class="secondary" type="button" id="printPresentation">Print project overview</button>
+  </div>
+</main>
+
+<footer class="studio-footer">NETRA-SCREEN / MINDMESH · YIP research project · On-device processing</footer>
+<script type="module" src="presentation.js"></script>
+</body>
+</html>

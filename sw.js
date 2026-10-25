@@ -1,8 +1,11 @@
 /* One atomic, versioned offline package with a compatible navigation update. */
 importScripts('./static-assets.js');
-const CACHE_NAME='netra-screen-offline-v26';
+const CACHE_NAME='netra-screen-offline-v28';
 const ASSET_URLS=new Set(globalThis.NETRA_ASSETS.map(path=>new URL(path,self.registration.scope).href));
 const INDEX_URL=new URL('index.html',self.registration.scope).href;
+self.addEventListener('message',event=>{
+  if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();
+});
 self.addEventListener('install',event=>{
   // Compatible route migration: loaded capture scripts remain compatible with the new package.
   // The next navigation must not retain retired activity menus.
