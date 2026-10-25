@@ -141,6 +141,15 @@
             </label>
           </div>
 
+          <!-- Camera Screen Visibility Option -->
+          <div class="consent-box" style="margin-top: 10px;">
+            <label class="consent-checkbox-label" for="hideCameraCheckbox">
+              <input type="checkbox" id="hideCameraCheckbox">
+              <span class="checkbox-custom"></span>
+              <span class="consent-text" id="hideCameraText" data-i18n="hideCameraText">Tick to hide camera preview on screen (കുട്ടിയുടെ ശ്രദ്ധയ്ക്ക് ക്യാമറ മറയ്ക്കാൻ tick ചെയ്യുക)</span>
+            </label>
+          </div>
+
           <!-- Action Buttons -->
           <div class="home-actions">
             <button type="button" id="btnStartLive" class="btn-primary glow-btn">
@@ -192,6 +201,7 @@
             </div>
             <div class="hud-right">
               <span class="timer-display" id="hudTimer">08s</span>
+              <button type="button" id="btnToggleCamView" class="btn-hud-small" title="Toggle Camera Preview" aria-label="Toggle Camera Preview">📷</button>
               <button type="button" id="btnPauseSession" class="btn-hud-small" title="Pause / Break">⏸️</button>
               <button type="button" id="btnExitSession" class="btn-hud-small" title="Cancel">✕</button>
             </div>
@@ -237,11 +247,14 @@
             </div>
           </div>
 
-          <!-- Non-visible camera source: the child sees the target, never their own face. -->
-          <div class="camera-source" id="camPip" aria-hidden="true" inert>
+          <!-- Live camera source & optional Picture-in-Picture display -->
+          <div class="camera-source mini-cam-pip" id="camPip">
             <div class="pip-header">
               <span class="pip-title" data-i18n="pipTitle">Live Landmark Analysis</span>
-              <button type="button" id="btnTogglePipOverlay" class="pip-toggle" title="Toggle Landmarks">👁️</button>
+              <div style="display:flex; gap:4px; align-items:center;">
+                <button type="button" id="btnTogglePipOverlay" class="pip-toggle" title="Toggle Landmarks" aria-label="Toggle Landmarks">👁️</button>
+                <button type="button" id="btnClosePip" class="pip-toggle" title="Hide Camera" aria-label="Hide Camera">✕</button>
+              </div>
             </div>
             <div class="pip-view">
               <video id="webcamVideo" playsinline muted autoplay></video>

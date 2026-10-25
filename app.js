@@ -27,6 +27,7 @@ const I18N = {
     compDotTitle: "Smiling Dot",
     compDotDesc: "High Contrast Target",
     consentText: "I agree to local camera processing for this session. No camera images are stored or uploaded. A parent or guardian must supervise children.",
+    hideCameraText: "Tick to hide camera preview on screen (keeps child focused on target)",
     btnStartLive: "Start eye movement capture",
     btnStartDemo: "Preview target movement · camera free",
     iosInstallHint: "On iPhone, use Safari’s Share menu → Add to Home Screen for quick access.",
@@ -122,6 +123,7 @@ const I18N = {
     compDotTitle: "പുഞ്ചിരിക്കുന്ന കുത്ത്",
     compDotDesc: "വ്യക്തതയുള്ള വലിയ കുത്ത്",
     consentText: "ഈ സെഷനിലെ പ്രാദേശിക ക്യാമറ പ്രോസസ്സിംഗിന് സമ്മതിക്കുന്നു. ചിത്രങ്ങൾ സംഭരിക്കുകയോ അപ്‌ലോഡ് ചെയ്യുകയോ ഇല്ല. കുട്ടികൾക്ക് രക്ഷിതാവിന്റെ മേൽനോട്ടം വേണം.",
+    hideCameraText: "ക്യാമറ സ്ക്രീനിൽ നിന്ന് മറയ്ക്കാൻ tick ചെയ്യുക (കുട്ടിയുടെ ശ്രദ്ധ ലക്ഷ്യത്തിൽ മാത്രം ഉറപ്പിക്കാൻ)",
     btnStartLive: "കണ്ണിന്റെ ചലനം രേഖപ്പെടുത്തുക",
     btnStartDemo: "ലക്ഷ്യചലനം മുൻകൂട്ടി കാണുക · ക്യാമറ വേണ്ട",
     iosInstallHint: "ഐഫോണിൽ വേഗം തുറക്കാൻ Safari-യിലെ Share → Add to Home Screen ഉപയോഗിക്കുക.",
@@ -225,6 +227,7 @@ const STATE = {
   landmarker: null,
   webcamRunning: false,
   showPipOverlay: false,
+  hideCameraPreview: false,
   audioCtx: null
 };
 
@@ -252,6 +255,7 @@ const dom = {
   audioIcon: document.getElementById("audioIcon"),
   companionQuickSelect: document.getElementById("companionQuickSelect"),
   consentCheckbox: document.getElementById("consentCheckbox"),
+  hideCameraCheckbox: document.getElementById("hideCameraCheckbox"),
   btnStartLive: document.getElementById("btnStartLive"),
   btnStartDemo: document.getElementById("btnStartDemo"),
   
@@ -260,14 +264,17 @@ const dom = {
   hudTaskStep: document.getElementById("hudTaskStep"),
   taskProgressBar: document.getElementById("taskProgressBar"),
   hudTimer: document.getElementById("hudTimer"),
+  btnToggleCamView: document.getElementById("btnToggleCamView"),
   btnPauseSession: document.getElementById("btnPauseSession"),
   btnExitSession: document.getElementById("btnExitSession"),
   targetCompanion: document.getElementById("targetCompanion"),
   companionGraphic: document.getElementById("companionGraphic"),
   qualityWarningOverlay: document.getElementById("qualityWarningOverlay"),
+  camPip: document.getElementById("camPip"),
   webcamVideo: document.getElementById("webcamVideo"),
   landmarkOverlayCanvas: document.getElementById("landmarkOverlayCanvas"),
   btnTogglePipOverlay: document.getElementById("btnTogglePipOverlay"),
+  btnClosePip: document.getElementById("btnClosePip"),
   fpsCounter: document.getElementById("fpsCounter"),
   irisDisp: document.getElementById("irisDisp"),
 
@@ -467,6 +474,35 @@ function setSourceNotice() {
     ? (STATE.lang === 'ml' ? 'ക്യാമറയില്ലാത്ത വിശദീകരണം · അളവുകൾ സൃഷ്ടിക്കുന്നില്ല' : 'CAMERA-FREE WALKTHROUGH · No eye measurements are generated')
     : (STATE.lang === 'ml' ? 'തത്സമയ ഗവേഷണ രേഖപ്പെടുത്തൽ · രോഗനിർണയമല്ല' : 'LIVE RESEARCH CAPTURE · No clinical classification'));
 }
+function applyCameraVisibility(hide) {
+  STATE.hideCameraPreview = hide;
+  const camPip = dom.camPip || document.getElementById('camPip');
+  const btnToggle = dom.btnToggleCamView || document.getElementById('btnToggleCamView');
+  if (camPip) {
+    if (hide || STATE.isDemo) {
+      camPip.classList.add('camera-hidden');
+      camPip.classList.remove('mini-cam-pip');
+      camPip.setAttribute('aria-hidden', 'true');
+      camPip.setAttribute('inert', '');
+      camPip.style.opacity = '0';
+    } else {
+      camPip.classList.remove('camera-hidden');
+      camPip.classList.add('mini-cam-pip');
+      camPip.removeAttribute('aria-hidden');
+      camPip.removeAttribute('inert');
+      camPip.style.opacity = '1';
+    }
+  }
+  if (btnToggle) {
+    btnToggle.innerHTML = hide ? '📷' : '🚫';
+    btnToggle.title = hide
+      ? (STATE.lang === 'ml' ? 'ക്യാമറ സ്ക്രീനിൽ കാണിക്കുക' : 'Show camera preview on screen')
+      : (STATE.lang === 'ml' ? 'ക്യാമറ മറയ്ക്കുക' : 'Hide camera preview from screen');
+  }
+  const chk = dom.hideCameraCheckbox || document.getElementById('hideCameraCheckbox');
+  if (chk && chk.checked !== hide) chk.checked = hide;
+}
+
 async function startSession(isDemoMode = false) {
   if (sessionActive) return;
   stopSession(); sessionActive = true;
@@ -478,6 +514,9 @@ async function startSession(isDemoMode = false) {
   dom.btnPauseSession.textContent = 'Pause';
   dom.fpsCounter.textContent = 'FPS: —'; dom.irisDisp.textContent = 'Waiting for camera';
   showView('viewTracking'); updateLanguage(STATE.lang); setSourceNotice();
+  const hide = isDemoMode || (dom.hideCameraCheckbox ? dom.hideCameraCheckbox.checked : false);
+  applyCameraVisibility(hide);
+  if (!isDemoMode && !hide) STATE.showPipOverlay = true;
   lastGuideTask = -1; invalidSince = null; lastFramingGuide = -Infinity;
   document.querySelector('.quality-hud').hidden=isDemoMode;
   dom.qualityWarningOverlay.classList.remove('hidden');
@@ -507,6 +546,7 @@ function stopSession() {
   sessionGeneration++; sessionActive = false; cancelAnimationFrame(animFrameId); animFrameId = null;
   guide.cancel();
   mainCamera.stop(); STATE.webcamRunning = false; qualityAt = -Infinity;
+  applyCameraVisibility(true);
 }
 function pauseTracking() {
   if (!sessionActive) return;
@@ -932,9 +972,20 @@ function setupEventListeners() {
   });
 
   // PIP Overlay toggle
-  dom.btnTogglePipOverlay.addEventListener("click", () => {
+  dom.btnTogglePipOverlay?.addEventListener("click", () => {
     STATE.showPipOverlay = !STATE.showPipOverlay;
     dom.landmarkOverlayCanvas.style.display = STATE.showPipOverlay ? "block" : "none";
+  });
+
+  // Camera screen visibility toggle controls
+  dom.hideCameraCheckbox?.addEventListener("change", (e) => {
+    applyCameraVisibility(e.target.checked);
+  });
+  dom.btnToggleCamView?.addEventListener("click", () => {
+    applyCameraVisibility(!STATE.hideCameraPreview);
+  });
+  dom.btnClosePip?.addEventListener("click", () => {
+    applyCameraVisibility(true);
   });
 
   // Trajectory Task Tabs

@@ -100,8 +100,28 @@
 .ready-voice-status { font-size: 12px!important; color: #ffdaa1!important; margin-bottom: 22px; }
 .ready-voice-status:empty { display: none; }
 @keyframes readyPoint { 50% { transform: translateY(8px); } }
-.research-app .camera-source { position: fixed; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; clip-path: inset(50%); }
-.research-app .camera-source video { width: 160px; height: 120px; max-width: none; }
+.research-app .camera-source.camera-hidden,
+.research-app .camera-source:not(.mini-cam-pip) {
+  position: fixed; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; clip-path: inset(50%);
+}
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) {
+  position: fixed!important; bottom: 24px!important; right: 24px!important; width: 175px!important; border-radius: 16px; overflow: hidden; z-index: 9999!important;
+  opacity: 1!important; pointer-events: auto!important; clip-path: none!important; background: #181d3d; border: 2px solid #78e4d0; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7); display: block!important;
+}
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) .pip-header {
+  display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #12152d;
+  font-size: 11px; font-weight: 700; color: #78e4d0; border-bottom: 1px solid #282f5c;
+}
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) .pip-header button {
+  background: transparent; border: none; color: #ff9fb5; cursor: pointer; font-size: 13px; padding: 2px 6px; border-radius: 6px;
+}
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) .pip-header button:hover { background: #3c2438; }
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) .pip-view { position: relative; width: 100%; height: 125px; background: #080b18; }
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); display: block; max-width: none; }
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: scaleX(-1); pointer-events: none; }
+.research-app .camera-source.mini-cam-pip:not(.camera-hidden) .pip-stats {
+  display: flex; justify-content: space-between; padding: 4px 10px; background: #12152d; font-size: 9.5px; color: #b5bad5; border-top: 1px solid #282f5c;
+}
 .research-app:has(#viewTracking.active-view,#viewReady.active-view) .top-nav { min-height: 64px; padding: 10px 18px; flex-wrap: nowrap; }
 .research-app:has(#viewTracking.active-view,#viewReady.active-view) .brand-badge,.research-app:has(#viewTracking.active-view,#viewReady.active-view) .top-actions .nav-doc-btn,.research-app:has(#viewTracking.active-view,#viewReady.active-view) .lang-btn { display: none; }
 .research-app:has(#viewTracking.active-view,#viewReady.active-view) .top-actions { display: flex; width: auto; }

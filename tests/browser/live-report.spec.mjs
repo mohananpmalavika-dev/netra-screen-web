@@ -17,7 +17,7 @@ test('valid frame fixtures finish four tasks, respect pause and export only meas
       return {faceLandmarks:[raw]};
     }}}\n`+original.slice(original.indexOf('export function cameraError'));
     await page.route('**/camera.mjs',route=>route.fulfill({contentType:'text/javascript',body:fixture}));
-    await page.goto('/tracking.html');await page.locator('#consentCheckbox').check();await page.locator('#btnStartLive').click();await page.locator('#btnFocusReady').click();
+    await page.goto('/tracking.html');await page.locator('#consentCheckbox').check();await page.locator('#hideCameraCheckbox').check();await page.locator('#btnStartLive').click();await page.locator('#btnFocusReady').click();
     await expect(page.locator('#irisDisp')).toHaveText('Landmarks acquired');
     await expect(page.locator('#camPip')).toHaveCSS('opacity','0');await expect(page.locator('#camPip')).toHaveAttribute('aria-hidden','true');
     expect(await page.locator('#webcamVideo').evaluate(video=>video.srcObject.active)).toBe(true);
