@@ -1,16 +1,23 @@
 {
   "name": "web",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "version": "0.5.1",
+  "private": true,
+  "description": "Offline research capture and personal eye comfort activities",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check app.js && node --check eye-tests.js && node --check sw.js && node --check camera.mjs && node --check vision-core.mjs && node --check project-copy.mjs && node --check presentation.js",
+    "build": "npm run check && npm test && node scripts/build.mjs",
+    "test:browser": "playwright test",
+    "serve": "node scripts/serve.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@mediapipe/tasks-vision": "^1.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
   }
 }

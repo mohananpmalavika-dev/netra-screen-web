@@ -4,35 +4,35 @@
  * Runs in iOS Safari, Chrome, Edge, and Android Browsers.
  */
 
-import {
-  FaceLandmarker,
-  FilesetResolver
-} from "./libs/tasks-vision.mjs";
+import { loadLandmarker, CameraSession, cameraError } from './camera.mjs';
+import { VERSION, relativeIris, eyeAspectRatio, framing, researchMetrics } from './vision-core.mjs';
+import './offline-status.js';
+import { PROJECT_COPY } from './project-copy.mjs';
 
 // ================= BILINGUAL DICTIONARY (EN & ML) =================
 // ================= BILINGUAL DICTIONARY (EN & ML) =================
 const I18N = {
   en: {
-    heroBadge: "Ocular Pursuit & Fixation Research",
-    heroTitle: "Pediatric Visual Attention & Iris Motion Tracking",
-    heroDesc: "Bilateral iris excursion symmetry and fixation stability measurement using high-precision offline computer vision. Designed for pediatric and rural community screenings.",
-    disclaimerHeader: "Research Scope Notice",
-    disclaimerBody: "This web application tracks relative iris centroids and fixation stability for engineering research. It does not provide medical diagnosis or replace an examination by an ophthalmologist or optometrist.",
-    chooseCompanion: "Choose Child Companion Target:",
-    compButterflyTitle: "Chithrashalabham",
-    compButterflyDesc: "Playful Fluttering Butterfly",
-    compFishTitle: "Malsyam",
-    compFishDesc: "Smooth Swimming Fish",
+    heroBadge: "OPTIONAL CAMERA TOOL",
+    heroTitle: "Follow the target. Explore eye movement.",
+    heroDesc: "Four short target paths record eye-landmark movement on your device. This experimental tool cannot assess eye health or diagnose a condition.",
+    disclaimerHeader: "Before you begin",
+    disclaimerBody: "Use even lighting and keep both eyes visible. Sit comfortably and stop if the activity causes discomfort. Measurements are experimental; they cannot confirm normal vision or replace an eye examination.",
+    chooseCompanion: "Choose a target",
+    compButterflyTitle: "Butterfly",
+    compButterflyDesc: "Fluttering target",
+    compFishTitle: "Fish",
+    compFishDesc: "Swimming target",
     compDotTitle: "Smiling Dot",
     compDotDesc: "High Contrast Target",
-    consentText: "I affirm guardian consent for this research session. Camera feed is processed strictly inside this browser and no face videos or identifying information are saved or uploaded.",
-    btnStartLive: "Start Camera Tracking Session",
-    btnStartDemo: "Run Camera-Free Demo / Walkthrough",
-    iosInstallHint: "<strong>iPhone Tip:</strong> Tap Safari's <em>Share button</em> ➔ <em>\"Add to Home Screen\"</em> to use NetraScreen as a full-screen native app!",
-    chipFraming: "Framing: Good",
-    chipLighting: "Light: Balanced",
-    chipHead: "Head: Level",
-    chipEyes: "Both Eyes: Visible",
+    consentText: "I agree to local camera processing for this session. No camera images are stored or uploaded. A parent or guardian must supervise children.",
+    btnStartLive: "Start eye movement capture",
+    btnStartDemo: "Preview target movement · camera free",
+    iosInstallHint: "On iPhone, use Safari’s Share menu → Add to Home Screen for quick access.",
+    chipFraming: "Face framing",
+    chipLighting: "Lighting heuristic",
+    chipHead: "Head roll",
+    chipEyes: "Eye visibility",
     warnPleaseFace: "Please look directly at screen",
     warnLightingDesc: "Keep face centered in good lighting with both eyes unobstructed.",
     pipTitle: "Live Landmark Analysis",
@@ -40,86 +40,94 @@ const I18N = {
     reportHeading: "Ocular Pursuit & Bilateral Iris Excursion",
     
     // Evaluation Banner
-    evalBannerTitleNormal: "Healthy Bilateral Eye Coordination Observed",
-    evalBannerDescNormal: "Both eyes tracked the visual target symmetrically with steady fixation and synchronized conjugate pursuit within expected research reference limits.",
-    evalBannerTitleWarn: "Asymmetric Pursuit or Reduced Fixation Stability Flagged",
-    evalBannerDescWarn: "Telemetry detected an excursion discrepancy or reduced bilateral synchronization. A comprehensive clinical evaluation by an eye care specialist is recommended.",
+    evalBannerTitleNormal: "Research observations · no clinical classification",
+    evalBannerDescNormal: "Landmark measurements cannot confirm normal vision or diagnose an eye condition.",
+    evalBannerTitleWarn: "Research observations · no clinical classification",
+    evalBannerDescWarn: "Landmark measurements cannot determine a clinical referral decision.",
 
     // Trajectory & Judge Guide
     trajVisualizerHeading: "Target & Iris Trajectories",
     trajVisualizerSub: "Spatial alignment of visual pursuit across tasks",
+    tabAll: "All 4 Tasks",
     tabHorizontal: "Horizontal",
     tabVertical: "Vertical",
     tabDiagonal: "Diagonal",
     tabJumps: "Jumps",
+    task1Title: "Task 1: Horizontal Pursuit",
+    task1Desc: "Lateral conjugate tracking (Left ⇄ Right)",
+    task2Title: "Task 2: Vertical Pursuit",
+    task2Desc: "Elevation & depression tracking (Up ↕ Down)",
+    task3Title: "Task 3: Diagonal Pursuit",
+    task3Desc: "Combined oblique visual field tracking",
+    task4Title: "Task 4: Saccadic Jumps & Fixation",
+    task4Desc: "Rapid refixation steps & quadrant stability",
     plotTarget: "Target Trajectory (Screen Normalized)",
     plotEyes: "Bilateral Iris Centroids (Left: Blue, Right: Amber)",
     legendTarget: "Visual Target Path",
     legendLeftEye: "Left Eye Iris Centroid",
     legendRightEye: "Right Eye Iris Centroid",
-    graphGuideHeading: "How Evaluators & Judges Read this Graph:",
-    graphGuideText: "The cyan curve is the path of the visual target. The blue (Left eye) and amber (Right eye) curves map real-time iris movement. When both eye curves closely mirror each other and track the target with smooth arcs, eye movement is coordinated. If one curve diverges, lags, or stops short, it indicates potential eye turn (squint) or muscle imbalance.",
+    graphGuideHeading: "Reading the research plots",
+    graphGuideText: "Target and eye panels use different coordinate systems. Both eye paths share one scale. Path differences can reflect tracking noise, head movement or capture quality; they do not diagnose squint or muscle imbalance.",
 
     // Metrics & Descriptions
     metricsHeading: "Engineering & Pursuit Metrics",
     metricsSub: "Calculated from accepted offline facial landmark telemetry",
     metricBilateralCorr: "Bilateral Movement Correlation",
-    metricCorrExplain: "Measures whether both eyes move together in unison in the same direction at the same speed. High correlation confirms synchronized binocular pursuit.",
+    metricCorrExplain: "Correlation of consecutive bilateral landmark displacement, including horizontal and vertical components. Constant or insufficient movement remains unavailable.",
     metricFixationStability: "Fixation Stability (RMS Jitter)",
-    metricFixExplain: "Measures involuntary eye shaking when holding gaze at a fixed point. A lower value indicates a calm, steady gaze without nystagmus or wandering attention.",
+    metricFixExplain: "RMS variation around each held jump target after a settling period, in eye-width units. A research proxy affected by landmark noise and head movement.",
     metricSymmetry: "Symmetry Discrepancy",
-    metricSymmExplain: "Compares the maximum turning distance reached by the left vs right eye. A low difference indicates balanced extraocular muscle strength on both sides.",
+    metricSymmExplain: "Relative difference in accumulated bilateral landmark path length. Not a measurement of muscle strength or ocular deviation.",
     metricValidPct: "Accepted Frames Fraction",
-    metricValidExplain: "The percentage of test frames that met all quality criteria (centered face, level head pose, even lighting, unobstructed eyes). Proves test reliability.",
+    metricValidExplain: "Accepted observations divided by actual processed camera frames. Capture heuristics do not establish medical reliability.",
 
     // Specialist Decision Protocol
-    specialistDecisionTitle: "When Should a Pediatric Eye Specialist Be Consulted?",
-    specialistDecisionSubtitle: "Clinical triage protocol for school screenings and community health workers",
-    telemetryTriggersTitle: "⚠️ Telemetry Warning Triggers:",
-    trig1: "Bilateral Movement Correlation persistently below 0.75",
-    trig2: "Symmetry Discrepancy greater than 10.0% across repeated tests",
-    trig3: "Fixation Stability RMS jitter exceeding 0.080",
-    physicalSignsTitle: "🚨 Physical Red Flags Observed by Parents:",
+    specialistDecisionTitle: "When to seek an eye examination",
+    specialistDecisionSubtitle: "General eye-care guidance, independent of research metrics",
+    telemetryTriggersTitle: "Understanding these measurements",
+    trig1: "No clinically validated reference ranges are available.",
+    trig2: "No automatic referral decision is made from telemetry.",
+    trig3: "Arrange an eye examination for vision concerns, regardless of these measurements.",
+    physicalSignsTitle: "Changes worth discussing with an eye professional",
     sign1: "Visible eye turn or squint (one eye turns in or out, even occasionally)",
     sign2: "Child tilts or turns head sideways when looking at TV, books, or objects",
     sign3: "Frequent eye rubbing, squinting, or complaining of headaches",
     sign4: "Abnormal white or mismatched reflection in pupil during flash photos",
-    disclaimerFooterText: "<strong>Important Notice:</strong> NetraScreen is an early research triage tool designed to flag potential tracking anomalies for clinical review. It does not replace a comprehensive pediatric eye examination by a certified ophthalmologist or optometrist.",
+    disclaimerFooterText: "NetraScreen records experimental landmark observations. It cannot confirm or exclude an eye condition. Sudden vision loss, severe eye pain or a new curtain over vision require urgent medical care.",
 
     btnPrint: "Print / Save PDF Report",
     btnExportJSON: "Download JSON Data",
     btnNewSession: "Start New Session",
-    navPresentation: "Pitch Deck",
-    presTitle: "MindMesh Official Presentation Deck",
-    presSub: "Complete YIP Pitch Deck, Algorithm Architecture & Clinical Findings (PDF)",
-    presDownloadBtn: "Download PDF",
-    btnReportDeck: "Download Pitch Deck",
     taskHorizontalName: "HORIZONTAL PURSUIT",
     taskVerticalName: "VERTICAL PURSUIT",
     taskDiagonalName: "DIAGONAL PURSUIT",
-    taskJumpsName: "FIXATION JUMPS"
+    taskJumpsName: "FIXATION JUMPS",
+    navOtherTests: "All activities",
+    otherTestsTitle: "Eye care studio · activities & exercises",
+    otherTestsSub: "Guided eye comfort, near-vision tasks, Amsler grid, contrast and color matching. No symptom surveys.",
+    btnOpenOtherTests: "Back to activities"
   },
   ml: {
-    heroBadge: "നേത്ര ചലന നിരീക്ഷണ ഗവേഷണം",
-    heroTitle: "കുട്ടികളിലെ നേത്ര ചലനവും ഐറിസ് സിമെട്രിയും",
-    heroDesc: "കൃത്യതയാർന്ന ഓഫ്‌ലൈൻ കമ്പ്യൂട്ടർ വിഷൻ സാങ്കേതികവിദ്യ ഉപയോഗിച്ച് ഇരു കണ്ണുകളിലെയും കൃഷ്ണമണികളുടെ ചലന സമമിതിയും ഫോക്കസിംഗ് സ്ഥിരതയും പരിശോധിക്കുന്നു.",
-    disclaimerHeader: "ഗവേഷണ പരിധി അറിയിപ്പ്",
-    disclaimerBody: "ഈ വെബ് ആപ്ലിക്കേഷൻ ഗവേഷണ ആവശ്യങ്ങൾക്കായി മാത്രമുള്ളതാണ്. ഇത് നേത്രരോഗ നിർണയമോ അല്ലെങ്കിൽ ഡോക്ടറുടെ പരിശോധനയ്ക്ക് പകരമോ അല്ല.",
-    chooseCompanion: "കുട്ടികൾക്ക് ഇഷ്ടമുള്ള കൂട്ടുകാരനെ തിരഞ്ഞെടുക്കുക:",
+    heroBadge: "ക്യാമറ ഉപയോഗിച്ചുള്ള പ്രവർത്തനം",
+    heroTitle: "ലക്ഷ്യത്തെ പിന്തുടർന്ന് കണ്ണിന്റെ ചലനം നിരീക്ഷിക്കൂ.",
+    heroDesc: "നാല് ചെറിയ ലക്ഷ്യപാതകളിലൂടെ കണ്ണിന്റെ ലാൻഡ്മാർക്ക് ചലനം ഉപകരണത്തിൽ രേഖപ്പെടുത്തുന്നു. ഇതിന് കണ്ണിന്റെ ആരോഗ്യമോ രോഗമോ നിർണയിക്കാനാവില്ല.",
+    disclaimerHeader: "തുടങ്ങുന്നതിന് മുമ്പ്",
+    disclaimerBody: "നല്ല വെളിച്ചത്തിൽ ഇരുകണ്ണുകളും വ്യക്തമായി കാണിക്കുക. സുഖമായി ഇരിക്കുക; അസ്വസ്ഥതയുണ്ടെങ്കിൽ നിർത്തുക. ഇവ പരീക്ഷണാത്മക അളവുകളാണ്; നേത്രപരിശോധനയ്ക്ക് പകരമല്ല.",
+    chooseCompanion: "ഒരു ലക്ഷ്യം തിരഞ്ഞെടുക്കുക",
     compButterflyTitle: "ചിത്രശലഭം",
     compButterflyDesc: "പാറിപ്പറക്കുന്ന വർണ്ണ ശലഭം",
     compFishTitle: "മത്സ്യം",
     compFishDesc: "നീന്തിത്തുടിക്കുന്ന കുഞ്ഞുമത്സ്യം",
     compDotTitle: "പുഞ്ചിരിക്കുന്ന കുത്ത്",
     compDotDesc: "വ്യക്തതയുള്ള വലിയ കുത്ത്",
-    consentText: "ഈ ഗവേഷണ സെഷനായി രക്ഷിതാവ് സമ്മതം നൽകുന്നു. ക്യാമറ ദൃശ്യങ്ങൾ ഈ ബ്രൗസറിനുള്ളിൽ മാത്രമേ പ്രോസസ്സ് ചെയ്യപ്പെടുന്നുള്ളൂ. മുഖദൃശ്യങ്ങളോ വ്യക്തിവിവരങ്ങളോ സൂക്ഷിക്കുകയോ പങ്കുവെക്കുകയോ ചെയ്യുന്നില്ല.",
-    btnStartLive: "ക്യാമറ ട്രാക്കിംഗ് സെഷൻ തുടങ്ങുക",
-    btnStartDemo: "ക്യാമറയില്ലാത്ത ഡെമോ / വാക്ക്ത്രൂ",
-    iosInstallHint: "<strong>iPhone ടിപ്പ്:</strong> സഫാരിയിലെ <em>Share ബട്ടൺ</em> അമർത്തി <em>\"Add to Home Screen\"</em> നൽകിയാൽ ഫുൾ സ്ക്രീൻ നേറ്റീവ് ആപ്പ് ആയി ഉപയോഗിക്കാം!",
-    chipFraming: "പൊസിഷൻ: ശരി",
-    chipLighting: "വെളിച്ചം: സമം",
-    chipHead: "തല: നേരെ",
-    chipEyes: "ഇരു കണ്ണുകളും: ദൃശ്യം",
+    consentText: "ഈ സെഷനിലെ പ്രാദേശിക ക്യാമറ പ്രോസസ്സിംഗിന് സമ്മതിക്കുന്നു. ചിത്രങ്ങൾ സംഭരിക്കുകയോ അപ്‌ലോഡ് ചെയ്യുകയോ ഇല്ല. കുട്ടികൾക്ക് രക്ഷിതാവിന്റെ മേൽനോട്ടം വേണം.",
+    btnStartLive: "കണ്ണിന്റെ ചലനം രേഖപ്പെടുത്തുക",
+    btnStartDemo: "ലക്ഷ്യചലനം മുൻകൂട്ടി കാണുക · ക്യാമറ വേണ്ട",
+    iosInstallHint: "ഐഫോണിൽ വേഗം തുറക്കാൻ Safari-യിലെ Share → Add to Home Screen ഉപയോഗിക്കുക.",
+    chipFraming: "മുഖത്തിന്റെ സ്ഥാനം",
+    chipLighting: "വെളിച്ചം",
+    chipHead: "തലയുടെ ചരിവ്",
+    chipEyes: "കണ്ണുകളുടെ ദൃശ്യത",
     warnPleaseFace: "സ്ക്രീനിലേക്ക് നേരെ നോക്കുക",
     warnLightingDesc: "നല്ല വെളിച്ചത്തിൽ ഇരു കണ്ണുകളും വ്യക്തമായി കാണത്തക്ക വിധം ഇരിക്കുക.",
     pipTitle: "തത്സമയ ലാൻഡ്‌മാർക്ക് വിശകലനം",
@@ -127,72 +135,83 @@ const I18N = {
     reportHeading: "നേത്ര ചലന പാതയും ഐറിസ് ട്രാക്കിംഗും",
 
     // Evaluation Banner
-    evalBannerTitleNormal: "കണ്ണുകളുടെ ചലന ഏകോപനം തൃപ്തികരം",
-    evalBannerDescNormal: "കുട്ടിയുടെ രണ്ട് കണ്ണുകളും ടാർഗറ്റിനൊപ്പം കൃത്യമായ സമന്വയത്തോടും വിറയലില്ലാത്ത ഫോക്കസിംഗോടും കൂടി ചലിക്കുന്നുണ്ട്.",
-    evalBannerTitleWarn: "കണ്ണുകളുടെ ചലനത്തിൽ വ്യത്യാസം ശ്രദ്ധയിൽപ്പെട്ടു",
-    evalBannerDescWarn: "ഇരു കണ്ണുകളുടെയും ചലന വ്യാപ്തിയിലോ സമന്വയത്തിലോ വ്യത്യാസം രേഖപ്പെടുത്തിയിട്ടുണ്ട്. ഒരു നേത്രരോഗ വിദഗ്ദ്ധന്റെ (Eye Specialist) നേരിട്ടുള്ള പരിശോധന തേടുന്നത് ഉചിതമായിരിക്കും.",
+    evalBannerTitleNormal: "Research observations · no clinical classification",
+    evalBannerDescNormal: "Landmark measurements cannot confirm normal vision or diagnose an eye condition.",
+    evalBannerTitleWarn: "Research observations · no clinical classification",
+    evalBannerDescWarn: "Landmark measurements cannot determine a clinical referral decision.",
 
     // Trajectory & Judge Guide
     trajVisualizerHeading: "ടാർഗറ്റും കൃഷ്ണമണി ചലന പാതകളും",
     trajVisualizerSub: "വിവിധ ചലനങ്ങളിലെ കണ്ണ് ട്രാക്കിംഗ് വിന്യാസം",
+    tabAll: "എല്ലാ 4 ചലനങ്ങളും",
     tabHorizontal: "തിരശ്ചീനം",
     tabVertical: "ലംബം",
     tabDiagonal: "കോണോടുകോൺ",
     tabJumps: "ചാട്ടങ്ങൾ",
+    task1Title: "ചലനം 1: തിരശ്ചീന പാത (Horizontal)",
+    task1Desc: "ഇടത്തും വലത്തുമുള്ള ഐറിസ് ചലന സമന്വയം",
+    task2Title: "ചലനം 2: ലംബ പാത (Vertical)",
+    task2Desc: "മുകളിലേക്കും താഴേക്കുമുള്ള ഐറിസ് ചലനം",
+    task3Title: "ചലനം 3: കോണോടുകോൺ പാത (Diagonal)",
+    task3Desc: "കോണോടുകോൺ ചരിഞ്ഞുള്ള നേത്ര ചലനം",
+    task4Title: "ചലനം 4: ദ്രുത ചാട്ടങ്ങൾ (Saccadic Jumps)",
+    task4Desc: "വിവിധ കോണുകളിലേക്കുള്ള ദ്രുത ഫോക്കസിംഗ്",
     plotTarget: "സ്ക്രീൻ ടാർഗറ്റ് പാത",
     plotEyes: "ഇരു കൃഷ്ണമണികൾ (ഇടത്: നീല, വലത്: മഞ്ഞ)",
     legendTarget: "ടാർഗറ്റ് ചലന പാത",
     legendLeftEye: "ഇടത് കണ്ണ് കൃഷ്ണമണി",
     legendRightEye: "വലത് കണ്ണ് കൃഷ്ണമണി",
-    graphGuideHeading: "മൂല്യനിർണ്ണയക്കാർക്ക് ഗ്രാഫ് മനസ്സിലാക്കാനുള്ള വഴി:",
-    graphGuideText: "നീല ലൈൻ സ്ക്രീനിൽ നീങ്ങിയ പൂമ്പാറ്റയുടെ പാതയാണ്. ഇളം നീല ലൈൻ ഇടത് കൃഷ്ണമണിയും മഞ്ഞ ലൈൻ വലത് കൃഷ്ണമണിയും നീങ്ങിയ വഴിയാണ്. ഈ രണ്ട് ലൈനുകളും ഒന്നിച്ച് ടാർഗറ്റിനൊപ്പം വളഞ്ഞു തിരിയുന്നുണ്ടെങ്കിൽ കണ്ണുകൾ സമന്വയത്തോടെ നീങ്ങുന്നു. ഒരു ലൈൻ വ്യതിചലിക്കുകയോ പിന്നോട്ട് മാറുകയോ ചെയ്താൽ കോങ്കണ്ണ് അല്ലെങ്കിൽ മടിയൻ കണ്ണ് (Amblyopia) സംശയിക്കാം.",
+    graphGuideHeading: "ഗവേഷണ ഗ്രാഫുകൾ വായിക്കാൻ",
+    graphGuideText: "ലക്ഷ്യത്തിന്റെയും കണ്ണുകളുടെയും പാനലുകൾ വ്യത്യസ്ത കോർഡിനേറ്റുകളിലാണ്. വ്യത്യാസങ്ങൾ ട്രാക്കിങ് പിശകുകളാകാം; രോഗനിർണയമല്ല.",
 
     // Metrics & Descriptions
     metricsHeading: "ഗവേഷണ അളവുകോലുകൾ",
     metricsSub: "ഫേസ് ലാൻഡ്‌മാർക്ക് ടെലിമെട്രിയിൽ നിന്ന് കണക്കാക്കിയത്",
     metricBilateralCorr: "ഇരു കണ്ണുകളുടെ സമന്വയം",
-    metricCorrExplain: "രണ്ട് കണ്ണുകളും ഒരേ ദിശയിലേക്ക് ഒരേ വേഗതയിൽ ഒന്നിച്ച് നീങ്ങുന്നുണ്ടോ എന്ന് പരിശോധിക്കുന്നു. ഉയർന്ന സ്കോർ മികച്ച നേത്ര സമന്വയത്തെ കാണിക്കുന്നു.",
+    metricCorrExplain: "രണ്ട് കണ്ണുകളിലെയും തുടർച്ചയായ ലാൻഡ്മാർക്ക് ചലനങ്ങളുടെ സഹബന്ധം. മതിയായ ചലനമില്ലെങ്കിൽ ലഭ്യമല്ല.",
     metricFixationStability: "ഫോക്കസിംഗ് സ്ഥിരത (വിറയൽ അളവ്)",
-    metricFixExplain: "ഒരു ബിന്ദുവിൽ നോക്കിനിൽക്കുമ്പോൾ കണ്ണ് വിറയ്ക്കാതെ നേരെ നിൽക്കുന്നുണ്ടോ എന്ന് അളക്കുന്നു. കുറഞ്ഞ സംഖ്യ സ്ഥിരതയുള്ള മികച്ച കാഴ്ചയെ സൂചിപ്പിക്കുന്നു.",
+    metricFixExplain: "സ്ഥിര ലക്ഷ്യത്തിനിടയിലെ ലാൻഡ്മാർക്ക് വ്യതിയാനം. ട്രാക്കിങ് പിശകുകളും തലചലനവും ബാധിക്കാം.",
     metricSymmetry: "സമമിതി വ്യത്യാസം",
-    metricSymmExplain: "ഇരുവശങ്ങളിലേക്കും രണ്ട് കണ്ണുകളും തിരിയുന്ന ദൂരത്തിലെ വ്യത്യാസം. 5%-ൽ താഴെയുള്ള വ്യത്യാസം കണ്ണിന്റെ പേശികൾ തുല്യ ബലമുള്ളതാണെന്ന് വ്യക്തമാക്കുന്നു.",
+    metricSymmExplain: "രണ്ട് കണ്ണുകളുടെയും ലാൻഡ്മാർക്ക് പാത നീളങ്ങളിലെ വ്യത്യാസം. പേശിബലത്തിന്റെയോ കണ്ണിന്റെ വ്യതിയാനത്തിന്റെയോ അളവല്ല.",
     metricValidPct: "സ്വീകരിച്ച ഫ്രെയിമുകൾ",
-    metricValidExplain: "കുട്ടി തലയനക്കാതെ നല്ല വെളിച്ചത്തിൽ നേരെ നോക്കിയ ഫ്രെയിമുകളുടെ ശതമാനം. ഇത് ടെസ്റ്റിന്റെ കൃത്യതയും വിശ്വാസ്യതയും ഉറപ്പാക്കുന്നു.",
+    metricValidExplain: "സ്വീകരിച്ച നിരീക്ഷണങ്ങളും പ്രോസസ്സ് ചെയ്ത ഫ്രെയിമുകളും തമ്മിലുള്ള അനുപാതം. മെഡിക്കൽ വിശ്വാസ്യത ഉറപ്പാക്കില്ല.",
 
     // Specialist Decision Protocol
-    specialistDecisionTitle: "നേത്രരോഗ വിദഗ്ദ്ധനെ (Eye Specialist) എപ്പോഴാണ് കാണിക്കേണ്ടത്?",
-    specialistDecisionSubtitle: "സ്കൂളുകളിലെയും ആശാ പ്രവർത്തകരുടെയും സ്ക്രീനിംഗിനുള്ള റഫറൽ പ്രോട്ടോക്കോൾ",
-    telemetryTriggersTitle: "⚠️ സോഫ്റ്റ്‌വെയർ നൽകുന്ന മുന്നറിയിപ്പ് സൂചനകൾ:",
-    trig1: "ഇരു കണ്ണുകളുടെ സമന്വയം (Correlation) ആവർത്തിച്ചു പരിശോധിച്ചിട്ടും 0.75-ൽ താഴെയാവുക",
-    trig2: "സമമിതി വ്യത്യാസം (Symmetry Discrepancy) 10.0%-ൽ കൂടുതലാവുക",
-    trig3: "ഒരു ബിന്ദുവിൽ നോക്കിനിൽക്കുമ്പോഴുള്ള വിറയൽ (Fixation Jitter) 0.080-ൽ കൂടുക",
-    physicalSignsTitle: "🚨 രക്ഷിതാക്കൾ ശ്രദ്ധിക്കേണ്ട നേരിട്ടുള്ള ലക്ഷണങ്ങൾ:",
+    specialistDecisionTitle: "എപ്പോൾ നേത്രപരിശോധന തേടണം",
+    specialistDecisionSubtitle: "ഗവേഷണ അളവുകളിൽ നിന്ന് സ്വതന്ത്രമായ നേത്രാരോഗ്യ നിർദേശം",
+    telemetryTriggersTitle: "ഈ അളവുകളെക്കുറിച്ച്",
+    trig1: "ക്ലിനിക്കലായി സ്ഥിരീകരിച്ച പരിധികൾ ലഭ്യമല്ല.",
+    trig2: "അളവുകളിൽ നിന്ന് റഫറൽ തീരുമാനം എടുക്കില്ല.",
+    trig3: "ഈ അളവുകൾ എന്തായാലും കാഴ്ചയിൽ ആശങ്കയുണ്ടെങ്കിൽ നേത്രപരിശോധന നടത്തുക.",
+    physicalSignsTitle: "നേത്രവിദഗ്ധനുമായി ചർച്ച ചെയ്യേണ്ട മാറ്റങ്ങൾ",
     sign1: "കോങ്കണ്ണ് (ഒരു കണ്ണ് ഇടയ്ക്കോ സ്ഥിരമായോ ഉള്ളിലേക്കോ പുറത്തേക്കോ തിരിയുക)",
     sign2: "ടിവിയോ പുസ്തകങ്ങളോ നോക്കുമ്പോൾ കുട്ടി തല ഒരു വശത്തേക്ക് ചരിച്ചുപിടിക്കുക",
     sign3: "അടിക്കടി കണ്ണ് തിരുമ്മുക, കണ്ണുചിമ്മുക, അല്ലെങ്കിൽ തലവേദന പറയുക",
     sign4: "ഫോട്ടോ എടുക്കുമ്പോൾ ഫ്ലാഷിൽ ഒരു കണ്ണിൽ മാത്രം വെള്ളപ്പാടോ പ്രകാശ വ്യത്യാസമോ കാണുക",
-    disclaimerFooterText: "<strong>പ്രധാന അറിയിപ്പ്:</strong> നേത്ര-സ്ക്രീൻ ഒരു പ്രാരംഭ ഗവേഷണ സ്ക്രീനിംഗ് ഉപകരണം മാത്രമാണ്. ഇത് നേത്രരോഗ വിദഗ്ദ്ധന്റെ നേരിട്ടുള്ള പരിശോധനയ്ക്ക് പകരമല്ല.",
+    disclaimerFooterText: "നെത്രസ്ക്രീൻ പരീക്ഷണാത്മക ലാൻഡ്മാർക്ക് നിരീക്ഷണങ്ങളാണ് രേഖപ്പെടുത്തുന്നത്. കണ്ണിന്റെ രോഗം സ്ഥിരീകരിക്കാനോ ഒഴിവാക്കാനോ കഴിയില്ല. പെട്ടെന്നുള്ള കാഴ്ച നഷ്ടത്തിനും കടുത്ത കണ്ണുവേദനയ്ക്കും അടിയന്തര ചികിത്സ തേടുക.",
 
     btnPrint: "റിപ്പോർട്ട് പ്രിന്റ് / PDF ആയി സേവ് ചെയ്യുക",
     btnExportJSON: "ഡാറ്റ ഡൗൺലോഡ് ചെയ്യുക (JSON)",
     btnNewSession: "പുതിയ സെഷൻ ആരംഭിക്കുക",
-    navPresentation: "പ്രസന്റേഷൻ ഡെക്ക്",
-    presTitle: "MindMesh പ്രസന്റേഷൻ ഡെക്ക്",
-    presSub: "ഔദ്യോഗിക YIP പിച്ച് ഡെക്ക്, സാങ്കേതിക വിവരങ്ങൾ & ക്ലിനിക്കൽ റിപ്പോർട്ട് (PDF)",
-    presDownloadBtn: "ഡൗൺലോഡ് PDF",
-    btnReportDeck: "പ്രസന്റേഷൻ ഡൗൺലോഡ് (PDF)",
     taskHorizontalName: "തിരശ്ചീന ചലനം",
     taskVerticalName: "ലംബ ചലനം",
     taskDiagonalName: "കോണോടുകോൺ ചലനം",
-    taskJumpsName: "സ്ഥാനം മാറുന്ന ചാട്ടങ്ങൾ"
+    taskJumpsName: "സ്ഥാനം മാറുന്ന ചാട്ടങ്ങൾ",
+    navOtherTests: "എല്ലാ പ്രവർത്തനങ്ങളും",
+    otherTestsTitle: "കണ്ണുകളുടെ പരിചരണം · പ്രവർത്തനങ്ങളും വ്യായാമങ്ങളും",
+    otherTestsSub: "കണ്ണുകൾക്ക് വിശ്രമം, സമീപകാഴ്ച പ്രവർത്തനങ്ങൾ, ആംസ്‌ലർ ഗ്രിഡ്, നിറം പൊരുത്തപ്പെടുത്തൽ.",
+    btnOpenOtherTests: "പ്രവർത്തനങ്ങളിലേക്ക് മടങ്ങുക"
   }
 };
+
+Object.assign(I18N.en, PROJECT_COPY.en);
+Object.assign(I18N.ml, PROJECT_COPY.ml);
 
 // ================= APP STATE =================
 const STATE = {
   lang: "en",
   companion: "butterfly",
-  soundEnabled: true,
+  soundEnabled: false,
   isLive: false,
   isDemo: false,
   isPaused: false,
@@ -310,6 +329,7 @@ function playChime(freq = 520, duration = 0.25) {
 // ================= I18N LOCALIZATION =================
 function updateLanguage(lang) {
   STATE.lang = lang;
+  document.documentElement.lang = lang;
   document.body.classList.toggle("lang-ml", lang === "ml");
   dom.langLabel.textContent = lang === "en" ? "മലയാളം" : "English";
 
@@ -324,7 +344,7 @@ function updateLanguage(lang) {
   // Update current task badge if tracking
   if (dom.viewTracking.classList.contains("active-view")) {
     const task = TASKS[STATE.currentTaskIndex];
-    dom.hudTaskBadge.textContent = strings[task.nameKey];
+    if(task) dom.hudTaskBadge.textContent = strings[task.nameKey];
   }
 }
 
@@ -341,6 +361,7 @@ function selectCompanion(companionKey) {
   });
   document.querySelectorAll(".companion-card").forEach(card => {
     card.classList.toggle("active", card.dataset.comp === companionKey);
+    card.setAttribute("aria-pressed",String(card.dataset.comp === companionKey));
   });
 
   playChime(640, 0.15);
@@ -348,64 +369,13 @@ function selectCompanion(companionKey) {
 
 // ================= MEDIAPIPE FACE LANDMARKER SETUP =================
 async function initMediaPipe() {
-  if (STATE.landmarker) return STATE.landmarker;
-  try {
-    dom.irisDisp.textContent = "Loading Offline Model...";
-    // 100% Offline: Loads locally bundled WebAssembly and .task model
-    const vision = await FilesetResolver.forVisionTasks("./wasm");
-    STATE.landmarker = await FaceLandmarker.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath: "models/face_landmarker.task",
-        delegate: "GPU"
-      },
-      outputFaceBlendshapes: false,
-      runningMode: "VIDEO",
-      numFaces: 1,
-      minFaceDetectionConfidence: 0.6,
-      minFacePresenceConfidence: 0.6,
-      minTrackingConfidence: 0.6
-    });
-    dom.irisDisp.textContent = "Offline Ready";
-    return STATE.landmarker;
-  } catch (err) {
-    console.warn("Local offline model load failed, falling back to CDN:", err);
-    try {
-      const vision = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm"
-      );
-      STATE.landmarker = await FaceLandmarker.createFromOptions(vision, {
-        baseOptions: {
-          modelAssetPath: "models/face_landmarker.task",
-          delegate: "GPU"
-        },
-        runningMode: "VIDEO",
-        numFaces: 1
-      });
-      dom.irisDisp.textContent = "CDN Model Ready";
-      return STATE.landmarker;
-    } catch (e2) {
-      console.error("Fatal MediaPipe initialization error:", e2);
-      dom.irisDisp.textContent = "Model Unavailable";
-      return null;
-    }
-  }
+  if (!STATE.landmarker) STATE.landmarker = await loadLandmarker();
+  return STATE.landmarker;
 }
 
 // ================= MATHEMATICAL EYE COORDINATE CALCULATION =================
 // Matches NetraScreen's LandmarkAnalyzer.kt formula exactly!
-function calculateRelativeIrisPoint(outer, inner, iris) {
-  const lo = outer.x < inner.x ? outer : inner;
-  const hi = outer.x < inner.x ? inner : outer;
-  const dx = hi.x - lo.x;
-  const dy = hi.y - lo.y;
-  const d2 = dx * dx + dy * dy;
-  if (d2 < 25.0) return null;
-
-  const qx = ((iris.x - lo.x) * dx + (iris.y - lo.y) * dy) / d2;
-  const qy = (-(iris.x - lo.x) * dy + (iris.y - lo.y) * dx) / d2;
-  if (!isFinite(qx) || !isFinite(qy)) return null;
-  return { x: qx, y: qy };
-}
+function calculateRelativeIrisPoint(outer, inner, iris) { return relativeIris(outer, inner, iris); }
 
 // ================= TARGET POSITION CALCULATION =================
 // Exact equation from NetraScreen's TargetPath.kt
@@ -437,190 +407,155 @@ function calculateTargetPosition(taskKey, localMs) {
 // ================= VIEW SWITCHER =================
 function showView(viewId) {
   [dom.viewHome, dom.viewTracking, dom.viewReport].forEach(v => {
-    v.classList.remove("active-view");
+    if (v) v.classList.remove("active-view");
   });
   const target = document.getElementById(viewId);
   if (target) {
     target.classList.add("active-view");
   }
+  const vp = document.querySelector(".content-viewport");
+  if (vp) vp.scrollTop = 0;
+  window.scrollTo(0, 0);
 }
 
 // ================= SESSION RUNTIME =================
 let animFrameId = null;
 let lastVideoTime = -1;
-let frameCount = 0;
-let lastFpsTime = performance.now();
+let frameCount = 0, lastFpsTime = 0;
+let sessionActive = false, sessionGeneration = 0, taskElapsedMs = 0, previousLoopTime = 0;
+let qualityAt = -Infinity, processedFrames = 0, sessionMetrics = null, sessionTimestamp = null;
+let mainCamera = new CameraSession(dom.webcamVideo);
+const lightCanvas = document.createElement('canvas');
+lightCanvas.width = lightCanvas.height = 16;
+const lightContext = lightCanvas.getContext('2d', { willReadFrequently: true });
 
+function sessionNotice(message) {
+  let banner = document.getElementById('sessionNotice');
+  if (!banner) {
+    banner = document.createElement('div'); banner.id = 'sessionNotice'; banner.className = 'runtime-notice';
+    banner.setAttribute('role','status'); document.querySelector('.content-viewport').prepend(banner);
+  }
+  banner.textContent = message; banner.hidden = !message;
+}
+function setSourceNotice() {
+  sessionNotice(STATE.isDemo
+    ? (STATE.lang === 'ml' ? 'ക്യാമറയില്ലാത്ത വിശദീകരണം · അളവുകൾ സൃഷ്ടിക്കുന്നില്ല' : 'CAMERA-FREE WALKTHROUGH · No eye measurements are generated')
+    : (STATE.lang === 'ml' ? 'തത്സമയ ഗവേഷണ രേഖപ്പെടുത്തൽ · രോഗനിർണയമല്ല' : 'LIVE RESEARCH CAPTURE · No clinical classification'));
+}
 async function startSession(isDemoMode = false) {
-  STATE.isDemo = isDemoMode;
-  STATE.isLive = !isDemoMode;
-  STATE.isPaused = false;
-  STATE.currentTaskIndex = 0;
-  STATE.recordedSamples = [];
-  STATE.taskStartTime = performance.now();
-  STATE.sessionStartTime = performance.now();
-
-  showView("viewTracking");
-  updateLanguage(STATE.lang);
-  playChime(580, 0.3);
-
+  if (sessionActive) return;
+  stopSession(); sessionActive = true;
+  const token = sessionGeneration;
+  STATE.isDemo = isDemoMode; STATE.isLive = !isDemoMode; STATE.isPaused = false;
+  STATE.currentTaskIndex = 0; STATE.recordedSamples = []; processedFrames = 0; sessionMetrics = null;
+  sessionTimestamp = new Date().toISOString(); taskElapsedMs = 0; qualityAt = -Infinity; previousLoopTime = 0;
+  frameCount = 0; lastFpsTime = performance.now(); lastVideoTime = -1;
+  dom.btnPauseSession.textContent = 'Pause';
+  dom.fpsCounter.textContent = 'FPS: —'; dom.irisDisp.textContent = 'Waiting for camera';
+  showView('viewTracking'); updateLanguage(STATE.lang); setSourceNotice();
+  document.getElementById('camPip').hidden=isDemoMode;
+  document.querySelector('.quality-hud').hidden=isDemoMode;
+  dom.qualityWarningOverlay.classList.remove('hidden');
+  updateQualityChips(false,false,false,false);
   if (!isDemoMode) {
     try {
       await initMediaPipe();
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } }
-      });
-      dom.webcamVideo.srcObject = stream;
-      await dom.webcamVideo.play();
+      if (token !== sessionGeneration) return;
+      if (!await mainCamera.start() || token !== sessionGeneration) return;
       STATE.webcamRunning = true;
-    } catch (err) {
-      console.warn("Camera access denied or failed, switching to demo mode:", err);
-      STATE.isDemo = true;
-      STATE.isLive = false;
+      attachCameraEnd(token);
+    } catch (error) {
+      if (token !== sessionGeneration) return;
+      stopSession(); showView('viewHome'); sessionNotice(cameraError(error)); return;
     }
   }
-
+  if (token !== sessionGeneration) return;
+  previousLoopTime = performance.now();
   runTrackingLoop();
 }
-
-function stopSession() {
-  if (animFrameId) {
-    cancelAnimationFrame(animFrameId);
-    animFrameId = null;
-  }
-  if (dom.webcamVideo.srcObject) {
-    dom.webcamVideo.srcObject.getTracks().forEach(t => t.stop());
-    dom.webcamVideo.srcObject = null;
-  }
-  STATE.webcamRunning = false;
+function attachCameraEnd(token) {
+  dom.webcamVideo.srcObject?.getVideoTracks().forEach(track => track.addEventListener('ended', () => {
+    if (token === sessionGeneration && sessionActive) { pauseTracking(); sessionNotice('Camera stopped. Restore camera access and press Resume to continue.'); }
+  }));
 }
-
+function stopSession() {
+  sessionGeneration++; sessionActive = false; cancelAnimationFrame(animFrameId); animFrameId = null;
+  mainCamera.stop(); STATE.webcamRunning = false; qualityAt = -Infinity;
+}
+function pauseTracking() {
+  if (!sessionActive) return;
+  sessionGeneration++; // Cancel camera/model starts that were awaiting permission or initialization.
+  STATE.isPaused = true; mainCamera.stop(); STATE.webcamRunning = false; qualityAt = -Infinity;
+  dom.btnPauseSession.textContent = 'Resume'; dom.qualityWarningOverlay.classList.remove('hidden');
+  document.getElementById('warnTitle').textContent = STATE.lang === 'ml' ? 'നിർത്തി · തുടരാൻ Resume അമർത്തുക' : 'Paused · press Resume to continue';
+}
+async function resumeTracking() {
+  if (!sessionActive || !STATE.isPaused || dom.btnPauseSession.disabled) return;
+  const token = sessionGeneration;
+  dom.btnPauseSession.disabled = true;
+  try {
+    if (STATE.isLive) {
+      if (!await mainCamera.start() || token !== sessionGeneration) return;
+      STATE.webcamRunning = true; attachCameraEnd(token);
+    }
+    if (token !== sessionGeneration) return;
+    STATE.isPaused = false; qualityAt = -Infinity; lastVideoTime = -1; previousLoopTime = performance.now();
+    dom.btnPauseSession.textContent = 'Pause'; updateLanguage(STATE.lang); setSourceNotice();
+    if (animFrameId === null) runTrackingLoop();
+  } catch (error) { if (token === sessionGeneration) sessionNotice(cameraError(error)); }
+  finally { dom.btnPauseSession.disabled = false; }
+}
 function runTrackingLoop() {
-  const now = performance.now();
-  const currentTask = TASKS[STATE.currentTaskIndex];
-  const localTaskMs = now - STATE.taskStartTime;
-
-  // FPS calculation
-  frameCount++;
-  if (now - lastFpsTime >= 1000) {
-    dom.fpsCounter.textContent = `FPS: ${frameCount}`;
-    frameCount = 0;
-    lastFpsTime = now;
-  }
-
-  // 1. Calculate Target Position
-  const targetPos = calculateTargetPosition(currentTask.id, localTaskMs);
-  
-  // Position the companion inside canvas stage
-  const stage = document.getElementById("stageWrapper");
-  if (stage) {
-    const stageWidth = stage.clientWidth;
-    const stageHeight = stage.clientHeight;
-    const pxX = targetPos.x * stageWidth;
-    const pxY = targetPos.y * stageHeight;
-    dom.targetCompanion.style.left = `${pxX}px`;
-    dom.targetCompanion.style.top = `${pxY}px`;
-  }
-
-  // 2. Update HUD Progress
-  const taskProgressPct = Math.min(100, (localTaskMs / STATE.activeTaskDurationMs) * 100);
-  dom.taskProgressBar.style.width = `${taskProgressPct}%`;
-  const remainingSec = Math.max(0, Math.ceil((STATE.activeTaskDurationMs - localTaskMs) / 1000));
-  dom.hudTimer.textContent = `${remainingSec.toString().padStart(2, "0")}s`;
-  dom.hudTaskStep.textContent = `Task ${STATE.currentTaskIndex + 1}/${TASKS.length}`;
-
-  // 3. Process Computer Vision Landmarks (or simulate for Demo)
-  let leftIrisPoint = null;
-  let rightIrisPoint = null;
-  let qualityOk = true;
-
-  if (STATE.isLive && STATE.landmarker && dom.webcamVideo.readyState >= 2) {
-    if (dom.webcamVideo.currentTime !== lastVideoTime) {
-      lastVideoTime = dom.webcamVideo.currentTime;
-      const results = STATE.landmarker.detectForVideo(dom.webcamVideo, performance.now());
-      
-      if (results && results.faceLandmarks && results.faceLandmarks.length > 0) {
-        const raw = results.faceLandmarks[0];
-        const vW = dom.webcamVideo.videoWidth || 640;
-        const vH = dom.webcamVideo.videoHeight || 480;
-        const p = raw.map(pt => ({ x: pt.x * vW, y: pt.y * vH }));
-
-        // Left eye: 263, 362 (corners), 473 (iris center)
-        leftIrisPoint = calculateRelativeIrisPoint(p[263], p[362], p[473]);
-        // Right eye: 33, 133 (corners), 468 (iris center)
-        rightIrisPoint = calculateRelativeIrisPoint(p[33], p[133], p[468]);
-
-        // Quality checks
-        const interEye = Math.hypot(p[263].x - p[33].x, p[263].y - p[33].y);
-        const rollDeg = Math.atan2(p[263].y - p[33].y, p[263].x - p[33].x) * (180 / Math.PI);
-        const faceWidthFraction = Math.abs(raw[454].x - raw[234].x);
-
-        const okPose = Math.abs(rollDeg) < 18;
-        const okDist = faceWidthFraction >= 0.18 && faceWidthFraction <= 0.85;
-        const okEyes = leftIrisPoint !== null && rightIrisPoint !== null;
-
-        updateQualityChips(okDist, true, okPose, okEyes);
-        qualityOk = okPose && okDist && okEyes;
-
-        // Render landmark debug overlay
-        if (STATE.showPipOverlay) {
-          drawLandmarkOverlay(raw, vW, vH);
-        }
-      } else {
-        updateQualityChips(false, false, false, false);
-        qualityOk = false;
+  if (!sessionActive) return;
+  const now = performance.now(), delta = Math.max(0,Math.min(100,now-previousLoopTime)); previousLoopTime = now;
+  const currentTask = TASKS[STATE.currentTaskIndex], localTaskMs = taskElapsedMs;
+  const targetPos = calculateTargetPosition(currentTask.id,localTaskMs);
+  const stage = document.getElementById('stageWrapper');
+  dom.targetCompanion.style.left = `${targetPos.x*stage.clientWidth}px`;
+  dom.targetCompanion.style.top = `${targetPos.y*stage.clientHeight}px`;
+  let left = null, right = null, fresh = false;
+  if (!STATE.isPaused && STATE.isLive && dom.webcamVideo.readyState >= 2 && dom.webcamVideo.currentTime !== lastVideoTime) {
+    lastVideoTime = dom.webcamVideo.currentTime; fresh = true; processedFrames++; frameCount++;
+    try {
+      const results = STATE.landmarker.detectForVideo(dom.webcamVideo,now);
+      const raw = results.faceLandmarks?.length === 1 ? results.faceLandmarks[0] : null;
+      const w = dom.webcamVideo.videoWidth,h = dom.webcamVideo.videoHeight;
+      const quality = framing(raw,w,h);
+      const p = raw?.map(pt=>({x:pt.x*w,y:pt.y*h}));
+      if (p) { left = relativeIris(p[263],p[362],p[473]); right = relativeIris(p[33],p[133],p[468]); }
+      let lighting = false;
+      if(raw && quality.ok) {
+        const x=Math.min(raw[234].x,raw[454].x)*w, y=Math.max(0,raw[10].y*h);
+        const cw=Math.abs(raw[454].x-raw[234].x)*w, ch=Math.max(1,(raw[152].y-raw[10].y)*h);
+        lightContext.drawImage(dom.webcamVideo,x,y,cw,ch,0,0,16,16);
+        const rgba=lightContext.getImageData(0,0,16,16).data;let sum=0;
+        for(let i=0;i<rgba.length;i+=4)sum+=.2126*rgba[i]+.7152*rgba[i+1]+.0722*rgba[i+2];
+        const mean=sum/256;lighting=mean>=35 && mean<=235;
       }
-    }
-  } else if (STATE.isDemo) {
-    // Generate organic simulated eye movement matching the target with micro-saccades
-    const lag = 120; // 120ms natural visual reaction lag
-    const lagTarget = calculateTargetPosition(currentTask.id, Math.max(0, localTaskMs - lag));
-    const jitterL = (Math.random() - 0.5) * 0.015;
-    const jitterR = (Math.random() - 0.5) * 0.015;
-
-    leftIrisPoint = {
-      x: 0.5 + (lagTarget.x - 0.5) * 0.65 + jitterL,
-      y: 0.5 + (lagTarget.y - 0.5) * 0.65 + jitterL * 0.5
-    };
-    rightIrisPoint = {
-      x: 0.5 + (lagTarget.x - 0.5) * 0.65 + jitterR,
-      y: 0.5 + (lagTarget.y - 0.5) * 0.65 + jitterR * 0.5
-    };
-
-    updateQualityChips(true, true, true, true);
-    qualityOk = true;
+      const ear=p?eyeAspectRatio(p):null, eyes=!!left&&!!right&&ear!==null&&ear>0.15;
+      updateQualityChips(quality.distance,lighting,quality.pose,eyes);
+      const good=quality.ok&&lighting&&eyes;
+      qualityAt=good?now:-Infinity;
+      if (!good) {left=null;right=null;}
+      if(raw&&STATE.showPipOverlay)drawLandmarkOverlay(raw,w,h);
+      else dom.landmarkOverlayCanvas.getContext('2d').clearRect(0,0,dom.landmarkOverlayCanvas.width,dom.landmarkOverlayCanvas.height);
+    } catch(error) {pauseTracking();sessionNotice(cameraError(error));}
   }
-
-  // Quality pause overlay toggle
-  dom.qualityWarningOverlay.classList.toggle("hidden", qualityOk);
-
-  // 4. Record Telemetry Observation
-  if (qualityOk && leftIrisPoint && rightIrisPoint) {
-    STATE.recordedSamples.push({
-      task: currentTask.id,
-      taskMs: localTaskMs,
-      target: targetPos,
-      left: leftIrisPoint,
-      right: rightIrisPoint,
-      qualityOk: true
-    });
+  const qualityOk=!STATE.isPaused&&(STATE.isDemo||now-qualityAt<250);
+  dom.qualityWarningOverlay.classList.toggle('hidden',qualityOk);
+  if (qualityOk && fresh && left && right) STATE.recordedSamples.push({task:currentTask.id,taskMs:localTaskMs,acquiredMs:now,target:targetPos,left,right,qualityOk:true});
+  if(qualityOk)taskElapsedMs+=delta;
+  dom.taskProgressBar.style.width=`${Math.min(100,taskElapsedMs/STATE.activeTaskDurationMs*100)}%`;
+  dom.hudTimer.textContent=`${Math.max(0,Math.ceil((STATE.activeTaskDurationMs-taskElapsedMs)/1000))}s`;
+  dom.hudTaskStep.textContent=`Task ${STATE.currentTaskIndex+1}/${TASKS.length}`;
+  if(now-lastFpsTime>=1000){dom.fpsCounter.textContent=STATE.isDemo?'Camera off':`FPS: ${Math.round(frameCount*1000/(now-lastFpsTime))}`;frameCount=0;lastFpsTime=now;}
+  dom.irisDisp.textContent=STATE.isDemo?'Walkthrough · no data':qualityOk?'Landmarks acquired':'Waiting for valid capture';
+  if(taskElapsedMs>=STATE.activeTaskDurationMs){
+    STATE.currentTaskIndex++;taskElapsedMs=0;qualityAt=-Infinity;
+    if(STATE.currentTaskIndex>=TASKS.length){finishSession();return;}
+    updateLanguage(STATE.lang);
   }
-
-  // 5. Task Transition
-  if (localTaskMs >= STATE.activeTaskDurationMs) {
-    playChime(780, 0.25);
-    STATE.currentTaskIndex++;
-    if (STATE.currentTaskIndex >= TASKS.length) {
-      // Completed all tasks!
-      finishSession();
-      return;
-    } else {
-      STATE.taskStartTime = performance.now();
-      updateLanguage(STATE.lang);
-    }
-  }
-
-  animFrameId = requestAnimationFrame(runTrackingLoop);
+  animFrameId=requestAnimationFrame(runTrackingLoop);
 }
 
 function updateQualityChips(okDist, okLight, okPose, okEyes) {
@@ -665,78 +600,34 @@ function finishSession() {
 
 // ================= RESEARCH REPORT & TRAJECTORY RENDERER =================
 function generateResearchReport() {
-  const samples = STATE.recordedSamples;
-  dom.reportTimestamp.textContent = `Date: ${new Date().toLocaleDateString("en-GB", { day: '2-digit', month: 'short', year: 'numeric' })}`;
-  dom.reportCompanionUsed.textContent = `Companion: ${COMPANIONS[STATE.companion].emoji}`;
-
-    let corr = 0.92;
-    let fixRms = 0.038;
-    let symmDiff = 4.2;
-    let validPct = 94.8;
-
-    if (samples.length > 10) {
-      // Cross-correlation between left and right iris movements
-      let sumL = 0, sumR = 0;
-      samples.forEach(s => { sumL += s.left.x; sumR += s.right.x; });
-      const meanL = sumL / samples.length;
-      const meanR = sumR / samples.length;
-
-      let num = 0, denL = 0, denR = 0;
-      samples.forEach(s => {
-        const dL = s.left.x - meanL;
-        const dR = s.right.x - meanR;
-        num += dL * dR;
-        denL += dL * dL;
-        denR += dR * dR;
-      });
-      corr = (denL > 0 && denR > 0) ? Math.max(0.65, Math.min(0.99, num / Math.sqrt(denL * denR))) : 0.91;
-      
-      const jumpSamples = samples.filter(s => s.task === "JUMPS");
-      fixRms = jumpSamples.length > 5 ? 0.032 : 0.038;
-      symmDiff = Math.max(1.8, Math.min(8.5, Math.abs(meanL - meanR) * 100));
-      validPct = Math.min(99.2, (samples.length / 320) * 100);
-    }
-
-    dom.metricCorrelation.textContent = corr.toFixed(2);
-    dom.metricFixation.textContent = fixRms.toFixed(3);
-    dom.metricExcursionDiff.textContent = `${symmDiff.toFixed(1)}%`;
-    dom.metricValidFrames.textContent = `${validPct.toFixed(1)}%`;
-
-    // Determine overall clinical triage status
-    const isHealthy = corr >= 0.75 && symmDiff <= 10.0 && fixRms <= 0.080;
-    const strings = I18N[STATE.lang];
-
-    if (isHealthy) {
-      dom.evalSummaryBanner.classList.remove("banner-warn");
-      dom.evalBannerIcon.textContent = "✓";
-      dom.evalBannerTitle.textContent = strings.evalBannerTitleNormal;
-      dom.evalBannerDesc.textContent = strings.evalBannerDescNormal;
-    } else {
-      dom.evalSummaryBanner.classList.add("banner-warn");
-      dom.evalBannerIcon.textContent = "⚠️";
-      dom.evalBannerTitle.textContent = strings.evalBannerTitleWarn;
-      dom.evalBannerDesc.textContent = strings.evalBannerDescWarn;
-    }
-
-    // Dynamic Badges
-    function setBadge(el, ok, text) {
-      if (!el) return;
-      el.textContent = text;
-      el.className = `dm-badge ${ok ? 'badge-normal' : 'badge-warn'}`;
-    }
-
-    setBadge(dom.badgeCorr, corr >= 0.85, corr >= 0.85 ? "Normal (0.85 – 0.99)" : "Review (< 0.75)");
-    setBadge(dom.badgeFix, fixRms <= 0.050, fixRms <= 0.050 ? "Normal (< 0.050)" : "Elevated Jitter");
-    setBadge(dom.badgeSymm, symmDiff <= 5.0, symmDiff <= 5.0 ? "Normal (< 5.0%)" : "Discrepancy (> 10%)");
-    setBadge(dom.badgeValid, validPct >= 80.0, validPct >= 80.0 ? "High Quality (> 80%)" : "Low Capture (< 80%)");
-
-    // Draw initial trajectory plots for Horizontal task
-    renderTrajectoryPlots("HORIZONTAL");
+  sessionMetrics=researchMetrics(STATE.recordedSamples,processedFrames);
+  dom.reportTimestamp.textContent=new Date(sessionTimestamp).toLocaleString();
+  dom.reportCompanionUsed.textContent=`Companion: ${COMPANIONS[STATE.companion].emoji}`;
+  const value=(n,d=2)=>n===null?'Unavailable':n.toFixed(d);
+  dom.metricCorrelation.textContent=value(sessionMetrics.movementCorrelation);
+  dom.metricFixation.textContent=value(sessionMetrics.fixationRms,3);
+  dom.metricExcursionDiff.textContent=sessionMetrics.excursionDifferencePct===null?'Unavailable':`${value(sessionMetrics.excursionDifferencePct,1)}%`;
+  dom.metricValidFrames.textContent=sessionMetrics.acceptedFractionPct===null?'Unavailable':`${value(sessionMetrics.acceptedFractionPct,1)}%`;
+  dom.evalSummaryBanner.classList.remove('banner-warn'); dom.evalBannerIcon.textContent='ℹ';
+  dom.evalBannerTitle.textContent=STATE.isDemo?'Walkthrough complete · no measurements':STATE.lang==='ml'?'ഗവേഷണ രേഖപ്പെടുത്തൽ പൂർത്തിയായി':'Research capture complete';
+  dom.evalBannerDesc.textContent=STATE.lang==='ml'?'ഇവ ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള ഗവേഷണ അളവുകളാണ്. സാധാരണ കാഴ്ചയോ കണ്ണിന്റെ ആരോഗ്യസ്ഥിതിയോ ഇവ ഉറപ്പാക്കുന്നില്ല.':'These are landmark-based engineering measurements. They cannot confirm normal vision, diagnose an eye condition, or decide clinical referral.';
+  [dom.badgeCorr,dom.badgeFix,dom.badgeSymm,dom.badgeValid].forEach(el=>{el.textContent='Research only';el.className='dm-badge';});
+  document.getElementById('reportSessionStatus').textContent=STATE.isDemo?'Walkthrough · no participant data':`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
+  setSourceNotice();renderAllTrajectoryPlots();
 }
 
-function renderTrajectoryPlots(taskKey) {
-  const targetCanvas = dom.targetTrajCanvas;
-  const eyesCanvas = dom.eyesTrajCanvas;
+function renderAllTrajectoryPlots() {
+  const taskKeys = ["HORIZONTAL", "VERTICAL", "DIAGONAL", "JUMPS"];
+  taskKeys.forEach(taskKey => {
+    const tCanvas = document.getElementById(`targetTrajCanvas_${taskKey}`);
+    const eCanvas = document.getElementById(`eyesTrajCanvas_${taskKey}`);
+    if (tCanvas && eCanvas) {
+      drawTrajectoryPlotForTask(taskKey, tCanvas, eCanvas);
+    }
+  });
+}
+
+function drawTrajectoryPlotForTask(taskKey, targetCanvas, eyesCanvas) {
   if (!targetCanvas || !eyesCanvas) return;
 
   const tCtx = targetCanvas.getContext("2d");
@@ -744,11 +635,11 @@ function renderTrajectoryPlots(taskKey) {
   const w = targetCanvas.width;
   const h = targetCanvas.height;
 
-  // Clear canvases with dark grid background
+  // Draw both coordinate panels on the same neutral report background.
   [tCtx, eCtx].forEach(ctx => {
-    ctx.fillStyle = "#070c18";
+    ctx.fillStyle = "#f5f8fa";
     ctx.fillRect(0, 0, w, h);
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+    ctx.strokeStyle = "rgba(38, 79, 99, 0.08)";
     ctx.lineWidth = 1;
     for (let x = 40; x < w; x += 40) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
@@ -761,30 +652,12 @@ function renderTrajectoryPlots(taskKey) {
   // Filter samples for selected task
   let taskSamples = STATE.recordedSamples.filter(s => s.task === taskKey);
 
-  // If no samples recorded yet, generate high-fidelity reference telemetry so graph is never empty
-  if (taskSamples.length < 5) {
-    taskSamples = [];
-    for (let t = 0; t <= 8000; t += 120) {
-      const tgt = calculateTargetPosition(taskKey, t);
-      const jL = (Math.sin(t / 250) * 0.008) + (Math.random() - 0.5) * 0.006;
-      const jR = (Math.sin(t / 250) * 0.007) + (Math.random() - 0.5) * 0.006;
-      taskSamples.push({
-        task: taskKey,
-        taskMs: t,
-        target: tgt,
-        left: {
-          x: 0.5 + (tgt.x - 0.5) * 0.68 + jL,
-          y: 0.5 + (tgt.y - 0.5) * 0.68 + jL * 0.5
-        },
-        right: {
-          x: 0.5 + (tgt.x - 0.5) * 0.65 + jR,
-          y: 0.5 + (tgt.y - 0.5) * 0.65 + jR * 0.5
-        }
-      });
-    }
+  if (taskSamples.length < 2) {
+    [tCtx,eCtx].forEach(ctx=>{ctx.fillStyle='#617d8e';ctx.font='14px sans-serif';ctx.fillText('No captured observations',30,100);});
+    return;
   }
 
-  const pad = 24;
+  const pad = 20;
   const plotW = w - pad * 2;
   const plotH = h - pad * 2;
 
@@ -801,7 +674,7 @@ function renderTrajectoryPlots(taskKey) {
     else tCtx.lineTo(px, py);
   });
   tCtx.stroke();
-  tCtx.shadowBlur = 0; // reset shadow
+  tCtx.shadowBlur = 0;
 
   // Target scatter dots
   tCtx.fillStyle = "#38bdf8";
@@ -816,7 +689,6 @@ function renderTrajectoryPlots(taskKey) {
   });
 
   // 2. Draw Bilateral Iris Centroids (Canvas 2)
-  // Extract all points to compute equal-axis PlotBounds (matching NetraScreen's Trajectory.kt)
   const validLeft = taskSamples.map(s => s.left).filter(p => p && isFinite(p.x) && isFinite(p.y));
   const validRight = taskSamples.map(s => s.right).filter(p => p && isFinite(p.x) && isFinite(p.y));
   const allPts = [...validLeft, ...validRight];
@@ -827,7 +699,6 @@ function renderTrajectoryPlots(taskKey) {
     let minY = Math.min(...allPts.map(p => p.y));
     let maxY = Math.max(...allPts.map(p => p.y));
 
-    // Equal-axis scale with padding
     const span = Math.max(0.08, Math.max(maxX - minX, maxY - minY) * 1.35);
     const midX = (minX + maxX) / 2;
     const midY = (minY + maxY) / 2;
@@ -839,7 +710,6 @@ function renderTrajectoryPlots(taskKey) {
       const normY = Math.max(0, Math.min(1, (p.y - boundMinY) / span));
       return {
         x: pad + normX * plotW,
-        // Invert Y so upward eye gaze is oriented up on canvas
         y: h - pad - normY * plotH
       };
     }
@@ -892,34 +762,19 @@ function renderTrajectoryPlots(taskKey) {
       }
     });
 
-    eCtx.shadowBlur = 0; // reset
+    eCtx.shadowBlur = 0;
   }
 }
 
 // ================= EXPORT HANDLERS =================
 function exportJSON() {
-  const reportData = {
-    app: "NETRA-SCREEN Web/PWA",
-    version: "0.3.1-research",
-    timestamp: new Date().toISOString(),
-    companion: STATE.companion,
-    totalAcceptedSamples: STATE.recordedSamples.length,
-    metrics: {
-      movementCorrelation: dom.metricCorrelation.textContent,
-      fixationStability: dom.metricFixation.textContent,
-      symmetryDiscrepancy: dom.metricExcursionDiff.textContent,
-      validFramesFraction: dom.metricValidFrames.textContent
-    },
-    observationsSampled: STATE.recordedSamples.slice(0, 160) // Sampled points
-  };
-
-  const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `NETRA-SCREEN-report-${Date.now()}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
+  if(!sessionMetrics)return;
+  const reportData={schemaVersion:1,app:'NETRA-SCREEN Web/PWA',version:VERSION,timestamp:sessionTimestamp,
+    source:STATE.isDemo?'walkthrough':'live-research',clinicalClassification:null,
+    limitations:'Unvalidated landmark research proxies. Not calibrated gaze, diagnosis, or clinical referral.',
+    companion:STATE.companion,metrics:sessionMetrics,observationsSampled:STATE.recordedSamples.filter((_,i)=>i%Math.max(1,Math.ceil(STATE.recordedSamples.length/320))===0)};
+  const blob=new Blob([JSON.stringify(reportData,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=`NETRA-SCREEN-${STATE.isDemo?'walkthrough':'research'}-${Date.now()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
 // ================= EVENT LISTENERS =================
@@ -945,10 +800,16 @@ function setupEventListeners() {
     card.addEventListener("click", () => selectCompanion(card.dataset.comp));
   });
 
-  // Start Sessions
   dom.btnStartLive.addEventListener("click", () => {
     if (!dom.consentCheckbox.checked) {
-      alert("Please check guardian consent before starting.");
+      sessionNotice(STATE.lang === "ml" ? "ക്യാമറ തുടങ്ങുന്നതിന് മുമ്പ് സമ്മതം നൽകുക." : "Please agree to local camera processing before starting.");
+      dom.consentCheckbox.focus();
+      const box = document.querySelector(".consent-box");
+      if (box) {
+        box.classList.add("shake-highlight");
+        setTimeout(() => box.classList.remove("shake-highlight"), 800);
+      }
+      playChime(360, 0.2);
       return;
     }
     startSession(false);
@@ -959,11 +820,7 @@ function setupEventListeners() {
   });
 
   // Pause / Resume
-  dom.btnPauseSession.addEventListener("click", () => {
-    STATE.isPaused = !STATE.isPaused;
-    dom.btnPauseSession.textContent = STATE.isPaused ? "▶️" : "⏸️";
-    dom.qualityWarningOverlay.classList.toggle("hidden", !STATE.isPaused);
-  });
+  dom.btnPauseSession.addEventListener('click',()=>{if(STATE.isPaused)resumeTracking();else pauseTracking();});
 
   // Exit Session
   dom.btnExitSession.addEventListener("click", () => {
@@ -982,7 +839,15 @@ function setupEventListeners() {
     btn.addEventListener("click", () => {
       dom.trajTaskTabs.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      renderTrajectoryPlots(btn.dataset.task);
+      const selectedTask = btn.dataset.task;
+      const blocks = document.querySelectorAll(".trajectory-task-block");
+      blocks.forEach(block => {
+        if (selectedTask === "ALL" || block.dataset.task === selectedTask) {
+          block.classList.remove("tab-hidden");
+        } else {
+          block.classList.add("tab-hidden");
+        }
+      });
       playChime(600, 0.1);
     });
   });
@@ -993,6 +858,7 @@ function setupEventListeners() {
     const vp = document.querySelector(".content-viewport");
     if (vp) vp.scrollTop = 0;
     if (dom.viewReport) dom.viewReport.scrollTop = 0;
+    renderAllTrajectoryPlots();
     setTimeout(() => {
       window.print();
     }, 150);
@@ -1003,6 +869,7 @@ function setupEventListeners() {
     const vp = document.querySelector(".content-viewport");
     if (vp) vp.scrollTop = 0;
     if (dom.viewReport) dom.viewReport.scrollTop = 0;
+    renderAllTrajectoryPlots();
   });
 
   dom.btnExportJSON.addEventListener("click", () => {
@@ -1019,3 +886,7 @@ window.addEventListener("DOMContentLoaded", () => {
   setupEventListeners();
   updateLanguage("en");
 });
+
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&sessionActive)pauseTracking();});
+window.addEventListener('orientationchange',()=>{if(sessionActive)pauseTracking();});
+window.addEventListener('pagehide',()=>{stopSession();STATE.landmarker?.close();STATE.landmarker=null;});

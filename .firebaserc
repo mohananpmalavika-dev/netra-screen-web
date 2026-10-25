@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "kryptonlogic-ebe5a"
+  },
+  "targets": {
+    "kryptonlogic-ebe5a": {
+      "hosting": {
+        "mindmesh-netra": [
+          "mindmesh-netra"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,0 +1,7 @@
+.runtime-notice{margin:12px 16px;padding:12px 18px;border:1px solid #507d78;border-radius:10px;background:#17312e;color:#c9f6e8;font-size:13px;line-height:1.5;flex:none}
+.companion-card{font:inherit;color:var(--text-main);min-width:0}.companion-card strong,.companion-card small{overflow-wrap:anywhere}.app-footer{flex-shrink:0}.home-card .home-actions button{min-height:48px}
+#btnNavOtherTests .deck-btn-text{display:inline}#btnNavOtherTests .btn-icon{display:none}
+[hidden]{display:none!important}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #f5c17c;outline-offset:3px}.quality-chip.chip-warn{color:#ffd290}.quality-chip.chip-ok{color:#82e5c4}.mini-cam-pip video{background:#080d16}
+@media(max-width:650px){.top-nav{height:auto;min-height:60px;flex-wrap:wrap;gap:10px;flex-shrink:0}.top-actions{flex-wrap:wrap;justify-content:flex-end}.top-actions .companion-selector{display:none}.top-actions .nav-doc-btn{padding:8px}.runtime-notice{margin:8px;font-size:12px}.tracking-screen{min-height:0}}
+@media(prefers-reduced-motion:reduce){.companion-pulse,.companion-graphic{animation:none!important}*{scroll-behavior:auto!important}}
+@media print{.runtime-notice{background:white!important;color:black!important;border-color:#aaa!important;font-weight:bold}.top-nav{display:none!important}}
