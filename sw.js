@@ -1,4 +1,4 @@
-const CACHE_NAME = 'netra-screen-offline-v7';
+const CACHE_NAME = 'netra-screen-offline-v8';
 
 const ASSETS_TO_CACHE = [
   './',
