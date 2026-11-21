@@ -44,3 +44,37 @@ Deployment is deliberately separate from local validation. Build and review the 
 - American Macular Degeneration Foundation Amsler instructions: https://www.macular.org/about-macular-degeneration/what-is-macular-degeneration/monitoring-your-macular-degeneration/amsler-chart
 
 These sources inform general instructions; they do not validate this software or its measurements.
+
+## Optical showcase and visitor guide
+
+The home page and investor overview contain an original local WebGL eye illustration.
+A dimensional SVG remains available without WebGL or after context loss. The public
+site and local files must be deployed together; an older Firebase release does not
+reflect local changes. `sw.js` versions the compatible offline package.
+
+`Control with my eyes` explicitly requests the front camera. A short stable centre
+calibration maps relative iris motion to mirrored decorative gaze. Recenter/stop,
+page hiding and entry into the research workflow release the preview camera. The
+showcase does not save gaze samples or modify research metrics. Motion is approximate;
+real-person direction, calibration and device performance still need booth rehearsal.
+
+The supplied child illustration is NETRA’s virtual presenter avatar. It has a speaking
+animation and captions; it is not a generated talking-head video or a team member.
+Speech uses an installed local browser voice, with English fallback for missing
+Malayalam and readable captions when no suitable voice exists. Nothing autoplays on
+arrival. Only the presenter’s own speech is cancelled by its controls.
+
+`project-knowledge.mjs` contains curated project facts and deterministic question
+matching. The guide is not unrestricted generative AI: it preserves unknown accuracy,
+pricing, funding and customer information. There is no API key, external LLM request,
+microphone, transcript retention or chat history storage. Questions stay in page memory.
+
+`join.html` offers the verified public-URL QR, copy/share, home-screen instructions and
+NFC-tag setup guidance. NFC requires a separately prepared physical tag. QR entry
+opens the public demo and does not create an account or authenticate a visitor.
+Regenerate print-safe PNG/SVG codes with `node scripts/visitor-qr.mjs`.
+
+The first-visit layout now uses one primary demo action. Eye control is a closed
+optional disclosure; closing it releases its camera. The supplied-picture guide has
+one home-page entry, four common questions and a disclosure for the remaining topics.
+The QR and sharing controls live on `join.html` rather than crowding the hero.

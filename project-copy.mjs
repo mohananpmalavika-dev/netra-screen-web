@@ -436,3 +436,4 @@ Object.assign(PROJECT_COPY.ml, {welcomeArtKicker:'സൗഹൃദമായ ത�
 
 Object.assign(PROJECT_COPY.en,{heroPreview:'Try camera-free demo',sceneDimension:'EXPLORE IN 3D',sceneLocal:'On-device engine',sceneLocalSub:'Privacy by architecture',scenePaths:'Four guided trajectories',scenePathsSub:'Pursuit & fixation research',scenePlatforms:'Android + Web',scenePlatformsSub:'One research experience',sceneCaption:'Interactive illustration · no eye measurements',sceneReset:'Reset view'});
 Object.assign(PROJECT_COPY.ml,{heroPreview:'ക്യാമറയില്ലാതെ പരീക്ഷിക്കാം',sceneDimension:'3D-യിൽ പരിചയപ്പെടാം',sceneLocal:'ഉപകരണത്തിലെ പ്രോസസ്സിംഗ്',sceneLocalSub:'സ്വകാര്യതയ്ക്ക് മുൻഗണന',scenePaths:'നാല് ദൃശ്യപാതകൾ',scenePathsSub:'നേത്രചലന ഗവേഷണം',scenePlatforms:'Android + Web',scenePlatformsSub:'ഒരേ ഗവേഷണ അനുഭവം',sceneCaption:'3D ചിത്രം മാത്രം · കണ്ണിന്റെ അളവുകളല്ല',sceneReset:'തിരികെ ക്രമീകരിക്കുക'});
+Object.assign(PROJECT_COPY.ml,{sceneReset:'റീസെറ്റ്'});

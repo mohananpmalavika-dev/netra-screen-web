@@ -1,7 +1,7 @@
 /* Original on-device WebGL scene. Illustration only; never connected to research observations. */
 const vertex=`attribute vec2 position;varying vec2 uv;void main(){uv=position*.5+.5;gl_Position=vec4(position,0.,1.);}`;
 const fragment=`precision highp float;
-varying vec2 uv;uniform vec2 resolution;uniform vec2 pointer;uniform float time;
+varying vec2 uv;uniform vec2 resolution;uniform vec2 pointer;uniform vec2 gaze;uniform float time;
 mat2 rotate(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}
 vec2 scene(vec3 p){
  vec3 q=p;q.xz=rotate(pointer.x*.32)*q.xz;q.yz=rotate(-.15+pointer.y*.2)*q.yz;
@@ -25,7 +25,7 @@ void main(){
   vec3 point=ro+rd*distance;vec3 n=normal(point);vec3 material;
   if(hit.y<1.5){
    vec3 local=point;local.xz=rotate(pointer.x*.32)*local.xz;local.yz=rotate(-.15+pointer.y*.2)*local.yz;
-   vec3 eye=normalize(local-vec3(local.x<0.?-.64:.64,0.,0.));
+   vec3 eye=normalize(local-vec3(local.x<0.?-.64:.64,0.,0.));eye.xz=rotate(-gaze.x*.42)*eye.xz;eye.yz=rotate(gaze.y*.32)*eye.yz;
    float radius=length(eye.xy-vec2(pointer.x*.05,-pointer.y*.04));
    material=vec3(.76,.79,.91);
    if(eye.z>0.&&radius<.57){
@@ -49,8 +49,8 @@ void main(){
 
 function initStage(stage){
  const canvas=stage.querySelector('canvas'),fallback=stage.querySelector('.showcase-fallback');
- const gl=canvas.getContext('webgl',{alpha:false,antialias:false,powerPreference:'low-power',preserveDrawingBuffer:true});
- if(!gl){stage.dataset.renderer='fallback';return;}
+ let gl;try{gl=canvas.getContext('webgl',{alpha:false,antialias:false,powerPreference:'low-power',preserveDrawingBuffer:true});}catch{gl=null;}
+ if(!gl){stage.dataset.renderer='fallback';stage.addEventListener('netra:gaze',event=>{const {x,y}=event.detail;stage.dataset.gazeX=x.toFixed(3);stage.dataset.gazeY=y.toFixed(3);stage.querySelectorAll('[data-fallback-iris]').forEach(el=>el.setAttribute('transform',`translate(${x*17} ${y*12})`));});return;}
  let program;
  try{
   const shader=(type,source)=>{const value=gl.createShader(type);gl.shaderSource(value,source);gl.compileShader(value);if(!gl.getShaderParameter(value,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(value));return value;};
@@ -58,27 +58,29 @@ function initStage(stage){
  }catch(error){stage.dataset.renderer='fallback';stage.dataset.rendererError=error.message;return;}
  gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
  const location=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,2,gl.FLOAT,false,0,0);
- const uniforms=Object.fromEntries(['resolution','pointer','time'].map(name=>[name,gl.getUniformLocation(program,name)]));
- const reduced=matchMedia('(prefers-reduced-motion: reduce)');let x=0,y=0,visible=true,frame=0,last=0,start=performance.now(),lost=false;
+ const uniforms=Object.fromEntries(['resolution','pointer','gaze','time'].map(name=>[name,gl.getUniformLocation(program,name)]));
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let gx=0,gy=0,x=0,y=0,visible=true,frame=0,last=0,start=performance.now(),lost=false;
  function draw(now=performance.now()){
   if(lost)return;const box=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,1,720/Math.max(1,box.width),620/Math.max(1,box.height));
   const width=Math.max(1,Math.round(box.width*ratio)),height=Math.max(1,Math.round(box.height*ratio));
   if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;gl.viewport(0,0,width,height);}
-  gl.uniform2f(uniforms.resolution,width,height);gl.uniform2f(uniforms.pointer,x,y);gl.uniform1f(uniforms.time,reduced.matches?0:(now-start)/1000);gl.drawArrays(gl.TRIANGLES,0,6);
+  gl.uniform2f(uniforms.resolution,width,height);gl.uniform2f(uniforms.pointer,x,y);gl.uniform2f(uniforms.gaze,gx,gy);gl.uniform1f(uniforms.time,reduced.matches?0:(now-start)/1000);gl.drawArrays(gl.TRIANGLES,0,6);
  }
  function animate(now){frame=0;if(!visible||document.hidden||reduced.matches||lost)return;if(now-last>40){draw(now);last=now;}frame=requestAnimationFrame(animate);}
  function resume(){if(!frame&&visible&&!document.hidden&&!reduced.matches&&!lost)frame=requestAnimationFrame(animate);}
  function move(nextX,nextY){x=Math.max(-1,Math.min(1,nextX));y=Math.max(-1,Math.min(1,nextY));stage.style.setProperty('--scene-x',`${x*8}deg`);stage.style.setProperty('--scene-y',`${-y*6}deg`);if(reduced.matches)draw();resume();}
- stage.addEventListener('pointermove',event=>{const box=stage.getBoundingClientRect();move((event.clientX-box.left)/box.width*2-1,(event.clientY-box.top)/box.height*2-1);});
+ stage.addEventListener('netra:gaze',event=>{gx=event.detail.x;gy=event.detail.y;stage.dataset.gazeX=gx.toFixed(3);stage.dataset.gazeY=gy.toFixed(3);draw();});
+ stage.addEventListener('pointermove',event=>{if(stage.dataset.eyeControl==='on')return;const box=stage.getBoundingClientRect();move((event.clientX-box.left)/box.width*2-1,(event.clientY-box.top)/box.height*2-1);});
  stage.addEventListener('pointerleave',()=>move(0,0));
  canvas.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(event.key)){event.preventDefault();event.stopPropagation();if(event.key==='Home')move(0,0);else move(x+(event.key==='ArrowLeft'?-.2:event.key==='ArrowRight'?.2:0),y+(event.key==='ArrowUp'?-.2:event.key==='ArrowDown'?.2:0));}});
  stage.querySelector('[data-reset-scene]')?.addEventListener('click',()=>move(0,0));
  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();lost=true;stage.dataset.renderer='fallback';fallback?.removeAttribute('hidden');cancelAnimationFrame(frame);});
+ canvas.addEventListener('webglcontextrestored',()=>{const fresh=canvas.cloneNode();canvas.replaceWith(fresh);initStage(stage);},{once:true});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){draw();resume();}else{cancelAnimationFrame(frame);frame=0;}}).observe(stage);
  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else resume();});
  reduced.addEventListener('change',()=>{cancelAnimationFrame(frame);frame=0;draw();resume();});
  new ResizeObserver(()=>draw()).observe(canvas);
- stage.dataset.renderer='webgl';fallback?.setAttribute('hidden','');draw();resume();
+ draw();stage.dataset.renderer='webgl';fallback?.setAttribute('hidden','');resume();
 }
 document.querySelectorAll('[data-netra-3d]').forEach(initStage);
 document.querySelectorAll('[data-launch-preview]').forEach(button=>button.addEventListener('click',()=>document.getElementById('btnStartDemo')?.click()));

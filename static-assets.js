@@ -1,6 +1,6 @@
 // Keep the service-worker precache and deployment package on the same explicit list.
 globalThis.NETRA_ASSETS = [
-  'index.html','eye-tests.html','tracking.html','about.html','presentation.html','presentation.js','project-copy.mjs','project-theme.css','research.css','professional.css','immersive.css','showcase-3d.mjs','images/child-welcome.jpg','companions/butterfly.svg','companions/fish.svg','companions/dot.svg','styles.css','tracking.css','wellness.css','app.js','eye-tests.js',
+  'join.html','join.mjs','visitor-experience.css','project-knowledge.mjs','presenter.mjs','gaze-control.mjs','images/visitor-qr.svg','images/visitor-qr.png','index.html','eye-tests.html','tracking.html','about.html','presentation.html','presentation.js','project-copy.mjs','project-theme.css','research.css','professional.css','immersive.css','showcase-3d.mjs','images/child-welcome.jpg','companions/butterfly.svg','companions/fish.svg','companions/dot.svg','styles.css','tracking.css','wellness.css','app.js','eye-tests.js',
   'camera.mjs','child-guide.mjs','vision-core.mjs','offline-status.js','manifest.json','static-assets.js','production-readiness.md',
   'icons/icon-192.png','icons/icon-512.png','libs/tasks-vision.mjs','models/face_landmarker.task',
   'wasm/vision_wasm_internal.js','wasm/vision_wasm_internal.wasm',

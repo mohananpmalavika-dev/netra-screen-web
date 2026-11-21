@@ -517,6 +517,7 @@ function applyCameraVisibility(hide) {
 }
 
 async function startSession(isDemoMode = false) {
+  document.dispatchEvent(new Event('netra:session-start'));
   if (sessionActive) return;
   stopSession(); sessionActive = true;
   const token = sessionGeneration;

@@ -1,0 +1,13 @@
+[debug] [2026-11-21T22:54:43.097Z] ----------------------------------------------------------------------
+[debug] [2026-11-21T22:54:43.135Z] Command:       C:\Program Files\nodejs\node.exe C:\NetraScreen\web\node_modules\firebase-tools\lib\bin\firebase.js login:list
+[debug] [2026-11-21T22:54:43.136Z] CLI Version:   15.37.0
+[debug] [2026-11-21T22:54:43.137Z] Platform:      win32
+[debug] [2026-11-21T22:54:43.137Z] Node Version:  v24.15.0
+[debug] [2026-11-21T22:54:43.140Z] Detected Agent: codex_cli
+[debug] [2026-11-21T22:54:43.142Z] Time:          Sun Nov 22 2026 04:24:43 GMT+0530 (India Standard Time)
+[debug] [2026-11-21T22:54:43.142Z] ----------------------------------------------------------------------
+[debug] 
+[info] Logged in as techomsystem14@gmail.com
+[info] 
+[info] Other available accounts (switch with "firebase login:use")
+[info]  - aditimalavika9@gmail.com
