@@ -14,9 +14,11 @@ en:{
  preparationTitle:'A comfortable setup',prepLight:'Use even light and keep both eyes visible.',prepPosition:'Face the phone, keep your head steady and sit comfortably.',prepStop:'Stop for discomfort. Children need guardian supervision.',
  protocolKicker:'THE RESEARCH PROTOCOL',protocolTitle:'Four paths. One clear record.',protocolBody:'Horizontal, vertical and diagonal pursuit, followed by step-and-hold targets. Capture pauses when the framing checks are not met.',
  protocolNote:'Protocol illustration · no participant measurements',protocolHorizontal:'Horizontal pursuit',protocolVertical:'Vertical pursuit',protocolDiagonal:'Diagonal pursuit',protocolJumps:'Jumps & fixation',
+  presHeroH1:'Show the idea — NETRA-SCREEN YIP 9.0 Pitch',
+  presScopeLine:'Research prototype only — no clinical accuracy claimed yet. Diagnostic release remains locked pending clinical validation.',
   presentationKicker:'YIP 9.0 INNOVATION SHOWCASE · PEDIATRIC HEALTH TECH',
-  presentationTitle:'NETRA-SCREEN: Privacy-First Vision Pre-Screening for Children',
-  presentationBody:'Turning any smartphone into an accessible, on-device AI screening tool. Created by Team MindMesh (TKM Centenary Public School, Kollam) for YIP 9.0.',
+  presentationTitle:'NETRA-SCREEN: A Free, Offline Smartphone Eye-Movement Check',
+  presentationBody:'Children simply follow a fluttering butterfly or swimming fish with their eyes — zero reading required, 100% offline, on Android or any browser. Created by Team MindMesh (TKM Centenary Public School, Kollam) for YIP 9.0.',
   presSubtitle:'Turning any smartphone into an accessible, on-device AI screening tool.',
   presBadge1:'📱 Any Smartphone (No ₹1–3 Lakh equipment)',
   presBadge2:'🦋 Child-Friendly Games (Butterfly & Fish)',
@@ -61,9 +63,13 @@ en:{
   simBtnHoriz:'Horizontal Pursuit',simBtnVert:'Vertical Pursuit',simBtnDiag:'Diagonal Pursuit',simBtnFix:'Fixation Hold',
   simMetricSync:'Iris Pursuit Symmetry',simMetricStability:'Fixation Stability',simMetricStatus:'Tracking Status',
 
-  // Slide 6: Technology Engine
-  engineTitle:'The Technology Engine',
-  engineSubtitle:'A 5-stage deterministic, on-device processing pipeline engineered natively for Android and modern web.',
+  // Slide 6: Latest Project Updates
+  updatesDeckTitle:'What’s New: From Early Prototype to Cross-Platform System',
+  updatesDeckSubtitle:'Added Cross-Platform Offline Web PWA v0.5.1 (iOS Safari, Android Chrome, Edge, Desktop), Android v0.3.1 Kid-Friendly UI Refresh, Hidden Camera Child Mode, EN & ML Local Voice Cues, Live 3-box Setup Inspector, 4-Task PDF Trajectory Plots, Triage Priority Guidance, 20-20-20 Eye Rest, and the camera-free YIP Walkthrough APK.',
+
+  // Slide 7: Technology Engine
+  engineTitle:'Built for Reliability: The 5-Stage Offline Engine',
+  engineSubtitle:'Consent & Camera → MediaPipe 478 Landmarks → Automated Quality Gate → Math, Plots & Triage → AES-GCM Encrypted Report across Native Android (v0.3.1) and Web PWA WASM (v0.5.1).',
   engineFlow1:'CameraX',engineFlow2:'MediaPipe Face Landmarker',engineFlow3:'Automated Quality Gate',engineFlow4:'Deterministic Analysis',engineFlow5:'Room / Keystore',
   engineDataLayer:'Data Layer: Built natively on Android 8.0+ (Kotlin, Jetpack Compose) and Web WASM. Covers 95% of active devices.',
   engineInferenceLayer:'Inference Layer: Powered by bundled Google MediaPipe Face Landmarker (mapping 478 precise facial landmarks entirely on CPU).',
@@ -88,9 +94,9 @@ en:{
   privPillar3Title:'No Videos Retained',privPillar3Desc:'Only numerical landmark measurements are processed. The raw camera frames are discarded instantly.',
   privPillar4Title:'Cryptographic Security',privPillar4Desc:'Summaries are secured using AES-GCM encryption in the app sandbox. Parents maintain total control to erase data instantly.',
 
-  // Slide 9: Responsible Medical AI: Radical Honesty
-  honestyTitle:'Responsible Medical AI: Radical Honesty',
-  honestySubtitle:'Transparent scientific boundaries that prevent false reassurance and safeguard child health.',
+  // Slide 10: Responsible Medical AI: Radical Honesty
+  honestyTitle:'Radical Honesty: A Pre-Screening Aid, Never a False Doctor',
+  honestySubtitle:'Not a diagnosis device and not a Hirschberg corneal reflex meter; maps metrics into non-diagnostic Research Triage Priority Guidance (never declares "no doctor needed") while clinical diagnostic release stays locked.',
   whatNotTitle:'What NETRA-SCREEN is NOT:',
   whatNot1:'• It is NOT a diagnostic device.',
   whatNot2:'• It does NOT measure true corneal flash reflections (Hirschberg reflex).',
@@ -100,9 +106,9 @@ en:{
   whatIs2:'• It IDENTIFIES children who need an ophthalmologist.',
   whatIs3:'• Clinical referral classification is explicitly disabled in v1.0 pending rigorous, independent medical validation. We do not make false claims.',
 
-  // Slide 10: Clinical Validation Roadmap
-  roadmapDeckTitle:'The Clinical Validation Roadmap (AAPOS Guidelines)',
-  roadmapDeckSubtitle:'Our structured four-stage clinical pathway adhering to pediatric ophthalmology standards.',
+  // Slide 11: Clinical Validation Roadmap
+  roadmapDeckTitle:'Engineering Verified Today · Clinical Validation Next',
+  roadmapDeckSubtitle:'60 Android JVM unit tests and 17 Playwright Chromium checks pass today (multi-phone benchmarks and Malayalam clinician audit pending), advancing through AAPOS Phase 2 usability (20–30 kids), Phase 3 trial (100+ kids), and Phase 4 school pilots.',
   phase1Title:'Phase 1 · Current',phase1Sub:'Technical Feasibility & Prototype',phase1Desc:'Complete. (YIP 9.0 Working Demo). Real-time iris centroid tracking and artifact rejection verified.',
   phase2Title:'Phase 2 · Next 3 Months',phase2Sub:'Usability Assessment',phase2Desc:'Testing with 20–30 children for engagement metrics, ergonomics, and workflow refinement in local settings.',
   phase3Title:'Phase 3 · Next 6–12 Months',phase3Sub:'Prospective Clinical Validation',phase3Desc:'Partnering with ophthalmologists for a 100+ children study. Comparing app proxies against independent professional masked clinical exams.',
@@ -135,10 +141,10 @@ en:{
   visionAskTitle:'The Ask:',
   visionAskDesc:'We are seeking YIP’s support, mentorship, and clinical partnerships to launch our Phase 2 Usability Study. Let’s ensure no child loses their vision simply because of where they live.',
 
-  presentationLink:'Open project presentation',deckLink:'Download Project Deck (PDF)',deckNote:'Official MindMesh YIP 9.0 Deck · 13 Slides · PDF Download',
+  presentationLink:'Open project presentation',deckLink:'Download Project Deck (14 Slides · PDF)',deckNote:'Official MindMesh YIP 9.0 Deck · 14 Slides · Updated v0.3.1 & Web v0.5.1',
   modeSlide:'📽️ Slide Deck',modeReport:'📑 Executive Report',btnPrev:'◀ Previous',btnNext:'Next ▶',btnFullscreen:'⛶ Fullscreen',
   slideOf:'of',slideShortcuts:'Navigate with [←] [→] or [Space] · [F] Fullscreen',timerStart:'Pitch Timer',timerPause:'Pause',timerReset:'Reset',
-  slide1Name:'01 Cover',slide2Name:'02 Crisis',slide3Name:'03 Bottleneck',slide4Name:'04 Solution',slide5Name:'05 Dynamic Tracking',slide6Name:'06 Tech Engine',slide7Name:'07 Comparison',slide8Name:'08 Privacy',slide9Name:'09 Radical Honesty',slide10Name:'10 Roadmap',slide11Name:'11 Innovators',slide12Name:'12 Gratitude',slide13Name:'13 Vision & Ask',
+  slide1Name:'01 Cover',slide2Name:'02 Crisis',slide3Name:'03 Barriers',slide4Name:'04 How It Works',slide5Name:'05 Dynamic Tracking',slide6Name:'06 Project Updates',slide7Name:'07 Tech Engine',slide8Name:'08 Comparison',slide9Name:'09 Privacy',slide10Name:'10 Radical Honesty',slide11Name:'11 Proof & Roadmap',slide12Name:'12 Team MindMesh',slide13Name:'13 Gratitude',slide14Name:'14 Vision & Ask',
  additionalKicker:"EYE REST EXERCISES",otherTestsTitle:"Take a short rest for your eyes",otherTestsSub:"Look into the distance, blink gently, or close your eyes for a short rest. Follow a simple timer; no camera is needed.",
  researchScopeTitle:'Research scope',researchScopeBody:'This is an experimental landmark-based research tool. It cannot diagnose an eye condition, confirm normal vision or make a clinical referral decision.',
  privacyShort:'Camera images stay on this device and are not stored.',previewNote:'The walkthrough previews the target paths without generating eye measurements.',
@@ -166,6 +172,8 @@ ml:{
  protocolKicker:'ഗവേഷണ രീതി',protocolTitle:'നാല് പാതകൾ. വ്യക്തമായ രേഖ.',protocolBody:'തിരശ്ചീന, ലംബ, കോണോടുകോൺ ചലനങ്ങൾക്ക് ശേഷം സ്ഥാനമാറുന്ന സ്ഥിര ലക്ഷ്യങ്ങൾ. ഫ്രെയ്മിംഗ് ശരിയല്ലെങ്കിൽ രേഖപ്പെടുത്തൽ നിൽക്കും.',
  protocolNote:'രീതിയുടെ ചിത്രം · പങ്കാളിയുടെ അളവുകളല്ല',protocolHorizontal:'തിരശ്ചീന ചലനം',protocolVertical:'ലംബ ചലനം',protocolDiagonal:'കോണോടുകോൺ ചലനം',protocolJumps:'സ്ഥാനമാറ്റവും സ്ഥിരനോട്ടവും',
   // Presentation 13 Slides in Malayalam
+  presHeroH1:'ആശയം അവതരിപ്പിക്കാം — നേത്രാ-സ്ക്രീൻ YIP 9.0',
+  presScopeLine:'ഗവേഷണ പ്രോട്ടോടൈപ്പ് മാത്രം — ക്ലിനിക്കൽ കൃത്യത അവകാശപ്പെടുന്നില്ല. ക്ലിനിക്കൽ റിലീസ് പഠനങ്ങൾ പൂർത്തിയാകുന്നത് വരെ ലോക്ക് ചെയ്തിരിക്കുന്നു.',
   presentationKicker:'YIP 9.0 ഇന്നൊവേഷൻ പ്രദർശനം · നേത്രാ-സ്ക്രീൻ',
   presentationTitle:'നേത്രാ-സ്ക്രീൻ: കുട്ടികൾക്കായുള്ള സുരക്ഷിത നേത്ര പരിശോധന',
   presentationBody:'സാധാരണ സ്മാർട്ട്ഫോണിനെ കുട്ടികൾക്കായുള്ള AI പ്രീ-സ്ക്രീനിംഗ് ഉപകരണമാക്കി മാറ്റുന്നു. ടീം മൈൻഡ്മെഷ് (ടികെഎം സെന്റനറി പബ്ലിക് സ്കൂൾ, കൊല്ലം) YIP 9.0-നായി വികസിപ്പിച്ചത്.',
@@ -213,7 +221,11 @@ ml:{
   simBtnHoriz:'തിരശ്ചീന ചലനം',simBtnVert:'ലംബ ചലനം',simBtnDiag:'കോണോടുകോൺ ചലനം',simBtnFix:'സ്ഥിരനോട്ടം',
   simMetricSync:'ചലന സാമ്യം (Symmetry)',simMetricStability:'സ്ഥിരനോട്ട സ്ഥിരത',simMetricStatus:'ട്രാക്കിംഗ് നില',
 
-  // Slide 6: Tech Engine
+  // Slide 6: Latest Project Updates (Malayalam)
+  updatesDeckTitle:'പുതിയ അപ്ഡേറ്റുകൾ: ക്രോസ്-പ്ലാറ്റ്ഫോം സംവിധാനത്തിലേക്ക്',
+  updatesDeckSubtitle:'iPhone Safari, Chrome, Desktop എന്നിവയിൽ ഓഫ്‌ലൈനായി പ്രവർത്തിക്കുന്ന പുതിയ Web PWA (v0.5.1), Android v0.3.1 കുട്ടികൾക്കുള്ള ഡിസൈൻ, Hidden Camera മോഡ്, മലയാളം ശബ്ദനിർദേശങ്ങൾ, Live Setup Inspector, PDF ഗ്രാഫുകൾ, ട്രിയാജ് നിർദേശങ്ങൾ, Eye Rest വ്യായാമങ്ങൾ എന്നിവ ചേർത്തു.',
+
+  // Slide 7: Tech Engine
   engineTitle:'സാങ്കേതിക നിർമ്മാണ എഞ്ചിൻ',
   engineSubtitle:'ആൻഡ്രോയിഡിലും വെബ്ബിലും സുരക്ഷിതമായി പ്രവർത്തിക്കുന്ന 5 ഘട്ട പ്രോസസ്സിംഗ്.',
   engineFlow1:'CameraX',engineFlow2:'MediaPipe Face Landmarker',engineFlow3:'സ്വയംപരിശോധനാ ഗേറ്റ്',engineFlow4:'മാത്തമാറ്റിക്കൽ അനാലിസിസ്',engineFlow5:'എൻക്രിപ്റ്റഡ് സ്റ്റോറേജ്',
@@ -287,10 +299,10 @@ ml:{
   visionAskTitle:'ഞങ്ങളുടെ അഭ്യർത്ഥന:',
   visionAskDesc:'ഞങ്ങളുടെ രണ്ടാം ഘട്ട ക്ലിനിക്കൽ പഠനം ആരംഭിക്കുന്നതിനായി YIP-ന്റെയും ആരോഗ്യവിദഗ്ദ്ധരുടെയും മാർഗ്ഗനിർദ്ദേശങ്ങളും പിന്തുണയും തേടുന്നു.',
 
-  presentationLink:'പ്രോജക്ട് അവതരണം തുറക്കുക',deckLink:'പ്രോജക്ട് ഡെക്ക് ഡൗൺലോഡ് (PDF)',deckNote:'മൈൻഡ്മെഷ് YIP 9.0 ഒഫീഷ്യൽ ഡെക്ക് · 13 സ്ലൈഡുകൾ · PDF ഡൗൺലോഡ്',
+  presentationLink:'പ്രോജക്ട് അവതരണം തുറക്കുക',deckLink:'പ്രോജക്ട് ഡെക്ക് ഡൗൺലോഡ് (14 സ്ലൈഡുകൾ · PDF)',deckNote:'മൈൻഡ്മെഷ് YIP 9.0 ഒഫീഷ്യൽ ഡെക്ക് · 14 സ്ലൈഡുകൾ · PDF ഡൗൺലോഡ്',
   modeSlide:'📽️ സ്ലൈഡ് മോഡ്',modeReport:'📑 പൂർണ്ണ റിപ്പോർട്ട്',btnPrev:'◀ മുൻപത്തെ',btnNext:'അടുത്തത് ▶',btnFullscreen:'⛶ പൂർണ്ണ സ്ക്രീൻ',
   slideOf:'/',slideShortcuts:'കീബോർഡ് [←] [→] അല്ലെങ്കിൽ [Space] ഉപയോഗിക്കുക · [F] പൂർണ്ണ സ്ക്രീൻ',timerStart:'പ്രസന്റേഷൻ സമയം',timerPause:'നിർത്തുക',timerReset:'പുനഃക്രമീകരിക്കുക',
-  slide1Name:'01 ആമുഖം',slide2Name:'02 പ്രതിസന്ധി',slide3Name:'03 തടസ്സം',slide4Name:'04 പരിഹാരം',slide5Name:'05 ട്രാക്കിംഗ്',slide6Name:'06 എഞ്ചിൻ',slide7Name:'07 താരതമ്യം',slide8Name:'08 സ്വകാര്യത',slide9Name:'09 സത്യസന്ധത',slide10Name:'10 റോഡ്മാപ്പ്',slide11Name:'11 ഇന്നൊവേറ്റർമാർ',slide12Name:'12 കൃതജ്ഞത',slide13Name:'13 ലക്ഷ്യം',
+  slide1Name:'01 ആമുഖം',slide2Name:'02 പ്രതിസന്ധി',slide3Name:'03 തടസ്സങ്ങൾ',slide4Name:'04 പരിഹാരം',slide5Name:'05 ട്രാക്കിംഗ്',slide6Name:'06 അപ്ഡേറ്റുകൾ',slide7Name:'07 എഞ്ചിൻ',slide8Name:'08 താരതമ്യം',slide9Name:'09 സ്വകാര്യത',slide10Name:'10 സത്യസന്ധത',slide11Name:'11 തെളിവുകളും റോഡ്മാപ്പും',slide12Name:'12 ടീം മൈൻഡ്മെഷ്',slide13Name:'13 കൃതജ്ഞത',slide14Name:'14 ലക്ഷ്യം',
  additionalKicker:"കണ്ണുകൾക്കുള്ള വിശ്രമ വ്യായാമങ്ങൾ",otherTestsTitle:"കണ്ണുകൾക്ക് അൽപ്പനേരം വിശ്രമിക്കാം",otherTestsSub:"ദൂരത്തേക്ക് നോക്കാം, പതുക്കെ കണ്ണുചിമ്മാം, അല്ലെങ്കിൽ കണ്ണടച്ച് വിശ്രമിക്കാം. സമയം ഫോൺ കാണിക്കും; ക്യാമറ വേണ്ട.",
  researchScopeTitle:'ഗവേഷണത്തിന്റെ പരിധി',researchScopeBody:'ഇത് ലാൻഡ്മാർക്ക് അടിസ്ഥാനത്തിലുള്ള പരീക്ഷണാത്മക ഗവേഷണ ഉപകരണമാണ്. രോഗനിർണയത്തിനോ സാധാരണ കാഴ്ച ഉറപ്പാക്കാനോ ക്ലിനിക്കൽ റഫറൽ തീരുമാനിക്കാനോ കഴിയില്ല.',
  privacyShort:'ക്യാമറ ചിത്രങ്ങൾ ഈ ഉപകരണത്തിൽ തന്നെ പ്രോസസ്സ് ചെയ്യും; സംഭരിക്കില്ല.',previewNote:'വിശദീകരണം ലക്ഷ്യപാതകൾ കാണിക്കുന്നു; കണ്ണിന്റെ അളവുകൾ സൃഷ്ടിക്കില്ല.',

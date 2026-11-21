@@ -23,5 +23,6 @@ globalThis.NETRA_EXTRA_ASSETS = [
   'deck-slides/slide-10.png',
   'deck-slides/slide-11.png',
   'deck-slides/slide-12.png',
-  'deck-slides/slide-13.png'
+  'deck-slides/slide-13.png',
+  'deck-slides/slide-14.png'
 ];

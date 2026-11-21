@@ -3,7 +3,7 @@ import './offline-status.js';
 
 let language = 'en';
 let currentSlide = 1;
-const totalSlides = 13;
+const totalSlides = 14;
 let currentMode = 'deck'; // 'deck' or 'report'
 
 // Pitch timer state

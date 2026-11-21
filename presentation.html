@@ -42,7 +42,7 @@
       position: relative;
       width: 100%;
       max-width: 1376px;
-      max-height: calc(100vh - 140px);
+      max-height: calc(100vh - 180px);
       aspect-ratio: 1376 / 768;
       border-radius: 18px;
       overflow: hidden;
@@ -51,6 +51,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .pres-hero-strip {
+      width: 100%;
+      max-width: 1376px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 18px;
+      margin: 0 auto 10px;
+      padding: 6px 14px;
+      border-radius: 12px;
+      background: rgba(16, 22, 52, 0.72);
+      border: 1px solid rgba(120, 228, 208, 0.22);
+    }
+    .pres-hero-strip h1 {
+      font-size: clamp(14.5px, 1.5vw, 18px);
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+      color: #ffffff;
+      margin: 0;
+    }
+    .pres-hero-strip p {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #b7c6e4;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .studio-nav { flex-wrap: wrap; padding: 14px 16px; }
+      .studio-nav .wordmark { white-space: normal; max-width: 100%; }
+      .studio-nav .wordmark small { white-space: normal; letter-spacing: 0.6px; margin-left: 0; line-height: 1.4; }
+      .pres-header-actions { width: 100%; max-width: 100%; }
+      .pres-header-actions a, .pres-header-actions button { max-width: 100%; }
     }
     .deck-slide-img {
       width: 100%;
@@ -485,7 +520,7 @@
   </style>
 </head>
 <body>
-<div class="pres-progress-bar" id="presProgressBar" role="progressbar" aria-valuemin="1" aria-valuemax="13" aria-valuenow="1"></div>
+<div class="pres-progress-bar" id="presProgressBar" role="progressbar" aria-valuemin="1" aria-valuemax="14" aria-valuenow="1"></div>
 
 <header class="studio-nav">
   <a class="wordmark" href="./index.html">◉ NETRA<span>SCREEN</span><small>MINDMESH · TKM CENTENARY PUBLIC SCHOOL, KOLLAM · YIP 9.0</small></a>
@@ -494,7 +529,7 @@
       <button type="button" class="pres-mode-btn active" id="btnModeDeck" data-project-copy="modeSlide">📽️ Slide Deck</button>
       <button type="button" class="pres-mode-btn" id="btnModeReport" data-project-copy="modeReport">📑 Executive Report</button>
     </div>
-    <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" class="pres-fullscreen-btn" title="Download official 13-slide PDF deck" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">📥 <span data-project-copy="deckLink">Download Deck (PDF)</span></a>
+    <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" class="pres-fullscreen-btn" title="Download official 14-slide PDF deck" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">📥 <span data-project-copy="deckLink">Download Deck (14 Slides · PDF)</span></a>
     <button type="button" class="pres-timer-pill" id="presTimerBtn" title="Click to start/pause pitch rehearsal timer">
       ⏱️ <span id="presTimerVal">00:00</span>
     </button>
@@ -505,6 +540,11 @@
 </header>
 
 <main class="presentation-page mode-deck" id="presMain">
+
+  <div class="pres-hero-strip">
+    <h1 data-project-copy="presHeroH1">Show the idea — NETRA-SCREEN YIP 9.0 Pitch</h1>
+    <p data-project-copy="presScopeLine">Research prototype only — no clinical accuracy claimed yet. Diagnostic release remains locked pending clinical validation.</p>
+  </div>
 
   <!-- ==================== SLIDE 1 ==================== -->
   <section class="pres-slide active" data-slide="1" id="slide-1">
@@ -567,88 +607,99 @@
   <!-- ==================== SLIDE 6 ==================== -->
   <section class="pres-slide" data-slide="6" id="slide-6">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-6.png" alt="Slide 6: The Technology Engine" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-6.png" alt="Slide 6: Latest Project Updates (Android 0.3.1 & Web 0.5.1)" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="engineTitle">The Technology Engine</h2>
-      <p data-project-copy="engineSubtitle">A 5-stage deterministic, on-device processing pipeline engineered natively for Android and modern web.</p>
+      <h2 data-project-copy="updatesDeckTitle">What’s New: From Early Prototype to Cross-Platform System</h2>
+      <p data-project-copy="updatesDeckSubtitle">Added Cross-Platform Offline Web PWA v0.5.1, Android v0.3.1 Kid-Friendly UI Refresh, Hidden Camera Child Mode, EN &amp; ML Voice Cues, Live Setup Inspector, 4-Task Trajectory Plots, Triage Priority Guidance, 20-20-20 Eye Rest, and the camera-free YIP Walkthrough APK.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 7 ==================== -->
   <section class="pres-slide" data-slide="7" id="slide-7">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-7.png" alt="Slide 7: Shifting the Paradigm in Pre-Screening" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-7.png" alt="Slide 7: The 5-Stage Offline Engine" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="matrixTitle">Shifting the Paradigm in Pre-Screening</h2>
-      <p data-project-copy="matrixSubtitle">Direct head-to-head comparison against clinical gold standards and existing commercial vision apps.</p>
+      <h2 data-project-copy="engineTitle">Built for Reliability: The 5-Stage Offline Engine</h2>
+      <p data-project-copy="engineSubtitle">Consent &amp; Camera → MediaPipe 478 Landmarks → Automated Quality Gate → Math, Plots &amp; Triage → AES-GCM Encrypted Report across Android Kotlin and Web WASM.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 8 ==================== -->
   <section class="pres-slide" data-slide="8" id="slide-8">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-8.png" alt="Slide 8: Absolute Privacy by Design" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-8.png" alt="Slide 8: Comparing NETRA-SCREEN with Existing Approaches" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="privacyDeckTitle">Absolute Privacy by Design</h2>
-      <p data-project-copy="privacyDeckSubtitle">Protecting pediatric biometric data through structural zero-retention architecture.</p>
+      <h2 data-project-copy="matrixTitle">Comparing NETRA-SCREEN with Existing Approaches</h2>
+      <p data-project-copy="matrixSubtitle">Direct head-to-head comparison against clinical devices and existing letter-chart apps.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 9 ==================== -->
   <section class="pres-slide" data-slide="9" id="slide-9">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-9.png" alt="Slide 9: Responsible Medical AI: Radical Honesty" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-9.png" alt="Slide 9: Absolute Privacy by Design" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="honestyTitle">Responsible Medical AI: Radical Honesty</h2>
-      <p data-project-copy="honestySubtitle">Transparent scientific boundaries that prevent false reassurance and safeguard child health.</p>
+      <h2 data-project-copy="privacyDeckTitle">Zero Videos Stored. 100% On-Device Control.</h2>
+      <p data-project-copy="privacyDeckSubtitle">Protecting pediatric camera feeds through zero-retention offline architecture.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 10 ==================== -->
   <section class="pres-slide" data-slide="10" id="slide-10">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-10.png" alt="Slide 10: The Clinical Validation Roadmap (AAPOS Guidelines)" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-10.png" alt="Slide 10: Responsible Medical AI: Radical Honesty" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="roadmapDeckTitle">The Clinical Validation Roadmap (AAPOS Guidelines)</h2>
-      <p data-project-copy="roadmapDeckSubtitle">Our structured four-stage clinical pathway adhering to pediatric ophthalmology standards.</p>
+      <h2 data-project-copy="honestyTitle">Radical Honesty: A Pre-Screening Aid, Never a False Doctor</h2>
+      <p data-project-copy="honestySubtitle">Transparent scientific boundaries and Research Triage Priority Guidance — never diagnosing or clearing eye disease.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 11 ==================== -->
   <section class="pres-slide" data-slide="11" id="slide-11">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-11.png" alt="Slide 11: The Innovators Behind the Screen" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-11.png" alt="Slide 11: Verified Engineering &amp; Clinical Validation Roadmap" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="teamTitle">The Innovators Behind the Screen</h2>
-      <p data-project-copy="teamSubtitle">Team MindMesh | YIP 9.0 Category 1 · TKM Centenary Public School, Kollam</p>
+      <h2 data-project-copy="roadmapDeckTitle">Engineering Verified Today · Clinical Validation Next</h2>
+      <p data-project-copy="roadmapDeckSubtitle">60 Android JVM tests and 17 Playwright checks pass today, leading into AAPOS-aligned usability and clinical validation.</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 12 ==================== -->
   <section class="pres-slide" data-slide="12" id="slide-12">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-12.png" alt="Slide 12: With Heartfelt Gratitude" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-12.png" alt="Slide 12: Team MindMesh" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="gratitudeTitle">With Heartfelt Gratitude</h2>
-      <p data-project-copy="gratitudeSubtitle">Acknowledging the guidance and institutional support that made this innovation possible.</p>
+      <h2 data-project-copy="teamTitle">The Young Innovators Behind NETRA-SCREEN</h2>
+      <p data-project-copy="teamSubtitle">Team MindMesh | YIP 9.0 Category 1 · TKM Centenary Public School, Kollam</p>
     </div>
   </section>
 
   <!-- ==================== SLIDE 13 ==================== -->
   <section class="pres-slide" data-slide="13" id="slide-13">
     <div class="deck-slide-frame">
-      <img src="deck-slides/slide-13.png" alt="Slide 13: The Vision & The Ask" class="deck-slide-img" loading="lazy">
+      <img src="deck-slides/slide-13.png" alt="Slide 13: With Heartfelt Gratitude" class="deck-slide-img" loading="lazy">
     </div>
     <div class="report-details">
-      <h2 data-project-copy="visionTitle">The Vision & The Ask</h2>
-      <p data-project-copy="visionSubtitle">Zero Cost. Infinite Impact.</p>
+      <h2 data-project-copy="gratitudeTitle">With Heartfelt Gratitude</h2>
+      <p data-project-copy="gratitudeSubtitle">Acknowledging Mentor Aswathy P and TKM Centenary Public School, Kollam.</p>
+    </div>
+  </section>
+
+  <!-- ==================== SLIDE 14 ==================== -->
+  <section class="pres-slide" data-slide="14" id="slide-14">
+    <div class="deck-slide-frame">
+      <img src="deck-slides/slide-14.png" alt="Slide 14: The Vision &amp; Our Ask" class="deck-slide-img" loading="lazy">
+    </div>
+    <div class="report-details">
+      <h2 data-project-copy="visionTitle">Zero Extra Hardware. Infinite Grassroots Impact.</h2>
+      <p data-project-copy="visionSubtitle">Empowering ASHA workers and school nurses using existing phones — seeking YIP 9.0 mentorship and clinical partners.</p>
     </div>
   </section>
 
@@ -763,7 +814,7 @@
 <aside class="pres-dock" id="presDock" aria-label="Slide Deck Controls">
   <button type="button" class="pres-dock-btn" id="btnPrevSlide" data-project-copy="btnPrev">◀ Previous</button>
   <div class="pres-dots-rail" id="presDotsRail" role="tablist" aria-label="Slide Indicators"></div>
-  <div class="pres-counter" id="presCounter">01 / 13</div>
+  <div class="pres-counter" id="presCounter">01 / 14</div>
   <button type="button" class="pres-dock-btn" id="btnNextSlide" data-project-copy="btnNext">Next ▶</button>
   <span class="pres-shortcut-hint" data-project-copy="slideShortcuts">Navigate with [←] [→] or [Space] · [F] Fullscreen</span>
 </aside>
