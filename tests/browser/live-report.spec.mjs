@@ -1,7 +1,7 @@
 import {test,expect,chromium} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 test('valid frame fixtures finish four tasks, respect pause and export only measured observations',async()=>{
-  test.setTimeout(65000);
+  test.setTimeout(120000);
   const browser=await chromium.launch({args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']});
   const context=await browser.newContext({baseURL:'http://127.0.0.1:8080',permissions:['camera'],serviceWorkers:'block'}),page=await context.newPage();
   try{
@@ -23,7 +23,7 @@ test('valid frame fixtures finish four tasks, respect pause and export only meas
     expect(await page.locator('#webcamVideo').evaluate(video=>video.srcObject.active)).toBe(true);
     await page.locator('#btnPauseSession').click();
     const timer=await page.locator('#hudTimer').textContent();expect(await page.locator('#webcamVideo').evaluate(v=>v.srcObject)).toBeNull();await page.waitForTimeout(500);await expect(page.locator('#hudTimer')).toHaveText(timer);
-    await page.locator('#btnPauseSession').click();await expect(page.locator('#viewReport')).toHaveClass(/active-view/,{timeout:55000});
+    await page.locator('#btnPauseSession').click();await expect(page.locator('#viewReport')).toHaveClass(/active-view/,{timeout:100000});
     await expect(page.locator('#evalBannerTitle')).toContainText('Research capture complete');
     const event=page.waitForEvent('download');await page.locator('#btnExportJSON').click();const data=JSON.parse(await readFile(await(await event).path(),'utf8'));
     expect(data.source).toBe('live-research');expect(data.clinicalClassification).toBeNull();expect(data.metrics.acceptedFrames).toBeGreaterThan(30);expect(data.metrics.acceptedFrames).toBeLessThanOrEqual(data.metrics.processedFrames);

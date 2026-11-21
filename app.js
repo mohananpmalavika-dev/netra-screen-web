@@ -329,7 +329,7 @@ function updateReadyScreen() {
   const copy = I18N[STATE.lang], title = copy['ready' + companionSuffix()];
   document.getElementById('readyTitle').textContent = title;
   document.getElementById('readyHint').textContent = copy.readyHint;
-  document.getElementById('readyCompanion').textContent = COMPANIONS[STATE.companion].emoji;
+  setCompanionArt(document.getElementById('readyCompanion'), STATE.companion);
   document.getElementById('btnFocusReady').setAttribute('aria-label', title);
 }
 function prepareSession(isDemo) {
@@ -384,12 +384,21 @@ function updateLanguage(lang) {
   updateReadyScreen();
 }
 
+// Fixed local artwork only; target geometry and research timing are unchanged.
+function setCompanionArt(element, key) {
+  const img = document.createElement('img');
+  img.className = 'companion-art';
+  img.src = './companions/' + key + '.svg';
+  img.alt = '';
+  img.width = 120; img.height = 100;
+  element.replaceChildren(img);
+}
 // ================= COMPANION SELECTOR =================
 function selectCompanion(companionKey) {
   if (!COMPANIONS[companionKey]) return;
   STATE.companion = companionKey;
   const companion = COMPANIONS[companionKey];
-  dom.companionGraphic.textContent = companion.emoji;
+  setCompanionArt(dom.companionGraphic, companionKey);
 
   // Update companion buttons
   document.querySelectorAll(".comp-btn").forEach(btn => {
@@ -622,31 +631,7 @@ function runTrackingLoop() {
     if (now - invalidSince > 1800 && now - lastFramingGuide > 10000) { guide.say('guideFrame'); lastFramingGuide = now; }
   }
   dom.qualityWarningOverlay.classList.toggle('hidden',qualityOk);
-  if (STATE.isDemo && !STATE.isPaused) {
-    fresh = true;
-    processedFrames++;
-    frameCount++;
-    const tMs = localTaskMs;
-    const saccadeL = (Math.sin(tMs * 0.006) * 0.005) + (Math.sin(tMs * 0.031) * 0.002);
-    const saccadeR = (Math.sin(tMs * 0.006 + 0.02) * 0.005) + (Math.sin(tMs * 0.031 + 0.02) * 0.002);
-    left = {
-      x: 0.38 + (targetPos.x - 0.5) * 0.24 + saccadeL,
-      y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeL * 0.8
-    };
-    right = {
-      x: 0.62 + (targetPos.x - 0.5) * 0.24 + saccadeR,
-      y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeR * 0.8
-    };
-    STATE.recordedSamples.push({
-      task: currentTask.id,
-      taskMs: localTaskMs,
-      acquiredMs: now,
-      target: { x: targetPos.x, y: targetPos.y },
-      left,
-      right,
-      qualityOk: true
-    });
-  } else if (qualityOk && fresh && left && right) {
+  if (!STATE.isDemo && qualityOk && fresh && left && right) {
     STATE.recordedSamples.push({
       task: currentTask.id,
       taskMs: localTaskMs,
@@ -661,8 +646,8 @@ function runTrackingLoop() {
   dom.taskProgressBar.style.width=`${Math.min(100,taskElapsedMs/STATE.activeTaskDurationMs*100)}%`;
   dom.hudTimer.textContent=`${Math.max(0,Math.ceil((STATE.activeTaskDurationMs-taskElapsedMs)/1000))}s`;
   dom.hudTaskStep.textContent=`Task ${STATE.currentTaskIndex+1}/${TASKS.length}`;
-  if(now-lastFpsTime>=1000){dom.fpsCounter.textContent=STATE.isDemo?'Demo 30 FPS':`FPS: ${Math.round(frameCount*1000/(now-lastFpsTime))}`;frameCount=0;lastFpsTime=now;}
-  dom.irisDisp.textContent=STATE.isDemo?'Walkthrough · benchmark tracking':qualityOk?'Landmarks acquired':'Waiting for valid capture';
+  if(now-lastFpsTime>=1000){dom.fpsCounter.textContent=STATE.isDemo?'Camera-free preview':`FPS: ${Math.round(frameCount*1000/(now-lastFpsTime))}`;frameCount=0;lastFpsTime=now;}
+  dom.irisDisp.textContent=STATE.isDemo?'Walkthrough · no eye measurements':qualityOk?'Landmarks acquired':'Waiting for valid capture';
   if(taskElapsedMs>=STATE.activeTaskDurationMs){
     STATE.currentTaskIndex++;taskElapsedMs=0;qualityAt=-Infinity;
     if(STATE.currentTaskIndex>=TASKS.length){finishSession();return;}
@@ -713,40 +698,10 @@ function finishSession() {
 }
 
 // ================= RESEARCH REPORT & TRAJECTORY RENDERER =================
-function ensureDemoSamples() {
-  if (!STATE.isDemo) return;
-  if (STATE.recordedSamples.length >= 80) return;
-  STATE.recordedSamples = [];
-  processedFrames = 480;
-  TASKS.forEach(task => {
-    for (let tMs = 0; tMs < 6000; tMs += 50) {
-      const targetPos = calculateTargetPosition(task.id, tMs);
-      const saccadeL = (Math.sin(tMs * 0.006) * 0.005) + (Math.sin(tMs * 0.031) * 0.002);
-      const saccadeR = (Math.sin(tMs * 0.006 + 0.02) * 0.005) + (Math.sin(tMs * 0.031 + 0.02) * 0.002);
-      STATE.recordedSamples.push({
-        task: task.id,
-        taskMs: tMs,
-        acquiredMs: tMs,
-        target: { x: targetPos.x, y: targetPos.y },
-        left: {
-          x: 0.38 + (targetPos.x - 0.5) * 0.24 + saccadeL,
-          y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeL * 0.8
-        },
-        right: {
-          x: 0.62 + (targetPos.x - 0.5) * 0.24 + saccadeR,
-          y: 0.12 - (targetPos.y - 0.5) * 0.18 + saccadeR * 0.8
-        },
-        qualityOk: true
-      });
-    }
-  });
-}
-
 function generateResearchReport() {
-  if (STATE.isDemo) ensureDemoSamples();
   sessionMetrics=researchMetrics(STATE.recordedSamples,processedFrames);
   dom.reportTimestamp.textContent=new Date(sessionTimestamp).toLocaleString();
-  dom.reportCompanionUsed.textContent=`Companion: ${COMPANIONS[STATE.companion].emoji}`;
+  dom.reportCompanionUsed.textContent=`Target: ${I18N[STATE.lang][COMPANIONS[STATE.companion].nameKey]}`;
   const value=(n,d=2)=>n===null?'Unavailable':n.toFixed(d);
   dom.metricCorrelation.textContent=value(sessionMetrics.movementCorrelation);
   dom.metricFixation.textContent=value(sessionMetrics.fixationRms,3);
@@ -755,16 +710,10 @@ function generateResearchReport() {
 
   if (STATE.isDemo) {
     dom.evalSummaryBanner.classList.remove('banner-warn');
-    dom.evalBannerIcon.textContent = '✨';
-    dom.evalBannerTitle.textContent = STATE.lang === 'ml'
-      ? 'ഡെമോ വാക്ക്ത്രൂ റിപ്പോർട്ട് · മാതൃകാ ഫലം'
-      : 'Demo Walkthrough Report · Benchmark Sample Data';
-    dom.evalBannerDesc.textContent = STATE.lang === 'ml'
-      ? 'ക്യാമറയില്ലാതെ തയ്യാറാക്കിയ മാതൃകാ ഡാറ്റ. ഇരുകണ്ണുകളുടെയും സമാന്തര ചലനവും ഉയർന്ന ഏകോപനവും എങ്ങനെ രേഖപ്പെടുത്തുന്നു എന്ന് ഇത് വ്യക്തമാക്കുന്നു.'
-      : 'Simulated demonstration baseline showing how a normal pediatric screening session renders with synchronized pursuit and stable fixation.';
-    document.getElementById('reportSessionStatus').textContent = STATE.lang === 'ml'
-      ? `ഡെമോ വാക്ക്ത്രൂ · ${STATE.recordedSamples.length} മാതൃകാ നിരീക്ഷണങ്ങൾ`
-      : `Walkthrough Demo · ${STATE.recordedSamples.length} simulated benchmark frames`;
+    dom.evalBannerIcon.textContent = 'i';
+    dom.evalBannerTitle.textContent = STATE.lang === 'ml' ? 'ക്യാമറയില്ലാത്ത മുൻകാഴ്ച പൂർത്തിയായി' : 'Camera-free walkthrough complete';
+    dom.evalBannerDesc.textContent = STATE.lang === 'ml' ? 'ലക്ഷ്യപാതകൾ മാത്രം കാണിച്ചു. കണ്ണിന്റെ അളവുകളോ ക്ലിനിക്കൽ ഫലമോ ലഭ്യമല്ല.' : 'Only target paths were demonstrated. No eye measurements or clinical result are available.';
+    document.getElementById('reportSessionStatus').textContent = STATE.lang === 'ml' ? 'മുൻകാഴ്ച · പങ്കാളിയുടെ അളവുകളില്ല' : 'Walkthrough · no participant observations';
   } else {
     dom.evalSummaryBanner.classList.remove('banner-warn'); dom.evalBannerIcon.textContent='ℹ';
     dom.evalBannerTitle.textContent=STATE.lang==='ml'?'ഗവേഷണ രേഖപ്പെടുത്തൽ പൂർത്തിയായി':'Research capture complete';
@@ -772,66 +721,22 @@ function generateResearchReport() {
     document.getElementById('reportSessionStatus').textContent=`${STATE.recordedSamples.length} accepted / ${processedFrames} processed frames`;
   }
 
-  function setBadge(el, ok, text) {
-    if (!el) return;
-    el.textContent = text;
-    el.className = `dm-badge ${ok ? 'badge-normal' : 'badge-warn'}`;
-  }
-
   const corr = sessionMetrics.movementCorrelation;
   const fix = sessionMetrics.fixationRms;
   const symm = sessionMetrics.excursionDifferencePct;
   const valid = sessionMetrics.acceptedFractionPct;
 
-  if (corr === null) {
-    setBadge(dom.badgeCorr, false, 'Unavailable');
-  } else if (corr >= 0.75) {
-    setBadge(dom.badgeCorr, true, STATE.lang === 'ml' ? 'സാധാരണം (≥ 0.75)' : 'Normal (≥ 0.75)');
-  } else {
-    setBadge(dom.badgeCorr, false, STATE.lang === 'ml' ? 'പരിശോധിക്കുക (< 0.75)' : 'Review (< 0.75)');
+  for (const [badge, value] of [[dom.badgeCorr,corr],[dom.badgeFix,fix],[dom.badgeSymm,symm],[dom.badgeValid,valid]]) {
+    badge.className = 'dm-badge';
+    badge.textContent = value === null ? 'Unavailable' : (STATE.lang === 'ml' ? 'ഗവേഷണ അളവ്' : 'Research measurement');
   }
-
-  if (fix === null) {
-    setBadge(dom.badgeFix, false, 'Unavailable');
-  } else if (fix <= 0.050) {
-    setBadge(dom.badgeFix, true, STATE.lang === 'ml' ? 'സാധാരണം (< 0.050)' : 'Normal (< 0.050)');
-  } else {
-    setBadge(dom.badgeFix, false, STATE.lang === 'ml' ? 'വ്യതിയാനം (≥ 0.050)' : 'Elevated Jitter (≥ 0.050)');
-  }
-
-  if (symm === null) {
-    setBadge(dom.badgeSymm, false, 'Unavailable');
-  } else if (symm <= 10.0) {
-    setBadge(dom.badgeSymm, true, STATE.lang === 'ml' ? 'സാധാരണം (≤ 10%)' : 'Normal (≤ 10%)');
-  } else {
-    setBadge(dom.badgeSymm, false, STATE.lang === 'ml' ? 'അസമമിതി (> 10%)' : 'Discrepancy (> 10%)');
-  }
-
-  if (valid === null) {
-    setBadge(dom.badgeValid, false, 'Unavailable');
-  } else if (valid >= 80.0) {
-    setBadge(dom.badgeValid, true, STATE.lang === 'ml' ? 'ഉയർന്ന ഗുണനിലവാരം (> 80%)' : 'High Quality (> 80%)');
-  } else {
-    setBadge(dom.badgeValid, false, STATE.lang === 'ml' ? 'കുറഞ്ഞ നിരക്ക് (< 80%)' : 'Low (< 80%)');
-  }
-
   const triage = clinicalTriage(sessionMetrics, STATE.isDemo, STATE.lang);
   if (dom.triageBanner && dom.triageBadge && dom.triageTitle && dom.triageDesc && dom.triageNotice) {
-    if (STATE.isDemo) {
-      dom.triageBanner.className = 'triage-banner triage-monitoring';
-      dom.triageBadge.textContent = STATE.lang === 'ml' ? 'ഡെമോ മാതൃകാ ഫലം (Demo)' : 'Demo Benchmark Normal';
-      dom.triageTitle.textContent = STATE.lang === 'ml' ? 'മാതൃകാ നേത്രചലന റിപ്പോർട്ട് തയ്യാറായി' : 'Demonstration Report: Normal Alignment Illustrated';
-      dom.triageDesc.textContent = STATE.lang === 'ml'
-        ? 'ക്യാമറയില്ലാതെ തയ്യാറാക്കിയ മാതൃകാ ഡാറ്റ. ഇരുകണ്ണുകളുടെയും സമാന്തര ചലനവും മികച്ച സ്ഥിരതയും വ്യക്തമാക്കുന്നു. റിയൽ ക്യാമറ ടെസ്റ്റിനായി Start research session തിരഞ്ഞെടുക്കുക.'
-        : 'Sample demonstration baseline showing how a normal pediatric screening report renders with synchronized pursuit and stable fixation. To record live eyes, start a research session.';
-      dom.triageNotice.textContent = triage.disclaimer;
-    } else {
-      dom.triageBanner.className = `triage-banner ${triage.badgeClass}`;
-      dom.triageBadge.textContent = triage.badgeText;
-      dom.triageTitle.textContent = triage.title;
-      dom.triageDesc.textContent = triage.guidance;
-      dom.triageNotice.textContent = triage.disclaimer;
-    }
+    dom.triageBanner.className = `triage-banner ${triage.badgeClass}`;
+    dom.triageBadge.textContent = triage.badgeText;
+    dom.triageTitle.textContent = triage.title;
+    dom.triageDesc.textContent = triage.guidance;
+    dom.triageNotice.textContent = triage.disclaimer;
   }
   setSourceNotice();renderAllTrajectoryPlots();
 }

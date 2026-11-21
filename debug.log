@@ -78,3 +78,29 @@
 [1025/222939.808:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x450401510800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
 [1025/222939.974:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x450401510800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [1025/223031.789:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/020723.268:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3e3c0147d000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/020728.337:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3e3c0147d000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/020728.397:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3e3c0147d000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/020728.662:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x3e3c0147d000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1122/021131.726:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/021626.221:WARNING:media\audio\audio_output_device.cc:341] Output device authorization timed out
+[1122/021637.070:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/021637.170:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=10
+[1122/021637.277:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=20
+[1122/021637.384:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=30
+[1122/021637.490:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=40
+[1122/021637.597:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=50
+[1122/021637.704:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=60
+[1122/021637.810:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=70
+[1122/021637.917:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=80
+[1122/021638.024:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=90
+[1122/022657.518:WARNING:media\audio\audio_output_device.cc:341] Output device authorization timed out
+[1122/022710.047:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/022937.630:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x36c40149b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/022942.168:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x36c40149b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/022942.217:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x36c40149b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[1122/022942.285:ERROR:gpu\command_buffer\service\gl_utils.cc:431] [.WebGL-0x36c40149b800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[1122/023225.902:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/023226.008:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=10
+[1122/023316.298:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/023324.714:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)

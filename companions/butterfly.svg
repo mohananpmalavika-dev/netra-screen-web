@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" fill="none">
+  <defs>
+    <linearGradient id="wing" x1="55" y1="30" x2="117" y2="141" gradientUnits="userSpaceOnUse"><stop stop-color="#a6f4ff"/><stop offset=".3" stop-color="#36c7e4"/><stop offset=".62" stop-color="#4e86ec"/><stop offset="1" stop-color="#9555df"/></linearGradient>
+    <linearGradient id="lower" x1="70" y1="130" x2="118" y2="185" gradientUnits="userSpaceOnUse"><stop stop-color="#ffcf76"/><stop offset=".45" stop-color="#fb83a7"/><stop offset="1" stop-color="#a95cdb"/></linearGradient>
+    <radialGradient id="body"><stop stop-color="#6a5142"/><stop offset="1" stop-color="#201f27"/></radialGradient>
+    <g id="left">
+      <path d="M118 108C99 68 61 9 30 21C8 30 22 78 40 100C53 117 83 127 118 116Z" fill="url(#wing)" stroke="#29282e" stroke-width="6"/>
+      <path d="M116 114C83 109 53 116 47 144C41 174 70 190 90 175C106 163 115 139 119 119Z" fill="url(#lower)" stroke="#29282e" stroke-width="6"/>
+      <g stroke="#47352e" stroke-width="2.2" opacity=".8"><path d="M115 109L33 28M111 111L29 56M114 115L42 95M91 87L81 35M74 72L47 48M95 99L54 78M113 120L58 148M114 122L87 170M95 136L75 121"/></g>
+      <path d="M33 29C26 45 36 75 47 89M52 139C51 151 55 166 65 173" stroke="#ffedc6" stroke-width="3" opacity=".5" stroke-linecap="round"/>
+      <g fill="#fff6df"><ellipse cx="29" cy="38" rx="3" ry="5" transform="rotate(-15 29 38)"/><ellipse cx="30" cy="56" rx="3" ry="5" transform="rotate(-20 30 56)"/><ellipse cx="36" cy="73" rx="3" ry="4" transform="rotate(-30 36 73)"/><ellipse cx="45" cy="90" rx="3" ry="4" transform="rotate(-40 45 90)"/><ellipse cx="58" cy="104" rx="3" ry="4" transform="rotate(-50 58 104)"/><circle cx="51" cy="143" r="3"/><circle cx="53" cy="157" r="3"/><circle cx="64" cy="172" r="3"/><circle cx="80" cy="175" r="3"/></g>
+    </g>
+  </defs>
+  <style>.wings{transform-origin:120px 109px;animation:wingbeat 2.8s ease-in-out infinite}@keyframes wingbeat{0%,100%{transform:scaleX(1)}48%{transform:scaleX(.7)}}@media(prefers-reduced-motion:reduce){.wings{animation:none}}</style>
+  <g class="wings"><use href="#left"/><use href="#left" transform="translate(240 0) scale(-1 1)"/></g>
+  <path d="M118 92C111 79 108 73 102 72M122 92C129 79 132 73 138 72" stroke="#29282e" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="102" cy="72" r="2.5" fill="#29282e"/><circle cx="138" cy="72" r="2.5" fill="#29282e"/>
+  <ellipse cx="120" cy="121" rx="5" ry="28" fill="url(#body)"/><ellipse cx="120" cy="99" rx="6" ry="9" fill="#302c2c"/>
+  <path d="M119 113V137" stroke="#b39b71" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

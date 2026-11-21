@@ -33,7 +33,7 @@ test('tracking with no face freezes task clock and releases camera on background
     const original=await readFile('camera.mjs','utf8');
     await page.route('**/camera.mjs',route=>route.fulfill({contentType:'text/javascript',body:`export async function loadLandmarker(){return {detectForVideo(){return {faceLandmarks:[]}},close(){}}}\n`+original.slice(original.indexOf('export function cameraError'))}));
     await page.goto('/tracking.html');await page.locator('#consentCheckbox').check();await page.locator('#btnStartLive').click();await page.locator('#btnFocusReady').click();await expect.poll(()=>page.locator('#webcamVideo').evaluate(v=>!!v.srcObject)).toBe(true);
-    await expect(page.locator('#hudTimer')).toHaveText('8s');await page.waitForTimeout(1200);await expect(page.locator('#hudTimer')).toHaveText('8s');
+    await expect(page.locator('#hudTimer')).toHaveText(/^0?8s$/);await page.waitForTimeout(1200);await expect(page.locator('#hudTimer')).toHaveText(/^0?8s$/);
     await page.evaluate(()=>{Object.defineProperty(document,'hidden',{value:true,configurable:true});document.dispatchEvent(new Event('visibilitychange'));});
     await expect(page.locator('#btnPauseSession')).toHaveText('Resume');expect(await page.locator('#webcamVideo').evaluate(v=>v.srcObject)).toBeNull();
   }finally{await browser.close();}

@@ -15,15 +15,15 @@ async function fakeSpeech(page,voices=[english]){
 }
 test('a child can start by tapping their picture; the ready screen never opens the camera',async({page})=>{
   await fakeSpeech(page);await page.goto('/index.html');await page.locator('[data-comp="fish"]').click();await page.locator('#btnStartLive').click();
-  await expect(page.locator('#viewReady')).toHaveClass(/active-view/);await expect(page.locator('.ready-hand')).toBeVisible();
-  await expect(page.locator('#readyCompanion')).toHaveText('🐠');await expect(page.locator('#btnFocusReady')).toHaveAccessibleName('Tap the fish');
+  await expect(page.locator('#viewReady')).toHaveClass(/active-view/);await expect(page.locator('#btnFocusReady')).toBeVisible();
+  await expect(page.locator('#readyCompanion img')).toHaveAttribute('src','./companions/fish.svg');await expect(page.locator('#btnFocusReady')).toHaveAccessibleName('Tap the fish');
   expect(await page.evaluate(()=>window.cameraCalls)).toBe(0);expect(await page.evaluate(()=>window.spoken.at(-1).text)).toContain('Tap the fish');
   await page.locator('#btnReadyBack').click();await expect(page.locator('#viewHome')).toHaveClass(/active-view/);expect(await page.evaluate(()=>window.cameraCalls)).toBe(0);
   await page.locator('#btnStartLive').click();await page.locator('#btnFocusReady').click();await expect.poll(()=>page.evaluate(()=>window.cameraCalls)).toBe(1);
   await expect(page.locator('#sessionNotice')).toContainText('permission was denied');
 });
 test('voice guides practice, respects mute, and stops on background and exit',async({page})=>{
-  await fakeSpeech(page);await page.clock.install();await page.goto('/index.html');await page.locator('#btnStartDemo').click();
+  await fakeSpeech(page);await page.clock.install({time:new Date('2026-11-22T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-22T00:01:00Z'));await page.goto('/index.html');await page.locator('#btnStartDemo').click();
   await page.locator('#btnFocusReady').click();await expect(page.locator('#viewTracking')).toHaveClass(/active-view/);
   expect(await page.evaluate(()=>window.spoken.at(-1).text)).toContain('Follow the butterfly');
   await expect(page.locator('#camPip')).toHaveAttribute('aria-hidden','true');await expect(page.locator('#camPip')).toHaveCSS('opacity','0');await expect(page.locator('.mini-cam-pip')).toHaveCount(0);

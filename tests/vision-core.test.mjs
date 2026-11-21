@@ -60,28 +60,13 @@ test('fixation compares within each held target rather than between target jumps
   assert.equal(researchMetrics(samples,80).fixationRms,0);
 });
 
-test('clinical triage stratifies risk correctly and preserves safety disclaimer', () => {
-  const normal = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 5, movementCorrelation: 0.9, fixationRms: 0.05 };
-  const resNormal = clinicalTriage(normal, false, 'en');
-  assert.equal(resNormal.priority, 'CONTINUE_MONITORING');
-  assert.equal(resNormal.badgeClass, 'triage-monitoring');
-  assert.ok(resNormal.disclaimer.includes('Automated screening aid'));
-
-  const incomplete = { acceptedFrames: 20, acceptedFractionPct: 30, excursionDifferencePct: null, movementCorrelation: null, fixationRms: null };
-  const resIncomplete = clinicalTriage(incomplete, false, 'en');
-  assert.equal(resIncomplete.priority, 'INCONCLUSIVE_TEST');
-
-  const critical = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 45, movementCorrelation: 0.9, fixationRms: 0.05 };
-  const resCritical = clinicalTriage(critical, false, 'en');
-  assert.equal(resCritical.priority, 'URGENT_EVALUATION');
-  assert.equal(resCritical.badgeClass, 'triage-urgent');
-
-  const routine = { acceptedFrames: 100, acceptedFractionPct: 85, excursionDifferencePct: 28, movementCorrelation: 0.8, fixationRms: 0.05 };
-  const resRoutine = clinicalTriage(routine, false, 'en');
-  assert.equal(resRoutine.priority, 'ROUTINE_CONSULTATION');
-  assert.equal(resRoutine.badgeClass, 'triage-routine');
-
-  const mlRes = clinicalTriage(critical, false, 'ml');
-  assert.ok(mlRes.guidance.includes('ശിശു നേത്രരോഗ'));
+test('research summaries never classify clinical risk, including extreme and missing observations', () => {
+  const cases = [null, {}, {acceptedFrames:100,acceptedFractionPct:95,movementCorrelation:1,fixationRms:0,excursionDifferencePct:0}, {acceptedFrames:100,acceptedFractionPct:95,movementCorrelation:-1,fixationRms:1,excursionDifferencePct:100}, {acceptedFrames:NaN,acceptedFractionPct:Infinity}];
+  for (const metrics of cases) for (const lang of ['en','ml']) for (const demo of [false,true]) {
+    const result=clinicalTriage(metrics,demo,lang);
+    assert.equal(result.priority,'RESEARCH_ONLY');
+    assert.doesNotMatch(result.title,/Normal|Urgent|Routine|Healthy/i);
+    assert.ok(result.disclaimer.length>30);
+    if(demo && lang==='en')assert.match(result.guidance,/No participant eye measurements/);
+  }
 });
-
