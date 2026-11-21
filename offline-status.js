@@ -1,4 +1,5 @@
-// Installation state is visible: first-load downloads are not an offline guarantee.
+import './static-assets.js';
+// Installation state is visible; an update never interrupts an active session.
 const footer=document.querySelector('.studio-footer,.app-footer');
 const indicator=document.createElement('small');
 indicator.id='offlineStatus';indicator.setAttribute('role','status');indicator.style.display='block';
@@ -9,16 +10,18 @@ else{
   show('Preparing offline access…');
   navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(async registration=>{
     try{registration.update();}catch(e){}
-    let refreshing=false;
-    navigator.serviceWorker.addEventListener('controllerchange',()=>{
-      if(!refreshing){refreshing=true;window.location.reload();}
-    });
     const ready=async()=>{
       try{
-        const cached=(await caches.keys()).some(key=>key.startsWith('netra-screen-offline-'));
+        const names=(await caches.keys()).filter(key=>key.startsWith('netra-screen-offline-'));
+        const complete=await Promise.all(names.map(async name=>{
+          const cache=await caches.open(name);
+          return (await Promise.all(globalThis.NETRA_ASSETS.map(path=>cache.match(new URL(path,location.href).href)))).every(Boolean);
+        }));
+        const cached=complete.some(Boolean);
         show(cached?'Offline activities ready · model and app saved on this browser':'Offline files unavailable. Reconnect and reopen the app.');
       }catch{show('Offline storage unavailable in this browser. Keep a connection to use the app.');}
     };
+    navigator.serviceWorker.addEventListener('controllerchange',ready);
     const observe=worker=>{
       if(!worker)return;
       const update=()=>{

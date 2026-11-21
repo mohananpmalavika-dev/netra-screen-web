@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import {mkdir,rename} from 'node:fs/promises';
 const output='../output/summit';await mkdir(output,{recursive:true});
-const browser=await chromium.launch();
+const browser=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const context=await browser.newContext({viewport:{width:1280,height:800},recordVideo:{dir:`${output}/video-tmp`,size:{width:1280,height:800}},serviceWorkers:'allow'});
 const page=await context.newPage();
 const start=Date.now();
@@ -10,7 +10,8 @@ async function scene(label,seconds){
  await page.waitForTimeout(seconds*1000);
 }
 await page.goto('http://127.0.0.1:8080');
-await scene('NETRA-SCREEN / On-device eye-movement research / Team MindMesh',10);
+await scene('NETRA-SCREEN / Interactive 3D illustration / No participant data',3);
+await page.mouse.move(1000,370,{steps:20});await page.waitForTimeout(2000);await page.mouse.move(760,490,{steps:20});await page.waitForTimeout(2000);await page.mouse.move(300,400);await page.waitForTimeout(3000);
 await page.locator('#researchSetup').scrollIntoViewIfNeeded();
 await scene('Original visual targets. Guardian consent. On-device camera processing.',10);
 await page.locator('[data-comp="butterfly"]').click();await page.locator('#btnStartDemo').click();

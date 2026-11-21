@@ -104,3 +104,11 @@
 [1122/023226.008:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=10
 [1122/023316.298:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
 [1122/023324.714:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/024120.326:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/024120.432:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=10
+[1122/024125.541:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/024125.649:WARNING:services\audio\sync_reader.cc:175] SyncReader::Read timed out, audio glitch count=10
+[1122/024637.335:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/025912.486:WARNING:media\audio\audio_output_device.cc:341] Output device authorization timed out
+[1122/030610.384:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)
+[1122/030635.757:WARNING:services\audio\sync_reader.cc:154] ASR: No room in socket buffer.: The pipe is being closed. (0xE8)

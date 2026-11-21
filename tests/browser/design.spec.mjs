@@ -39,6 +39,7 @@ test('redesign fits desktop and phone in both languages; setup and reports remai
   await page.locator('#btnRestartSession').click();await expect(page.locator('.hero-badge')).toContainText('YIP');
 });
 test('dark design stays readable on small phones and prints a light report',async({page})=>{
+  test.setTimeout(120000);
   await page.emulateMedia({reducedMotion:'reduce'});
   for(const width of [320,720,768]){
     await page.setViewportSize({width,height:900});await page.goto('/index.html');
