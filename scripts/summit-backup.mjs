@@ -2,7 +2,7 @@ import {chromium} from '@playwright/test';
 import {mkdir,rename} from 'node:fs/promises';
 const output='../output/summit';await mkdir(output,{recursive:true});
 const browser=await chromium.launch({args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-const context=await browser.newContext({viewport:{width:1280,height:800},recordVideo:{dir:`${output}/video-tmp`,size:{width:1280,height:800}},serviceWorkers:'allow'});
+const context=await browser.newContext({viewport:{width:1280,height:800},recordVideo:{dir:`${output}/video-tmp`,size:{width:960,height:600}},serviceWorkers:'allow',reducedMotion:'reduce'});
 const page=await context.newPage();page.setDefaultNavigationTimeout(90000);
 const start=Date.now();
 async function scene(label,seconds){
@@ -19,7 +19,7 @@ await page.locator('[data-comp="butterfly"]').click();await page.locator('#btnSt
 await scene('CAMERA-FREE WALKTHROUGH / No participant data is recorded',5);
 await page.locator('#btnFocusReady').click();
 await scene('Four guided paths / Horizontal, vertical, diagonal and step-and-hold',36);
-await page.locator('#viewReport.active-view').waitFor();
+await page.locator('#viewReport.active-view').waitFor({timeout:90000});
 await scene('Walkthrough report / Measurements remain unavailable / No clinical result',10);
 await page.goto('http://127.0.0.1:8080/presentation.html#partnership');
 await scene('Seeking ophthalmology collaboration, supervised usability partners and research mentorship',12);
