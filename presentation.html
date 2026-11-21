@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -13,6 +14,7 @@
       overflow-x: hidden;
       background: #090b17;
     }
+
     .presentation-page.mode-deck {
       padding: 10px 16px 85px;
       display: flex;
@@ -21,12 +23,14 @@
       justify-content: center;
       min-height: calc(100vh - 120px);
     }
+
     .mode-deck .pres-slide {
       display: none;
       width: 100%;
       max-width: 1376px;
       margin: 0 auto;
     }
+
     .mode-deck .pres-slide.active {
       display: flex;
       flex-direction: column;
@@ -34,10 +38,19 @@
       justify-content: center;
       animation: slideFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     @keyframes slideFadeIn {
-      from { opacity: 0; transform: scale(0.99); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.99);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
+
     .deck-slide-frame {
       position: relative;
       width: 100%;
@@ -52,6 +65,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .pres-hero-strip {
       width: 100%;
       max-width: 1376px;
@@ -66,6 +80,7 @@
       background: rgba(16, 22, 52, 0.72);
       border: 1px solid rgba(120, 228, 208, 0.22);
     }
+
     .pres-hero-strip h1 {
       font-size: clamp(14.5px, 1.5vw, 18px);
       font-weight: 800;
@@ -74,19 +89,43 @@
       color: #ffffff;
       margin: 0;
     }
+
     .pres-hero-strip p {
       font-size: 12.5px;
       line-height: 1.45;
       color: #b7c6e4;
       margin: 0;
     }
+
     @media (max-width: 768px) {
-      .studio-nav { flex-wrap: wrap; padding: 14px 16px; }
-      .studio-nav .wordmark { white-space: normal; max-width: 100%; }
-      .studio-nav .wordmark small { white-space: normal; letter-spacing: 0.6px; margin-left: 0; line-height: 1.4; }
-      .pres-header-actions { width: 100%; max-width: 100%; }
-      .pres-header-actions a, .pres-header-actions button { max-width: 100%; }
+      .studio-nav {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+      }
+
+      .studio-nav .wordmark {
+        white-space: normal;
+        max-width: 100%;
+      }
+
+      .studio-nav .wordmark small {
+        white-space: normal;
+        letter-spacing: 0.6px;
+        margin-left: 0;
+        line-height: 1.4;
+      }
+
+      .pres-header-actions {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .pres-header-actions a,
+      .pres-header-actions button {
+        max-width: 100%;
+      }
     }
+
     .deck-slide-img {
       width: 100%;
       height: 100%;
@@ -94,6 +133,7 @@
       display: block;
       user-select: none;
     }
+
     .sim-toggle-pill {
       position: absolute;
       top: 18px;
@@ -114,12 +154,14 @@
       gap: 8px;
       z-index: 10;
     }
+
     .sim-toggle-pill:hover {
       background: #78e4d0;
       color: #0b1e1b;
       transform: translateY(-2px);
       box-shadow: 0 12px 28px rgba(120, 228, 208, 0.4);
     }
+
     .sim-modal-overlay {
       position: fixed;
       inset: 0;
@@ -131,6 +173,7 @@
       justify-content: center;
       padding: 20px;
     }
+
     .sim-modal-card {
       background: #11142f;
       border: 1px solid rgba(120, 228, 208, 0.4);
@@ -143,6 +186,7 @@
       padding: 24px 30px;
       position: relative;
     }
+
     .sim-close-btn {
       position: absolute;
       top: 18px;
@@ -159,36 +203,42 @@
       align-items: center;
       justify-content: center;
     }
+
     .sim-close-btn:hover {
       background: rgba(255, 159, 181, 0.3);
       color: #ff9fb5;
     }
-    
+
     /* ==================== INTERACTIVE SIMULATOR ENHANCED ==================== */
     .sim-container {
       margin: 0;
     }
+
     .sim-header {
       margin-bottom: 18px;
     }
+
     .sim-title {
       font-size: 20px;
       font-weight: 800;
       color: #fff;
       margin: 0 0 6px;
     }
+
     .sim-desc {
       font-size: 13.5px;
       color: #b7bde0;
       line-height: 1.5;
       margin: 0 0 16px;
     }
+
     .sim-controls {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 18px;
     }
+
     .sim-btn {
       background: #1b2046;
       border: 1px solid #3c4578;
@@ -200,17 +250,20 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
     .sim-btn:hover {
       background: #2b3368;
       border-color: #78e4d0;
       color: #fff;
     }
+
     .sim-btn.active {
       background: #78e4d0;
       color: #0b1e1b;
       border-color: #78e4d0;
       box-shadow: 0 0 16px rgba(120, 228, 208, 0.4);
     }
+
     .sim-stage {
       display: grid;
       grid-template-columns: 1.35fr 1fr;
@@ -221,11 +274,13 @@
       border-radius: 20px;
       padding: 20px;
     }
+
     @media (max-width: 860px) {
       .sim-stage {
         grid-template-columns: 1fr;
       }
     }
+
     .sim-eyes-box {
       position: relative;
       background: radial-gradient(circle at center, #161b40 0%, #070916 85%);
@@ -242,6 +297,7 @@
       user-select: none;
       cursor: crosshair;
     }
+
     .sim-hud-badge {
       position: absolute;
       font-size: 10px;
@@ -259,19 +315,40 @@
       pointer-events: none;
       z-index: 15;
     }
-    .sim-hud-badge.top-left { top: 12px; left: 14px; }
-    .sim-hud-badge.top-right { top: 12px; right: 14px; color: #cbbaff; border-color: rgba(185, 163, 255, 0.35); }
+
+    .sim-hud-badge.top-left {
+      top: 12px;
+      left: 14px;
+    }
+
+    .sim-hud-badge.top-right {
+      top: 12px;
+      right: 14px;
+      color: #cbbaff;
+      border-color: rgba(185, 163, 255, 0.35);
+    }
 
     .hud-dot.pulsing {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #78e4d0;
       box-shadow: 0 0 8px #78e4d0;
       animation: pulseDot 1.4s infinite ease-in-out;
     }
+
     @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.75); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+      }
     }
 
     .sim-target-indicator {
@@ -283,29 +360,48 @@
       flex-direction: column;
       align-items: center;
     }
+
     .target-butterfly {
       font-size: 34px;
       filter: drop-shadow(0 0 10px rgba(120, 228, 208, 0.95));
       animation: flutter 0.75s infinite ease-in-out alternate;
     }
+
     @keyframes flutter {
-      0% { transform: scale(1) rotate(-4deg); }
-      100% { transform: scale(1.08) rotate(4deg); }
+      0% {
+        transform: scale(1) rotate(-4deg);
+      }
+
+      100% {
+        transform: scale(1.08) rotate(4deg);
+      }
     }
+
     .target-ping-ring {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 48px; height: 48px;
+      top: 50%;
+      left: 50%;
+      width: 48px;
+      height: 48px;
       margin: -24px 0 0 -24px;
       border: 2px solid rgba(120, 228, 208, 0.85);
       border-radius: 50%;
       animation: pingRing 1.6s infinite cubic-bezier(0, 0, 0.2, 1);
       pointer-events: none;
     }
+
     @keyframes pingRing {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(1.5); opacity: 0; }
+      0% {
+        transform: scale(0.6);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
     }
+
     .target-coord {
       font-size: 9px;
       font-family: monospace;
@@ -327,12 +423,14 @@
       position: relative;
       z-index: 10;
     }
+
     .sim-eye-unit {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 7px;
     }
+
     .sim-eye-label {
       font-size: 11px;
       font-weight: 800;
@@ -340,6 +438,7 @@
       color: #cbbaff;
       text-transform: uppercase;
     }
+
     .sim-eye-socket {
       width: 120px;
       height: 74px;
@@ -350,6 +449,7 @@
       border: 3px solid #556094;
       overflow: hidden;
     }
+
     .sim-iris {
       width: 44px;
       height: 44px;
@@ -360,6 +460,7 @@
       left: calc(50% - 22px);
       box-shadow: 0 0 10px rgba(37, 99, 235, 0.8), inset 0 0 4px rgba(0, 0, 0, 0.8);
     }
+
     .sim-pupil {
       width: 18px;
       height: 18px;
@@ -370,6 +471,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+
     .sim-pupil-glint {
       width: 7px;
       height: 7px;
@@ -380,6 +482,7 @@
       left: 11px;
       box-shadow: 0 0 4px #ffffff;
     }
+
     .sim-landmark-crosshair {
       position: absolute;
       inset: -3px;
@@ -387,17 +490,26 @@
       border-radius: 50%;
       pointer-events: none;
     }
+
     .sim-landmark-crosshair::before,
     .sim-landmark-crosshair::after {
       content: "";
       position: absolute;
       background: rgba(120, 228, 208, 0.8);
     }
+
     .sim-landmark-crosshair::before {
-      top: 50%; left: -4px; right: -4px; height: 1px;
+      top: 50%;
+      left: -4px;
+      right: -4px;
+      height: 1px;
     }
+
     .sim-landmark-crosshair::after {
-      left: 50%; top: -4px; bottom: -4px; width: 1px;
+      left: 50%;
+      top: -4px;
+      bottom: -4px;
+      width: 1px;
     }
 
     .sim-bridge-marker {
@@ -406,16 +518,19 @@
       align-items: center;
       gap: 3px;
     }
+
     .bridge-line {
       width: 36px;
       height: 1px;
       border-top: 1px dashed rgba(185, 163, 255, 0.5);
     }
+
     .bridge-label {
       font-size: 9px;
       font-family: monospace;
       color: #98a0c6;
     }
+
     .sim-iris-coord {
       font-size: 10px;
       font-family: monospace;
@@ -426,6 +541,7 @@
       border: 1px solid #2d3563;
       white-space: nowrap;
     }
+
     .sim-interactive-hint {
       margin-top: 18px;
       font-size: 11px;
@@ -442,12 +558,14 @@
       gap: 12px;
       justify-content: center;
     }
+
     .sim-metric-card {
       background: #111538;
       border: 1px solid #2c3361;
       border-radius: 14px;
       padding: 13px 16px;
     }
+
     .sim-metric-label {
       font-size: 10px;
       text-transform: uppercase;
@@ -456,11 +574,13 @@
       margin-bottom: 4px;
       font-weight: 700;
     }
+
     .sim-metric-val {
       font-size: 16px;
       font-weight: 800;
       color: #78e4d0;
     }
+
     .sim-metric-status {
       color: #a5f3fc;
       font-size: 14px;
@@ -469,12 +589,14 @@
     .sim-waveform-wrap {
       margin-top: 8px;
     }
+
     .sim-wave-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
     }
+
     .wave-title {
       font-size: 10px;
       text-transform: uppercase;
@@ -482,6 +604,7 @@
       color: #8c96c4;
       font-weight: 700;
     }
+
     .wave-legend {
       display: flex;
       gap: 10px;
@@ -489,9 +612,18 @@
       font-family: monospace;
       font-weight: 700;
     }
-    .legend-item.target { color: #38bdf8; }
-    .legend-item.od { color: #78e4d0; }
-    .legend-item.os { color: #f472b6; }
+
+    .legend-item.target {
+      color: #38bdf8;
+    }
+
+    .legend-item.od {
+      color: #78e4d0;
+    }
+
+    .legend-item.os {
+      color: #f472b6;
+    }
 
     .sim-wave-canvas {
       width: 100%;
@@ -506,6 +638,7 @@
     .mode-report .deck-slide-frame {
       margin-bottom: 24px;
     }
+
     .mode-report .report-details {
       display: block;
       background: rgba(18, 22, 50, 0.85);
@@ -514,315 +647,364 @@
       padding: 24px;
       margin-bottom: 48px;
     }
+
     .mode-deck .report-details {
       display: none;
     }
   </style>
 </head>
+
 <body>
-<div class="pres-progress-bar" id="presProgressBar" role="progressbar" aria-valuemin="1" aria-valuemax="14" aria-valuenow="1"></div>
+  <div class="pres-progress-bar" id="presProgressBar" role="progressbar" aria-valuemin="1" aria-valuemax="14"
+    aria-valuenow="1"></div>
 
-<header class="studio-nav">
-  <a class="wordmark" href="./index.html">◉ NETRA<span>SCREEN</span><small>MINDMESH · TKM CENTENARY PUBLIC SCHOOL, KOLLAM · YIP 9.0</small></a>
-  <div class="pres-header-actions">
-    <div class="pres-mode-toggle" role="group" aria-label="Presentation View Mode">
-      <button type="button" class="pres-mode-btn active" id="btnModeDeck" data-project-copy="modeSlide">📽️ Slide Deck</button>
-      <button type="button" class="pres-mode-btn" id="btnModeReport" data-project-copy="modeReport">📑 Executive Report</button>
-    </div>
-    <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" class="pres-fullscreen-btn" title="Download official 14-slide PDF deck" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">📥 <span data-project-copy="deckLink">Download Deck (14 Slides · PDF)</span></a>
-    <button type="button" class="pres-timer-pill" id="presTimerBtn" title="Click to start/pause pitch rehearsal timer">
-      ⏱️ <span id="presTimerVal">00:00</span>
-    </button>
-    <button type="button" class="pres-fullscreen-btn" id="btnFullscreen" title="Toggle full-screen presentation mode" data-project-copy="btnFullscreen">⛶ Fullscreen</button>
-    <button type="button" class="pres-fullscreen-btn" id="presentationLang" aria-label="Switch presentation language">മലയാളം</button>
-    <a href="./index.html" class="primary" style="padding: 8px 14px; min-height: 36px; font-size: 13px; text-decoration: none;" data-project-copy="openResearch">Open Tool</a>
-  </div>
-</header>
-
-<main class="presentation-page mode-deck" id="presMain">
-
-  <div class="pres-hero-strip">
-    <h1 data-project-copy="presHeroH1">Show the idea — NETRA-SCREEN YIP 9.0 Pitch</h1>
-    <p data-project-copy="presScopeLine">Research prototype only — no clinical accuracy claimed yet. Diagnostic release remains locked pending clinical validation.</p>
-  </div>
-
-  <!-- ==================== SLIDE 1 ==================== -->
-  <section class="pres-slide active" data-slide="1" id="slide-1">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-1.png" alt="Slide 1: NETRA-SCREEN Cover" class="deck-slide-img" loading="eager">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="presentationTitle">NETRA-SCREEN: Privacy-First Vision Pre-Screening for Children</h2>
-      <p data-project-copy="presentationBody">Turning any smartphone into an accessible, on-device AI screening tool. Created by Team MindMesh (TKM Centenary Public School, Kollam) for YIP 9.0.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 2 ==================== -->
-  <section class="pres-slide" data-slide="2" id="slide-2">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-2.png" alt="Slide 2: The Silent Crisis in Pediatric Vision" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="crisisTitle">The Silent Crisis in Pediatric Vision</h2>
-      <p data-project-copy="crisisSubtitle">A massive screening gap in India threatens millions of children with permanent, preventable vision loss.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 3 ==================== -->
-  <section class="pres-slide" data-slide="3" id="slide-3">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-3.png" alt="Slide 3: The Accessibility Bottleneck" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="bottleneckTitle">The Accessibility Bottleneck</h2>
-      <p data-project-copy="bottleneckSubtitle">Why traditional methods fail to reach the children who need them most.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 4 ==================== -->
-  <section class="pres-slide" data-slide="4" id="slide-4">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-4.png" alt="Slide 4: Democratizing Care via Smartphone AI" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="solutionTitle">Democratizing Care via Smartphone AI</h2>
-      <p data-project-copy="solutionSubtitle">A 3-step child-friendly pipeline that runs on ordinary smartphones with zero specialized hardware.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 5: DYNAMIC TRACKING & LIVE SIMULATOR ==================== -->
-  <section class="pres-slide" data-slide="5" id="slide-5">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-5.png" alt="Slide 5: Dynamic Tracking vs. Static Checking" class="deck-slide-img" loading="lazy">
-      <button type="button" class="sim-toggle-pill" id="btnToggleSim" title="Open live interactive eye-tracking demo">
-        <span>🎮</span> <span>Try Live Simulator</span>
+  <header class="studio-nav">
+    <a class="wordmark" href="./index.html">◉ NETRA<span>SCREEN</span><small>KGDTIS 2026 · YIP PAVILION | TEAM MINDMESH
+        · TKM CPS</small></a>
+    <div class="pres-header-actions">
+      <div class="pres-mode-toggle" role="group" aria-label="Presentation View Mode">
+        <button type="button" class="pres-mode-btn active" id="btnModeDeck" data-project-copy="modeSlide">📽️ Slide
+          Deck</button>
+        <button type="button" class="pres-mode-btn" id="btnModeReport" data-project-copy="modeReport">📑 Executive
+          Report</button>
+      </div>
+      <a href="./docs/NETRA_SCREEN_MindMesh.pdf" download="NETRA_SCREEN_MindMesh.pdf" class="pres-fullscreen-btn"
+        title="Download official 14-slide PDF deck"
+        style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">📥 <span
+          data-project-copy="deckLink">Download Deck (14 Slides · PDF)</span></a>
+      <button type="button" class="pres-timer-pill" id="presTimerBtn"
+        title="Click to start/pause pitch rehearsal timer">
+        ⏱️ <span id="presTimerVal">00:00</span>
       </button>
+      <button type="button" class="pres-fullscreen-btn" id="btnFullscreen" title="Toggle full-screen presentation mode"
+        data-project-copy="btnFullscreen">⛶ Fullscreen</button>
+      <button type="button" class="pres-fullscreen-btn" id="presentationLang"
+        aria-label="Switch presentation language">മലയാളം</button>
+      <a href="./index.html" class="primary"
+        style="padding: 8px 14px; min-height: 36px; font-size: 13px; text-decoration: none;"
+        data-project-copy="openResearch">Open Tool</a>
     </div>
-    <div class="report-details">
-      <h2 data-project-copy="dynamicTitle">Dynamic Tracking vs. Static Checking</h2>
-      <p data-project-copy="dynamicSubtitle">Functional binocular pursuit versus frozen-in-time visual acuity charts.</p>
-    </div>
-  </section>
+  </header>
 
-  <!-- ==================== SLIDE 6 ==================== -->
-  <section class="pres-slide" data-slide="6" id="slide-6">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-6.png" alt="Slide 6: Latest Project Updates (Android 0.3.1 & Web 0.5.1)" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="updatesDeckTitle">What’s New: From Early Prototype to Cross-Platform System</h2>
-      <p data-project-copy="updatesDeckSubtitle">Added Cross-Platform Offline Web PWA v0.5.1, Android v0.3.1 Kid-Friendly UI Refresh, Hidden Camera Child Mode, EN &amp; ML Voice Cues, Live Setup Inspector, 4-Task Trajectory Plots, Triage Priority Guidance, 20-20-20 Eye Rest, and the camera-free YIP Walkthrough APK.</p>
-    </div>
-  </section>
+  <main class="presentation-page mode-deck" id="presMain">
 
-  <!-- ==================== SLIDE 7 ==================== -->
-  <section class="pres-slide" data-slide="7" id="slide-7">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-7.png" alt="Slide 7: The 5-Stage Offline Engine" class="deck-slide-img" loading="lazy">
+    <div class="pres-hero-strip">
+      <h1 data-project-copy="presHeroH1">Show the idea — NETRA-SCREEN YIP 9.0 Pitch</h1>
+      <p data-project-copy="presScopeLine">Research prototype only — no clinical accuracy claimed yet. Diagnostic
+        release remains locked pending clinical validation.</p>
     </div>
-    <div class="report-details">
-      <h2 data-project-copy="engineTitle">Built for Reliability: The 5-Stage Offline Engine</h2>
-      <p data-project-copy="engineSubtitle">Consent &amp; Camera → MediaPipe 478 Landmarks → Automated Quality Gate → Math, Plots &amp; Triage → AES-GCM Encrypted Report across Android Kotlin and Web WASM.</p>
-    </div>
-  </section>
 
-  <!-- ==================== SLIDE 8 ==================== -->
-  <section class="pres-slide" data-slide="8" id="slide-8">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-8.png" alt="Slide 8: Comparing NETRA-SCREEN with Existing Approaches" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="matrixTitle">Comparing NETRA-SCREEN with Existing Approaches</h2>
-      <p data-project-copy="matrixSubtitle">Direct head-to-head comparison against clinical devices and existing letter-chart apps.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 9 ==================== -->
-  <section class="pres-slide" data-slide="9" id="slide-9">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-9.png" alt="Slide 9: Absolute Privacy by Design" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="privacyDeckTitle">Zero Videos Stored. 100% On-Device Control.</h2>
-      <p data-project-copy="privacyDeckSubtitle">Protecting pediatric camera feeds through zero-retention offline architecture.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 10 ==================== -->
-  <section class="pres-slide" data-slide="10" id="slide-10">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-10.png" alt="Slide 10: Responsible Medical AI: Radical Honesty" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="honestyTitle">Radical Honesty: A Pre-Screening Aid, Never a False Doctor</h2>
-      <p data-project-copy="honestySubtitle">Transparent scientific boundaries and Research Triage Priority Guidance — never diagnosing or clearing eye disease.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 11 ==================== -->
-  <section class="pres-slide" data-slide="11" id="slide-11">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-11.png" alt="Slide 11: Verified Engineering &amp; Clinical Validation Roadmap" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="roadmapDeckTitle">Engineering Verified Today · Clinical Validation Next</h2>
-      <p data-project-copy="roadmapDeckSubtitle">60 Android JVM tests and 17 Playwright checks pass today, leading into AAPOS-aligned usability and clinical validation.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 12 ==================== -->
-  <section class="pres-slide" data-slide="12" id="slide-12">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-12.png" alt="Slide 12: Team MindMesh" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="teamTitle">The Young Innovators Behind NETRA-SCREEN</h2>
-      <p data-project-copy="teamSubtitle">Team MindMesh | YIP 9.0 Category 1 · TKM Centenary Public School, Kollam</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 13 ==================== -->
-  <section class="pres-slide" data-slide="13" id="slide-13">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-13.png" alt="Slide 13: With Heartfelt Gratitude" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="gratitudeTitle">With Heartfelt Gratitude</h2>
-      <p data-project-copy="gratitudeSubtitle">Acknowledging Mentor Aswathy P and TKM Centenary Public School, Kollam.</p>
-    </div>
-  </section>
-
-  <!-- ==================== SLIDE 14 ==================== -->
-  <section class="pres-slide" data-slide="14" id="slide-14">
-    <div class="deck-slide-frame">
-      <img src="deck-slides/slide-14.png" alt="Slide 14: The Vision &amp; Our Ask" class="deck-slide-img" loading="lazy">
-    </div>
-    <div class="report-details">
-      <h2 data-project-copy="visionTitle">Zero Extra Hardware. Infinite Grassroots Impact.</h2>
-      <p data-project-copy="visionSubtitle">Empowering ASHA workers and school nurses using existing phones — seeking YIP 9.0 mentorship and clinical partners.</p>
-    </div>
-  </section>
-
-</main>
-
-<!-- Interactive Simulator Modal Dialog (Accessible from Slide 5 or header) -->
-<div class="sim-modal-overlay" id="simModal" style="display:none;" role="dialog" aria-modal="true" aria-label="Interactive Eye-Tracking Simulation">
-  <div class="sim-modal-card">
-    <button type="button" class="sim-close-btn" id="btnSimClose" aria-label="Close Simulator">✕</button>
-    <div class="sim-container">
-      <div class="sim-header">
-        <div>
-          <h3 class="sim-title" data-project-copy="simTitle">Interactive Live Eye-Tracking Simulation</h3>
-          <p class="sim-desc" data-project-copy="simDesc">Select any test trajectory below to observe real-time dual-iris tracking, pursuit waveform, and Pearson correlation:</p>
-        </div>
-        <div class="sim-controls">
-          <button type="button" class="sim-btn active" data-sim="horiz" id="btnSimHoriz" data-project-copy="simBtnHoriz">Horizontal Pursuit</button>
-          <button type="button" class="sim-btn" data-sim="vert" id="btnSimVert" data-project-copy="simBtnVert">Vertical Pursuit</button>
-          <button type="button" class="sim-btn" data-sim="diag" id="btnSimDiag" data-project-copy="simBtnDiag">Diagonal Pursuit</button>
-          <button type="button" class="sim-btn" data-sim="fix" id="btnSimFix" data-project-copy="simBtnFix">Fixation Hold</button>
-        </div>
+    <!-- ==================== SLIDE 1 ==================== -->
+    <section class="pres-slide active" data-slide="1" id="slide-1">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-1.png" alt="Slide 1: NETRA-SCREEN Cover" class="deck-slide-img" loading="eager">
       </div>
+      <div class="report-details">
+        <h2 data-project-copy="presentationTitle">NETRA-SCREEN: Privacy-First Vision Pre-Screening for Children</h2>
+        <p data-project-copy="presentationBody">Turning any smartphone into an accessible, on-device AI screening tool.
+          Created by Team MindMesh (TKM Centenary Public School, Kollam) for YIP 9.0.</p>
+      </div>
+    </section>
 
-      <div class="sim-stage">
-        <!-- Live Tracking Viewport -->
-        <div class="sim-eyes-box" id="simEyesBox" aria-label="Simulated Child Face and Eye Tracking Stage">
-          <!-- Real-Time AI HUD Badges -->
-          <div class="sim-hud-badge top-left">
-            <span class="hud-dot pulsing"></span> MEDIAPIPE IRIS TRACKER · 60 FPS
+    <!-- ==================== SLIDE 2 ==================== -->
+    <section class="pres-slide" data-slide="2" id="slide-2">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-2.png" alt="Slide 2: The Silent Crisis in Pediatric Vision" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="crisisTitle">The Silent Crisis in Pediatric Vision</h2>
+        <p data-project-copy="crisisSubtitle">A massive screening gap in India threatens millions of children with
+          permanent, preventable vision loss.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 3 ==================== -->
+    <section class="pres-slide" data-slide="3" id="slide-3">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-3.png" alt="Slide 3: The Accessibility Bottleneck" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="bottleneckTitle">The Accessibility Bottleneck</h2>
+        <p data-project-copy="bottleneckSubtitle">Why traditional methods fail to reach the children who need them most.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4 ==================== -->
+    <section class="pres-slide" data-slide="4" id="slide-4">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-4.png" alt="Slide 4: Democratizing Care via Smartphone AI" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="solutionTitle">Democratizing Care via Smartphone AI</h2>
+        <p data-project-copy="solutionSubtitle">A 3-step child-friendly pipeline that runs on ordinary smartphones with
+          zero specialized hardware.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: DYNAMIC TRACKING & LIVE SIMULATOR ==================== -->
+    <section class="pres-slide" data-slide="5" id="slide-5">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-5.png" alt="Slide 5: Dynamic Tracking vs. Static Checking" class="deck-slide-img"
+          loading="lazy">
+        <button type="button" class="sim-toggle-pill" id="btnToggleSim" title="Open live interactive eye-tracking demo">
+          <span>🎮</span> <span>Try Live Simulator</span>
+        </button>
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="dynamicTitle">Dynamic Tracking vs. Static Checking</h2>
+        <p data-project-copy="dynamicSubtitle">Functional binocular pursuit versus frozen-in-time visual acuity charts.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6 ==================== -->
+    <section class="pres-slide" data-slide="6" id="slide-6">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-6.png" alt="Slide 6: Latest Project Updates (Android 0.3.1 & Web 0.5.1)"
+          class="deck-slide-img" loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="updatesDeckTitle">What’s New: From Early Prototype to Cross-Platform System</h2>
+        <p data-project-copy="updatesDeckSubtitle">Added Cross-Platform Offline Web PWA v0.5.1, Android v0.3.1
+          Kid-Friendly UI Refresh, Hidden Camera Child Mode, EN &amp; ML Voice Cues, Live Setup Inspector, 4-Task
+          Trajectory Plots, Triage Priority Guidance, 20-20-20 Eye Rest, and the camera-free YIP Walkthrough APK.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7 ==================== -->
+    <section class="pres-slide" data-slide="7" id="slide-7">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-7.png" alt="Slide 7: The 5-Stage Offline Engine" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="engineTitle">Built for Reliability: The 5-Stage Offline Engine</h2>
+        <p data-project-copy="engineSubtitle">Consent &amp; Camera → MediaPipe 478 Landmarks → Automated Quality Gate →
+          Math, Plots &amp; Triage → AES-GCM Encrypted Report across Android Kotlin and Web WASM.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8 ==================== -->
+    <section class="pres-slide" data-slide="8" id="slide-8">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-8.png" alt="Slide 8: Comparing NETRA-SCREEN with Existing Approaches"
+          class="deck-slide-img" loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="matrixTitle">Comparing NETRA-SCREEN with Existing Approaches</h2>
+        <p data-project-copy="matrixSubtitle">Direct head-to-head comparison against clinical devices and existing
+          letter-chart apps.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9 ==================== -->
+    <section class="pres-slide" data-slide="9" id="slide-9">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-9.png" alt="Slide 9: Absolute Privacy by Design" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="privacyDeckTitle">Zero Videos Stored. 100% On-Device Control.</h2>
+        <p data-project-copy="privacyDeckSubtitle">Protecting pediatric camera feeds through zero-retention offline
+          architecture.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10 ==================== -->
+    <section class="pres-slide" data-slide="10" id="slide-10">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-10.png" alt="Slide 10: Responsible Medical AI: Radical Honesty"
+          class="deck-slide-img" loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="honestyTitle">Radical Honesty: A Pre-Screening Aid, Never a False Doctor</h2>
+        <p data-project-copy="honestySubtitle">Transparent scientific boundaries and Research Triage Priority Guidance —
+          never diagnosing or clearing eye disease.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11 ==================== -->
+    <section class="pres-slide" data-slide="11" id="slide-11">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-11.png" alt="Slide 11: Verified Engineering &amp; Clinical Validation Roadmap"
+          class="deck-slide-img" loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="roadmapDeckTitle">Engineering Verified Today · Clinical Validation Next</h2>
+        <p data-project-copy="roadmapDeckSubtitle">60 Android JVM tests and 17 Playwright checks pass today, leading
+          into AAPOS-aligned usability and clinical validation.</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12 ==================== -->
+    <section class="pres-slide" data-slide="12" id="slide-12">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-12.png" alt="Slide 12: Team MindMesh" class="deck-slide-img" loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="teamTitle">The Young Innovators Behind NETRA-SCREEN</h2>
+        <p data-project-copy="teamSubtitle">Team MindMesh | YIP 9.0 Category 1 · TKM Centenary Public School, Kollam</p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13 ==================== -->
+    <section class="pres-slide" data-slide="13" id="slide-13">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-13.png" alt="Slide 13: With Heartfelt Gratitude" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="gratitudeTitle">With Heartfelt Gratitude</h2>
+        <p data-project-copy="gratitudeSubtitle">Acknowledging Mentor Aswathy P and TKM Centenary Public School, Kollam.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14 ==================== -->
+    <section class="pres-slide" data-slide="14" id="slide-14">
+      <div class="deck-slide-frame">
+        <img src="deck-slides/slide-14.png" alt="Slide 14: The Vision &amp; Our Ask" class="deck-slide-img"
+          loading="lazy">
+      </div>
+      <div class="report-details">
+        <h2 data-project-copy="visionTitle">Zero Extra Hardware. Infinite Grassroots Impact.</h2>
+        <p data-project-copy="visionSubtitle">Empowering ASHA workers and school nurses using existing phones — seeking
+          YIP 9.0 mentorship and clinical partners.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Simulator Modal Dialog (Accessible from Slide 5 or header) -->
+  <div class="sim-modal-overlay" id="simModal" style="display:none;" role="dialog" aria-modal="true"
+    aria-label="Interactive Eye-Tracking Simulation">
+    <div class="sim-modal-card">
+      <button type="button" class="sim-close-btn" id="btnSimClose" aria-label="Close Simulator">✕</button>
+      <div class="sim-container">
+        <div class="sim-header">
+          <div>
+            <h3 class="sim-title" data-project-copy="simTitle">Interactive Live Eye-Tracking Simulation</h3>
+            <p class="sim-desc" data-project-copy="simDesc">Select any test trajectory below to observe real-time
+              dual-iris tracking, pursuit waveform, and Pearson correlation:</p>
           </div>
-          <div class="sim-hud-badge top-right">
-            <span>BINOCULAR PURSUIT: ACTIVE</span>
-          </div>
-
-          <!-- Animated Flying Stimulus Target -->
-          <div class="sim-target-indicator" id="simTarget" style="left:50%; top:50%;">
-            <div class="target-butterfly">🦋</div>
-            <div class="target-ping-ring"></div>
-            <span class="target-coord" id="targetCoord">T: (50.0%, 50.0%)</span>
-          </div>
-
-          <!-- Child Eyes Pair Container -->
-          <div class="sim-face-tracker-frame">
-            <div class="sim-eye-unit">
-              <div class="sim-eye-label">RIGHT EYE (OD)</div>
-              <div class="sim-eye-socket" id="socketRight">
-                <div class="sim-iris" id="simIrisRight">
-                  <div class="sim-pupil"></div>
-                  <div class="sim-pupil-glint"></div>
-                  <div class="sim-landmark-crosshair"></div>
-                </div>
-              </div>
-              <div class="sim-iris-coord" id="coordOD">OD: Δx +0.0px, Δy +0.0px</div>
-            </div>
-
-            <div class="sim-bridge-marker">
-              <div class="bridge-line"></div>
-              <span class="bridge-label">IPD 54mm</span>
-            </div>
-
-            <div class="sim-eye-unit">
-              <div class="sim-eye-label">LEFT EYE (OS)</div>
-              <div class="sim-eye-socket" id="socketLeft">
-                <div class="sim-iris" id="simIrisLeft">
-                  <div class="sim-pupil"></div>
-                  <div class="sim-pupil-glint"></div>
-                  <div class="sim-landmark-crosshair"></div>
-                </div>
-              </div>
-              <div class="sim-iris-coord" id="coordOS">OS: Δx +0.0px, Δy +0.0px</div>
-            </div>
-          </div>
-
-          <div class="sim-interactive-hint">
-            💡 Move your mouse or drag your touch here to steer the butterfly interactively!
+          <div class="sim-controls">
+            <button type="button" class="sim-btn active" data-sim="horiz" id="btnSimHoriz"
+              data-project-copy="simBtnHoriz">Horizontal Pursuit</button>
+            <button type="button" class="sim-btn" data-sim="vert" id="btnSimVert"
+              data-project-copy="simBtnVert">Vertical Pursuit</button>
+            <button type="button" class="sim-btn" data-sim="diag" id="btnSimDiag"
+              data-project-copy="simBtnDiag">Diagonal Pursuit</button>
+            <button type="button" class="sim-btn" data-sim="fix" id="btnSimFix" data-project-copy="simBtnFix">Fixation
+              Hold</button>
           </div>
         </div>
 
-        <!-- Real-Time Metrics & Dual Waveform -->
-        <div class="sim-metrics-box">
-          <div class="sim-metric-card">
-            <div class="sim-metric-label" data-project-copy="simMetricSync">Iris Pursuit Symmetry</div>
-            <div class="sim-metric-val" id="metricSyncVal">98.4% (Pearson r: 0.98)</div>
-          </div>
-          <div class="sim-metric-card">
-            <div class="sim-metric-label" data-project-copy="simMetricStability">Fixation Stability</div>
-            <div class="sim-metric-val" id="metricStabVal">High (Hold error &lt; 1.1px)</div>
-          </div>
-          <div class="sim-metric-card">
-            <div class="sim-metric-label" data-project-copy="simMetricStatus">Tracking Status</div>
-            <div class="sim-metric-val sim-metric-status" id="metricStatusVal">✓ Normal Parallel Alignment</div>
-            
-            <div class="sim-waveform-wrap">
-              <div class="sim-wave-header">
-                <span class="wave-title">Real-time Pursuit Waveform</span>
-                <div class="wave-legend">
-                  <span class="legend-item target">— Target</span>
-                  <span class="legend-item od">— OD</span>
-                  <span class="legend-item os">— OS</span>
+        <div class="sim-stage">
+          <!-- Live Tracking Viewport -->
+          <div class="sim-eyes-box" id="simEyesBox" aria-label="Simulated Child Face and Eye Tracking Stage">
+            <!-- Real-Time AI HUD Badges -->
+            <div class="sim-hud-badge top-left">
+              <span class="hud-dot pulsing"></span> MEDIAPIPE IRIS TRACKER · 60 FPS
+            </div>
+            <div class="sim-hud-badge top-right">
+              <span>BINOCULAR PURSUIT: ACTIVE</span>
+            </div>
+
+            <!-- Animated Flying Stimulus Target -->
+            <div class="sim-target-indicator" id="simTarget" style="left:50%; top:50%;">
+              <div class="target-butterfly">🦋</div>
+              <div class="target-ping-ring"></div>
+              <span class="target-coord" id="targetCoord">T: (50.0%, 50.0%)</span>
+            </div>
+
+            <!-- Child Eyes Pair Container -->
+            <div class="sim-face-tracker-frame">
+              <div class="sim-eye-unit">
+                <div class="sim-eye-label">RIGHT EYE (OD)</div>
+                <div class="sim-eye-socket" id="socketRight">
+                  <div class="sim-iris" id="simIrisRight">
+                    <div class="sim-pupil"></div>
+                    <div class="sim-pupil-glint"></div>
+                    <div class="sim-landmark-crosshair"></div>
+                  </div>
                 </div>
+                <div class="sim-iris-coord" id="coordOD">OD: Δx +0.0px, Δy +0.0px</div>
               </div>
-              <canvas class="sim-wave-canvas" id="simWaveCanvas" width="340" height="60"></canvas>
+
+              <div class="sim-bridge-marker">
+                <div class="bridge-line"></div>
+                <span class="bridge-label">IPD 54mm</span>
+              </div>
+
+              <div class="sim-eye-unit">
+                <div class="sim-eye-label">LEFT EYE (OS)</div>
+                <div class="sim-eye-socket" id="socketLeft">
+                  <div class="sim-iris" id="simIrisLeft">
+                    <div class="sim-pupil"></div>
+                    <div class="sim-pupil-glint"></div>
+                    <div class="sim-landmark-crosshair"></div>
+                  </div>
+                </div>
+                <div class="sim-iris-coord" id="coordOS">OS: Δx +0.0px, Δy +0.0px</div>
+              </div>
+            </div>
+
+            <div class="sim-interactive-hint">
+              💡 Move your mouse or drag your touch here to steer the butterfly interactively!
+            </div>
+          </div>
+
+          <!-- Real-Time Metrics & Dual Waveform -->
+          <div class="sim-metrics-box">
+            <div class="sim-metric-card">
+              <div class="sim-metric-label" data-project-copy="simMetricSync">Iris Pursuit Symmetry</div>
+              <div class="sim-metric-val" id="metricSyncVal">98.4% (Pearson r: 0.98)</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-label" data-project-copy="simMetricStability">Fixation Stability</div>
+              <div class="sim-metric-val" id="metricStabVal">High (Hold error &lt; 1.1px)</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-label" data-project-copy="simMetricStatus">Tracking Status</div>
+              <div class="sim-metric-val sim-metric-status" id="metricStatusVal">✓ Normal Parallel Alignment</div>
+
+              <div class="sim-waveform-wrap">
+                <div class="sim-wave-header">
+                  <span class="wave-title">Real-time Pursuit Waveform</span>
+                  <div class="wave-legend">
+                    <span class="legend-item target">— Target</span>
+                    <span class="legend-item od">— OD</span>
+                    <span class="legend-item os">— OS</span>
+                  </div>
+                </div>
+                <canvas class="sim-wave-canvas" id="simWaveCanvas" width="340" height="60"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ==================== FLOATING KEYNOTE BOTTOM DOCK ==================== -->
-<aside class="pres-dock" id="presDock" aria-label="Slide Deck Controls">
-  <button type="button" class="pres-dock-btn" id="btnPrevSlide" data-project-copy="btnPrev">◀ Previous</button>
-  <div class="pres-dots-rail" id="presDotsRail" role="tablist" aria-label="Slide Indicators"></div>
-  <div class="pres-counter" id="presCounter">01 / 14</div>
-  <button type="button" class="pres-dock-btn" id="btnNextSlide" data-project-copy="btnNext">Next ▶</button>
-  <span class="pres-shortcut-hint" data-project-copy="slideShortcuts">Navigate with [←] [→] or [Space] · [F] Fullscreen</span>
-</aside>
+  <!-- ==================== FLOATING KEYNOTE BOTTOM DOCK ==================== -->
+  <aside class="pres-dock" id="presDock" aria-label="Slide Deck Controls">
+    <button type="button" class="pres-dock-btn" id="btnPrevSlide" data-project-copy="btnPrev">◀ Previous</button>
+    <div class="pres-dots-rail" id="presDotsRail" role="tablist" aria-label="Slide Indicators"></div>
+    <div class="pres-counter" id="presCounter">01 / 14</div>
+    <button type="button" class="pres-dock-btn" id="btnNextSlide" data-project-copy="btnNext">Next ▶</button>
+    <span class="pres-shortcut-hint" data-project-copy="slideShortcuts">Navigate with [←] [→] or [Space] · [F]
+      Fullscreen</span>
+  </aside>
 
-<footer class="studio-footer">
-  NETRA-SCREEN / MINDMESH · YIP 9.0 Research Project · TKM Centenary Public School, Kollam
-</footer>
+  <footer class="studio-footer">
+    NETRA-SCREEN / MINDMESH · YIP 9.0 Research Project · TKM Centenary Public School, Kollam
+  </footer>
 
-<script type="module" src="presentation.js"></script>
+  <script type="module" src="presentation.js"></script>
 </body>
+
 </html>
