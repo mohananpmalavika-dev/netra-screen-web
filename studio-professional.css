@@ -24,7 +24,7 @@
  .signature-system .signature-hero .hero-links{gap:11px;margin-top:30px}
  .signature-system .primary,.signature-system.research-app .hero-links .btn-primary,.signature-system #btnStartLive{background-color:#efb396;background-image:linear-gradient(110deg,#f3c3a3,#df947b);color:#2b1916;border-color:#ffcfb1;border-radius:5px;box-shadow:0 6px 26px #e49b7719;transition:background .2s,transform .2s,box-shadow .2s}
  .signature-system .primary:hover,.signature-system.research-app .hero-links .btn-primary:hover,.signature-system #btnStartLive:hover{background:#ffcfb1;color:#2b1916;transform:translateY(-2px);box-shadow:0 8px 28px #e49b772b}
- .signature-system .signature-hero .hero-links .btn-secondary{background:#302126;color:#eddbd2;border-color:#c0968065;border-radius:5px;box-shadow:none}
+ .signature-system .secondary,.signature-system .signature-hero .hero-links .btn-secondary{background:#302126;color:#eddbd2;border-color:#c0968065;border-radius:5px;box-shadow:none}
  .signature-system .signature-hero .hero-links .btn-secondary:hover{background:#473038;border-color:#d3af91;transform:translateY(-2px)}
  .signature-system .hero-overview-link{color:#dfb99b;font-size:12px}
  .signature-system .hero-research-scope{max-width:520px;line-height:1.8!important;color:#b9a69f!important}
@@ -54,7 +54,7 @@
  .signature-system #projectOverview .evidence-item{padding:24px 0;border-color:#8ba6b12e}
  .signature-system #projectOverview .evidence-item h3{font-size:22px;line-height:1.4;color:#e3bea0;margin-bottom:12px}
  .signature-system .section-kicker,.signature-system .eyebrow{color:var(--studio-amber)}
- .signature-system .session-panel,.signature-system .research-sidebar,.signature-system .research-resource,.signature-system .activity-card,.signature-system .activity-card[data-kind],.signature-system .panel{background-color:#2c1e24;background-image:linear-gradient(145deg,#33222a,#211b20);border-color:var(--studio-border);border-radius:8px;box-shadow:inset 0 1px #f3d2ad12}
+ .signature-system .session-panel,.signature-system .research-sidebar,.signature-system .research-resource,.signature-system .activity-card,.signature-system .activity-card[data-kind],.signature-system .exercise-panel,.signature-system .reminder-panel,.signature-system .panel{background-color:#2c1e24;background-image:linear-gradient(145deg,#33222a,#211b20);border-color:var(--studio-border);border-radius:8px;box-shadow:inset 0 1px #f3d2ad12}
  .signature-system .section-title,.signature-system .research-resource h3{color:#f1e4d8}
  .signature-system .section-copy,.signature-system .research-sidebar p{color:#c7b9b3}
  .signature-system .welcome-lounge{background:#2a1b22;border-color:var(--studio-border);border-radius:8px;box-shadow:none;padding:25px 28px}
