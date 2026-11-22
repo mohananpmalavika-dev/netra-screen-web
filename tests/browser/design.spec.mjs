@@ -15,7 +15,7 @@ test('YIP research stays home, checked consent never auto-starts camera, present
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{window.cameraRequests=0;navigator.mediaDevices.getUserMedia=()=>{window.cameraRequests++;return Promise.reject(new Error('Unexpected camera start'));};});
   for(const route of ['/','/index.html','/tracking.html']){
-    await page.goto(route);await expect(page.locator('h1')).toContainText('Help eye-coordination concerns');await expect(page.locator('.hero-badge')).toContainText('OUR PURPOSE');await expect(page.locator('#consentCheckbox')).toBeChecked();await expect(page.locator('#btnStartLive')).toBeVisible();expect(await page.evaluate(()=>window.cameraRequests)).toBe(0);
+    await page.goto(route);await expect(page.locator('h1')).toContainText('Earlier attention to');await expect(page.locator('.hero-badge')).toContainText('OUR PURPOSE');await expect(page.locator('#consentCheckbox')).toBeChecked();await expect(page.locator('#btnStartLive')).toBeVisible();expect(await page.evaluate(()=>window.cameraRequests)).toBe(0);
   }
   await page.locator('[data-comp="fish"]').focus();await page.keyboard.press('Enter');await expect(page.locator('[data-comp="fish"]')).toHaveAttribute('aria-pressed','true');
   await page.locator('#btnNavPresentation').click();await expect(page).toHaveURL(/presentation.html$/);await expect(page.locator('h1')).toContainText('Investor overview');await expect(page.locator('body')).toContainText(/clinical accuracy/i);

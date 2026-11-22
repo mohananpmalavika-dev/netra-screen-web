@@ -35,7 +35,7 @@ void main(){
     material*=1.-smoothstep(.49,.57,radius)*.86;
     if(radius<.18)material=vec3(.003,.008,.017);
    }
-  }else{material=hit.y<2.5?vec3(.08,.91,.81):vec3(.45,.66,.84);}
+  }else{material=hit.y<2.5?vec3(.24,.52,.57):vec3(.39,.54,.65);}
   vec3 light=normalize(vec3(-2.,3.,4.));float diffuse=max(dot(n,light),0.);
   float specular=pow(max(dot(reflect(-light,n),-rd),0.),85.);
   float rim=pow(1.-max(dot(n,-rd),0.),3.);
@@ -59,17 +59,17 @@ function initStage(stage){
  gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
  const location=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,2,gl.FLOAT,false,0,0);
  const uniforms=Object.fromEntries(['resolution','pointer','gaze','time'].map(name=>[name,gl.getUniformLocation(program,name)]));
- const reduced=matchMedia('(prefers-reduced-motion: reduce)');let gx=0,gy=0,x=0,y=0,visible=true,frame=0,last=0,start=performance.now(),lost=false;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let gx=0,gy=0,x=0,y=0,visible=true,frame=0,last=0,start=performance.now(),lost=false,interacted=0;
  function draw(now=performance.now()){
   if(lost)return;const box=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,1,720/Math.max(1,box.width),620/Math.max(1,box.height));
   const width=Math.max(1,Math.round(box.width*ratio)),height=Math.max(1,Math.round(box.height*ratio));
   if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;gl.viewport(0,0,width,height);}
   gl.uniform2f(uniforms.resolution,width,height);gl.uniform2f(uniforms.pointer,x,y);gl.uniform2f(uniforms.gaze,gx,gy);gl.uniform1f(uniforms.time,reduced.matches?0:(now-start)/1000);gl.drawArrays(gl.TRIANGLES,0,6);
  }
- function animate(now){frame=0;if(!visible||document.hidden||reduced.matches||lost)return;if(now-last>40){draw(now);last=now;}frame=requestAnimationFrame(animate);}
+ function animate(now){frame=0;if(!visible||document.hidden||reduced.matches||lost||stage.dataset.eyeControl==='on')return;const interval=now-interacted<900?40:100;if(now-last>interval){draw(now);last=now;}frame=requestAnimationFrame(animate);}
  function resume(){if(!frame&&visible&&!document.hidden&&!reduced.matches&&!lost)frame=requestAnimationFrame(animate);}
- function move(nextX,nextY){x=Math.max(-1,Math.min(1,nextX));y=Math.max(-1,Math.min(1,nextY));stage.style.setProperty('--scene-x',`${x*8}deg`);stage.style.setProperty('--scene-y',`${-y*6}deg`);if(reduced.matches)draw();resume();}
- stage.addEventListener('netra:gaze',event=>{gx=event.detail.x;gy=event.detail.y;stage.dataset.gazeX=gx.toFixed(3);stage.dataset.gazeY=gy.toFixed(3);draw();});
+ function move(nextX,nextY){interacted=performance.now();x=Math.max(-1,Math.min(1,nextX));y=Math.max(-1,Math.min(1,nextY));stage.style.setProperty('--scene-x',`${x*8}deg`);stage.style.setProperty('--scene-y',`${-y*6}deg`);if(reduced.matches)draw();resume();}
+ stage.addEventListener('netra:gaze',event=>{gx=event.detail.x;gy=event.detail.y;stage.dataset.gazeX=gx.toFixed(3);stage.dataset.gazeY=gy.toFixed(3);draw();resume();});
  stage.addEventListener('pointermove',event=>{if(stage.dataset.eyeControl==='on')return;const box=stage.getBoundingClientRect();move((event.clientX-box.left)/box.width*2-1,(event.clientY-box.top)/box.height*2-1);});
  stage.addEventListener('pointerleave',()=>move(0,0));
  canvas.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(event.key)){event.preventDefault();event.stopPropagation();if(event.key==='Home')move(0,0);else move(x+(event.key==='ArrowLeft'?-.2:event.key==='ArrowRight'?.2:0),y+(event.key==='ArrowUp'?-.2:event.key==='ArrowDown'?.2:0));}});

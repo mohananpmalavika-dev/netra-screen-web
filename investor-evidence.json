@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "reviewDate": "22 Nov 2026",
-  "verifiedAt": "2026-11-22T10:28:04.924Z",
+  "verifiedAt": "2026-11-22T12:34:01.181Z",
   "scope": "Web engineering verification; no physical-device or clinical accuracy claim.",
   "unitTests": {
     "passed": 14,
@@ -9,13 +9,13 @@
     "command": "node --test tests/*.test.mjs"
   },
   "browserTests": {
-    "passed": 35,
+    "passed": 36,
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
     "engine": "desktop Chromium",
     "report": "test-results/browser-results.json",
-    "suiteStartedAt": "2026-11-22T10:18:33.700Z"
+    "suiteStartedAt": "2026-11-22T12:21:55.796Z"
   },
   "viewports": [
     [
@@ -58,29 +58,32 @@
     "Malayalam native-speaker and eye-care professional review remain pending."
   ],
   "sourceSha256": {
-    "index.html": "1bc856c80532aa712a0abc5cf0262810c3d11af0a1b3f847720d3171e5194e0a",
-    "tracking.html": "885b6f836ee049b7d565844dd8b2b2b873d6adcbd12f606cf58b321aff79cb61",
-    "join.html": "bce3f9f0c971cb0c8358b4ef75a864fe473a278b3b0dcdf9dd93f7cb8d03152d",
-    "investor.html": "b58ce1c006428171733a95a876911fc7f823544e0106d332ab56a2f6f4687168",
-    "presentation.html": "a0ee7b593cc016e34dc3ff4241cc0294fcf56352015ea55e05e8f7810672e67a",
+    "index.html": "04fb3c478d420bade558e90c754dc9a07e96c0ff1b27e66e974d27cfc8a4a7dc",
+    "tracking.html": "938c0ac08548ed0b40f127f293b2dc29e926ede6c63ceea293b203f2001ab58f",
+    "join.html": "da0a04dd92ea31436d303915f6555d6eaa1bdc31a708e7dc5d813d639592910c",
+    "investor.html": "50e2d6c1f3268ec9dd44f161230325c60b8ea1271084819f804155f98a2b9805",
+    "presentation.html": "43a53bc32293a966e93c6a7df5ed1bf7f2d45964f2cd634f774345e49937aa2c",
     "presentation.js": "11035482da0fdeb86492deaecbb34510e7da761c5db2ff47c943889f11b009f7",
     "investor-copy.mjs": "166d66a61ed739d17db7169424edc268d81d9855f5eb8f01a6c450d3a7501d92",
     "project-knowledge.mjs": "e7c710e39ee99f39800e13d93230945ca91444622026c5586fc8680945890943",
-    "presenter.mjs": "da67a62d3b2ed05aa4401dc10f24b6c18a22b7012a3699c538aef4d1e40e2b58",
+    "presenter.mjs": "230791e84e2d4b0245f698f72e2e994c788aa16417b9c3fd20f36d4fd8b87b15",
     "investor.mjs": "eca7b0728879eb6e602b31c258954b1b6e64a07c98d2b35212e4d01228fb9dc1",
     "investor.css": "c8bbe701cb9d5eab91181b2675d2bedd71dc906315b5c32df3788930ffb99679",
     "visitor-experience.css": "0bd8ababf5cbe4002339b71541be97ae04100c4b9e0df0d601709c1e816e9b3c",
     "app.js": "2c24a1ac269d8436b6376c161467554c0aad913695dbf7a1f96c0f72f43366f5",
     "camera.mjs": "4140281e1ba23f8ef0fa1ed5e6469476f6de42470615460bbf44528f92ff819b",
     "vision-core.mjs": "012df37e60e73fcc6178d63839dbc22b6dbb5a7b343aca9b3a8c32d0689085d7",
-    "static-assets.js": "7de02e69d8f2b2ab967159ee00d0ed96f85cba57b3f8d2f1677903278174a0d6",
-    "sw.js": "2979b527f5fec59d324d5b4ff3bd864be2af51a10b47c63a5333bef259a0f7e9",
-    "project-copy.mjs": "a0f2562242024aaac0149263226bfe7f9f88e490e320b4120eb6949b788e504c",
-    "showcase-3d.mjs": "cd591f63e171636404fb01dc6b7efc1d9e7812bb782c272e30075355970f3d2f",
+    "static-assets.js": "476797f31bff5ec2078f611f637db8e57a4923f99d609db80bfd170636dd80e9",
+    "sw.js": "9fb101ee21f11ba921360989330420e9ba04c1e282d9fcbfde5d379b18496002",
+    "project-copy.mjs": "92d83b9549af03b2875d436ebe4da152a2fe8d3f1ba691219fc37fc60b0ba416",
+    "showcase-3d.mjs": "5c36c67df55c0e4cf7f7d0c5e962952c5124f319f2cb5bc514622682bc0453b2",
     "signature-light.css": "c487c00cfba0a44124d6e81136254a0b3fbae1f21fad1060d228d87a9308311a",
     "cinematic.css": "04f4ec9eb3bfdc20092c0a907b5f4401bd71ef92c180e14b0e205329773fe834",
     "optics-hero.css": "76c6ece48c765ea2f146284440004de55e1dae3cabc1eec78f646ab4a432aa1c",
+    "studio-professional.css": "63fa462063e70bd160e8fd81e3b36d771087a3194eb5f72bb2bce2f0ccb30b6e",
+    "optical-exhibit.css": "8961ba54b6a4d6faaef965b6874d28507915ad0d894b9c42a926c094bb7cec6d",
+    "optical-exhibit.mjs": "6f08be21b28cd4b2619f6abfc11202fbd66ef723c397c847f7d069628878c36d",
     "signature.mjs": "205a171c8af5b6511974ef424d9efc7237594a22df300881a072ca1127909f1f",
-    "optics-hero.mjs": "5c5c4cbefe39845cda231de184cc35342148ba0d1294fcc921dcf3f55187f7dd"
+    "optics-hero.mjs": "43b78a988185ca4b6d4cdcc4a9c74e325557b258e0818085eb02749b5c10a07d"
   }
 }

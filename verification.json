@@ -1,9 +1,9 @@
 {
   "version": "0.5.1",
-  "verifiedAt": "2026-11-22T10:32:48.198Z",
+  "verifiedAt": "2026-11-22T12:38:24.405Z",
   "buildReceipt": "dist/build-receipt.json",
   "browserTests": {
-    "passed": 35,
+    "passed": 36,
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
@@ -41,9 +41,24 @@
       "sha256": "76c6ece48c765ea2f146284440004de55e1dae3cabc1eec78f646ab4a432aa1c"
     },
     {
+      "path": "studio-professional.css",
+      "bytes": 12942,
+      "sha256": "63fa462063e70bd160e8fd81e3b36d771087a3194eb5f72bb2bce2f0ccb30b6e"
+    },
+    {
+      "path": "optical-exhibit.css",
+      "bytes": 7516,
+      "sha256": "8961ba54b6a4d6faaef965b6874d28507915ad0d894b9c42a926c094bb7cec6d"
+    },
+    {
+      "path": "optical-exhibit.mjs",
+      "bytes": 5227,
+      "sha256": "6f08be21b28cd4b2619f6abfc11202fbd66ef723c397c847f7d069628878c36d"
+    },
+    {
       "path": "optics-hero.mjs",
-      "bytes": 656,
-      "sha256": "5c5c4cbefe39845cda231de184cc35342148ba0d1294fcc921dcf3f55187f7dd"
+      "bytes": 846,
+      "sha256": "43b78a988185ca4b6d4cdcc4a9c74e325557b258e0818085eb02749b5c10a07d"
     },
     {
       "path": "fonts/Manrope-Variable.ttf",
@@ -57,8 +72,8 @@
     },
     {
       "path": "investor.html",
-      "bytes": 23938,
-      "sha256": "b58ce1c006428171733a95a876911fc7f823544e0106d332ab56a2f6f4687168"
+      "bytes": 23992,
+      "sha256": "50e2d6c1f3268ec9dd44f161230325c60b8ea1271084819f804155f98a2b9805"
     },
     {
       "path": "investor.css",
@@ -77,13 +92,13 @@
     },
     {
       "path": "investor-evidence.json",
-      "bytes": 3506,
-      "sha256": "9c1b91a6d56511524bf3c8004be25ddd0d49bae27ce8012db6bc949b8584d07a"
+      "bytes": 3795,
+      "sha256": "c22de06fc59ba2f5bb643aa924cc33f261ee8a6af0cb2f84ed5fdd842cc4a3bf"
     },
     {
       "path": "join.html",
-      "bytes": 4357,
-      "sha256": "bce3f9f0c971cb0c8358b4ef75a864fe473a278b3b0dcdf9dd93f7cb8d03152d"
+      "bytes": 4411,
+      "sha256": "da0a04dd92ea31436d303915f6555d6eaa1bdc31a708e7dc5d813d639592910c"
     },
     {
       "path": "join.mjs",
@@ -102,8 +117,8 @@
     },
     {
       "path": "presenter.mjs",
-      "bytes": 13189,
-      "sha256": "da67a62d3b2ed05aa4401dc10f24b6c18a22b7012a3699c538aef4d1e40e2b58"
+      "bytes": 13133,
+      "sha256": "230791e84e2d4b0245f698f72e2e994c788aa16417b9c3fd20f36d4fd8b87b15"
     },
     {
       "path": "gaze-control.mjs",
@@ -122,28 +137,28 @@
     },
     {
       "path": "index.html",
-      "bytes": 51434,
-      "sha256": "1bc856c80532aa712a0abc5cf0262810c3d11af0a1b3f847720d3171e5194e0a"
+      "bytes": 51541,
+      "sha256": "04fb3c478d420bade558e90c754dc9a07e96c0ff1b27e66e974d27cfc8a4a7dc"
     },
     {
       "path": "eye-tests.html",
-      "bytes": 2129,
-      "sha256": "860f5553da2b02846e185c65e778dc540f22e6fa0da5df6d41e866028e4a0869"
+      "bytes": 2183,
+      "sha256": "651310c46edd2f328b2ac582990e2c7d0f321403c1f4b43c8ab9d6d461da8b6a"
     },
     {
       "path": "tracking.html",
-      "bytes": 50163,
-      "sha256": "885b6f836ee049b7d565844dd8b2b2b873d6adcbd12f606cf58b321aff79cb61"
+      "bytes": 50270,
+      "sha256": "938c0ac08548ed0b40f127f293b2dc29e926ede6c63ceea293b203f2001ab58f"
     },
     {
       "path": "about.html",
-      "bytes": 4297,
-      "sha256": "286ac6aba0dc993efb391474c73bc8cf22b84fa5dac91330a2a0cfce9cfc2710"
+      "bytes": 4351,
+      "sha256": "219518aafa7c264f83bdd43ab1302bcf8c58ca2545cf8ca3bd8b3fd961319afb"
     },
     {
       "path": "presentation.html",
-      "bytes": 24066,
-      "sha256": "a0ee7b593cc016e34dc3ff4241cc0294fcf56352015ea55e05e8f7810672e67a"
+      "bytes": 24120,
+      "sha256": "43a53bc32293a966e93c6a7df5ed1bf7f2d45964f2cd634f774345e49937aa2c"
     },
     {
       "path": "presentation.js",
@@ -152,8 +167,8 @@
     },
     {
       "path": "project-copy.mjs",
-      "bytes": 69809,
-      "sha256": "a0f2562242024aaac0149263226bfe7f9f88e490e320b4120eb6949b788e504c"
+      "bytes": 69741,
+      "sha256": "92d83b9549af03b2875d436ebe4da152a2fe8d3f1ba691219fc37fc60b0ba416"
     },
     {
       "path": "project-theme.css",
@@ -177,8 +192,8 @@
     },
     {
       "path": "showcase-3d.mjs",
-      "bytes": 7877,
-      "sha256": "cd591f63e171636404fb01dc6b7efc1d9e7812bb782c272e30075355970f3d2f"
+      "bytes": 8008,
+      "sha256": "5c36c67df55c0e4cf7f7d0c5e962952c5124f319f2cb5bc514622682bc0453b2"
     },
     {
       "path": "images/child-welcome.jpg",
@@ -252,13 +267,13 @@
     },
     {
       "path": "static-assets.js",
-      "bytes": 2225,
-      "sha256": "7de02e69d8f2b2ab967159ee00d0ed96f85cba57b3f8d2f1677903278174a0d6"
+      "bytes": 2295,
+      "sha256": "476797f31bff5ec2078f611f637db8e57a4923f99d609db80bfd170636dd80e9"
     },
     {
       "path": "production-readiness.md",
-      "bytes": 12325,
-      "sha256": "680a962218cc5a5dad71354e3466d3faa27990c6f7f594b34ee679c72afceef4"
+      "bytes": 12771,
+      "sha256": "d840ea7f302321100a0b830b5a54a1e3a74641ee91865430745345161b20de3f"
     },
     {
       "path": "icons/icon-192.png",
@@ -327,18 +342,18 @@
     },
     {
       "path": "media/NETRA-SCREEN-recorded-walkthrough.webm",
-      "bytes": 4881707,
-      "sha256": "8a591865340af7b9ba3ce4819099d368b8e770f70bec7d33348c198f3a44e8c3"
+      "bytes": 4600881,
+      "sha256": "f12ec1d0c6545ce0ed276392f790d253b05755c6d9c7e072a3d86eeb9eb31fe4"
     },
     {
       "path": "media/walkthrough-poster.png",
-      "bytes": 122199,
-      "sha256": "a84ac3ecf1a86a0ade81e106100e4fa2a086c3f86a25e300486e454326e17cf1"
+      "bytes": 120517,
+      "sha256": "c393b3e1e68b9490de9ea683ad3f0e96507b99532bb44ad1f0248fb01565c642"
     },
     {
       "path": "media/walkthrough-captions.vtt",
       "bytes": 511,
-      "sha256": "ad08898628e13f61eb0198963af224604168633fafddef1f160234dbd63b76e4"
+      "sha256": "be7331c51b2a5ef65e21371813e06fbd75b58a9b674389fbcbf9351566c35733"
     },
     {
       "path": "docs/NETRA_SCREEN_MindMesh.pdf",
@@ -348,12 +363,12 @@
     {
       "path": "docs/NETRA-SCREEN-investor-brief.pdf",
       "bytes": 89067,
-      "sha256": "18da10c1b4d1939905ac1f85d452d5b5a4c61f8c84ddab7987620e260706cc1c"
+      "sha256": "c0a20cb9b713240fa96a7bf56bb2c1495298e59aa4d77cde60ed7f74de391348"
     },
     {
       "path": "docs/NETRA-SCREEN-investor-deck.pdf",
-      "bytes": 395137,
-      "sha256": "017dfa8e2937ae2abf9e33cb0b22017cb5931be557a605481a09206dea58799d"
+      "bytes": 394531,
+      "sha256": "7a57688cafed7987718d1bdf890ef325b72928fb2c87dbfa6adf8c0ca381d37c"
     },
     {
       "path": "deck-slides/slide-1.png",
@@ -428,7 +443,7 @@
     {
       "path": "sw.js",
       "bytes": 2237,
-      "sha256": "2979b527f5fec59d324d5b4ff3bd864be2af51a10b47c63a5333bef259a0f7e9"
+      "sha256": "9fb101ee21f11ba921360989330420e9ba04c1e282d9fcbfde5d379b18496002"
     }
   ]
 }
