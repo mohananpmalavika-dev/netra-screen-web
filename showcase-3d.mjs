@@ -16,8 +16,8 @@ vec3 normal(vec3 p){vec2 e=vec2(.001,0.);return normalize(vec3(scene(p+e.xyy).x-
 void main(){
  vec2 p=(uv-.5)*2.;p.x*=resolution.x/resolution.y;
  vec3 ro=vec3(0.,.08,3.8);vec3 rd=normalize(vec3(p*.95,-1.9));
- vec3 color=vec3(.025,.022,.075);
- color+=vec3(.24,.065,.42)*exp(-length(p-vec2(.5,.25))*2.2);
+ vec3 color=vec3(.025,.055,.085);
+ color+=vec3(.06,.12,.20)*exp(-length(p-vec2(.5,.25))*2.2);
  color+=vec3(.025,.21,.23)*exp(-length(p-vec2(-.6,-.25))*2.7);
  float distance=0.;vec2 hit=vec2(1.,0.);
  for(int i=0;i<56;i++){hit=scene(ro+rd*distance);if(hit.x<.0015||distance>7.)break;distance+=hit.x*.85;}
@@ -30,12 +30,12 @@ void main(){
    material=vec3(.76,.79,.91);
    if(eye.z>0.&&radius<.57){
     float angle=atan(eye.y,eye.x);float fibers=sin(angle*93.+radius*94.)*.5+sin(angle*137.-radius*51.)*.25;
-    material=mix(vec3(.16,.11,.61),vec3(.06,.88,.76),.5+.5*sin(angle*4.2));
+    material=mix(vec3(.09,.30,.54),vec3(.16,.75,.73),.5+.5*sin(angle*4.2));
     material*=.8+fibers*.4;material+=vec3(.55,.34,.08)*exp(-abs(radius-.24)*22.);
     material*=1.-smoothstep(.49,.57,radius)*.86;
     if(radius<.18)material=vec3(.003,.008,.017);
    }
-  }else{material=hit.y<2.5?vec3(.08,.91,.81):vec3(.70,.29,1.);}
+  }else{material=hit.y<2.5?vec3(.08,.91,.81):vec3(.45,.66,.84);}
   vec3 light=normalize(vec3(-2.,3.,4.));float diffuse=max(dot(n,light),0.);
   float specular=pow(max(dot(reflect(-light,n),-rd),0.),85.);
   float rim=pow(1.-max(dot(n,-rd),0.),3.);

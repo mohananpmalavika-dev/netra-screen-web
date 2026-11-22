@@ -1,92 +1,92 @@
-// Shared slide copy; rebuild PDFs after changing this file.
+// Bilingual investor narrative. Shared with the HTML and PDF deck.
 export const COPY=[
   {
-    "en": "NETRA-SCREEN / TEAM MINDMESH",
-    "ml": "NETRA-SCREEN / TEAM MINDMESH"
+    "en": "NETRA-SCREEN / RESEARCH PLATFORM",
+    "ml": "NETRA-SCREEN / ഗവേഷണ പ്ലാറ്റ്ഫോം"
   },
   {
-    "en": "Guided eye-movement observation.<br><em>Built around a smartphone.</em>",
-    "ml": "നേത്രചലന നിരീക്ഷണം.<br><em>നിങ്ങളുടെ സ്മാർട്ട്ഫോണിൽ.</em>"
+    "en": "Eye-movement research.<br><em>On your smartphone.</em>",
+    "ml": "നേത്രചലന ഗവേഷണം.<br><em>നിങ്ങളുടെ സ്മാർട്ട്ഫോണിൽ.</em>"
   },
   {
-    "en": "A working Android and web research prototype. Local processing, engaging visual tasks and a clear next research milestone.",
-    "ml": "Android, വെബ് ഗവേഷണ പ്രോട്ടോടൈപ്പുകൾ. ഉപകരണത്തിലെ പ്രോസസ്സിംഗ്, ദൃശ്യലക്ഷ്യങ്ങൾ, വ്യക്തമായ അടുത്ത ഗവേഷണ ഘട്ടം."
+    "en": "Our goal: make preliminary observation of children’s eye movement and coordination more accessible, towards earlier professional attention. Working Android and web research prototypes; clinical screening capability remains to be evaluated.",
+    "ml": "ലക്ഷ്യം: കുട്ടികളുടെ നേത്രചലനവും ഏകോപനവും പ്രാഥമികമായി നിരീക്ഷിക്കാൻ കൂടുതൽ സൗകര്യമൊരുക്കുക; പ്രശ്നങ്ങൾ നേരത്തേ വിദഗ്ധ ശ്രദ്ധയിൽ കൊണ്ടുവരാൻ സഹായിക്കുക. Android, വെബ് ഗവേഷണ പ്രോട്ടോടൈപ്പുകൾ പ്രവർത്തിക്കുന്നു; ക്ലിനിക്കൽ സ്ക്രീനിംഗ് ശേഷി ഇനിയും വിലയിരുത്തണം."
   },
   {
     "en": "KGDTIS 2026 · YIP Pavilion · 24–25 November · Adlux, Angamaly",
     "ml": "KGDTIS 2026 · YIP പവലിയൻ · നവംബർ 24–25 · Adlux, അങ്കമാലി"
   },
   {
-    "en": "THE FIRST CUSTOMER HYPOTHESIS",
-    "ml": "ആദ്യ ഉപഭോക്തൃ സാധ്യത"
+    "en": "THE RESEARCH OPPORTUNITY",
+    "ml": "ഗവേഷണ സാധ്യത"
   },
   {
-    "en": "Start with ophthalmology research teams",
-    "ml": "നേത്രഗവേഷണ സംഘങ്ങളിൽ തുടക്കം"
+    "en": "A practical question.<br>A more accessible starting point.",
+    "ml": "ഒരു പ്രായോഗിക ചോദ്യം.<br>കൂടുതൽ ലഭ്യമായ തുടക്കം."
   },
   {
-    "en": "Could guided capture and structured observation reports make supervised eye-movement research easier to run? This is the problem to test with users.",
-    "ml": "മേൽനോട്ടത്തിലുള്ള നേത്രചലന ഗവേഷണം ലളിതമാക്കാൻ ദൃശ്യലക്ഷ്യങ്ങളും ക്രമപ്പെടുത്തിയ റിപ്പോർട്ടുകളും സഹായിക്കുമോ? ഉപയോക്താക്കളോടൊപ്പം പരിശോധിക്കേണ്ട ചോദ്യമാണിത്."
+    "en": "Children’s eye-coordination concerns motivate this project. Can a familiar smartphone and playful tasks support a more accessible first observation? NETRA brings the research workflow together to investigate that question.",
+    "ml": "കുട്ടികളുടെ കണ്ണുകളുടെ ഏകോപന പ്രശ്നങ്ങളാണ് പ്രോജക്ടിന്റെ പ്രചോദനം. സാധാരണ ഫോണും കളിയുടെ രൂപത്തിലുള്ള ദൃശ്യപാതകളും കൂടുതൽ ലഭ്യമായ പ്രാഥമിക നിരീക്ഷണത്തിന് സഹായിക്കുമോ? ഇത് പഠിക്കാൻ NETRA ഗവേഷണ പ്രവർത്തനക്രമം ഒരുമിപ്പിക്കുന്നു."
   },
   {
-    "en": "First user to explore",
-    "ml": "ആദ്യ ഉപയോക്തൃ സാധ്യത"
+    "en": "First user",
+    "ml": "ആദ്യ ഉപയോക്താവ്"
   },
   {
-    "en": "Ophthalmology researchers running supervised observation tasks. Interviews must establish the actual workflow and unmet need.",
-    "ml": "മേൽനോട്ടത്തിൽ നിരീക്ഷണ പഠനങ്ങൾ നടത്തുന്ന നേത്രഗവേഷകർ. യഥാർത്ഥ ആവശ്യങ്ങൾ അഭിമുഖങ്ങളിലൂടെ അറിയണം."
+    "en": "Ophthalmology researchers running supervised visual tasks. User interviews will establish the actual workflow and unmet need.",
+    "ml": "മേൽനോട്ടത്തിൽ ദൃശ്യലക്ഷ്യ പഠനങ്ങൾ നടത്തുന്ന നേത്രഗവേഷകർ. അഭിമുഖങ്ങളിലൂടെ യഥാർത്ഥ ആവശ്യങ്ങൾ അറിയണം."
   },
   {
     "en": "Potential buyer",
     "ml": "വാങ്ങാൻ സാധ്യതയുള്ളവർ"
   },
   {
-    "en": "A research institution or department, if it sees enough value in the workflow. Buyer interest and willingness to pay are untested.",
-    "ml": "പ്രവർത്തനക്രമത്തിൽ മൂല്യം കണ്ടെത്തുന്ന ഗവേഷണ സ്ഥാപനം അല്ലെങ്കിൽ വിഭാഗം. വാങ്ങാനുള്ള താൽപ്പര്യവും വിലയും പഠിക്കണം."
+    "en": "A research institution or department. Purchasing authority, budget and willingness to pay remain to be established.",
+    "ml": "ഒരു ഗവേഷണ സ്ഥാപനം അല്ലെങ്കിൽ വിഭാഗം. വാങ്ങാനുള്ള അധികാരം, ബജറ്റ്, വില എന്നിവ പഠിക്കണം."
   },
   {
-    "en": "Expansion to evaluate",
-    "ml": "പിന്നീട് പഠിക്കാവുന്ന ഉപയോഗം"
+    "en": "Longer-term possibility",
+    "ml": "പിന്നീടുള്ള സാധ്യത"
   },
   {
-    "en": "School and community settings are a later research possibility, subject to appropriate evidence and professional oversight.",
-    "ml": "സ്കൂൾ, സമൂഹ സാഹചര്യങ്ങളിലെ ഉപയോഗം പിന്നീടുള്ള ഗവേഷണ സാധ്യതയാണ്. തെളിവും വിദഗ്ധ മേൽനോട്ടവും ആവശ്യമാണ്."
+    "en": "School and community research, once the intended use, evidence and professional oversight support it.",
+    "ml": "ആവശ്യമായ തെളിവും വിദഗ്ധ മേൽനോട്ടവും ലഭിച്ചാൽ സ്കൂൾ, സമൂഹ സാഹചര്യങ്ങളിലെ ഗവേഷണം."
   },
   {
-    "en": "Customer and buyer definitions are hypotheses. No signed pilot, paying customer or validated community deployment is claimed.",
-    "ml": "ഉപഭോക്തൃ നിർവചനങ്ങൾ സാധ്യതകളാണ്. ഒപ്പിട്ട പൈലറ്റോ വരുമാനമോ സമൂഹത്തിലെ സാധുതയോ അവകാശപ്പെടുന്നില്ല."
+    "en": "First-user and buyer definitions are hypotheses. No signed pilot, paying customer or validated community deployment is claimed.",
+    "ml": "ഉപയോക്താവും വാങ്ങുന്നവരും സാധ്യതകളാണ്. ഒപ്പിട്ട പൈലറ്റോ വരുമാനമോ സമൂഹത്തിലെ സാധുതയോ അവകാശപ്പെടുന്നില്ല."
   },
   {
     "en": "THE PRODUCT EXPERIENCE",
     "ml": "പ്രവർത്തന രീതി"
   },
   {
-    "en": "A guided session. A local observation report.",
-    "ml": "ലളിതമായ സെഷൻ. പ്രാദേശിക റിപ്പോർട്ട്."
+    "en": "One guided session.<br>A structured observation.",
+    "ml": "ഒരു guided സെഷൻ.<br>ക്രമപ്പെടുത്തിയ നിരീക്ഷണം."
   },
   {
     "en": "Prepare",
     "ml": "തയ്യാറാകാം"
   },
   {
-    "en": "Review consent, choose a butterfly, reef fish or focus dot, and check camera framing.",
-    "ml": "സമ്മതവിവരം വായിച്ച് പൂമ്പാറ്റയോ മീനോ പുള്ളിയോ തിരഞ്ഞെടുക്കുക. ക്യാമറ ക്രമീകരിക്കുക."
+    "en": "Choose a visual target, review guardian consent and check the camera setup.",
+    "ml": "ദൃശ്യലക്ഷ്യം തിരഞ്ഞെടുക്കുക. രക്ഷിതാവിനൊപ്പം സമ്മതവിവരം വായിക്കുക. ക്യാമറ ക്രമീകരിക്കുക."
   },
   {
     "en": "Observe",
     "ml": "നിരീക്ഷിക്കാം"
   },
   {
-    "en": "Follow horizontal, vertical, diagonal and step-and-hold target paths. Capture checks can pause the task.",
-    "ml": "തിരശ്ചീന, ലംബ, കോണോടുകോൺ, സ്ഥിരനോട്ടം എന്നീ നാല് ലക്ഷ്യപാതകൾ പിന്തുടരുക."
+    "en": "Follow four paths: horizontal, vertical, diagonal and step-and-hold. Capture checks can pause the task.",
+    "ml": "തിരശ്ചീന, ലംബ, കോണോടുകോൺ, നിർത്തി നോക്കുന്ന നാല് പാതകൾ. ക്യാമറ പരിശോധനയ്ക്ക് സെഷൻ നിർത്താനാകും."
   },
   {
     "en": "Review",
     "ml": "അവലോകനം ചെയ്യാം"
   },
   {
-    "en": "Inspect paired landmark paths and experimental movement metrics. Print or export by explicit choice.",
-    "ml": "ലാൻഡ്മാർക്ക് പാതകളും ഗവേഷണ അളവുകളും കാണുക. ആവശ്യമെങ്കിൽ പ്രിന്റ് ചെയ്യുക."
+    "en": "Review paired trajectories and experimental metrics. Export or print by explicit choice.",
+    "ml": "കണ്ണുകളുടെ പാതകളും പരീക്ഷണാത്മക അളവുകളും അവലോകനം ചെയ്യുക. വ്യക്തമായ തീരുമാനത്തോടെ എക്സ്പോർട്ട് ചെയ്യാം."
   },
   {
     "en": "The camera-free walkthrough demonstrates target paths only. It does not generate participant measurements.",
@@ -97,112 +97,112 @@ export const COPY=[
     "ml": "സോഫ്റ്റ്‌വെയർ തെളിവുകൾ"
   },
   {
-    "en": "A demonstrable prototype. An auditable next step.",
-    "ml": "പ്രവർത്തിക്കുന്ന പ്രോട്ടോടൈപ്പ്. പരിശോധിക്കാവുന്ന അടുത്ത ഘട്ടം."
+    "en": "Built to demonstrate.<br>Designed to investigate.",
+    "ml": "പ്രവർത്തനം കാണിക്കാൻ നിർമ്മിച്ചു.<br>കൂടുതൽ പഠിക്കാനായി രൂപപ്പെടുത്തി."
   },
   {
-    "en": "Two implementations",
-    "ml": "രണ്ട് പതിപ്പുകൾ"
+    "en": "Android + Web",
+    "ml": "Android + Web"
   },
   {
-    "en": "A native Android research app and a browser-based PWA, with a bundled landmark model.",
-    "ml": "Android ഗവേഷണ ആപ്പും ബ്രൗസർ PWA-യും. ലാൻഡ്മാർക്ക് മോഡൽ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്."
+    "en": "Two working research implementations, with a bundled landmark model and a shared observation workflow.",
+    "ml": "ലാൻഡ്മാർക്ക് മോഡലും നിരീക്ഷണ പ്രവർത്തനക്രമവും ഉൾക്കൊള്ളുന്ന രണ്ട് ഗവേഷണ പതിപ്പുകൾ."
   },
   {
-    "en": "A local workflow",
-    "ml": "പ്രാദേശിക പ്രവർത്തനക്രമം"
+    "en": "On-device",
+    "ml": "ഉപകരണത്തിൽ"
   },
   {
-    "en": "Consent, capture checks, four guided paths and explicit report export. Camera images are not stored or uploaded.",
-    "ml": "സമ്മതം, ക്യാമറ പരിശോധന, നാല് പാതകൾ, റിപ്പോർട്ട് എക്സ്പോർട്ട്. ക്യാമറ ചിത്രങ്ങൾ സൂക്ഷിക്കുകയോ അപ്‌ലോഡ് ചെയ്യുകയോ ഇല്ല."
+    "en": "Camera frames are processed locally. Camera images are not stored or uploaded. Report sharing is an explicit action.",
+    "ml": "ക്യാമറ ചിത്രങ്ങൾ പ്രാദേശികമായി പ്രോസസ് ചെയ്യുന്നു. സംഭരണവും അപ്‌ലോഡും ഇല്ല. റിപ്പോർട്ട് വ്യക്തമായ തീരുമാനത്തോടെ പങ്കിടാം."
   },
   {
-    "en": "Software verification",
-    "ml": "സോഫ്റ്റ്‌വെയർ പരിശോധന"
+    "en": "Consent to report",
+    "ml": "സമ്മതം മുതൽ റിപ്പോർട്ട് വരെ"
   },
   {
-    "en": "Automated checks cover core metrics, camera failures, privacy and responsive controls. The partner pack includes a dated evidence card.",
-    "ml": "പ്രധാന അളവുകൾ, ക്യാമറ പിശകുകൾ, സ്വകാര്യത, സ്ക്രീൻ നിയന്ത്രണങ്ങൾ എന്നിവയ്ക്ക് ഓട്ടോമേറ്റഡ് പരിശോധനകൾ. തീയതിയുള്ള തെളിവ് partner pack-ൽ കാണാം."
+    "en": "Guidance, capture feedback, four paths and structured output. A dated engineering receipt documents automated software checks.",
+    "ml": "നിർദേശങ്ങൾ, ക്യാമറ സഹായം, നാല് പാതകൾ, ക്രമപ്പെടുത്തിയ ഫലം. ഓട്ടോമേറ്റഡ് സോഫ്റ്റ്‌വെയർ പരിശോധനകൾക്ക് തീയതിയുള്ള രേഖയുണ്ട്."
   },
   {
-    "en": "Desktop browser tests establish software behavior. Real-phone benchmarks, clinical accuracy and pediatric validity remain unestablished.",
-    "ml": "ഡെസ്ക്ടോപ്പ് ബ്രൗസർ പരിശോധനകൾ സോഫ്റ്റ്‌വെയർ പ്രവർത്തനം പരിശോധിക്കുന്നു. യഥാർത്ഥ ഫോൺ പ്രകടനവും ക്ലിനിക്കൽ സാധുതയും ഇനിയും സ്ഥാപിക്കണം."
+    "en": "Engineering verification is documented in the partner pack. Real-phone performance, clinical accuracy and pediatric validity still require evidence.",
+    "ml": "സോഫ്റ്റ്‌വെയർ പരിശോധനാ രേഖ partner pack-ൽ ഉണ്ട്. യഥാർത്ഥ ഫോൺ പ്രകടനത്തിനും ക്ലിനിക്കൽ സാധുതയ്ക്കും കൂടുതൽ തെളിവ് വേണം."
   },
   {
-    "en": "THE PRODUCT CONTRIBUTION",
-    "ml": "ഉൽപ്പന്നത്തിലെ സംഭാവന"
+    "en": "THE TECHNICAL FOUNDATION",
+    "ml": "സാങ്കേതിക അടിത്തറ"
   },
   {
-    "en": "A research workflow around an existing landmark model",
-    "ml": "നിലവിലുള്ള മോഡലിനെ ചുറ്റിയുള്ള ഗവേഷണ പ്രവർത്തനക്രമം"
+    "en": "Privacy starts<br>at the point of capture.",
+    "ml": "സ്വകാര്യതയ്ക്ക് തുടക്കം<br>ക്യാമറ ചിത്രത്തിൽ തന്നെ."
   },
   {
     "en": "Capture",
     "ml": "ക്യാമറ"
   },
   {
-    "en": "Guided target paths, framing feedback and explicit camera permission.",
-    "ml": "ദൃശ്യലക്ഷ്യ പാതകൾ, ക്യാമറ ക്രമീകരണ സഹായം, വ്യക്തമായ അനുമതി."
+    "en": "Explicit permission, guided target paths and framing feedback.",
+    "ml": "വ്യക്തമായ അനുമതി, ദൃശ്യലക്ഷ്യ പാതകൾ, ക്യാമറ ക്രമീകരണ സഹായം."
   },
   {
     "en": "Landmarks",
     "ml": "ലാൻഡ്മാർക്ക്"
   },
   {
-    "en": "MediaPipe Face Landmarker is the underlying third-party model; model training is not claimed as our invention.",
-    "ml": "MediaPipe Face Landmarker ആണ് അടിസ്ഥാന മോഡൽ. മോഡൽ പരിശീലനം സ്വന്തം കണ്ടുപിടിത്തമായി അവകാശപ്പെടുന്നില്ല."
+    "en": "Bundled MediaPipe Face Landmarker. The underlying model is third-party technology.",
+    "ml": "ഉൾപ്പെടുത്തിയ MediaPipe Face Landmarker. അടിസ്ഥാന മോഡൽ third-party സാങ്കേതികവിദ്യയാണ്."
   },
   {
     "en": "Observation",
     "ml": "നിരീക്ഷണം"
   },
   {
-    "en": "Our integration: paired trajectories, capture checks, experimental metrics and bilingual guidance.",
-    "ml": "ഞങ്ങളുടെ സംയോജനം: കണ്ണുകളുടെ പാതകൾ, ക്യാമറ പരിശോധന, പരീക്ഷണാത്മക അളവുകൾ, രണ്ടു ഭാഷകളിലെ നിർദേശങ്ങൾ."
+    "en": "Paired trajectories, capture checks, experimental metrics and bilingual guidance.",
+    "ml": "കണ്ണുകളുടെ പാതകൾ, ക്യാമറ പരിശോധന, പരീക്ഷണാത്മക അളവുകൾ, രണ്ടു ഭാഷകളിലെ നിർദേശങ്ങൾ."
   },
   {
     "en": "Privacy",
     "ml": "സ്വകാര്യത"
   },
   {
-    "en": "No raw-image retention. Android supports encrypted opt-in summaries; web reports stay in session until exported.",
-    "ml": "ചിത്രസംഭരണമില്ല. Android-ൽ ഐച്ഛിക എൻക്രിപ്റ്റഡ് സംഗ്രഹങ്ങൾ. വെബിൽ എക്സ്പോർട്ട് വരെ സെഷനിൽ മാത്രം."
+    "en": "No camera-image retention. Explicit report export. Offline web use follows a successful first download.",
+    "ml": "ക്യാമറ ചിത്രസംഭരണമില്ല. വ്യക്തമായ റിപ്പോർട്ട് എക്സ്പോർട്ട്. ആദ്യ ഡൗൺലോഡിന് ശേഷം ഓഫ്‌ലൈൻ വെബ് ഉപയോഗം."
   },
   {
-    "en": "Differentiation to test: workflow usability and device performance. Comparative clinical superiority and patent protection are not established.",
-    "ml": "പരിശോധിക്കേണ്ട പ്രത്യേകതകൾ: ഉപയോഗസൗകര്യവും ഫോൺ പ്രകടനവും. ക്ലിനിക്കൽ മേന്മയോ പേറ്റന്റ് സംരക്ഷണമോ സ്ഥാപിച്ചിട്ടില്ല."
+    "en": "Our contribution is the research workflow around the model. Comparative clinical superiority and patent protection are not established.",
+    "ml": "മോഡലിനെ ചുറ്റിയുള്ള ഗവേഷണ പ്രവർത്തനക്രമമാണ് ഞങ്ങളുടെ സംഭാവന. ക്ലിനിക്കൽ മേന്മയോ പേറ്റന്റ് സംരക്ഷണമോ സ്ഥാപിച്ചിട്ടില്ല."
   },
   {
     "en": "PROPOSED 90-DAY PLAN",
     "ml": "നിർദേശിക്കുന്ന 90 ദിവസത്തെ പദ്ധതി"
   },
   {
-    "en": "Turn the next support into measurable deliverables",
-    "ml": "അടുത്ത സഹായത്തിൽ നിന്ന് വ്യക്തമായ ഫലങ്ങൾ"
+    "en": "The next 90 days.<br>Clear deliverables.",
+    "ml": "അടുത്ത 90 ദിവസം.<br>വ്യക്തമായ ഫലങ്ങൾ."
   },
   {
-    "en": "Days 1-30",
-    "ml": "ദിവസം 1-30"
+    "en": "Benchmark",
+    "ml": "പ്രകടനം പഠിക്കുക"
   },
   {
-    "en": "Engineering lead + mentor: define a device matrix, record repeat runs and framing failures, and interview potential research users. Deliver a baseline and interview summary.",
-    "ml": "സാങ്കേതിക ചുമതലക്കാരനും മെന്ററും: ഫോൺ പട്ടിക, ആവർത്തന പരിശോധന, ക്യാമറ പിശകുകൾ, ഗവേഷക അഭിമുഖങ്ങൾ. ഫലം: അടിസ്ഥാന പ്രകടന റിപ്പോർട്ടും ആവശ്യങ്ങളുടെ സംഗ്രഹവും."
+    "en": "Days 1-30: define the phone matrix, measure repeat runs and framing failures, and interview potential research users. Deliver a baseline and needs summary.",
+    "ml": "ദിവസം 1-30: ഫോൺ പട്ടികയും ആവർത്തന പരിശോധനയും ക്യാമറ പിശകുകളും ഗവേഷക അഭിമുഖങ്ങളും. ഫലം: പ്രകടന റിപ്പോർട്ടും ആവശ്യങ്ങളുടെ സംഗ്രഹവും."
   },
   {
-    "en": "Days 31-60",
-    "ml": "ദിവസം 31-60"
+    "en": "Review",
+    "ml": "അവലോകനം ചെയ്യുക"
   },
   {
-    "en": "Mentor + prospective clinician: review the workflow and prepare a supervised usability protocol. Deliver a reviewed draft and a costed work plan, subject to partner availability.",
-    "ml": "മെന്ററും ലഭ്യമാകുന്ന വിദഗ്ധനും: പ്രവർത്തനക്രമ അവലോകനവും മേൽനോട്ടത്തിലുള്ള ഉപയോഗപഠന പദ്ധതിയും. ഫലം: അവലോകനം ചെയ്ത കരടും ചെലവ് കണക്കും."
+    "en": "Days 31-60: work with a prospective clinician on the workflow and supervised usability protocol. Deliver a reviewed draft and a costed next work package.",
+    "ml": "ദിവസം 31-60: ലഭ്യമാകുന്ന വിദഗ്ധനോടൊപ്പം പ്രവർത്തനക്രമവും ഉപയോഗപഠന പദ്ധതിയും അവലോകനം ചെയ്യുക. ഫലം: കരടും ചെലവ് കണക്കും."
   },
   {
-    "en": "Days 61-90",
-    "ml": "ദിവസം 61-90"
+    "en": "Evaluate",
+    "ml": "വിലയിരുത്തുക"
   },
   {
-    "en": "Team + agreed study partner: run usability work only when the required review, consent and oversight are in place. Deliver findings and a go/revise decision. Otherwise document readiness gaps.",
-    "ml": "ടീമും പഠന പങ്കാളിയും: ആവശ്യമായ അവലോകനവും സമ്മതവും മേൽനോട്ടവും ലഭിച്ചാൽ ഉപയോഗപഠനം. ഫലം: കണ്ടെത്തലുകളും തുടരണോ മാറ്റണോ എന്ന തീരുമാനവും; അല്ലെങ്കിൽ ശേഷിക്കുന്ന ഒരുക്കങ്ങളുടെ രേഖയും."
+    "en": "Days 61-90: proceed when required review, consent and oversight are in place. Deliver usability findings and a go/revise decision, or document readiness gaps.",
+    "ml": "ദിവസം 61-90: ആവശ്യമായ അവലോകനവും സമ്മതവും മേൽനോട്ടവും ലഭിച്ചാൽ ഉപയോഗപഠനം. ഫലം: കണ്ടെത്തലുകളും തുടർതീരുമാനവും; അല്ലെങ്കിൽ ഒരുക്കങ്ങളുടെ രേഖയും."
   },
   {
     "en": "Proposed milestones, not commitments. Partner access, study requirements and budget determine timing. Clinical validation is a separate later study.",
@@ -213,47 +213,47 @@ export const COPY=[
     "ml": "വാണിജ്യ സാധ്യത പഠനം"
   },
   {
-    "en": "Test the buyer and value before setting a price",
-    "ml": "വിലയ്ക്ക് മുമ്പ് ആവശ്യവും മൂല്യവും പഠിക്കാം"
+    "en": "A focused first customer.<br>A business model to test.",
+    "ml": "വ്യക്തമായ ആദ്യ ഉപഭോക്തൃ സാധ്യത.<br>പരിശോധിക്കേണ്ട ബിസിനസ് മാതൃക."
   },
   {
-    "en": "Learn the workflow",
-    "ml": "പ്രവർത്തനക്രമം അറിയുക"
+    "en": "Establish the need",
+    "ml": "ആവശ്യം മനസ്സിലാക്കുക"
   },
   {
-    "en": "Ask research teams how they run and document observations today. Compare setup time, supervision, usable capture and report usefulness.",
-    "ml": "ഗവേഷകർ ഇപ്പോൾ നിരീക്ഷണം എങ്ങനെ നടത്തുന്നു എന്ന് ചോദിക്കുക. തയ്യാറെടുപ്പ് സമയം, മേൽനോട്ടം, ക്യാമറ ഗുണനിലവാരം, റിപ്പോർട്ട് പ്രയോജനം എന്നിവ താരതമ്യം ചെയ്യുക."
+    "en": "Learn how research teams work today. Compare setup time, usable capture, supervision needs and report usefulness.",
+    "ml": "ഗവേഷകർ ഇപ്പോൾ പ്രവർത്തിക്കുന്നത് അറിയുക. തയ്യാറെടുപ്പ് സമയം, ക്യാമറ ഗുണനിലവാരം, മേൽനോട്ടം, റിപ്പോർട്ട് പ്രയോജനം എന്നിവ പഠിക്കുക."
   },
   {
-    "en": "Model to test",
-    "ml": "പരിശോധിക്കേണ്ട മാതൃക"
+    "en": "Understand the buyer",
+    "ml": "വാങ്ങുന്നവരെ അറിയുക"
   },
   {
-    "en": "Institutional software plus onboarding and support is a possible route. Identify the budget owner and measure support costs before proposing a price.",
-    "ml": "സ്ഥാപനങ്ങൾക്ക് സോഫ്റ്റ്‌വെയർ, പരിശീലനം, പിന്തുണ എന്നിവ സാധ്യതയാണ്. വിലയ്ക്ക് മുമ്പ് ബജറ്റ് ചുമതലക്കാരനെയും പിന്തുണച്ചെലവിനെയും അറിയണം."
+    "en": "Explore institutional software with onboarding and support. Identify the budget owner and delivery costs before setting a price.",
+    "ml": "സ്ഥാപനങ്ങൾക്ക് സോഫ്റ്റ്‌വെയർ, പരിശീലനം, പിന്തുണ എന്നിവ പഠിക്കുക. വിലയ്ക്ക് മുമ്പ് ബജറ്റ് ചുമതലക്കാരനെയും ചെലവിനെയും അറിയണം."
   },
   {
-    "en": "What remains open",
-    "ml": "തീരുമാനിക്കാനുള്ളത്"
+    "en": "Earn the next step",
+    "ml": "അടുത്ത ഘട്ടം ഉറപ്പിക്കുക"
   },
   {
-    "en": "Customer demand, pricing, market size, unit economics and recurring revenue are unverified. No funding amount or valuation has been decided.",
-    "ml": "ആവശ്യം, വില, വിപണി വലുപ്പം, വരുമാനം എന്നിവ സ്ഥിരീകരിച്ചിട്ടില്ല. നിക്ഷേപത്തുകയും മൂല്യനിർണയവും തീരുമാനിച്ചിട്ടില്ല."
+    "en": "Seek documented user problems and an agreed research evaluation. Demand, pricing, revenue and a funding amount remain unestablished.",
+    "ml": "രേഖപ്പെടുത്തിയ ആവശ്യങ്ങളും സമ്മതിച്ച ഗവേഷണ വിലയിരുത്തലും തേടുക. ആവശ്യം, വില, വരുമാനം, നിക്ഷേപത്തുക എന്നിവ സ്ഥിരീകരിച്ചിട്ടില്ല."
   },
   {
-    "en": "First commercial evidence: documented user problems, buyer conversations and an agreed next research step.",
-    "ml": "ആദ്യ വാണിജ്യ തെളിവുകൾ: രേഖപ്പെടുത്തിയ ആവശ്യങ്ങൾ, വാങ്ങുന്നവരുമായുള്ള സംഭാഷണം, സമ്മതിച്ച അടുത്ത ഗവേഷണ ഘട്ടം."
+    "en": "Commercial discovery is the next workstream. Customer traction, market size and unit economics are not yet established.",
+    "ml": "വാണിജ്യ സാധ്യത പഠനമാണ് അടുത്ത പ്രവർത്തനം. ഉപഭോക്തൃ നേട്ടവും വിപണി വലുപ്പവും സാമ്പത്തിക കണക്കുകളും സ്ഥാപിച്ചിട്ടില്ല."
   },
   {
-    "en": "TEAM MINDMESH / THE PARTNERSHIP ASK",
-    "ml": "MINDMESH / സഹകരണത്തിനുള്ള അഭ്യർഥന"
+    "en": "THE PARTNERSHIP",
+    "ml": "പങ്കാളിത്തം"
   },
   {
-    "en": "Help us establish the next evidence baseline",
-    "ml": "അടുത്ത തെളിവുകൾ സൃഷ്ടിക്കാൻ സഹകരിക്കാം"
+    "en": "Shape the next chapter<br>with us.",
+    "ml": "അടുത്ത അധ്യായം<br>ഒരുമിച്ച് രൂപപ്പെടുത്താം."
   },
   {
-    "en": "We seek an ophthalmology research collaborator and a supervised usability partner. Next deliverables: a documented device-performance baseline and a clinician-reviewed study plan.",
+    "en": "We seek an ophthalmology research collaborator and a supervised usability partner. Next outputs: a device-performance baseline and a clinician-reviewed study plan.",
     "ml": "നേത്രഗവേഷണ സഹകാരിയെയും മേൽനോട്ടത്തിലുള്ള ഉപയോഗപഠന പങ്കാളിയെയും തേടുന്നു. അടുത്ത ഫലങ്ങൾ: ഫോൺ പ്രകടന റിപ്പോർട്ടും വിദഗ്ധൻ അവലോകനം ചെയ്ത പഠന പദ്ധതിയും."
   },
   {

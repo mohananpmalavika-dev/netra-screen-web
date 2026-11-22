@@ -1,9 +1,9 @@
 {
   "version": "0.5.1",
-  "verifiedAt": "2026-11-22T08:28:23.048Z",
+  "verifiedAt": "2026-11-22T10:32:48.198Z",
   "buildReceipt": "dist/build-receipt.json",
   "browserTests": {
-    "passed": 21,
+    "passed": 35,
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
@@ -21,9 +21,44 @@
   ],
   "artifacts": [
     {
+      "path": "signature-light.css",
+      "bytes": 45959,
+      "sha256": "c487c00cfba0a44124d6e81136254a0b3fbae1f21fad1060d228d87a9308311a"
+    },
+    {
+      "path": "signature.mjs",
+      "bytes": 1040,
+      "sha256": "205a171c8af5b6511974ef424d9efc7237594a22df300881a072ca1127909f1f"
+    },
+    {
+      "path": "cinematic.css",
+      "bytes": 27517,
+      "sha256": "04f4ec9eb3bfdc20092c0a907b5f4401bd71ef92c180e14b0e205329773fe834"
+    },
+    {
+      "path": "optics-hero.css",
+      "bytes": 10506,
+      "sha256": "76c6ece48c765ea2f146284440004de55e1dae3cabc1eec78f646ab4a432aa1c"
+    },
+    {
+      "path": "optics-hero.mjs",
+      "bytes": 656,
+      "sha256": "5c5c4cbefe39845cda231de184cc35342148ba0d1294fcc921dcf3f55187f7dd"
+    },
+    {
+      "path": "fonts/Manrope-Variable.ttf",
+      "bytes": 164700,
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"
+    },
+    {
+      "path": "fonts/OFL-Manrope.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
       "path": "investor.html",
-      "bytes": 10586,
-      "sha256": "d8cdc9ca25c512966062af6bfb6d2fc50288550f4cc4e74890a602c21148c451"
+      "bytes": 23938,
+      "sha256": "b58ce1c006428171733a95a876911fc7f823544e0106d332ab56a2f6f4687168"
     },
     {
       "path": "investor.css",
@@ -37,18 +72,18 @@
     },
     {
       "path": "investor-copy.mjs",
-      "bytes": 18321,
-      "sha256": "e229addb8c58b9a6298aef53736bcef0b607f2980b793c5a15ba1a9d91ce1084"
+      "bytes": 18460,
+      "sha256": "166d66a61ed739d17db7169424edc268d81d9855f5eb8f01a6c450d3a7501d92"
     },
     {
       "path": "investor-evidence.json",
-      "bytes": 2868,
-      "sha256": "cfc690e50f5eced7cfed8190116896430a1e6535f09a6c943823dbdef97a97b1"
+      "bytes": 3506,
+      "sha256": "9c1b91a6d56511524bf3c8004be25ddd0d49bae27ce8012db6bc949b8584d07a"
     },
     {
       "path": "join.html",
-      "bytes": 4096,
-      "sha256": "663bd5bb8f4c6319420b364a98ee5ce16b98891992c418e3d8f51bab14e8b711"
+      "bytes": 4357,
+      "sha256": "bce3f9f0c971cb0c8358b4ef75a864fe473a278b3b0dcdf9dd93f7cb8d03152d"
     },
     {
       "path": "join.mjs",
@@ -67,8 +102,8 @@
     },
     {
       "path": "presenter.mjs",
-      "bytes": 13145,
-      "sha256": "1a2418dba6789e27354e7a5fa23a14a808664b9a289d3369692f6433d3005e0a"
+      "bytes": 13189,
+      "sha256": "da67a62d3b2ed05aa4401dc10f24b6c18a22b7012a3699c538aef4d1e40e2b58"
     },
     {
       "path": "gaze-control.mjs",
@@ -87,28 +122,28 @@
     },
     {
       "path": "index.html",
-      "bytes": 50441,
-      "sha256": "730722e05ce67b584edff613c11fa6f9a24e3dd4f74b0fd42205b2bf0ecdf904"
+      "bytes": 51434,
+      "sha256": "1bc856c80532aa712a0abc5cf0262810c3d11af0a1b3f847720d3171e5194e0a"
     },
     {
       "path": "eye-tests.html",
-      "bytes": 1860,
-      "sha256": "5652fa9cb6be86d109f54263c2e37ac7784a5bdfcd7465b46ea3bdea40bbf2cc"
+      "bytes": 2129,
+      "sha256": "860f5553da2b02846e185c65e778dc540f22e6fa0da5df6d41e866028e4a0869"
     },
     {
       "path": "tracking.html",
-      "bytes": 49018,
-      "sha256": "a213715120f3ecac4a5dfb9cc26dbb07a4afbdbcef48b55f5a5dc6adb6bf1606"
+      "bytes": 50163,
+      "sha256": "885b6f836ee049b7d565844dd8b2b2b873d6adcbd12f606cf58b321aff79cb61"
     },
     {
       "path": "about.html",
-      "bytes": 4028,
-      "sha256": "d599b4f4382ca155fced83fe619375e0aa9ec2a6961d391c791894c54c79699f"
+      "bytes": 4297,
+      "sha256": "286ac6aba0dc993efb391474c73bc8cf22b84fa5dac91330a2a0cfce9cfc2710"
     },
     {
       "path": "presentation.html",
-      "bytes": 22477,
-      "sha256": "550861ad74391cd06a27cefe3c91f9cec7ba87ec55d818480c85b10b86466361"
+      "bytes": 24066,
+      "sha256": "a0ee7b593cc016e34dc3ff4241cc0294fcf56352015ea55e05e8f7810672e67a"
     },
     {
       "path": "presentation.js",
@@ -117,8 +152,8 @@
     },
     {
       "path": "project-copy.mjs",
-      "bytes": 68799,
-      "sha256": "54c035c5c1af34160952f1b509b8f268d5057f1e124022550454906794ef03e7"
+      "bytes": 69809,
+      "sha256": "a0f2562242024aaac0149263226bfe7f9f88e490e320b4120eb6949b788e504c"
     },
     {
       "path": "project-theme.css",
@@ -143,7 +178,7 @@
     {
       "path": "showcase-3d.mjs",
       "bytes": 7877,
-      "sha256": "50468fb0b0cda8bcff046a215c4c51bbf06bc4b1e718543afac5e568b6fa00fd"
+      "sha256": "cd591f63e171636404fb01dc6b7efc1d9e7812bb782c272e30075355970f3d2f"
     },
     {
       "path": "images/child-welcome.jpg",
@@ -217,13 +252,13 @@
     },
     {
       "path": "static-assets.js",
-      "bytes": 2078,
-      "sha256": "d7b9c65736758f015b60a41f3457251f209aaf557885f7a6debd573c8ea6bb5a"
+      "bytes": 2225,
+      "sha256": "7de02e69d8f2b2ab967159ee00d0ed96f85cba57b3f8d2f1677903278174a0d6"
     },
     {
       "path": "production-readiness.md",
-      "bytes": 11760,
-      "sha256": "162a741fadeedd935d6b4e8faaaced35f6b6b3f5d59a1b52aaa3112c64a97e31"
+      "bytes": 12325,
+      "sha256": "680a962218cc5a5dad71354e3466d3faa27990c6f7f594b34ee679c72afceef4"
     },
     {
       "path": "icons/icon-192.png",
@@ -292,18 +327,18 @@
     },
     {
       "path": "media/NETRA-SCREEN-recorded-walkthrough.webm",
-      "bytes": 4855594,
-      "sha256": "7d993570ccd0b3b4e0c91f0fddc91d2d874dbd7eaf9d6910ae9f630d6dd2c284"
+      "bytes": 4881707,
+      "sha256": "8a591865340af7b9ba3ce4819099d368b8e770f70bec7d33348c198f3a44e8c3"
     },
     {
       "path": "media/walkthrough-poster.png",
-      "bytes": 534857,
-      "sha256": "0ce086c302ceb70d3ff9ad0ce80339fbdd3c9695f9e798f5cff6600e29542a9d"
+      "bytes": 122199,
+      "sha256": "a84ac3ecf1a86a0ade81e106100e4fa2a086c3f86a25e300486e454326e17cf1"
     },
     {
       "path": "media/walkthrough-captions.vtt",
       "bytes": 511,
-      "sha256": "5f725b39ec3001a25eb4d0b6155a8ba1269e0a952777919091ba888c468e308b"
+      "sha256": "ad08898628e13f61eb0198963af224604168633fafddef1f160234dbd63b76e4"
     },
     {
       "path": "docs/NETRA_SCREEN_MindMesh.pdf",
@@ -312,13 +347,13 @@
     },
     {
       "path": "docs/NETRA-SCREEN-investor-brief.pdf",
-      "bytes": 88944,
-      "sha256": "28f8dbc43da12843f52e8f85fc7f74d649f30ed7f07ce12e8d8676a50bbff70e"
+      "bytes": 89067,
+      "sha256": "18da10c1b4d1939905ac1f85d452d5b5a4c61f8c84ddab7987620e260706cc1c"
     },
     {
       "path": "docs/NETRA-SCREEN-investor-deck.pdf",
-      "bytes": 98899,
-      "sha256": "0bfd866ee7615abf0f41572ac79d6ae59013dbdc6836d1dafcd4933191f2511a"
+      "bytes": 395137,
+      "sha256": "017dfa8e2937ae2abf9e33cb0b22017cb5931be557a605481a09206dea58799d"
     },
     {
       "path": "deck-slides/slide-1.png",
@@ -393,7 +428,7 @@
     {
       "path": "sw.js",
       "bytes": 2237,
-      "sha256": "996a42f25d8d543d9a235a7f1f6a15803363108975389fa8d4c233b78d675599"
+      "sha256": "2979b527f5fec59d324d5b4ff3bd864be2af51a10b47c63a5333bef259a0f7e9"
     }
   ]
 }

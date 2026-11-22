@@ -15,7 +15,7 @@ test('YIP research stays home, checked consent never auto-starts camera, present
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.addInitScript(()=>{window.cameraRequests=0;navigator.mediaDevices.getUserMedia=()=>{window.cameraRequests++;return Promise.reject(new Error('Unexpected camera start'));};});
   for(const route of ['/','/index.html','/tracking.html']){
-    await page.goto(route);await expect(page.locator('h1')).toContainText('A new perspective on eye movement');await expect(page.locator('.hero-badge')).toContainText('YIP');await expect(page.locator('#consentCheckbox')).toBeChecked();await expect(page.locator('#btnStartLive')).toBeVisible();expect(await page.evaluate(()=>window.cameraRequests)).toBe(0);
+    await page.goto(route);await expect(page.locator('h1')).toContainText('Help eye-coordination concerns');await expect(page.locator('.hero-badge')).toContainText('OUR PURPOSE');await expect(page.locator('#consentCheckbox')).toBeChecked();await expect(page.locator('#btnStartLive')).toBeVisible();expect(await page.evaluate(()=>window.cameraRequests)).toBe(0);
   }
   await page.locator('[data-comp="fish"]').focus();await page.keyboard.press('Enter');await expect(page.locator('[data-comp="fish"]')).toHaveAttribute('aria-pressed','true');
   await page.locator('#btnNavPresentation').click();await expect(page).toHaveURL(/presentation.html$/);await expect(page.locator('h1')).toContainText('Investor overview');await expect(page.locator('body')).toContainText(/clinical accuracy/i);
@@ -31,12 +31,12 @@ test('redesign fits desktop and phone in both languages; setup and reports remai
     await page.setViewportSize({width,height:width===1440?1100:800});await page.goto('/index.html');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await page.locator('#viewHome').evaluate(el=>el.scrollTop=0);await page.screenshot({path:`test-results/yip-home-${width}.png`,fullPage:true});
-    await page.locator('a[href="#researchSetup"]').click();await expect(page.locator('#consentCheckbox')).toBeInViewport();
+    await page.locator('.hero-links a[href="#researchSetup"]').click();await expect(page.locator('#consentCheckbox')).toBeInViewport();
     for(const lang of ['ml','en']){await page.locator('#langToggleBtn').click();await expect(page.locator('html')).toHaveAttribute('lang',lang);await expect(page.locator('#consentCheckbox')).toBeChecked();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
     await page.goto('/presentation.html');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`test-results/yip-presentation-${width}.png`,fullPage:true});
   }
   await page.setViewportSize({width:1440,height:1100});await page.goto('/index.html');await page.clock.install({time:new Date('2026-11-22T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-22T00:01:00Z'));await page.locator('#btnStartDemo').click();await page.locator('#btnFocusReady').click();await page.screenshot({path:'test-results/yip-capture.png'});await page.clock.runFor(33500);await expect(page.locator('#viewReport')).toHaveClass(/active-view/);await page.screenshot({path:'test-results/yip-report.png',fullPage:true});await expect(page.locator('#metricCorrelation')).toHaveText('Unavailable');
-  await page.locator('#btnRestartSession').click();await expect(page.locator('.hero-badge')).toContainText('YIP');
+  await page.locator('#btnRestartSession').click();await expect(page.locator('.hero-badge')).toContainText('OUR PURPOSE');
 });
 test('dark design stays readable on small phones and prints a light report',async({page})=>{
   test.setTimeout(120000);

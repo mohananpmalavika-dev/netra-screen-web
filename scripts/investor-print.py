@@ -18,7 +18,7 @@ for name, file in [('Netra', 'segoeui.ttf'), ('NetraBold', 'segoeuib.ttf')]:
     pdfmetrics.registerFont(TTFont(name, 'C:/Windows/Fonts/' + file))
 out = root / 'output/pdf'
 out.mkdir(parents=True, exist_ok=True)
-ink, muted, purple = [HexColor(x) for x in ['#25233e', '#53586c', '#6242ae']]
+ink, muted, purple = [HexColor(x) for x in ['#17354b', '#526d83', '#286a85']]
 evidence = json.loads((web / 'investor-evidence.json').read_text(encoding='utf-8'))
 if evidence['status'] != 'passed':
     raise ValueError('Record passing engineering evidence before exporting the brief.')
@@ -41,14 +41,14 @@ def brief():
     c.setTitle('NETRA-SCREEN | Research partner and investor brief')
     c.setAuthor('Team MindMesh')
     w,h = A4; m=40; content=w-2*m
-    c.setFillColor(HexColor('#211b3c')); c.rect(0,h-174,w,174,fill=1,stroke=0)
-    c.setFillColor(HexColor('#8fe4ce')); c.rect(0,h-174,w,3,fill=1,stroke=0)
-    para(c,'NETRA-SCREEN / TEAM MINDMESH',m,h-24,content,10.5,True,HexColor('#aceedb'))
-    y=para(c,'Guided eye-movement observation.<br/>Built around a smartphone.',m,h-53,content,25,False,white)
-    para(c,'Android + web research prototypes | KGDTIS 2026 | YIP pavilion',m,y-12,content,10,False,HexColor('#d7cdec'))
+    c.setFillColor(HexColor('#0d1b31')); c.rect(0,h-174,w,174,fill=1,stroke=0)
+    c.setFillColor(HexColor('#91e1df')); c.rect(0,h-174,w,3,fill=1,stroke=0)
+    para(c,'NETRA-SCREEN / TEAM MINDMESH',m,h-24,content,10.5,True,HexColor('#a5e8e7'))
+    y=para(c,'Eye-movement research.<br/>On your smartphone.',m,h-53,content,27,False,white)
+    para(c,'Android + web research prototypes | KGDTIS 2026 | YIP pavilion',m,y-12,content,10,False,HexColor('#b9d4e9'))
     y=h-194
     blocks=[
-      ('THE PROBLEM & FIRST CUSTOMER HYPOTHESIS', 'Could guided capture and structured reports make supervised eye-movement research easier to run? First user to explore: ophthalmology researchers. A research institution or department is a potential buyer; demand and willingness to pay remain untested.'),
+      ('THE PURPOSE & FIRST USER', 'Our goal is more accessible preliminary observation of children’s eye movement and coordination, towards earlier professional attention. Today this is a research prototype; screening capability remains to be evaluated. First user to explore: ophthalmology researchers. A research institution is a buyer hypothesis; demand and willingness to pay are untested.'),
       ('WHAT WORKS TODAY', 'Four guided target paths, capture feedback, local landmark processing and an observation report with explicit export. Camera images are not stored or uploaded. The camera-free walkthrough demonstrates the flow without creating participant eye measurements.'),
       ('DATED ENGINEERING EVIDENCE', f"{evidence['unitTests']['passed']} Node regression tests and {evidence['browserTests']['passed']} Chromium browser tests passed; {len(evidence['viewports'])} emulated viewport sizes checked. Snapshot: {escape(evidence['reviewDate'])}. Controlled fixtures and desktop browser tests verify software behavior; physical-phone and clinical performance remain to be established."),
       ('PROPOSED 90-DAY DELIVERABLES', '<b>Days 1-30:</b> device baseline, repeat-run failures and research-user interviews.<br/><b>Days 31-60:</b> clinician-reviewed study draft and itemised work budget, subject to partner availability.<br/><b>Days 61-90:</b> supervised usability findings and a go/revise decision when required review, consent and oversight are in place; otherwise a readiness-gap assessment.'),

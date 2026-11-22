@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 test('QR partner path exposes the evidence, customer hypothesis and a concrete ask',async({page})=>{
  const errors=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto('/join.html');await page.getByRole('link',{name:'Open partner pack'}).click();
- await expect(page).toHaveURL(/investor.html$/);await expect(page.locator('h1')).toContainText('Guided observation');
+ await expect(page).toHaveURL(/investor.html$/);await expect(page.locator('h1')).toContainText('Eye-movement research');
  await expect(page.locator('#connect')).toContainText('Public email and phone details have not been selected');
  await expect(page.locator('#plan')).toContainText('does not promise clinical validation');
  for(const path of ['/docs/NETRA-SCREEN-investor-brief.pdf','/docs/NETRA-SCREEN-investor-deck.pdf','/media/NETRA-SCREEN-recorded-walkthrough.webm','/media/walkthrough-captions.vtt'])expect((await page.request.get(path)).status()).toBe(200);
