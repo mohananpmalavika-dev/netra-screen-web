@@ -12,6 +12,7 @@ function stop(){speechId++;if(ownsSpeech)window.speechSynthesis?.cancel();ownsSp
 function answerText(){return current.id==='pitch'?PITCH[language]:current.id==='welcome'?t().welcome:current.id==='unknown'?answerQuestion('',language).text:KNOWLEDGE.find(x=>x.id===current.id)?.a[language]||t().welcome;}
 function render(){
  document.querySelectorAll('[data-guide-copy]').forEach(el=>el.textContent=t()[el.dataset.guideCopy]);
+ document.querySelectorAll('.presenter-avatar-button,.guide-launcher').forEach(el=>{el.setAttribute('aria-label',language==='ml'?'NETRA പ്രോജക്ട് അവതാരകയെ തുറക്കുക':'Open NETRA virtual project presenter');el.setAttribute('aria-haspopup','dialog');el.setAttribute('aria-controls',dialog.id);});
  get('[data-guide-language]').textContent=language==='en'?'മലയാളം':'English';get('#guideQuestion').placeholder=t().placeholder;
  get('[data-guide-answer]').textContent=answerText();get('[data-guide-question]').textContent=current.id==='pitch'?t().pitch:current.id==='welcome'?'':current.question||KNOWLEDGE.find(x=>x.id===current.id)?.q[language]||'';
  const source=get('[data-guide-source]');source.hidden=!current.source;if(current.source)source.href=current.source;
@@ -27,10 +28,10 @@ function speak(){
  function next(){if(token!==speechId||!dialog.open)return;const chunk=chunks.shift();if(!chunk){ownsSpeech=false;dialog.classList.remove('is-speaking');voiceStatus.textContent=t().ready;return;}const u=new SpeechSynthesisUtterance(chunk);u.voice=voice;u.lang=voice.lang;u.rate=.92;u.pitch=1.04;u.onstart=()=>{if(token!==speechId)return;dialog.classList.add('is-speaking');voiceStatus.textContent=fallback?t().fallback:t().speaking;};u.onend=next;u.onerror=e=>{if(token!==speechId)return;dialog.classList.remove('is-speaking');voiceStatus.textContent=['canceled','interrupted'].includes(e.error)?t().ready:t().unavailable;};try{synth.speak(u);}catch{voiceStatus.textContent=t().unavailable;}}
  next();
 }
-function open(mode){returnFocus=document.activeElement;language=document.documentElement.lang==='ml'?'ml':'en';current={id:mode==='pitch'?'pitch':'welcome'};render();dialog.showModal();if(mode==='pitch')speak();else{get('#guideQuestion').focus();speak();}}
+function open(mode){returnFocus=document.activeElement;language=document.documentElement.lang==='ml'?'ml':'en';current={id:mode==='pitch'?'pitch':'welcome'};render();dialog.showModal();dialog.scrollTop=0;get('[data-guide-close]').focus({preventScroll:true});speak();}
 document.querySelectorAll('[data-guide-open]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.guideOpen)));
-// Slide decks and companion pages can open the same presenter without duplicating its content.
-if(!home){const b=document.createElement('button');b.type='button';b.className='guide-launcher';b.setAttribute('aria-label','Open NETRA virtual project presenter');b.innerHTML='<img src="images/child-welcome.jpg" alt="" width="68" height="80"><span class="avatar-chat-mark" aria-hidden="true">···</span>';b.addEventListener('click',()=>open('ask'));document.body.append(b);}
+// Keep the portrait available while scrolling on home, slides and companion pages.
+const launcher=document.createElement('button');launcher.type='button';launcher.className='guide-launcher';launcher.setAttribute('aria-label','Open NETRA virtual project presenter');launcher.innerHTML='<img src="images/child-welcome.jpg" alt="" width="68" height="80"><span class="avatar-chat-mark" aria-hidden="true">···</span>';launcher.addEventListener('click',()=>open('ask'));document.body.append(launcher);
 get('[data-guide-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{stop();returnFocus?.focus();});
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 get('[data-guide-language]').addEventListener('click',()=>{stop();language=language==='en'?'ml':'en';render();});

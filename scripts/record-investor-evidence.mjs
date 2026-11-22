@@ -1,0 +1,15 @@
+import {spawnSync} from 'node:child_process';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+const unit=spawnSync(process.execPath,['--test','--test-reporter=tap','tests/*.test.mjs'],{encoding:'utf8'});
+if(unit.status!==0)throw Error(unit.stdout+'\n'+unit.stderr);
+const total=Number(unit.stdout.match(/# tests (\d+)/)?.[1]),passed=Number(unit.stdout.match(/# pass (\d+)/)?.[1]);
+if(!total||total!==passed)throw Error('Unit test receipt is incomplete.');
+const browser=JSON.parse(await readFile('test-results/browser-results.json','utf8'));
+if(!browser.stats.expected||browser.stats.unexpected||browser.stats.skipped||browser.stats.flaky)throw Error('Browser suite must pass without failures, skips or flaky results.');
+const sourceFiles=['index.html','tracking.html','join.html','investor.html','presentation.html','presentation.js','investor-copy.mjs','project-knowledge.mjs','presenter.mjs','investor.mjs','investor.css','visitor-experience.css','app.js','camera.mjs','vision-core.mjs','static-assets.js','sw.js'];
+const hashes={};for(const path of sourceFiles)hashes[path]=createHash('sha256').update(await readFile(path)).digest('hex');
+const date=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}).format(new Date());
+const receipt={status:'passed',reviewDate:date,verifiedAt:new Date().toISOString(),scope:'Web engineering verification; no physical-device or clinical accuracy claim.',unitTests:{passed,total,command:'node --test tests/*.test.mjs'},browserTests:{passed:browser.stats.expected,failed:0,skipped:0,flaky:0,engine:'desktop Chromium',report:'test-results/browser-results.json',suiteStartedAt:browser.stats.startTime},viewports:[[320,740],[390,844],[768,1024],[1024,768],[1440,900],[568,320],[844,390]],hardwareDevicesTested:[],clinicalValidation:false,customerDemandValidated:false,fundingAmountDecided:false,limitations:['Controlled camera/model fixtures verify software behavior, not optical or clinical accuracy.','Emulated viewport tests do not establish real-phone camera, battery, thermal or field performance.','Clinical and pediatric validity, customer demand and willingness to pay remain unestablished.','Malayalam native-speaker and eye-care professional review remain pending.'],sourceSha256:hashes};
+await writeFile('investor-evidence.json',JSON.stringify(receipt,null,2)+'\n');
+console.log(`Recorded ${passed} Node and ${browser.stats.expected} Chromium checks. No hardware or clinical claim.`);

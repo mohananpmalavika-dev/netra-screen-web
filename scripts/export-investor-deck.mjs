@@ -1,0 +1,10 @@
+import {chromium} from '@playwright/test';
+import {mkdir,copyFile} from 'node:fs/promises';
+await mkdir('../output/pdf',{recursive:true});
+const browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1280,height:800},serviceWorkers:'block',reducedMotion:'reduce'});
+await page.goto('http://127.0.0.1:8080/presentation.html');await page.locator('.pitch-slide.active h2').waitFor();
+await page.emulateMedia({media:'print'});
+await page.addStyleTag({content:'@page{size:338.667mm 190.5mm;margin:0}.pitch-slide,.pitch-slide.active,.pitch-shell.mode-report .pitch-slide{height:190.5mm!important;min-height:190.5mm!important;max-height:190.5mm!important;}'});
+await page.pdf({path:'docs/NETRA-SCREEN-investor-deck.pdf',width:'338.667mm',height:'190.5mm',printBackground:true,margin:{top:0,right:0,bottom:0,left:0},preferCSSPageSize:true});
+await copyFile('docs/NETRA-SCREEN-investor-deck.pdf','../output/pdf/NETRA-SCREEN-investor-deck.pdf');await browser.close();
+console.log('Exported the current eight-slide investor deck.');
