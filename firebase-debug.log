@@ -1,13 +1,202 @@
-[debug] [2026-11-21T22:54:43.097Z] ----------------------------------------------------------------------
-[debug] [2026-11-21T22:54:43.135Z] Command:       C:\Program Files\nodejs\node.exe C:\NetraScreen\web\node_modules\firebase-tools\lib\bin\firebase.js login:list
-[debug] [2026-11-21T22:54:43.136Z] CLI Version:   15.37.0
-[debug] [2026-11-21T22:54:43.137Z] Platform:      win32
-[debug] [2026-11-21T22:54:43.137Z] Node Version:  v24.15.0
-[debug] [2026-11-21T22:54:43.140Z] Detected Agent: codex_cli
-[debug] [2026-11-21T22:54:43.142Z] Time:          Sun Nov 22 2026 04:24:43 GMT+0530 (India Standard Time)
-[debug] [2026-11-21T22:54:43.142Z] ----------------------------------------------------------------------
+[debug] [2026-11-22T14:09:07.961Z] ----------------------------------------------------------------------
+[debug] [2026-11-22T14:09:07.978Z] Command:       C:\Program Files\nodejs\node.exe C:\NetraScreen\web\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting:mindmesh-netra --project kryptonlogic-ebe5a --non-interactive
+[debug] [2026-11-22T14:09:07.979Z] CLI Version:   15.37.0
+[debug] [2026-11-22T14:09:07.979Z] Platform:      win32
+[debug] [2026-11-22T14:09:07.979Z] Node Version:  v24.15.0
+[debug] [2026-11-22T14:09:07.980Z] Detected Agent: codex_cli
+[debug] [2026-11-22T14:09:07.981Z] Time:          Sun Nov 22 2026 19:39:07 GMT+0530 (India Standard Time)
+[debug] [2026-11-22T14:09:07.981Z] ----------------------------------------------------------------------
 [debug] 
-[info] Logged in as techomsystem14@gmail.com
+[debug] [2026-11-22T14:09:31.322Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-11-22T14:09:31.324Z] > authorizing via signed-in user (techomsystem14@gmail.com)
+[debug] [2026-11-22T14:09:31.325Z] [iam] checking project kryptonlogic-ebe5a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-11-22T14:09:31.394Z] Checked if tokens are valid: false, expires at: 1795356760988
+[debug] [2026-11-22T14:09:31.395Z] Checked if tokens are valid: false, expires at: 1795356760988
+[debug] [2026-11-22T14:09:31.396Z] > refreshing access token with scopes: []
+[debug] [2026-11-22T14:09:31.410Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-11-22T14:09:31.410Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-11-22T14:09:31.959Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-11-22T14:09:31.960Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-11-22T14:09:32.013Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/kryptonlogic-ebe5a:testIamPermissions [none]
+[debug] [2026-11-22T14:09:32.014Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/kryptonlogic-ebe5a:testIamPermissions  x-goog-user-project=kryptonlogic-ebe5a
+[debug] [2026-11-22T14:09:32.015Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/kryptonlogic-ebe5a:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-11-22T14:09:33.782Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/kryptonlogic-ebe5a:testIamPermissions 200
+[debug] [2026-11-22T14:09:33.782Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/kryptonlogic-ebe5a:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-11-22T14:09:33.793Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:09:33.794Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:09:33.794Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a [none]
+[debug] [2026-11-22T14:09:34.527Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a 200
+[debug] [2026-11-22T14:09:34.528Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a {"projectId":"kryptonlogic-ebe5a","projectNumber":"299221841369","displayName":"KryptonLogic","name":"projects/kryptonlogic-ebe5a","resources":{"hostingSite":"kryptonlogic-ebe5a"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_1c0e745a-3cb6-4570-8caa-39c08850baf6"}
 [info] 
-[info] Other available accounts (switch with "firebase login:use")
-[info]  - aditimalavika9@gmail.com
+[info] === Deploying to 'kryptonlogic-ebe5a'...
+[info] 
+[info] i  deploying hosting 
+[info] Running command: npm --prefix "$PROJECT_DIR" run build
+[info] +  hosting[mindmesh-netra]: Finished running predeploy script. 
+[info] Running command: npm --prefix "$PROJECT_DIR" run build
+[info] +  hosting: Finished running predeploy script. 
+[debug] [2026-11-22T14:10:06.952Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:06.952Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:06.953Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra [none]
+[debug] [2026-11-22T14:10:08.496Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra 200
+[debug] [2026-11-22T14:10:08.496Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra {"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra","defaultUrl":"https://mindmesh-netra.web.app","type":"USER_SITE"}
+[debug] [2026-11-22T14:10:08.519Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:08.520Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:08.522Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions [none]
+[debug] [2026-11-22T14:10:08.523Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-11-22T14:10:09.603Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions 200
+[debug] [2026-11-22T14:10:09.604Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions {"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[mindmesh-netra]: beginning deploy... 
+[info] i  hosting[mindmesh-netra]: found 86 files in dist 
+[debug] [2026-11-22T14:10:09.671Z] [hosting] uploading with 200 concurrency
+[debug] [2026-11-22T14:10:09.715Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:09.715Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:09.722Z] [hosting] hash cache [ZGlzdA] stored for 86 files
+[debug] [2026-11-22T14:10:09.724Z] [hosting][hash queue][FINAL] {"max":31,"min":1,"avg":3.931611981557268,"active":0,"complete":86,"success":86,"errored":0,"retried":0,"total":86,"elapsed":45}
+[debug] [2026-11-22T14:10:09.726Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa:populateFiles [none]
+[debug] [2026-11-22T14:10:09.726Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa:populateFiles {"files":{"/wellness.css":"4ea99b3077a6d24cbf0849223eb63b75fea76f12d8f4554e17b55229c49543c5","/visitor-experience.css":"c82071d680df073d62fb8ba2bb04a4165e1d65bf14b82c3f5147900f730d721b","/vision-core.mjs":"228b48c821d707197e23788a373ae9da76fed1143d50820b25c97841bb1dd08c","/vendor-manifest.json":"49ea208e344d5b3c8126a11f14aa92cf392878b905702ce670c4bd6e60f28ac4","/tracking.html":"9cda93fe6274f32f2a6eaaaa585fb25d4fb973a94713398fabab1f400bee2a3c","/tracking.css":"74b09a3d4124bc42c8c35f0d95e672cdb5d9d602e1e583c571491e4cca346713","/third-party-notices.txt":"2f9a4e33c59c2ee3315166cae59e3a94974b5366f8090194acb756776d097673","/styles.css":"4499bdb4ec88340b345ed5047f19796e4fad1bebfb89321069a31631f4fb1040","/static-assets.js":"8ec503bd0b89fd5d7d09f3fd2b8fd230335d87097877530500459c441314cecf","/signature.mjs":"2d3e6ada81d4201ee0bc71624948bd08ffc62561b6f34bacb791109b43d3a1d4","/showcase-3d.mjs":"9a8c363bdea86ef8aac773ef5829525a0532850c35b692197cfce46ce5841837","/research.css":"50d54ac886dc59c92c095a2bab8a16aaa63506ebc47780094f7e5c536d41a9e4","/project-theme.css":"5ad318b9a7822cf41115e6c1115081573b10ecbd6d56f44beab6db5fb9f71406","/project-knowledge.mjs":"b563d7515c64b42cacef594f5075232ed0d3bf7ddf5662570148eaaa3e62f71f","/project-copy.mjs":"6f4093c18616e58f7699f54eb6636de487c3f21e9cf622967ce6708a5120e0c5","/professional.css":"74a642492628c893e4df68497198d107b51b83f7ae8fb6dae704928ce783feec","/production-readiness.md":"a4b0158e8c7c648318ec98f56502647552ff8b8bd282fc35a54f81df555d1e29","/presenter.mjs":"5f605b8fa90908dece71fe703775c36bf77124163b56d498bbe4741ea34715b5","/presentation.js":"e5fbe47a4ef1c9b3be02fa203fe1396e8e2fe76fe8d49b921e93cd4da4f63032","/presentation.html":"c72e07b5007b941235c4c9a9d24c138436677f7f0105233668a87725a66a50b6","/optics-hero.mjs":"0b7ae73c49da492c71573b074be7e818b3fc5b0def9fa9bffc2a9a6aad513219","/optics-hero.css":"0ea0246c765fd635c683af5b664d8afcf4517248b4ab861a1b3f5346881ec263","/optical-exhibit.mjs":"4f58a1800a5b17ecca38b24bb347f8e7e5e94c7752ceb5114216144db682e583","/optical-exhibit.css":"4dd1f11461e245ddb699b323c9dd90edab83d64832dd71b347182e9ac7fbaa0b","/offline-status.js":"7a50148e3d29d9919916476f7fb7418327a9dd4d201a486b5b28c1403d472f1f","/manifest.json":"12188e6fbf76ca6f6eb6c21dfe87d6f3322cde0162f13e9903729f57f4cc53e7","/join.mjs":"dbba20300b783a44574e3eb2f4528acca30823817432619e8d1e1b2618309732","/join.html":"bfc94f0f2a5afe7bc90f1c82490879332e8426bf600683e06ce12dd0864b4f5d","/investor.mjs":"b8498035bef3e125db2baac08dc8558d0473717bdca126da8316063f8341d900","/investor.html":"662115fdf51703b38681fbf5cbd7d2c408c7f26a52b058d6ad2fcf53cb0dd0c9","/investor.css":"df94b91d7a61cf9e585b3a467e677f7b90a62c18c46b65c8b5cab7865c776be7","/investor-copy.mjs":"c960941ebe60666a943c68676df6382481a94ee31d9a3e46ce02ae1775e8fab5","/index.html":"cb1f2c027149ee79a5e8107022ce0011aa76ec22b13913b7898be6696cc8b437","/immersive.css":"56e6e76832da30961f39a7580b51bc04ef56c2ce18a9dffd3b93ec98708ec9b2","/gaze-control.mjs":"5bd4bfdbc1429404e05446d8851d3d9439d5c94f95835e4cf3d4109d447b4f42","/eye-tests.js":"4d9f96e58c9bd2bd3ce8169b60cfd6a541f78957c85dc2b5823f9ad4a783cd7c","/eye-tests.html":"ba0fc944600926b795672f02bced9b0ca904fd8ab8a8bdca54bb6ed3c248daca","/child-guide.mjs":"f312f22444b98a0d10a4049a95dfdb3e39e09c3da07197cbe355d8ced492c6ed","/camera.mjs":"4a22159e663b1b8b761e8c74bc00a7a62cc858b712ccec66d48424815d033e11","/APACHE-2.0.txt":"4e95c12a078c58e360b1aba469586df38e3d77bdbe53ca471f5507e684225f7e","/about.html":"da067b02c9485e0abc87df1041228a97aef4c195d8096471c912012f208f1282","/wasm/vision_wasm_nosimd_internal.wasm":"2ac34d048877d6f20fb5a2f7997d47e174834518c1c9c2479ef51d396c79f208","/wasm/vision_wasm_nosimd_internal.js":"5b716d65f17e20f14724d297ffa5a1c1f0767dab5c7909d39386d50e9d7cbd0f","/wasm/vision_wasm_module_internal.wasm":"5c4be764a398948b65004edfe094adc4598e29e4bc9c39347bd1267d707b7886","/wasm/vision_wasm_module_internal.js":"f3dfb1cf1e6451cd2bed8a872c11af37242f7f229db1baf8c37dcf84c37e2e40","/wasm/vision_wasm_internal.wasm":"accbdba74b462a51a1a24741c733b83e8b194123835d88152a034be2b672927d","/wasm/vision_wasm_internal.js":"e5f0b3aabb12687fd0927056b96bc6922edcf1cce764c4d20583539ad7dd7f48","/models/face_landmarker.task":"b51c12046ec3b33fc8dd09a6f3956baa906886da0642360653f7d5106bef17ac","/media/walkthrough-poster.png":"c9746f9663c673428325e2b501830d945d6ff34819d9b021639192fbf1a4ef33","/media/walkthrough-captions.vtt":"24f2a54010a1d1f13feb3c65549929e7e731ecbbd02785c20091f8117cf97d29","/media/NETRA-SCREEN-recorded-walkthrough.webm":"744624ce42f9b78950f23951e438b88376db650af8370bc6580b8f98dfa76dd5","/libs/tasks-vision.mjs":"00411219cccc2c4de04cd4f05c792a939aa73010feda91c6bc49d201a9977342","/images/visitor-qr.svg":"f0542e8b1f041cf73b0b9e4967b0488ffe80968d281a4ce01adf69ed57735a06","/images/visitor-qr.png":"3495104f0902cceb264d1fa59a315ba87b8350db7f3ef6aac7cd6811dca7d1f3","/images/child-welcome.jpg":"ac068f2c002be16b7f80d091420a2de9a73936e613a37980e5c0c8e78d06b0a7","/icons/icon-512.png":"485eacfd95833a134133b7790300cc215a1d503b613a6279f8a712a56a2650f9","/icons/icon-192.png":"b990267eec0fd528c0ba5c7cae90646251906d2d8637dea77ed5d5b81db5609d","/fonts/OFL-Manrope.txt":"acb1273f70e553eabad4d4296d07f10a0911960baf27293b5cda9c9b20c6c6a9","/fonts/Manrope-Variable.ttf":"16b2cf543779f7e354e1fc27199b5489d20963cecc0b8f6d86e7bab59d91fccc","/docs/NETRA_SCREEN_MindMesh.pdf":"247cc054dcf87c18b9eb0c9d6e394535a80499f9916b0ca30eebfb9b1d717bdc","/docs/NETRA-SCREEN-investor-deck.pdf":"0bc8e76d15b50c7f8b16abb37d6f452c95e6f39cd6cd3286dbe4cc7938c9eac3","/docs/NETRA-SCREEN-investor-brief.pdf":"8fffa45f1a3a3d2b82ee89280089b5352b42bac430ffd0e820a402054dee56f8","/deck-slides/slide-9.png":"ed56a3389a494e72983d7bff1046dbeaf0d4403110c6af5c8619daa10ce0447f","/deck-slides/slide-8.png":"a8ec1a92509a6e6ecd092baab3ed99da7740b4e8f13e201e59bbefd79edcd7ed","/deck-slides/slide-7.png":"d1422050ee9382625db8d7e2c473b9b9c766c1ce254646ff4950065fefd4cca7","/deck-slides/slide-6.png":"9299d6653dabd2bfb62711cff3fbe05604df729f6a9844bd49ab33a4aff05486","/deck-slides/slide-5.png":"e117f032712927d85eaabc05608ff4a4de031f452bae3efcba224d85fa3650f5","/deck-slides/slide-4.png":"346f723098b7c786ddef98c3c1cfc0326284c88d4ae70afad7bb914132293a0f","/deck-slides/slide-3.png":"fdfdb7cc6e8047b6d0b92007cd880526955fd2a9bcea845d59ffa7c680cbc7c0","/deck-slides/slide-2.png":"d0a90e67a88e7a10450e6f191efcd448d860d580ba00d7c5a20792421bc65714","/deck-slides/slide-14.png":"1fcbb221f1b6a4530fcc5c413e771fe68a8a4749110a507d6a5ae5b63f902d84","/deck-slides/slide-13.png":"48076a0cf2787ec0a6cf46ac6765cd5057c216620bd44ac324f35c4d17357318","/deck-slides/slide-12.png":"471b74ccffedcddf3ee3466cb7848abbc3c7677b2555eb407aaa9fda941c91b4","/deck-slides/slide-11.png":"81205b2239e46b5e018de54f24cebfe16d118ef6552b0758f83d0a8cefd6fb35","/deck-slides/slide-10.png":"b838805e92fcf6714a98e920400f67adb7b2d4ef6ebb942ac1e9fb3138ad55c9","/deck-slides/slide-1.png":"66d2a4db319cfe32f2b970067e5e5af02fdbf1aedf0a38ec08c4cb5fa23081f9","/companions/fish.svg":"5c37dcf929ba2020a27a31b229615caa70cdffa7569818a2c82a7aab90e49098","/companions/dot.svg":"a3b65d80ccdaa79ad5a27364eeb4a69905e6a244fa9478cd047649d4c1a54632","/companions/butterfly.svg":"24a57f065bafc036ca9d08dcd027e425ea35f6a8d39ec4f9732bb0f11d9aa122","/investor-evidence.json":"830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211","/sw.js":"bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1","/studio-professional.css":"c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728","/build-receipt.json":"5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006","/signature-light.css":"42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb","/cinematic.css":"e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450","/app.js":"7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68"}}
+[debug] [2026-11-22T14:10:10.780Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa:populateFiles 200
+[debug] [2026-11-22T14:10:10.780Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa:populateFiles {"uploadRequiredHashes":["bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1","42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb","7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68","5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006","e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450","c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728","830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files"}
+[debug] [2026-11-22T14:10:10.783Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.783Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.786Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.786Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.788Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.788Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.789Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.790Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.790Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.791Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.791Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.792Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.792Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.793Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:10.793Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1 [none]
+[debug] [2026-11-22T14:10:10.793Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1 [stream]
+[debug] [2026-11-22T14:10:10.796Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb [none]
+[debug] [2026-11-22T14:10:10.796Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb [stream]
+[debug] [2026-11-22T14:10:10.797Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68 [none]
+[debug] [2026-11-22T14:10:10.798Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68 [stream]
+[debug] [2026-11-22T14:10:10.803Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006 [none]
+[debug] [2026-11-22T14:10:10.804Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006 [stream]
+[debug] [2026-11-22T14:10:10.806Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450 [none]
+[debug] [2026-11-22T14:10:10.807Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450 [stream]
+[debug] [2026-11-22T14:10:10.809Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728 [none]
+[debug] [2026-11-22T14:10:10.809Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728 [stream]
+[debug] [2026-11-22T14:10:10.811Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211 [none]
+[debug] [2026-11-22T14:10:10.811Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211 [stream]
+[debug] [2026-11-22T14:10:10.832Z] [hosting][populate queue][FINAL] {"max":1078,"min":1078,"avg":1078,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1117}
+[debug] [2026-11-22T14:10:10.833Z] [hosting] uploads queued: 7
+[info] i  hosting: uploading new files [0/7] (0%) 
+[debug] [2026-11-22T14:10:12.763Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1 200
+[debug] [2026-11-22T14:10:12.764Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/bdeb1fde7c426ab3eb25bf43530bbee32eb44455e3ecccb779d5d00e553595e1 [stream]
+[debug] [2026-11-22T14:10:12.766Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb 200
+[debug] [2026-11-22T14:10:12.767Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/42e44ebab0338fc5bf17969a86bbfbbdd19868846be91b090ffdbbc80cc13fcb [stream]
+[debug] [2026-11-22T14:10:12.768Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450 200
+[debug] [2026-11-22T14:10:12.769Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/e9962b911a072086669a2e90b68a7c1052ef777451d01143cc2e71ec19473450 [stream]
+[debug] [2026-11-22T14:10:12.770Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211 200
+[debug] [2026-11-22T14:10:12.771Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/830bdc2812fe8de3ecc82786a81794e8a35b33ac8ac2dc69664617605041b211 [stream]
+[debug] [2026-11-22T14:10:12.772Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006 200
+[debug] [2026-11-22T14:10:12.772Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/5780baef2f97b164d02e41a918a5c7498623d23efb11101e96eb1b4a4bf9f006 [stream]
+[debug] [2026-11-22T14:10:12.773Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728 200
+[debug] [2026-11-22T14:10:12.774Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/c1668c3f76b94a9e5500bf4c3b5abeed083695789b3b5a4b57f2ff51cc35f728 [stream]
+[debug] [2026-11-22T14:10:12.807Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68 200
+[debug] [2026-11-22T14:10:12.807Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/mindmesh-netra/versions/3c06a5baa65f5afa/files/7f91b824b65eed14e9b84352917be11374d2a102b12861b799a6c3b237f8bc68 [stream]
+[debug] [2026-11-22T14:10:12.808Z] [hosting][upload queue][FINAL] {"max":2022,"min":1979,"avg":1987.4285714285713,"active":0,"complete":7,"success":7,"errored":0,"retried":0,"total":7,"elapsed":2027}
+[info] i  hosting: upload complete 
+[info] +  hosting[mindmesh-netra]: file upload complete 
+[debug] [2026-11-22T14:10:12.809Z] [hosting] deploy completed after 3199ms
+[debug] [2026-11-22T14:10:12.810Z] [
+  {
+    "config": {
+      "target": "mindmesh-netra",
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cross-Origin-Embedder-Policy",
+              "value": "credentialless"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "no-referrer"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "camera=(self), microphone=(), geolocation=()"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'"
+            }
+          ]
+        },
+        {
+          "source": "**/*.wasm",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/wasm"
+            }
+          ]
+        },
+        {
+          "source": "**/*.mjs",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "text/javascript; charset=utf-8"
+            }
+          ]
+        }
+      ],
+      "predeploy": [
+        "npm --prefix \"$PROJECT_DIR\" run build"
+      ],
+      "site": "mindmesh-netra"
+    },
+    "version": "projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa"
+  }
+]
+[info] i  hosting[mindmesh-netra]: finalizing version... 
+[debug] [2026-11-22T14:10:12.814Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:12.814Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:12.815Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa updateMask=status%2Cconfig
+[debug] [2026-11-22T14:10:12.815Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa {"status":"FINALIZED","config":{"headers":[{"glob":"**","headers":{"Cross-Origin-Opener-Policy":"same-origin","Cross-Origin-Embedder-Policy":"credentialless","Cache-Control":"no-cache","X-Content-Type-Options":"nosniff","Referrer-Policy":"no-referrer","Permissions-Policy":"camera=(self), microphone=(), geolocation=()","Content-Security-Policy":"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'"}},{"glob":"**/*.wasm","headers":{"Content-Type":"application/wasm"}},{"glob":"**/*.mjs","headers":{"Content-Type":"text/javascript; charset=utf-8"}}]}}
+[debug] [2026-11-22T14:10:13.827Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa 200
+[debug] [2026-11-22T14:10:13.828Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa {"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa","status":"FINALIZED","config":{"headers":[{"headers":{"Cache-Control":"no-cache","X-Content-Type-Options":"nosniff","Referrer-Policy":"no-referrer","Permissions-Policy":"camera=(self), microphone=(), geolocation=()","Content-Security-Policy":"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'","Cross-Origin-Opener-Policy":"same-origin","Cross-Origin-Embedder-Policy":"credentialless"},"glob":"**"},{"headers":{"Content-Type":"application/wasm"},"glob":"**/*.wasm"},{"headers":{"Content-Type":"text/javascript; charset=utf-8"},"glob":"**/*.mjs"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-11-22T14:10:08.510490Z","createUser":{"email":"techomsystem14@gmail.com"},"finalizeTime":"2026-11-22T14:10:13.116442Z","finalizeUser":{"email":"techomsystem14@gmail.com"}}
+[debug] [2026-11-22T14:10:13.829Z] [hosting] finalized version for mindmesh-netra:[object Object]
+[info] +  hosting[mindmesh-netra]: version finalized 
+[info] i  hosting[mindmesh-netra]: releasing new version... 
+[debug] [2026-11-22T14:10:13.830Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:13.830Z] Checked if tokens are valid: true, expires at: 1795360170960
+[debug] [2026-11-22T14:10:13.830Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases versionName=projects%2Fkryptonlogic-ebe5a%2Fsites%2Fmindmesh-netra%2Fversions%2F3c06a5baa65f5afa
+[debug] [2026-11-22T14:10:13.831Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases {}
+[debug] [2026-11-22T14:10:14.694Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases 200
+[debug] [2026-11-22T14:10:14.696Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases {"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases/1795356613298000","version":{"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa","status":"FINALIZED","config":{"headers":[{"headers":{"Referrer-Policy":"no-referrer","X-Content-Type-Options":"nosniff","Cache-Control":"no-cache","Content-Security-Policy":"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'","Cross-Origin-Embedder-Policy":"credentialless","Cross-Origin-Opener-Policy":"same-origin","Permissions-Policy":"camera=(self), microphone=(), geolocation=()"},"glob":"**"},{"headers":{"Content-Type":"application/wasm"},"glob":"**/*.wasm"},{"headers":{"Content-Type":"text/javascript; charset=utf-8"},"glob":"**/*.mjs"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-11-22T14:10:08.510490Z","createUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"},"finalizeTime":"2026-11-22T14:10:13.116442Z","finalizeUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"}},"type":"DEPLOY","releaseTime":"2026-11-22T14:10:13.298Z","releaseUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"}}
+[debug] [2026-11-22T14:10:14.696Z] [hosting] release: {"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/channels/live/releases/1795356613298000","version":{"name":"projects/kryptonlogic-ebe5a/sites/mindmesh-netra/versions/3c06a5baa65f5afa","status":"FINALIZED","config":{"headers":[{"headers":{"Referrer-Policy":"no-referrer","X-Content-Type-Options":"nosniff","Cache-Control":"no-cache","Content-Security-Policy":"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; font-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'","Cross-Origin-Embedder-Policy":"credentialless","Cross-Origin-Opener-Policy":"same-origin","Permissions-Policy":"camera=(self), microphone=(), geolocation=()"},"glob":"**"},{"headers":{"Content-Type":"application/wasm"},"glob":"**/*.wasm"},{"headers":{"Content-Type":"text/javascript; charset=utf-8"},"glob":"**/*.mjs"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-11-22T14:10:08.510490Z","createUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"},"finalizeTime":"2026-11-22T14:10:13.116442Z","finalizeUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"}},"type":"DEPLOY","releaseTime":"2026-11-22T14:10:13.298Z","releaseUser":{"email":"techomsystem14@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJ4Vrbb-dyHTf7tUTrDlmYlhupD54HJJIGoLC0u-cxLqpXdEQ=mo"}}
+[info] +  hosting[mindmesh-netra]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/kryptonlogic-ebe5a/overview
+[info] Hosting URL: https://mindmesh-netra.web.app

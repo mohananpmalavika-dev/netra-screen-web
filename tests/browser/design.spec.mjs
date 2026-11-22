@@ -55,9 +55,16 @@ test('dark design stays readable on small phones and prints a light report',asyn
     await page.goto('/eye-tests.html');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     for(const result of await textContrasts(page,'.activity-card h2,.activity-card p,.card-meta'))expect(result.contrast,result.text).toBeGreaterThanOrEqual(4.5);
   }
-  await page.goto('/index.html');await page.clock.install({time:new Date('2026-11-22T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-22T00:01:00Z'));await page.locator('#btnStartDemo').click();await page.locator('#btnFocusReady').click();
+  await page.goto('/index.html');
+  const homeBackground=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
+  await page.clock.install({time:new Date('2026-11-22T00:00:00Z')});await page.clock.pauseAt(new Date('2026-11-22T00:01:00Z'));await page.locator('#btnStartDemo').click();
+  await expect(page.locator('body')).toHaveCSS('background-color',homeBackground);
+  await page.locator('#btnFocusReady').click();
+  await expect(page.locator('body')).toHaveCSS('background-color',homeBackground);
+  for(const result of await textContrasts(page,'#sessionNotice,.task-badge,.task-step,#hudTimer,.btn-hud-small'))expect(result.contrast,result.text).toBeGreaterThanOrEqual(4.5);
   await expect(page.locator('.companion-graphic')).toHaveCSS('animation-name','none');
   await page.clock.runFor(33500);await expect(page.locator('#viewReport')).toHaveClass(/active-view/);
+  for(const result of await textContrasts(page,'.eval-banner-text h3,.eval-banner-text p,.tab-btn,.report-meta,.plot-title'))expect(result.contrast,result.text).toBeGreaterThanOrEqual(4.5);
   const background=()=>page.locator('.plot-panel canvas').first().evaluate(canvas=>[...canvas.getContext('2d').getImageData(1,1,1,1).data].slice(0,3));
   expect((await background()).every(c=>c<50)).toBe(true);
   await page.emulateMedia({media:'print'});await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));

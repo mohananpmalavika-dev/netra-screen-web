@@ -1,21 +1,58 @@
 {
   "status": "passed",
   "reviewDate": "22 Nov 2026",
-  "verifiedAt": "2026-11-22T12:34:01.181Z",
-  "scope": "Web engineering verification; no physical-device or clinical accuracy claim.",
+  "verifiedAt": "2026-11-22T14:08:08.609Z",
+  "scope": "Web engineering verification across a full suite and targeted follow-up runs after responsive CSS fixes. No physical-device or clinical accuracy claim.",
   "unitTests": {
     "passed": 14,
     "total": 14,
     "command": "node --test tests/*.test.mjs"
   },
   "browserTests": {
-    "passed": 36,
+    "passed": 37,
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
     "engine": "desktop Chromium",
-    "report": "test-results/browser-results.json",
-    "suiteStartedAt": "2026-11-22T12:21:55.796Z"
+    "verificationMethod": "37 distinct checks: full suite, responsive rerun after phone wrapping fixes, then a reduced-motion landscape layout recheck after an animation-related timeout.",
+    "validationRuns": [
+      {
+        "report": "../output/summit/theme-fix/full-suite-before-phone-fix.json",
+        "sha256": "dc74914b06f5afbf9166d4c314db1f0beeb27fa6700eaef5c17ff089830af19a",
+        "stats": {
+          "startTime": "2026-11-22T13:28:25.776Z",
+          "duration": 637501.4859999999,
+          "expected": 36,
+          "skipped": 0,
+          "unexpected": 1,
+          "flaky": 0
+        }
+      },
+      {
+        "report": "../output/summit/theme-fix/responsive-after-phone-fix.json",
+        "sha256": "dca2e90d6d84b060d04d31e2bf1fdc6d72fce7691ec1cb5bbc834d88d0878bfc",
+        "stats": {
+          "startTime": "2026-11-22T13:49:11.544Z",
+          "duration": 526106.099,
+          "expected": 7,
+          "skipped": 0,
+          "unexpected": 1,
+          "flaky": 0
+        }
+      },
+      {
+        "report": "../output/summit/theme-fix/landscape-final.json",
+        "sha256": "cb7020bbf2249c9461ced1001fe1d3bf1b7bea5e6617df4acf6bbd1ba442f860",
+        "stats": {
+          "startTime": "2026-11-22T14:03:11.026Z",
+          "duration": 46845.663,
+          "expected": 1,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        }
+      }
+    ]
   },
   "viewports": [
     [
@@ -58,11 +95,11 @@
     "Malayalam native-speaker and eye-care professional review remain pending."
   ],
   "sourceSha256": {
-    "index.html": "04fb3c478d420bade558e90c754dc9a07e96c0ff1b27e66e974d27cfc8a4a7dc",
-    "tracking.html": "938c0ac08548ed0b40f127f293b2dc29e926ede6c63ceea293b203f2001ab58f",
-    "join.html": "da0a04dd92ea31436d303915f6555d6eaa1bdc31a708e7dc5d813d639592910c",
-    "investor.html": "50e2d6c1f3268ec9dd44f161230325c60b8ea1271084819f804155f98a2b9805",
-    "presentation.html": "43a53bc32293a966e93c6a7df5ed1bf7f2d45964f2cd634f774345e49937aa2c",
+    "index.html": "4a8a29cdbec2012929f1fb214d10db9e5af466836c32177d9bf052e3890a7aad",
+    "tracking.html": "fe5e3f3de79886ef2e2185884b94c41c98a3d219110ff13ae1b1c8e7df4b1402",
+    "join.html": "1be54d9c73e2deb762447c264263a57e1ad488af576c405103593a67125a62e4",
+    "investor.html": "ead7544380572f919e5d9b6221e3b867fc226e2b069564f87f0bc36596d98446",
+    "presentation.html": "6f98d4857d686692c8aedb2bf9ff8575edb6a7d202690ebfc3455b64ec19a180",
     "presentation.js": "11035482da0fdeb86492deaecbb34510e7da761c5db2ff47c943889f11b009f7",
     "investor-copy.mjs": "166d66a61ed739d17db7169424edc268d81d9855f5eb8f01a6c450d3a7501d92",
     "project-knowledge.mjs": "e7c710e39ee99f39800e13d93230945ca91444622026c5586fc8680945890943",
@@ -70,18 +107,18 @@
     "investor.mjs": "eca7b0728879eb6e602b31c258954b1b6e64a07c98d2b35212e4d01228fb9dc1",
     "investor.css": "c8bbe701cb9d5eab91181b2675d2bedd71dc906315b5c32df3788930ffb99679",
     "visitor-experience.css": "0bd8ababf5cbe4002339b71541be97ae04100c4b9e0df0d601709c1e816e9b3c",
-    "app.js": "2c24a1ac269d8436b6376c161467554c0aad913695dbf7a1f96c0f72f43366f5",
+    "app.js": "b0e780db62411761c90b316107414b4f04cac200a614a91276be942b877a972e",
     "camera.mjs": "4140281e1ba23f8ef0fa1ed5e6469476f6de42470615460bbf44528f92ff819b",
     "vision-core.mjs": "012df37e60e73fcc6178d63839dbc22b6dbb5a7b343aca9b3a8c32d0689085d7",
     "static-assets.js": "476797f31bff5ec2078f611f637db8e57a4923f99d609db80bfd170636dd80e9",
-    "sw.js": "9fb101ee21f11ba921360989330420e9ba04c1e282d9fcbfde5d379b18496002",
+    "sw.js": "89d86bb12ff64e5350ba04e21aaf16e28dd6f56c02c90e5cafb16c79b8030e77",
     "project-copy.mjs": "92d83b9549af03b2875d436ebe4da152a2fe8d3f1ba691219fc37fc60b0ba416",
-    "showcase-3d.mjs": "5c36c67df55c0e4cf7f7d0c5e962952c5124f319f2cb5bc514622682bc0453b2",
-    "signature-light.css": "c487c00cfba0a44124d6e81136254a0b3fbae1f21fad1060d228d87a9308311a",
-    "cinematic.css": "04f4ec9eb3bfdc20092c0a907b5f4401bd71ef92c180e14b0e205329773fe834",
+    "showcase-3d.mjs": "9b2be24af6b49f1489af4c3782cb51b317efbb8408eab1db65dc727f5e5ff7b5",
+    "signature-light.css": "2a4cb6c8e450fc195029d72d2fbd50ed4071c438da78ed319a16687d53906a40",
+    "cinematic.css": "b4e14f30e4d0354fd485bc979133a7106a563bc4e3642a5525e47e464896818c",
     "optics-hero.css": "76c6ece48c765ea2f146284440004de55e1dae3cabc1eec78f646ab4a432aa1c",
-    "studio-professional.css": "63fa462063e70bd160e8fd81e3b36d771087a3194eb5f72bb2bce2f0ccb30b6e",
-    "optical-exhibit.css": "8961ba54b6a4d6faaef965b6874d28507915ad0d894b9c42a926c094bb7cec6d",
+    "studio-professional.css": "3e9c83ed093e8cc52c84add11b1430489fa114c915659fc919e5ba17b05833f9",
+    "optical-exhibit.css": "0e20e76fd25e9b93f0c3ff572ca4f90328469757c027d702feff41390f972693",
     "optical-exhibit.mjs": "6f08be21b28cd4b2619f6abfc11202fbd66ef723c397c847f7d069628878c36d",
     "signature.mjs": "205a171c8af5b6511974ef424d9efc7237594a22df300881a072ca1127909f1f",
     "optics-hero.mjs": "43b78a988185ca4b6d4cdcc4a9c74e325557b258e0818085eb02749b5c10a07d"

@@ -764,7 +764,7 @@ function drawTrajectoryPlotForTask(taskKey, targetCanvas, eyesCanvas) {
   // Redraw for paper during printing and restore the dark app palette afterwards.
   const printing = window.matchMedia('print').matches;
   [tCtx, eCtx].forEach(ctx => {
-    ctx.fillStyle = printing ? '#ffffff' : '#161b2f';
+    ctx.fillStyle = printing ? '#ffffff' : '#1b1920';
     ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = printing ? 'rgba(38,79,99,0.12)' : 'rgba(181,189,215,0.10)';
     ctx.lineWidth = 1;
