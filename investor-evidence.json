@@ -122,5 +122,29 @@
     "optical-exhibit.mjs": "6f08be21b28cd4b2619f6abfc11202fbd66ef723c397c847f7d069628878c36d",
     "signature.mjs": "205a171c8af5b6511974ef424d9efc7237594a22df300881a072ca1127909f1f",
     "optics-hero.mjs": "43b78a988185ca4b6d4cdcc4a9c74e325557b258e0818085eb02749b5c10a07d"
+  },
+  "latestChangeReview": {
+    "verifiedAt": "2026-11-22T14:58:06.779Z",
+    "scope": "Page navigation and original YIP deck viewer; 9 targeted Chromium checks passed plus 14 Node tests and build. Phone, tablet, desktop and landscape emulation; original 14 slide images and PDF preserved.",
+    "browserTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "unitTests": {
+      "passed": 14,
+      "failed": 0
+    },
+    "offlineDeck": true,
+    "sourceSha256": {
+      "page-navigation.mjs": "a8f6376c081321e86f5836902fb6127f85c4d31023ba5a1bdd8abaf317f84b1e",
+      "yip-pitch.html": "72a09ea6cc399da3c8686f9be1387b8d75c10a2ae7fbb5811c1cf1c2b4725947",
+      "yip-pitch.mjs": "f96388f043d561bc89f743c4c14eb15bc5312e7f49542cc99f23248b3e09b06a",
+      "yip-deck.json": "380f6c6f40b245293a17f7c2d3b38f229f310a7171161019f27befca30f8cb23",
+      "signature.mjs": "8278d48cb996c3a428d028fb7009f5bd8b44e52a0a6583dbe89ae0fe079c7f43",
+      "studio-professional.css": "1faf8e3829ef8a6dc0e2d459e529fe8c1185d7cd06b86e6dd81276d2ebcb7aa4",
+      "static-assets.js": "a34ab5ed6284c76268842134cfbbab5f7eb220f3bf007403df20b1fbbe3b5196",
+      "sw.js": "2554b7e4f34d4f4b872be22f92d793085b6536c6f934a671509884dcebc496aa"
+    },
+    "deployed": false
   }
 }

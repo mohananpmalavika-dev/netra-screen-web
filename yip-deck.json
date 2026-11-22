@@ -1,0 +1,104 @@
+{
+  "title": "NETRA-SCREEN / YIP 9.0",
+  "source": "docs/NETRA_SCREEN_MindMesh.pdf",
+  "slides": [
+    {
+      "title": "NETRA-SCREEN",
+      "image": "deck-slides/slide-1.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "YIP 9.0 · CATEGORY 1 · HEALTHCARE INNOVATION\nNETRA-SCREEN\nA Free, Offline Smartphone Eye-Movement Check\nfor Young Children\nChildren simply follow a fluttering butterfly or swimming fish with their eyes\n— no reading required, zero internet needed, and no extra hardware.\n📱  Android App + Any-Browser Web PWA\n 🔒  100% Offline & Zero Video Saved\n🌐  Bilingual: English & മലയാളം\nTeam MindMesh\nMalavika Basanth · Lavanya Vivek Pillai · Devasree P C\nTKM Centenary Public School, Kollam\nMentor: Aswathy P · Updated v0.3.1 / Web v0.5.1\n478 LANDMARKS · ON-DEVICE 0 FRAMES SAVED\nKids follow the butterfly · AI checks eye balance\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 01 / 14"
+    },
+    {
+      "title": "The childhood vision problem",
+      "image": "deck-slides/slide-2.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "1. THE PROBLEM IN INDIA\nWhy Catching Childhood Eye Problems Early Saves Sight\nWhen one eye is weak or slightly turned (lazy eye or squint), a young child’s brain gradually ignores that eye. If missed in early childhood, sight\nloss can become permanent.\n260M\nChildren Under 14 in India\nEvery young child needs early eye alignment\n& movement checks before starting primary\nschool.\n5–10M\nAffected Children (2–4%)\nLive with amblyopia (“lazy eye”) or strabismus\n(eye misalignment / squint) — often without\nnoticing.\n90%\nTreatable Before Age 7–8\nSimple glasses, patching, or eye therapy work\nbest while the brain’s visual wiring is still\ngrowing.\n<10%\nScreened Early Today\nOver 9 out of 10 rural and low-income\nchildren miss early screening during this\ncrucial window.\nThe Result: Thousands of children suffer lifelong, preventable vision loss simply because\nan eye doctor check never reached them in time.\nTHE SCREENING GAP FUNNEL\n260 Million Children\nIndia’s under-14 pediatric population\n5–10 Million At Risk (2–4%)\nAmblyopia (“Lazy Eye”) or Strabismus\n90% Treatable Early\nIf caught before age 7–8\n<10%\nActually Screened\nPreventable vision loss\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 02 / 14"
+    },
+    {
+      "title": "Barriers to accessible observation",
+      "image": "deck-slides/slide-3.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "2. WHY CURRENT TOOLS FAIL\nThree Real-World Barriers Leaving Kids Unscreened\nChecking a 3-year-old’s eyes in a village Anganwadi is very different from testing an adult in a city hospital.\n🏥\n1. Costly Clinic Hardware (₹1–3\nLakhs)\nHospital photoscreeners and autorefractors cost\nlakhs of rupees and require trained specialists.\nThey stay locked inside urban eye hospitals —\nfar away from village children.\n• Zero availability in rural Anganwadis\n• ~1 ophthalmologist per 40,000+ people\nImpossible to scale to every school\n🔤\n2. Toddlers Can’t Read Letter\nCharts\nMost mobile screening apps simply display\nletter charts (“E” or “C”) and ask the child to\npoint or press buttons.\n• Ages 2–5 cannot read or match directions\n• Kids hate covering one eye and get bored\nFails for pre-verbal young kids\n☁\n3. Internet & Child Privacy Risks\nCommunity health centers often lack reliable\nhigh-speed internet. Meanwhile, cloud apps\nupload face photos or video online.\n• Weak mobile data breaks cloud apps\n• Parents fear facial recording & misuse\nFails offline & risks face data\n💡  What India Actually Needs: ₹0 extra hardware · No reading needed · 100% offline privacy → NETRA-SCREEN\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 03 / 14"
+    },
+    {
+      "title": "How NETRA-SCREEN works",
+      "image": "deck-slides/slide-4.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "3. OUR SOLUTION\nHow NETRA-SCREEN Works in 3 Simple Steps\nAnyone — a parent, Anganwadi worker, or teacher — can run a guided check in ~2 minutes using a normal phone.\n1. Play (Zero Reading)\nChild taps a friendly companion and watches it move.\nVoice guidance speaks in English or Malayalam.\n2. Track (Auto Quality Check)\nFront camera tracks both iris centers locally. Pauses\nautomatically if lighting drops or head turns.\n3. Plain-Language Report\nGenerates bilingual visual eye-path graphs & safe next-\nstep guidance offline — exportable as PDF, CSV, or\nJSON.\nPICK YOUR LITTLE GUIDE\n🦋\nButterfly\n🐠\nFish\n🟢\nDot\n☑  Parent consent confirmed\n☑  Hide self-camera preview (keeps child\nfocused!)\n🔊  “Follow the butterfly!” ·\nതുട\u0000ാം\n● ON-DEVICE AI QUALITY: OK ✓\n💡  Light OK 📏  Frame OK 🙂  Pose OK\nTracks both eyes along 4 paths:\nSide-to-Side · Up-Down · Diagonal · Jumps\nRESEARCH REPORT\nക\u0000ുകളുെട ചലന റിേ\u0000ാർ\u0000്\nCARE PRIORITY GUIDANCE\nRoutine Eye Check Advised\nIf you notice squinting or concern, consult an eye\nspecialist.\nTARGET VS. EYE PATHS ●T ●L ●R\n⚠  Not a medical diagnosis. Never declares “no eye\nexam needed.”\n📄  PDF 📊  CSV 🔗  JSON\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 04 / 14"
+    },
+    {
+      "title": "Watching both eyes move together",
+      "image": "deck-slides/slide-5.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "4. HOW THE MEASUREMENT WORKS\nWatching Both Eyes Move Together vs. One Frozen Snapshot\nIn clinics, a doctor moves a toy in front of a child to see if both eyes follow smoothly. NETRA-SCREEN automates that exact observation on a\nphone.\nTRADITIONAL STATIC CHECKS\nSingle Photo or Letter Board\nCaptures one frozen moment or asks kids to read letters. Can miss\neyes that wander or lag during smooth movement.\nWHAT NETRA-SCREEN MEASURES IN PLAIN ENGLISH\n1. Do both eyes move together?\nCompares left & right eye timing and speed correlation.\n2. Do both travel the same distance?\nChecks symmetry between left and right iris range relative to eye\ncorners.\n3. Can both hold steady on a spot?\nMeasures steadiness (fixation stability) during target holds after\njumps.\n4 GUIDED MOVEMENTS + LIVE TRAJECTORY PLOT\nTarget Path vs. Left & Right Iris Motion\n● Target ● Left Eye ◆  Right Eye\n+R\n0\n-L\n1. Smooth Horizontal / Vertical Pursuit 2. Diagonal Pursuit 3. Jumps & Hold Scatter\n↔\nSide to Side\n↕\nUp & Down\n↗\nDiagonal\n⊹\nTarget Jumps\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 05 / 14"
+    },
+    {
+      "title": "Project updates",
+      "image": "deck-slides/slide-6.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "5. LATEST PROJECT UPDATES (V0.3.1 & WEB V0.5.1)\nWhat’s New: From Early Prototype to Cross-Platform System\nMajor upgrades built across Android and Web so every school, parent, and YIP judge can experience NETRA-SCREEN smoothly.\n🌐  Cross-Platform Offline Web PWA WEB V0.5.1\nRuns right inside Android Chrome, iPhone Safari, Edge & Laptops using bundled\nWebAssembly AI — no app-store install required and works offline after a 1-time\n~45 MB setup.\nWhy it helps: Schools can open NETRA-SCREEN instantly on any phone or school\nChromebook via one link.\niOS + Android + Desktop\n Hidden Camera Child Mode\n EN & ML Voice Cues\n🎨  Kid-Friendly UI Refresh & Parent Tools ANDROID 0.3.1\nRebuilt the native interface with calm pastel/dark surfaces, illustrated Butterfly, Fish\n& Smiling Dot targets, larger touch buttons, and organized Parent Tools.\nWhy it helps: Toddlers focus naturally on colorful characters while grown-ups manage\nsetup cleanly.\n3 Illustrated Companions\n Plain-Language Reports\n Zero-Distraction UI\n🔍  Live Setup Inspector & Visual Eye Plots ACCURACY AID\nLive 3-box setup checks verify Lighting, Face Framing, and Head Tilt before\ncapture while keeping the task clock paused. Reports now plot up to 80 eye-path\nsamples inside PDF exports.\nWhy it helps: Health workers see exact positioning fixes before capturing and get readable\ngraphs afterward.\n3-Box Quality Inspector\n 4-Task Vector PDF Plots\n 180s Device Benchmark\n🚦  Triage Guidance, Eye Rest & Stage Kit STAGE READY\nAdded non-diagnostic Research Triage Priority tiers (Urgent / Routine / Monitor /\nRepeat), a camera-free 20-20-20 Eye Rest break tool, plus a separate YIP\nWalkthrough APK & Print Packet.\nWhy it helps: Gives parents clear next steps while guaranteeing zero-fail YIP stage\ndemonstrations.\n4 Safe Priority Tiers\n 20-20-20 Eye Rest\n Camera-Free Stage Kit\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 06 / 14"
+    },
+    {
+      "title": "The offline observation engine",
+      "image": "deck-slides/slide-7.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "6. UNDER THE HOOD\nBuilt for Reliability: The 5-Stage Offline Engine\nA deterministic on-device pipeline ensures bad lighting or shaky phones never turn into fake medical numbers.\nSTAGE 1\nConsent & Camera\nGuardian confirms supervision.\nOpens front camera via Android\nCameraX or WebRTC.\n→\nSTAGE 2\n478-Point AI Mesh\nBundled Google MediaPipe Face\nLandmarker detects iris centers\n& corners on CPU.\n→\nSTAGE 3\nAuto Quality Gate\nRejects dark light, glare, blur, or\ntilt — freezes clock cleanly\ninstead of guessing.\n→\nSTAGE 4\nMath & Triage\nComputes correlation, excursion\nsymmetry, fixation stability, plots\n& priority tier.\n→\nSTAGE 5\nEncrypted Report\nAES-GCM encrypted local\nsummary; exports native PDF,\nCSV & anonymous JSON.\nPLATFORM 1 · NATIVE ANDROID APP (v0.3.1-research)\nKotlin + Jetpack Compose + CameraX\nBuilt for Android 8.0+ (API 26+) — covering 95%+ budget phones in rural schools\nand Anganwadis.\n✓  Requests zero Internet permission in Android manifest\n✓  AES-GCM Keystore encryption + one-tap parent wipe\n✓  Includes 180s phone stress benchmark & ruler calibration\nPLATFORM 2 · CROSS-PLATFORM WEB PWA (v0.5.1)\nHTML5 + MediaPipe WASM + Service Worker\nRuns on iPhone Safari, Android Chrome, Edge & Chromebooks straight from a\nbrowser link.\n✓  ~45 MB Service Worker caches full model offline after 1st load\n✓  Strict CSP (connect-src 'self') blocks any external upload\n✓  Built-in Interactive Pitch Deck + 20-20-20 Eye Rest exercises\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 07 / 14"
+    },
+    {
+      "title": "Comparing approaches",
+      "image": "deck-slides/slide-8.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "7. WHY NETRA-SCREEN WINS\nComparing NETRA-SCREEN with Existing Approaches\nBrings the benefits of playful dynamic observation to zero-cost everyday devices without sacrificing child privacy.\nFEATURE NETRA-SCREEN (ANDROID + WEB) TRADITIONAL CLINIC DEVICES STANDARD VISION CHART APPS\nExtra Cost ✓  ₹0 (Uses existing smartphone / browser) ⚠  ₹1–3 Lakhs clinical hardware ⚠  ₹0–500 (still needs device)\nAge / Literacy ✓  Designed for pre-verbal kids (follow target) ✓  Objective (requires specialistoperator) ✕  Hard for toddlers (needs lettermatching)\nHow It Checks ✓  Dynamic binocular pursuit + hold stability ○ Static photoscreening / clinical reflex ✕  Static visual acuity charts only\nOffline & Reach ✓  100% Offline anywhere (rural schools / home) ✕  Confined to city hospitals & camps ⚠  Often requires internet & logins\nChild Privacy ✓  Zero video saved · No cloud upload · Keystore ✓  In-person clinical record ⚠  Analytics / cloud storage risks\nQuality Guard ✓  Auto-pauses in poor light, tilt, or blur ✓  Operator monitors manually ✕  Rarely checks lighting or head pose\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 08 / 14"
+    },
+    {
+      "title": "Privacy by design",
+      "image": "deck-slides/slide-9.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "8. ABSOLUTE PRIVACY BY DESIGN\nZero Videos Stored. 100% On-Device Control.\nWe handle children’s camera feeds with strict architectural safeguards — privacy is enforced in code, not just promises.\nNO INTERNET PERMISSION · OFFLINE\nON-DEVICE MEDIAPIPE AI\nAES-GCM KEYSTORE\n🚫📷\nRaw frames discarded immediately\n📵100% On-Device & Offline\nZero cloud inference. Android asks for no Internet permission; the Web PWA blocks external\ndata connections strictly in browser headers.\n🎞No Video or Photos Retained\nOnly anonymous eye-landmark numbers are processed in memory. Every raw camera frame is\ndiscarded instantly after analysis.\n🕶Hidden Camera Focus Option\nParents can hide the child’s self-view during tasks — helping kids stay calm and focused solely\non the butterfly, fish, or dot.\n🔐AES-GCM Security & One-Tap Wipe\nOptional saved summaries are encrypted inside Android Keystore. Parents can withdraw\nconsent and erase all local data in one tap.\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 09 / 14"
+    },
+    {
+      "title": "Responsible medical AI",
+      "image": "deck-slides/slide-10.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "9. RESPONSIBLE MEDICAL AI\nRadical Honesty: A Pre-Screening Aid, Never a False Doctor\nGreat medical tech builds trust by clearly stating what it can and cannot do today. Safety rules are hard-coded into the software.\n⚠\nSTRICT BOUNDARIES\nWhat NETRA-SCREEN Is NOT\n✕ Not a medical diagnosis tool: Cannot confirm or rule out amblyopia,\nsquint, glasses need, or any eye disease.\n✕ Not a Hirschberg corneal reflex meter: Tracks landmark iris centers\nrelative to eye corners (separate pixel glint checks remain\nexperimental).\n✕ Never says “Healthy / No Doctor Needed”: Safety mandate blocks\nreassuring medical clearance in every language.\n✕ No fake or simulated data in live runs: Missing frames stay marked\n“Unavailable” instead of guessing.\nSafety Gate: Release signing & clinical referral flags stay disabled until human\nclinical trials complete.\n🩺\nSAFE HELPER WORKFLOW\nWhat NETRA-SCREEN IS Today\n✓ Objective pursuit & fixation recorder: Captures repeatable eye-\nmovement metrics and visual trajectory graphs offline.\n✓ Research Triage Priority Guidance: Maps observed tracking metrics\ninto clear follow-up advice (Prompt Exam / Routine Check / Monitor /\nInconclusive Repeat).\n✓ Clinical diagnostic release locked: Official clinical screening\ndistribution stays gated by code until independent hospital trials\nconclude.\n✓ Camera-free stage walkthrough & Eye Rest: Safe 20-20-20 breaks\nand transparent demos for schools & judges.\nMedical Principle: Every report advises seeing a qualified ophthalmologist\nwhenever any concern exists.\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 10 / 14"
+    },
+    {
+      "title": "Engineering and clinical roadmap",
+      "image": "deck-slides/slide-11.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "10. PROVEN SOFTWARE & CLINICAL PATH\nEngineering Verified Today · Clinical Validation Next\nWe built real, tested software first — and follow international pediatric ophthalmology (AAPOS) guidelines to validate accuracy responsibly.\n✅  Android Build 0.3.1-research\n60 JVM unit tests + static parity checks + debug/release APK\nlint & 16 KiB audits passed.\n✅  Web PWA Build 0.5.1\n17 Chromium Playwright browser checks + vendor SHA-256\n& offline caching tests passed.\n⏳  Open Hardware & Clinical Gates\nMulti-phone battery/FPS benchmarks, native Malayalam\noptometry audit & clinical accuracy study pending.\n✓  PHASE 1 · COMPLETE\nCross-Platform Working\nPrototype\nAndroid 0.3.1 + Offline Web PWA 0.5.1,\nLive Inspector, Trajectory Plots, Triage\nPriority tiers, Stage Backup APK & Print\nPacket built and software-tested.\nMilestone: Engineering build ready\nPHASE 2 · NEXT 3 MONTHS\nPhone Benchmarks &\nUsability (20–30 Kids)\nMeasure real 3-minute FPS/battery\nacross budget phones, complete native\nMalayalam & optometry language\nreview, and test child engagement\nsmoothly.\nMilestone: Real-world hardware data\nPHASE 3 · 6–12 MONTHS\nHospital Trial (100+\nChildren)\nPartner with pediatric ophthalmologists\nto compare NETRA-SCREEN\nmeasurements against masked clinical\neye exams (sensitivity, specificity &\nrepeatability).\nMilestone: Clinical accuracy evidence\nPHASE 4 · 18+ MONTHS\nValidated Pilot in Govt\nSchools\nFreeze clinically proven triage cutoffs,\ncomplete India regulatory pathway\n(CDSCO guidance), and launch\ncommunity ASHA / school screening\npilots.\nMilestone: Safe community scale-up\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 11 / 14"
+    },
+    {
+      "title": "Team MindMesh",
+      "image": "deck-slides/slide-12.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "11. TEAM MINDMESH\nThe Young Innovators Behind NETRA-SCREEN\nTeam MindMesh | YIP 9.0 Category 1 | TKM Centenary Public School, Kollam\nMalavika Basanth\nTeam Leader\nProject architecture, AI eye-landmark integration,\nclinical roadmap & research coordination.\nLavanya Vivek Pillai\nTeam Member\nChild-friendly UI/UX design, butterfly/fish interactive\ntask pathways & usability workflow.\nDevasree P C\nTeam Member\nOffline privacy & AES-GCM encryption design, quality\ngates & presentation engineering.\nProudly representing TKM Centenary Public School, Kollam — engineering accessible healthcare for every child.\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 12 / 14"
+    },
+    {
+      "title": "Our mentor and school",
+      "image": "deck-slides/slide-13.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "With Heartfelt Gratitude\nOur Project Mentor\nAswathy P\nThank you for your constant guidance, encouragement, and support throughout every\nmilestone of the NETRA-SCREEN project.\nOur School\nTKM Centenary Public School, Kollam\nWe sincerely thank our Principal, teachers, and school community for inspiring us to explore,\ninnovate, and present through YIP 9.0.\nTeam MindMesh  |  NETRA-SCREEN  |  YIP 9.0\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 13 / 14"
+    },
+    {
+      "title": "The vision and our ask",
+      "image": "deck-slides/slide-14.webp",
+      "width": 2064,
+      "height": 1152,
+      "text": "12. THE VISION & OUR ASK\nZero Extra Hardware. Infinite Grassroots Impact.\nSoftware scales overnight when hardware already exists in every village health worker’s hand.\nKollam · Starting Hub\nSchools · Anganwadis · ASHA Workers Across India\n🔭  The Vision: Community Workers Empowered\nPlace NETRA-SCREEN directly into the smartphones already used by ASHA workers,\nAnganwadi teachers, and school nurses — on Android or Web — with zero hardware\nprocurement cost.\n💛  The Impact: Reaching the 90% Currently Missed\nEnable rapid, joyful, zero-literacy pre-screening for millions of children under age 7–8 so\ntreatable lazy eye and misalignment are caught before school years.\n🤝  Our Ask from YIP 9.0\nWe seek mentorship, multi-phone field testing access, Malayalam optometry review,\nand hospital ophthalmology partnerships to run our Phase 2 usability & Phase 3 clinical\nvalidation study.\n“No child should lose preventable vision simply because of where they live.”\nNETRA-SCREEN · Team MindMesh · YIP 9.0 Slide 14 / 14"
+    }
+  ]
+}

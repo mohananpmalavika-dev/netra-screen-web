@@ -1,6 +1,8 @@
 // Keep the service-worker precache and deployment package on the same explicit list.
 globalThis.NETRA_ASSETS = [
-  'signature-light.css','signature.mjs','cinematic.css','optics-hero.css','studio-professional.css','optical-exhibit.css','optical-exhibit.mjs','optics-hero.mjs','fonts/Manrope-Variable.ttf','fonts/OFL-Manrope.txt',
+  'yip-pitch.html','yip-pitch.mjs','yip-deck.json',
+  'deck-slides/slide-1.webp','deck-slides/slide-2.webp','deck-slides/slide-3.webp','deck-slides/slide-4.webp','deck-slides/slide-5.webp','deck-slides/slide-6.webp','deck-slides/slide-7.webp','deck-slides/slide-8.webp','deck-slides/slide-9.webp','deck-slides/slide-10.webp','deck-slides/slide-11.webp','deck-slides/slide-12.webp','deck-slides/slide-13.webp','deck-slides/slide-14.webp',
+  'signature-light.css','signature.mjs','page-navigation.mjs','cinematic.css','optics-hero.css','studio-professional.css','optical-exhibit.css','optical-exhibit.mjs','optics-hero.mjs','fonts/Manrope-Variable.ttf','fonts/OFL-Manrope.txt',
   'investor.html','investor.css','investor.mjs','investor-copy.mjs','investor-evidence.json',
   'join.html','join.mjs','visitor-experience.css','project-knowledge.mjs','presenter.mjs','gaze-control.mjs','images/visitor-qr.svg','images/visitor-qr.png','index.html','eye-tests.html','tracking.html','about.html','presentation.html','presentation.js','project-copy.mjs','project-theme.css','research.css','professional.css','immersive.css','showcase-3d.mjs','images/child-welcome.jpg','companions/butterfly.svg','companions/fish.svg','companions/dot.svg','styles.css','tracking.css','wellness.css','app.js','eye-tests.js',
   'camera.mjs','child-guide.mjs','vision-core.mjs','offline-status.js','manifest.json','static-assets.js','production-readiness.md',

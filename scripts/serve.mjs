@@ -5,7 +5,7 @@ const root=resolve(process.env.NETRA_SERVE_DIST==='1'?'dist':'.');
 const port=Number(process.env.PORT||8080);
 const hosting=JSON.parse(await readFile('firebase.json','utf8'));
 const csp=hosting.hosting[0].headers[0].headers.find(h=>h.key==='Content-Security-Policy').value;
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.wasm':'application/wasm','.task':'application/octet-stream','.jpg':'image/jpeg','.svg':'image/svg+xml','.png':'image/png','.pdf':'application/pdf','.webm':'video/webm','.vtt':'text/vtt; charset=utf-8','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.wasm':'application/wasm','.task':'application/octet-stream','.jpg':'image/jpeg','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.pdf':'application/pdf','.webm':'video/webm','.vtt':'text/vtt; charset=utf-8','.md':'text/plain; charset=utf-8','.txt':'text/plain; charset=utf-8'};
 const server=http.createServer(async(req,res)=>{
   res.setHeader('Cross-Origin-Opener-Policy','same-origin');
   res.setHeader('Cross-Origin-Embedder-Policy','credentialless');

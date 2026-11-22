@@ -1,4 +1,5 @@
 // Decorative motion never controls research data, camera access or task timing.
+import './page-navigation.mjs';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 if(!reduced.matches){
  const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('cinematic-arrival');observer.unobserve(entry.target);}}},{threshold:.08});

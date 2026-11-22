@@ -51,8 +51,93 @@
   "buildChecks": "Syntax checks, 14 Node regression tests, vendor integrity and deployment allowlist passed in npm run build; final CSS and evidence were repackaged.",
   "hardwareDevicesTested": [],
   "clinicalValidation": false,
-  "deployed": false,
+  "deployed": true,
   "artifacts": [
+    {
+      "path": "yip-pitch.html",
+      "bytes": 2880,
+      "sha256": "72a09ea6cc399da3c8686f9be1387b8d75c10a2ae7fbb5811c1cf1c2b4725947"
+    },
+    {
+      "path": "yip-pitch.mjs",
+      "bytes": 2492,
+      "sha256": "f96388f043d561bc89f743c4c14eb15bc5312e7f49542cc99f23248b3e09b06a"
+    },
+    {
+      "path": "yip-deck.json",
+      "bytes": 19415,
+      "sha256": "380f6c6f40b245293a17f7c2d3b38f229f310a7171161019f27befca30f8cb23"
+    },
+    {
+      "path": "deck-slides/slide-1.webp",
+      "bytes": 124414,
+      "sha256": "d400167e13b42c8957715bfe44894882b126c6fec8fe6c4d1290e2be5729045b"
+    },
+    {
+      "path": "deck-slides/slide-2.webp",
+      "bytes": 164312,
+      "sha256": "3061b73be2b3477fdaf818885fdffe6023372c7403bf606effa11e58cc0f2623"
+    },
+    {
+      "path": "deck-slides/slide-3.webp",
+      "bytes": 166720,
+      "sha256": "4e7a95987005dba05210e7424dc587f8272c3836ff01e870dacb2aaea5460814"
+    },
+    {
+      "path": "deck-slides/slide-4.webp",
+      "bytes": 154622,
+      "sha256": "ad04801582c87430a81d7832998b1c2c122615a7bd505c72bf74e3b409eab072"
+    },
+    {
+      "path": "deck-slides/slide-5.webp",
+      "bytes": 158356,
+      "sha256": "545ffa8a1e1518f0d8384ebc20533fb600a64272d4e01bb8fe631bd2dec24133"
+    },
+    {
+      "path": "deck-slides/slide-6.webp",
+      "bytes": 238128,
+      "sha256": "83bbfc309033bfcb0aad60ac22a121f112a71ecec1d32b6aea351ed251689d74"
+    },
+    {
+      "path": "deck-slides/slide-7.webp",
+      "bytes": 186446,
+      "sha256": "5abb4ae87e77a3de69b5218de4e04473657d4e25c0c21981a24a3606e49b2c4b"
+    },
+    {
+      "path": "deck-slides/slide-8.webp",
+      "bytes": 147148,
+      "sha256": "3862577839defc40c85c5e85f50f7df519c27ba6840f262f20827eb527196928"
+    },
+    {
+      "path": "deck-slides/slide-9.webp",
+      "bytes": 158282,
+      "sha256": "b3366117336ebaf5d60fe6ff44fcd552ad112f8dc0b0a000ba670119a81b5775"
+    },
+    {
+      "path": "deck-slides/slide-10.webp",
+      "bytes": 224248,
+      "sha256": "204df9771572e60d5d56f55afc2e448869ac2581be53605d4ab772c5b208c295"
+    },
+    {
+      "path": "deck-slides/slide-11.webp",
+      "bytes": 198634,
+      "sha256": "d9982fa599276eee3c96fd03b83f15cc4cd6e728ddd10be280c989dba3a4541e"
+    },
+    {
+      "path": "deck-slides/slide-12.webp",
+      "bytes": 130106,
+      "sha256": "314693efe89a1763e92c3d7d46c756ab56ae44937dfc42e73ab9ee3cd8738e40"
+    },
+    {
+      "path": "deck-slides/slide-13.webp",
+      "bytes": 92500,
+      "sha256": "806433b814a48f5eeab124b28a007085008202f3b4236d9f1a0408b2e1b53220"
+    },
+    {
+      "path": "deck-slides/slide-14.webp",
+      "bytes": 164828,
+      "sha256": "e312b2d257e6268a0bd2f80542f9421f8b5c2ef884d57b4daa3a8809940563e8"
+    },
     {
       "path": "signature-light.css",
       "bytes": 45993,
@@ -60,8 +145,13 @@
     },
     {
       "path": "signature.mjs",
-      "bytes": 1040,
-      "sha256": "205a171c8af5b6511974ef424d9efc7237594a22df300881a072ca1127909f1f"
+      "bytes": 1072,
+      "sha256": "8278d48cb996c3a428d028fb7009f5bd8b44e52a0a6583dbe89ae0fe079c7f43"
+    },
+    {
+      "path": "page-navigation.mjs",
+      "bytes": 5558,
+      "sha256": "a8f6376c081321e86f5836902fb6127f85c4d31023ba5a1bdd8abaf317f84b1e"
     },
     {
       "path": "cinematic.css",
@@ -75,8 +165,8 @@
     },
     {
       "path": "studio-professional.css",
-      "bytes": 25704,
-      "sha256": "3e9c83ed093e8cc52c84add11b1430489fa114c915659fc919e5ba17b05833f9"
+      "bytes": 32641,
+      "sha256": "1faf8e3829ef8a6dc0e2d459e529fe8c1185d7cd06b86e6dd81276d2ebcb7aa4"
     },
     {
       "path": "optical-exhibit.css",
@@ -125,8 +215,8 @@
     },
     {
       "path": "investor-evidence.json",
-      "bytes": 5167,
-      "sha256": "6ca46444adae2875ac04dbd1985c6f2c69dccde0a7e9b69938b5729c43f01cef"
+      "bytes": 6407,
+      "sha256": "f45318d3941d591aaab930cf0c576fa4261eb289c17745bd63712bd227fe5219"
     },
     {
       "path": "join.html",
@@ -300,8 +390,8 @@
     },
     {
       "path": "static-assets.js",
-      "bytes": 2295,
-      "sha256": "476797f31bff5ec2078f611f637db8e57a4923f99d609db80bfd170636dd80e9"
+      "bytes": 2757,
+      "sha256": "a34ab5ed6284c76268842134cfbbab5f7eb220f3bf007403df20b1fbbe3b5196"
     },
     {
       "path": "production-readiness.md",
@@ -476,7 +566,137 @@
     {
       "path": "sw.js",
       "bytes": 2237,
-      "sha256": "89d86bb12ff64e5350ba04e21aaf16e28dd6f56c02c90e5cafb16c79b8030e77"
+      "sha256": "2554b7e4f34d4f4b872be22f92d793085b6536c6f934a671509884dcebc496aa"
     }
-  ]
+  ],
+  "deployment": {
+    "site": "mindmesh-netra",
+    "version": "611c8dd92c16822a",
+    "verifiedAt": "2026-11-22T15:00:54.2046809Z",
+    "publishedFiles": [
+      {
+        "path": "yip-pitch.html",
+        "status": 200,
+        "sha256": "72A09EA6CC399DA3C8686F9BE1387B8D75C10A2AE7FBB5811C1CF1C2B4725947"
+      },
+      {
+        "path": "yip-pitch.mjs",
+        "status": 200,
+        "sha256": "F96388F043D561BC89F743C4C14EB15BC5312E7F49542CC99F23248B3E09B06A"
+      },
+      {
+        "path": "yip-deck.json",
+        "status": 200,
+        "sha256": "380F6C6F40B245293A17F7C2D3B38F229F310A7171161019F27BEFCA30F8CB23"
+      },
+      {
+        "path": "page-navigation.mjs",
+        "status": 200,
+        "sha256": "A8F6376C081321E86F5836902FB6127F85C4D31023BA5A1BDD8ABAF317F84B1E"
+      },
+      {
+        "path": "signature.mjs",
+        "status": 200,
+        "sha256": "8278D48CB996C3A428D028FB7009F5BD8B44E52A0A6583DBE89AE0FE079C7F43"
+      },
+      {
+        "path": "studio-professional.css",
+        "status": 200,
+        "sha256": "1FAF8E3829EF8A6DC0E2D459E529FE8C1185D7CD06B86E6DD81276D2EBCB7AA4"
+      },
+      {
+        "path": "sw.js",
+        "status": 200,
+        "sha256": "2554B7E4F34D4F4B872BE22F92D793085B6536C6F934A671509884DCEBC496AA"
+      },
+      {
+        "path": "deck-slides/slide-1.webp",
+        "status": 200,
+        "sha256": "D400167E13B42C8957715BFE44894882B126C6FEC8FE6C4D1290E2BE5729045B"
+      },
+      {
+        "path": "deck-slides/slide-14.webp",
+        "status": 200,
+        "sha256": "E312B2D257E6268A0BD2F80542F9421F8B5C2EF884D57B4DAA3A8809940563E8"
+      }
+    ],
+    "url": "https://mindmesh-netra.web.app/yip-pitch.html"
+  },
+  "latestChangeReview": {
+    "verifiedAt": "2026-11-22T14:58:06.779Z",
+    "scope": "Page navigation and original YIP deck viewer; 9 targeted Chromium checks passed plus 14 Node tests and build. Phone, tablet, desktop and landscape emulation; original 14 slide images and PDF preserved.",
+    "browserTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "unitTests": {
+      "passed": 14,
+      "failed": 0
+    },
+    "offlineDeck": true,
+    "sourceSha256": {
+      "page-navigation.mjs": "a8f6376c081321e86f5836902fb6127f85c4d31023ba5a1bdd8abaf317f84b1e",
+      "yip-pitch.html": "72a09ea6cc399da3c8686f9be1387b8d75c10a2ae7fbb5811c1cf1c2b4725947",
+      "yip-pitch.mjs": "f96388f043d561bc89f743c4c14eb15bc5312e7f49542cc99f23248b3e09b06a",
+      "yip-deck.json": "380f6c6f40b245293a17f7c2d3b38f229f310a7171161019f27befca30f8cb23",
+      "signature.mjs": "8278d48cb996c3a428d028fb7009f5bd8b44e52a0a6583dbe89ae0fe079c7f43",
+      "studio-professional.css": "1faf8e3829ef8a6dc0e2d459e529fe8c1185d7cd06b86e6dd81276d2ebcb7aa4",
+      "static-assets.js": "a34ab5ed6284c76268842134cfbbab5f7eb220f3bf007403df20b1fbbe3b5196",
+      "sw.js": "2554b7e4f34d4f4b872be22f92d793085b6536c6f934a671509884dcebc496aa"
+    },
+    "deployed": true,
+    "deployment": {
+      "site": "mindmesh-netra",
+      "version": "611c8dd92c16822a",
+      "verifiedAt": "2026-11-22T15:00:54.2046809Z",
+      "publishedFiles": [
+        {
+          "path": "yip-pitch.html",
+          "status": 200,
+          "sha256": "72A09EA6CC399DA3C8686F9BE1387B8D75C10A2AE7FBB5811C1CF1C2B4725947"
+        },
+        {
+          "path": "yip-pitch.mjs",
+          "status": 200,
+          "sha256": "F96388F043D561BC89F743C4C14EB15BC5312E7F49542CC99F23248B3E09B06A"
+        },
+        {
+          "path": "yip-deck.json",
+          "status": 200,
+          "sha256": "380F6C6F40B245293A17F7C2D3B38F229F310A7171161019F27BEFCA30F8CB23"
+        },
+        {
+          "path": "page-navigation.mjs",
+          "status": 200,
+          "sha256": "A8F6376C081321E86F5836902FB6127F85C4D31023BA5A1BDD8ABAF317F84B1E"
+        },
+        {
+          "path": "signature.mjs",
+          "status": 200,
+          "sha256": "8278D48CB996C3A428D028FB7009F5BD8B44E52A0A6583DBE89AE0FE079C7F43"
+        },
+        {
+          "path": "studio-professional.css",
+          "status": 200,
+          "sha256": "1FAF8E3829EF8A6DC0E2D459E529FE8C1185D7CD06B86E6DD81276D2EBCB7AA4"
+        },
+        {
+          "path": "sw.js",
+          "status": 200,
+          "sha256": "2554B7E4F34D4F4B872BE22F92D793085B6536C6F934A671509884DCEBC496AA"
+        },
+        {
+          "path": "deck-slides/slide-1.webp",
+          "status": 200,
+          "sha256": "D400167E13B42C8957715BFE44894882B126C6FEC8FE6C4D1290E2BE5729045B"
+        },
+        {
+          "path": "deck-slides/slide-14.webp",
+          "status": 200,
+          "sha256": "E312B2D257E6268A0BD2F80542F9421F8B5C2EF884D57B4DAA3A8809940563E8"
+        }
+      ],
+      "url": "https://mindmesh-netra.web.app/yip-pitch.html"
+    }
+  }
 }
