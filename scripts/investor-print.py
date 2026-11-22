@@ -58,15 +58,15 @@ def brief():
     for title,body in blocks:
         y=heading(c,title,m,y,content)
         y=para(c,body,m,y,content,10.1)-13
-    c.setStrokeColor(HexColor('#c5c0d2')); c.line(m,75,w-m,75)
+    c.setStrokeColor(HexColor('#c5c0d2')); c.line(m,98,w-m,98)
     c.setFont('NetraBold',8.5); c.setFillColor(ink)
-    c.drawString(m,61,'Malavika Basanth / Lavanya Vivek Pillai / Devasree P C')
+    c.drawString(m,84,'Malavika Basanth / Lavanya Vivek Pillai / Devasree P C')
     c.setFont('Netra',8.2); c.setFillColor(muted)
-    c.drawString(m,47,'Mentor: Aswathy P | TKM Centenary Public School, Kollam | YIP 9.0')
-    c.drawString(m,33,'Meet us at the YIP pavilion; agree a follow-up channel in person.')
-    c.setFillColor(purple); c.drawString(m,19,'mindmesh-netra.web.app/investor.html')
-    c.linkURL('https://mindmesh-netra.web.app/investor.html',(m,16,m+255,30),relative=0)
-    c.drawImage(str(web/'images/visitor-qr.png'),w-m-57,12,57,57)
+    c.drawString(m,70,'Mentor: Aswathy P | TKM Centenary Public School, Kollam | YIP 9.0')
+    c.drawString(m,56,'Meet us at the YIP pavilion; agree a follow-up channel in person.')
+    c.setFillColor(purple); c.drawString(m,42,'mindmesh-netra.web.app/investor.html')
+    c.linkURL('https://mindmesh-netra.web.app/investor.html',(m,39,m+255,53),relative=0)
+    c.drawImage(str(root/'output/summit/NETRA-SCREEN-partner-QR.png'),w-m-70,18,70,70)
     c.showPage(); c.save(); shutil.copyfile(path,web/'docs'/path.name)
 
 def cue():

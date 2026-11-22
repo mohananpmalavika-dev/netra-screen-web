@@ -74,7 +74,43 @@ NFC-tag setup guidance. NFC requires a separately prepared physical tag. QR entr
 opens the public demo and does not create an account or authenticate a visitor.
 Regenerate print-safe PNG/SVG codes with `node scripts/visitor-qr.mjs`.
 
-The first-visit layout now uses one primary demo action. Eye control is a closed
+The first-visit layout uses one primary demo action. Eye control is a closed
 optional disclosure; closing it releases its camera. The supplied-picture guide has
-one home-page entry, four common questions and a disclosure for the remaining topics.
-The QR and sharing controls live on `join.html` rather than crowding the hero.
+an inline home entry and a floating portrait that remains visible while scrolling.
+The floating portrait is hidden during the research session. The QR and sharing
+controls live on `join.html`.
+
+## Research partner and investor pack
+
+`investor.html` provides the first-customer hypothesis, current engineering evidence,
+proposed 90-day deliverables, recorded camera-free walkthrough, downloadable brief
+and deck, and the partnership ask. QR visitors can reach it from `join.html`; the
+printed investor brief has a dedicated QR to `/investor.html`. Publish this route
+with its assets before distributing that QR. The existing general visitor QR still
+opens the research home.
+
+The first user and buyer definitions are hypotheses. No customer, signed pilot,
+revenue, market-size, price, valuation or funding amount is inferred from software
+tests. Public contact details have not been selected. Visitors can save a discussion
+note on their own device; the note is never submitted or sent. The page does not
+persist its form or create a contact database.
+
+The current evidence is in `investor-evidence.json`, generated from passing Node
+tests and `test-results/browser-results.json` by `scripts/record-investor-evidence.mjs`.
+Source hashes identify the web files covered by that snapshot. Controlled camera
+fixtures and seven emulated viewport sizes do not establish physical-phone, optical
+or clinical performance. Re-run the selected browser suites before refreshing it.
+
+Rebuild editable slide copy with `node scripts/prepare-investor-copy.mjs`, export
+the eight-slide PDF with `node scripts/export-investor-deck.mjs` while the preview
+server is running, and create the handout QR with `node scripts/partner-qr.mjs`.
+`python -X utf8 scripts/investor-print.py` generates the one-page brief and team cue
+using the installed PDF runtime. `scripts/review-investor-pdfs.py` renders all pages
+for visual inspection. Repackage `dist/` after regenerating public PDFs.
+
+`node scripts/create-team-playbook.mjs` writes the team-only preparation HTML to
+`../output/summit/NETRA-SCREEN-team-playbook.html`. Its budget, physical-phone log
+and permission-based visitor notes are local worksheets with explicit JSON export.
+They are outside the public asset allowlist. Do not publish filled visitor notes or
+treat an uncosted budget as an approved funding ask. Named owners, real device
+rehearsal, a public contact channel and a mentor-reviewed budget remain team actions.
