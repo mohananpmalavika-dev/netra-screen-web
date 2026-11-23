@@ -18,6 +18,12 @@ for(const [width,height] of [[320,740],[768,1024],[1440,900],[568,320]]){
   test.setTimeout(90000);await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height});
   for(const route of ['about.html','join.html','eye-tests.html','investor.html','presentation.html','yip-pitch.html']){
    await page.goto('/'+route);const nav=page.locator('.page-navigation');await expect(nav).toBeVisible();
+   const scrollable=await page.evaluate(()=>document.scrollingElement.scrollHeight>innerHeight+120);
+   if(scrollable){
+    await nav.locator('[data-page-down]').click();await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(80);
+    await expect(nav.locator('[data-page-home]')).toBeInViewport();
+    expect(await nav.locator('[data-page-home]').evaluate(el=>{const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));})).toBe(true);
+   }
    await expect(nav.locator('[data-page-home]')).toHaveAttribute('href','./index.html');
    await nav.locator('summary').click();await expect(nav.locator('.page-menu-links a')).toHaveCount(8);
    const bounds=await nav.locator('.page-menu-links').boundingBox();expect(bounds.x).toBeGreaterThanOrEqual(0);expect(bounds.x+bounds.width).toBeLessThanOrEqual(width);
@@ -25,6 +31,23 @@ for(const [width,height] of [[320,740],[768,1024],[1440,900],[568,320]]){
    expect(await nav.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   }
+ });
+}
+
+for(const [width,height] of [[390,844],[1920,1080]]){
+ test(`overview deep links keep Back and scrolling controls available at ${width}`,async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width,height});
+  await page.goto('/index.html#projectOverview');
+  const nav=page.locator('.page-navigation');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(100);
+  await expect(nav.locator('[data-page-back]')).toBeInViewport();
+  const before=await page.evaluate(()=>scrollY);await nav.locator('[data-page-down]').click();
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(before);
+  await nav.locator('[data-page-up]').click();await expect.poll(()=>page.evaluate(()=>scrollY)).toBeLessThan(before+10);
+  await nav.locator('[data-page-top]').click();await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
+  await page.mouse.move(width/2,height/2);await page.mouse.wheel(0,500);await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(100);
+  await expect(nav.locator('summary')).toBeInViewport();
+  await nav.locator('[data-page-back]').click();await expect(page).toHaveURL(/index.html$/);
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
  });
 }
 

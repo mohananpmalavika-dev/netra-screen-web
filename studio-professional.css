@@ -1,7 +1,14 @@
 /* Shared screen palette. Plot series and the print palette retain their own meanings. */
 @media screen{
+ /* Reading pages use the document scrollbar so sticky navigation has no clipped ancestor. */
+ html:has(body.signature-system:not(.research-app)),html:has(body.signature-system #viewHome.active-view){height:auto;min-height:100%;overflow-x:clip;overflow-y:scroll;scrollbar-gutter:stable;scroll-padding-top:calc(var(--netra-nav-height,56px) + 16px)}
+ body.signature-system:not(.research-app),body.signature-system.research-app:has(#viewHome.active-view){height:auto;min-height:100dvh;overflow:visible}
+ html:has(body.signature-system){scrollbar-color:#c99a7b #241a20;scrollbar-width:auto}
  .signature-system .page-navigation{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0;width:calc(100% - 64px);max-width:1480px;min-height:48px;margin:4px auto 0;padding:2px 0;border-bottom:1px solid var(--studio-border);background:#160e12f2;backdrop-filter:blur(12px)}
  .signature-system .page-return{display:flex;align-items:center;gap:12px;min-width:0}
+ .signature-system .page-scroll-controls{display:flex;align-items:center;gap:4px;margin-left:auto}
+ .signature-system .page-navigation[data-context=local] .page-scroll-controls{display:none}
+ .signature-system .page-navigation .page-scroll-controls button{font-size:14px;padding:8px 10px}
  .signature-system .page-yip{margin-left:auto;padding:10px 12px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:650;color:#f3c3a3;text-decoration:none;border:1px solid #c69a8052;border-radius:5px;white-space:nowrap}
  .signature-system .page-navigation[data-context=local] .page-yip{display:none}
  .signature-system .page-yip:hover{background:#49313a;color:#ffe4c6}
@@ -20,6 +27,7 @@
  .signature-system .page-menu-links a{display:flex;align-items:center;min-height:44px;padding:10px 12px;border-radius:4px;font-size:14px;line-height:1.5;color:#f0ddcc;text-decoration:none;overflow-wrap:anywhere}
  .signature-system .page-menu-links a:hover,.signature-system .page-menu-links a[aria-current=page]{background:#4a3139;color:#ffe1bd}
  @media(max-width:700px){.signature-system .page-navigation{width:calc(100% - 28px);gap:6px}.signature-system .page-return{gap:4px;flex:1}.signature-system .page-current{display:none}.signature-system .page-navigation button{max-width:calc(100vw - 170px);overflow-wrap:anywhere}.signature-system .page-navigation button,.signature-system .page-navigation [data-page-home],.signature-system .page-menu summary{padding:8px 9px;font-size:12px}}
+ @media(max-width:700px){.signature-system .page-navigation{flex-wrap:wrap}.signature-system .page-scroll-controls{order:4;flex:1 0 100%;justify-content:center;border-top:1px solid var(--studio-border)}.signature-system .page-scroll-controls button{flex:1;max-width:none;min-height:40px}.signature-system .page-menu-links{max-height:min(420px,calc(100dvh - var(--netra-nav-height,100px) - 24px))}}
 }
 @media print{.page-navigation{display:none!important}}
 @media screen{

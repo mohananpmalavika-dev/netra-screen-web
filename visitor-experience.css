@@ -1,4 +1,4 @@
-﻿/* The optical showcase stays visible when devices lose or disable WebGL. */
+/* The optical showcase stays visible when devices lose or disable WebGL. */
 @media screen{
  .protocol-visual{overflow:clip;overflow-clip-margin:2px}
  .scene-glow{inset:6% 0 4%}

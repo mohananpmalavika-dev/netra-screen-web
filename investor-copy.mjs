@@ -1,4 +1,4 @@
-// Bilingual investor narrative. Shared with the HTML and PDF deck.
+// Shared slide copy; rebuild PDFs after changing this file.
 export const COPY=[
   {
     "en": "NETRA-SCREEN / RESEARCH PLATFORM",
@@ -9,8 +9,8 @@ export const COPY=[
     "ml": "നേത്രചലന ഗവേഷണം.<br><em>നിങ്ങളുടെ സ്മാർട്ട്ഫോണിൽ.</em>"
   },
   {
-    "en": "Our goal: make preliminary observation of children’s eye movement and coordination more accessible, towards earlier professional attention. Working Android and web research prototypes; clinical screening capability remains to be evaluated.",
-    "ml": "ലക്ഷ്യം: കുട്ടികളുടെ നേത്രചലനവും ഏകോപനവും പ്രാഥമികമായി നിരീക്ഷിക്കാൻ കൂടുതൽ സൗകര്യമൊരുക്കുക; പ്രശ്നങ്ങൾ നേരത്തേ വിദഗ്ധ ശ്രദ്ധയിൽ കൊണ്ടുവരാൻ സഹായിക്കുക. Android, വെബ് ഗവേഷണ പ്രോട്ടോടൈപ്പുകൾ പ്രവർത്തിക്കുന്നു; ക്ലിനിക്കൽ സ്ക്രീനിംഗ് ശേഷി ഇനിയും വിലയിരുത്തണം."
+    "en": "A guided research workflow using an ordinary smartphone to study children’s eye movement and coordination. Android and web prototypes are implemented; clinical accuracy and pediatric validity remain unestablished.",
+    "ml": "കുട്ടികളുടെ കണ്ണുകളുടെ ചലനവും ഏകോപനവും പഠിക്കാൻ സാധാരണ സ്മാർട്ട്ഫോൺ ഉപയോഗിക്കുന്ന guided research workflow. Android, വെബ് പ്രോട്ടോടൈപ്പുകൾ ഉണ്ട്; ക്ലിനിക്കൽ കൃത്യതയും കുട്ടികളിലെ സാധുതയും തെളിയിച്ചിട്ടില്ല."
   },
   {
     "en": "KGDTIS 2026 · YIP Pavilion · 24–25 November · Adlux, Angamaly",
@@ -253,8 +253,8 @@ export const COPY=[
     "ml": "അടുത്ത അധ്യായം<br>ഒരുമിച്ച് രൂപപ്പെടുത്താം."
   },
   {
-    "en": "We seek an ophthalmology research collaborator and a supervised usability partner. Next outputs: a device-performance baseline and a clinician-reviewed study plan.",
-    "ml": "നേത്രഗവേഷണ സഹകാരിയെയും മേൽനോട്ടത്തിലുള്ള ഉപയോഗപഠന പങ്കാളിയെയും തേടുന്നു. അടുത്ത ഫലങ്ങൾ: ഫോൺ പ്രകടന റിപ്പോർട്ടും വിദഗ്ധൻ അവലോകനം ചെയ്ത പഠന പദ്ധതിയും."
+    "en": "We seek an ophthalmology research partner, device access and incubation or prototype development support. Next outputs: a device-performance baseline, a reviewed study plan and a costed work package.",
+    "ml": "നേത്രഗവേഷണ പങ്കാളി, ഫോൺ പരിശോധനയ്ക്കുള്ള സഹായം, ഇൻക്യുബേഷൻ അല്ലെങ്കിൽ പ്രോട്ടോടൈപ്പ് വികസന പിന്തുണ എന്നിവ തേടുന്നു. അടുത്ത ഫലങ്ങൾ: ഫോൺ പ്രകടന റിപ്പോർട്ട്, അവലോകനം ചെയ്ത പഠനപദ്ധതി, ചെലവ് കണക്ക്."
   },
   {
     "en": "Mentor: Aswathy P | TKM Centenary Public School, Kollam | YIP 9.0. Meet the team at the YIP pavilion; agree a follow-up channel in person.",
