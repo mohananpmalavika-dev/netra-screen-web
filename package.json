@@ -5,7 +5,7 @@
   "description": "Offline research capture and personal eye comfort activities",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check app.js && node --check eye-tests.js && node --check sw.js && node --check camera.mjs && node --check child-guide.mjs && node --check vision-core.mjs && node --check project-copy.mjs && node --check presentation.js && node --check showcase-3d.mjs && node --check gaze-control.mjs && node --check presenter.mjs && node --check project-knowledge.mjs && node --check join.mjs && node --check investor.mjs && node --check investor-copy.mjs && node --check signature.mjs && node --check page-navigation.mjs && node --check yip-pitch.mjs && node --check optics-hero.mjs && node --check optical-exhibit.mjs",
+    "check": "node --check app.js && node --check eye-tests.js && node --check sw.js && node --check camera.mjs && node --check child-guide.mjs && node --check vision-core.mjs && node --check project-copy.mjs && node --check presentation.js && node --check showcase-3d.mjs && node --check gaze-control.mjs && node --check presenter.mjs && node --check project-knowledge.mjs && node --check join.mjs && node --check investor.mjs && node --check investor-copy.mjs && node --check signature.mjs && node --check page-navigation.mjs && node --check yip-pitch.mjs && node --check optics-hero.mjs && node --check optical-exhibit.mjs && node --check pwa-installer.mjs",
     "build": "npm run check && npm test && node scripts/build.mjs",
     "test:browser": "playwright test",
     "serve": "node scripts/serve.mjs"
