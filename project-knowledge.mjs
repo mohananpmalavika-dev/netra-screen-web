@@ -408,8 +408,8 @@ export const KNOWLEDGE=[
       "ml": "ഗവേഷണ സഹകരണത്തിന് എങ്ങനെ സംസാരിക്കാം?"
     },
     "a": {
-      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion. Public team email and phone details have not been selected. The partner pack lets you save a discussion note on your device; it is not submitted or sent. Share it with the team in person and agree a follow-up channel.",
-      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ കാണാം. പൊതു ഇമെയിലും ഫോണും തീരുമാനിച്ചിട്ടില്ല. Partner pack-ൽ ചർച്ചയ്ക്കുള്ള കുറിപ്പ് സ്വന്തം ഉപകരണത്തിൽ സൂക്ഷിക്കാം; അത് ടീമിന് അയക്കപ്പെടില്ല. നേരിട്ട് പങ്കിട്ട് തുടർബന്ധം തീരുമാനിക്കാം."
+      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion or contact Malavika Basanth (malavikabasant@gmail.com) and Devasree P C (devasreepc1607@gmail.com). You can also watch the 110-second demo video at /demo.html.",
+      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ നേരിൽ കാണാം അല്ലെങ്കിൽ Malavika Basanth (malavikabasant@gmail.com), Devasree P C (devasreepc1607@gmail.com) എന്നിവരെ ഇമെയിൽ വഴി ബന്ധപ്പെടാം."
     },
     "terms": [
       "contact",
