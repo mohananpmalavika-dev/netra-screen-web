@@ -408,14 +408,17 @@ export const KNOWLEDGE=[
       "ml": "ഗവേഷണ സഹകരണത്തിന് എങ്ങനെ സംസാരിക്കാം?"
     },
     "a": {
-      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion or contact Malavika Basanth (malavikabasant@gmail.com) and Devasree P C (devasreepc1607@gmail.com). You can also watch the 110-second demo video at /demo.html.",
-      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ നേരിൽ കാണാം അല്ലെങ്കിൽ Malavika Basanth (malavikabasant@gmail.com), Devasree P C (devasreepc1607@gmail.com) എന്നിവരെ ഇമെയിൽ വഴി ബന്ധപ്പെടാം."
+      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion or contact Malavika Basanth (+91 90748 19916, malavikabasant@gmail.com) and Devasree P C (+91 85475 27058, devasreepc1607@gmail.com). You can also watch the 110-second demo video at /demo.html.",
+      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ നേരിൽ കാണാം അല്ലെങ്കിൽ Malavika Basanth (9074819916, malavikabasant@gmail.com), Devasree P C (8547527058, devasreepc1607@gmail.com) എന്നിവരെ ഫോൺ വഴിയോ ഇമെയിൽ വഴിയോ ബന്ധപ്പെടാം."
     },
     "terms": [
       "contact",
       "follow up",
       "followup",
       "meet the team",
+      "phone",
+      "call",
+      "number",
       "email",
       "phone number",
       "ബന്ധപ്പെട",
