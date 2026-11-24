@@ -257,7 +257,7 @@ export const COPY=[
     "ml": "നേത്രഗവേഷണ പങ്കാളി, ഫോൺ പരിശോധനയ്ക്കുള്ള സഹായം, ഇൻക്യുബേഷൻ അല്ലെങ്കിൽ പ്രോട്ടോടൈപ്പ് വികസന പിന്തുണ എന്നിവ തേടുന്നു. അടുത്ത ഫലങ്ങൾ: ഫോൺ പ്രകടന റിപ്പോർട്ട്, അവലോകനം ചെയ്ത പഠനപദ്ധതി, ചെലവ് കണക്ക്."
   },
   {
-    "en": "Mentor: Aswathy P | TKM Centenary Public School, Kollam | YIP 9.0. Meet the team at the YIP pavilion; agree a follow-up channel in person.",
-    "ml": "മെന്റർ: Aswathy P | TKM Centenary Public School, കൊല്ലം | YIP 9.0. YIP പവലിയനിൽ ടീമിനെ കാണാം; തുടർബന്ധത്തിനുള്ള മാർഗം നേരിട്ട് തീരുമാനിക്കാം."
+    "en": "Mentors: Aswathy P & Smitha D Pillai (8137861234) | TKM Centenary Public School, Kollam | YIP 9.0. Meet the team at the YIP pavilion; agree a follow-up channel in person.",
+    "ml": "മെന്റർമാർ: Aswathy P & Smitha D Pillai (8137861234) | TKM Centenary Public School, കൊല്ലം | YIP 9.0. YIP പവലിയനിൽ ടീമിനെ കാണാം; തുടർബന്ധത്തിനുള്ള മാർഗം നേരിട്ട് തീരുമാനിക്കാം."
   }
 ];

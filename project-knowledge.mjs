@@ -231,8 +231,8 @@ export const KNOWLEDGE=[
       "ml": "ആരാണ് ഇത് നിർമ്മിച്ചത്?"
     },
     "a": {
-      "en": "Team MindMesh: Malavika Basanth, Lavanya Vivek Pillai and Devasree P C, mentored by Aswathy P at TKM Centenary Public School, Kollam. The project is part of YIP 9.0.",
-      "ml": "കൊല്ലം TKM Centenary Public School-ലെ Malavika Basanth, Lavanya Vivek Pillai, Devasree P C എന്നിവരുടെ Team MindMesh ആണ്. മാർഗനിർദേശം Aswathy P. YIP 9.0 പദ്ധതിയുടെ ഭാഗമാണ്."
+      "en": "Team MindMesh: Malavika Basanth, Lavanya Vivek Pillai and Devasree P C, mentored by Aswathy P and Smitha D Pillai (8137861234) at TKM Centenary Public School, Kollam. The project is part of YIP 9.0.",
+      "ml": "കൊല്ലം TKM Centenary Public School-ലെ Malavika Basanth, Lavanya Vivek Pillai, Devasree P C എന്നിവരുടെ Team MindMesh ആണ്. മാർഗനിർദേശം Aswathy P & Smitha D Pillai (8137861234). YIP 9.0 പദ്ധതിയുടെ ഭാഗമാണ്."
     },
     "terms": [
       "team",
@@ -408,8 +408,8 @@ export const KNOWLEDGE=[
       "ml": "ഗവേഷണ സഹകരണത്തിന് എങ്ങനെ സംസാരിക്കാം?"
     },
     "a": {
-      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion or contact Malavika Basanth (+91 90748 19916, malavikabasant@gmail.com) and Devasree P C (+91 85475 27058, devasreepc1607@gmail.com). You can also watch the 110-second demo video at /demo.html.",
-      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ നേരിൽ കാണാം അല്ലെങ്കിൽ Malavika Basanth (9074819916, malavikabasant@gmail.com), Devasree P C (8547527058, devasreepc1607@gmail.com) എന്നിവരെ ഫോൺ വഴിയോ ഇമെയിൽ വഴിയോ ബന്ധപ്പെടാം."
+      "en": "Meet Team MindMesh at the KGDTIS YIP pavilion or contact Malavika Basanth (+91 90748 19916, malavikabasant@gmail.com), Devasree P C (+91 85475 27058, devasreepc1607@gmail.com), or Project Mentor Smitha D Pillai (+91 81378 61234). You can also watch the 110-second demo video at /demo.html.",
+      "ml": "KGDTIS YIP പവലിയനിൽ Team MindMesh-നെ നേരിൽ കാണാം അല്ലെങ്കിൽ Malavika Basanth (9074819916, malavikabasant@gmail.com), Devasree P C (8547527058, devasreepc1607@gmail.com), പ്രോജക്ട് മെന്റർ Smitha D Pillai (8137861234) എന്നിവരെ ഫോൺ വഴിയോ ഇമെയിൽ വഴിയോ ബന്ധപ്പെടാം."
     },
     "terms": [
       "contact",
@@ -419,6 +419,10 @@ export const KNOWLEDGE=[
       "phone",
       "call",
       "number",
+      "smitha",
+      "smitha d pillai",
+      "mentor",
+      "aswathy",
       "email",
       "phone number",
       "ബന്ധപ്പെട",
