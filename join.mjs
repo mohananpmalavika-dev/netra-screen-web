@@ -1,4 +1,4 @@
-﻿import './offline-status.js';
+import './offline-status.js';
 import {promptInstall} from './pwa-installer.mjs';
 const url='https://mindmesh-netra.web.app/',status=document.querySelector('[data-join-status]');
 async function copy(){try{await navigator.clipboard.writeText(url);status.textContent='Website link copied. Paste it into a message or your NFC tag app.';}catch{status.textContent='Copy this address: '+url;}}
